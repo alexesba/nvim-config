@@ -31,6 +31,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'ashisha/image.vim'
 " Plug 'mhinz/vim-signify'
 Plug 'gcmt/taboo.vim'
+Plug 'dietsche/vim-lastplace'
 
 "Enhancements
 " Plug 'bling/vim-airline'
@@ -75,7 +76,11 @@ set hlsearch
 set incsearch
 set number
 set expandtab
+set autoread
 let mapleader=","
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
+
 map <leader>n :NERDTreeToggle <cr>
 
 if exists('+colorcolumn')
