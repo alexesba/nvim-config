@@ -16,8 +16,8 @@ Plug 'tpope/vim-markdown'
 Plug 'kchmck/vim-coffee-script'
 Plug 'moll/vim-node'
 Plug 'benjie/neomake-local-eslint.vim'
+" Plug 'jiangmiao/auto-pairs'
 
-"Utils
 Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
 Plug 'editorconfig/editorconfig-vim'
@@ -89,6 +89,7 @@ endif
 
 map <Space> :noh<cr>
 set ar " autoload edited file
+nnoremap <leader>fef :normal! gg=G``<CR>
 
 "Toogle comments
 nnoremap <silent> <Leader>c :TComment<CR>
@@ -112,6 +113,10 @@ set background=light
 " set guifont=Monaco:h12
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
+if has("gui_vimr")
+  colorscheme hemisu
+  set background=light
+end
 
 " Ctrlp
 let g:ctrlp_dont_split = "NERD_tree_2"
@@ -170,8 +175,9 @@ if executable(local_eslint)
 endif
 let g:neomake_javascript_enabled_makers=['eslint', 'rubylint']
 
-" autocmd! BufWritePost *.js Neomake
-autocmd! BufWritePost * Neomake
+"Trigger check syntax for eslint 
+autocmd! BufWritePost,BufEnter * Neomake
+
 
 " Format json files
 command! FormatJSON %!python -m json.tool
@@ -203,8 +209,8 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType php setlocal shiftwidth=4 tabstop=4
 autocmd FileType css setlocal shiftwidth=2 tabstop=2
 autocmd FileType scss setlocal shiftwidth=2 tabstop=2
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+" autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+" autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 autocmd FileType vim setlocal shiftwidth=2 tabstop=2
 
 let g:jsx_ext_required = 0 "Allow jsx in normal js files
