@@ -16,6 +16,7 @@ Plug 'tpope/vim-markdown'
 Plug 'kchmck/vim-coffee-script'
 Plug 'moll/vim-node'
 Plug 'benjie/neomake-local-eslint.vim'
+Plug 'dhruvasagar/vim-table-mode'
 " Plug 'jiangmiao/auto-pairs'
 
 Plug 'scrooloose/syntastic'
@@ -355,3 +356,9 @@ augroup status
   autocmd!
   autocmd VimEnter,VimLeave,WinEnter,WinLeave,BufWinEnter,BufWinLeave * :RefreshStatus
 augroup END
+
+" Mapping to move single line in normal mode and move blocks in visual mode
+nnoremap <S-Up>   :<C-u>silent! move-2<CR>==
+nnoremap <S-Down> :<C-u>silent! move+<CR>==
+xnoremap <S-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
+xnoremap <S-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
