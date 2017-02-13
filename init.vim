@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-" Colorschemes 
+" Colorschemes
 Plug 'alexesba/colors'
 Plug 'mhartington/oceanic-next'
 Plug 'chriskempson/vim-tomorrow-theme'
@@ -30,17 +30,16 @@ Plug 'terryma/vim-multiple-cursors'
 "Delete files using commands
 Plug 'tpope/vim-eunuch'
 Plug 'ashisha/image.vim'
-" Plug 'mhinz/vim-signify'
 Plug 'gcmt/taboo.vim'
 Plug 'dietsche/vim-lastplace'
-
-"Enhancements
-" Plug 'bling/vim-airline'
-" Plug 'geekjuice/vim-picoline'
-
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
+Plug 'vim-scripts/golden.vim'
+Plug 'romainl/Apprentice'
 
 "Languages
 Plug 'pangloss/vim-javascript'
+
 Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-cucumber'
@@ -54,11 +53,10 @@ Plug 'neovim/node-host', { 'do': 'npm install' }
 Plug 'vimlab/mdown.vim', { 'do': 'npm install' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
 Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
-" Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
+Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'gko/vim-coloresque'
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' } " CSS3 syntax support
 Plug 'leafgarland/typescript-vim'
-
 
 call plug#end()
 
@@ -68,6 +66,7 @@ function! BuildComposer(info)
     UpdateRemotePlugins
   endif
 endfunction
+
 syntax on
 filetype on
 filetype plugin on
@@ -82,16 +81,14 @@ let mapleader=","
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 
-map <leader>n :NERDTreeToggle <cr>
-
 if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
+map <leader>n :NERDTreeToggle <cr>
 map <Space> :noh<cr>
 set ar " autoload edited file
 nnoremap <leader>fef :normal! gg=G``<CR>
-
 "Toogle comments
 nnoremap <silent> <Leader>c :TComment<CR>
 vnoremap <silent> <Leader>c :TComment<CR>
@@ -109,15 +106,38 @@ map <silent> <D-7> :tabn 7<cr>
 map <silent> <D-8> :tabn 8<cr>
 map <silent> <D-9> :tabn 9<cr>
 
-colorscheme hemisu
-set background=light
+" Command to move among tabs in Konsole-style
+map <leader>1 :tabn 1 <cr>
+map <leader>2 :tabn 2 <cr>
+map <leader>3 :tabn 3 <cr>
+map <leader>4 :tabn 4<cr>
+map <leader>5 :tabn 5<cr>
+map <leader>6 :tabn 6<cr>
+map <leader>7 :tabn 7<cr>
+map <leader>8 :tabn 8<cr>
+map <leader>9 :tabn 9<cr>
+map <leader>0 :tabn 0<cr>
+
+colorscheme monokai
 " set guifont=Monaco:h12
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Mapping to move single line in normal mode and move blocks in visual mode
+nnoremap <S-Up>   :<C-u>silent! move-2<CR>==
+nnoremap <S-Down> :<C-u>silent! move+<CR>==
+xnoremap <S-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
+xnoremap <S-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 
 if has("gui_vimr")
   colorscheme hemisu
   set background=light
+  " Mapping to move single line in normal mode and move blocks in visual mode
+  nnoremap <M-Up>   :<C-u>silent! move-2<CR>==
+  nnoremap <M-Down> :<C-u>silent! move+<CR>==
+  xnoremap <M-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
+  xnoremap <M-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 end
+
 
 " Ctrlp
 let g:ctrlp_dont_split = "NERD_tree_2"
@@ -176,15 +196,26 @@ if executable(local_eslint)
 endif
 let g:neomake_javascript_enabled_makers=['eslint', 'rubylint']
 
-"Trigger check syntax for eslint 
+"Trigger check syntax for eslint
 autocmd! BufWritePost,BufEnter * Neomake
 
 
 " Format json files
 command! FormatJSON %!python -m json.tool
+" Change single quotes to double
+command! DoubleQuotes %s/'\([^']*\)'/"\1"/g
+" Change double quotes to single
+command! SingleQuotes %s/"\([^"]*\)"/'\1'/g
 
-" autocmd BufReadPost * :DetectIndent
-" Remove whitespaces
+" Change single quotes to double with confirmation
+command! DoubleQuotesC %s/'\([^']*\)'/"\1"/gc
+" Change double quotes to single with confirmation
+command! SingleQuotesC %s/"\([^"]*\)"/'\1'/gc
+
+"Insert Lines before each line
+command! AddNumber  %s/^/\=printf('%-2d', line('.'))
+command! ConverTabsToSpaces %s/\t/  /g
+
 " Strip trailing whitespace for code files on save
 function! CleanUp()
   let save_cursor = getpos(".")
@@ -195,7 +226,10 @@ endfunction
 command! CleanWhiteSpaces :call CleanUp()
 
 highlight Trail ctermbg=red guibg=red
+highlight Tabs ctermbg=gray guibg=gray
 call matchadd('Trail', '\s\+$', 100)
+call matchadd('Tabs', '\t', 101)
+" autocmd! InsertLeave,BufEnter * redraw!
 
 if has("autocmd")
   filetype plugin indent on
@@ -205,20 +239,19 @@ if has('nvim')
   runtime! plugin/python_setup.vim
 endif
 
-
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType php setlocal shiftwidth=4 tabstop=4
 autocmd FileType css setlocal shiftwidth=2 tabstop=2
 autocmd FileType scss setlocal shiftwidth=2 tabstop=2
-" autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-" autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 autocmd FileType vim setlocal shiftwidth=2 tabstop=2
 
 let g:jsx_ext_required = 0 "Allow jsx in normal js files
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 
-" hi SLLineNr ctermbg=0 
+" hi SLLineNr ctermbg=0
 
 " Formats the statusline
 
@@ -322,6 +355,7 @@ function! Status(winnum)
     if getwinvar(a:winnum, '&paste')
       let stat .= Color(active, 'SLLineNr', ' P')
     endif
+
   endif
 
   " right side
@@ -334,6 +368,7 @@ function! Status(winnum)
     if empty(head) && exists('*fugitive#detect') && !exists('b:git_dir')
       call fugitive#detect(getcwd())
       let head = fugitive#head()
+      :
     endif
   endif
 
@@ -357,8 +392,3 @@ augroup status
   autocmd VimEnter,VimLeave,WinEnter,WinLeave,BufWinEnter,BufWinLeave * :RefreshStatus
 augroup END
 
-" Mapping to move single line in normal mode and move blocks in visual mode
-nnoremap <S-Up>   :<C-u>silent! move-2<CR>==
-nnoremap <S-Down> :<C-u>silent! move+<CR>==
-xnoremap <S-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
-xnoremap <S-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
