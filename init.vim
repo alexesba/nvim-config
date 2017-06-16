@@ -15,12 +15,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-markdown'
 Plug 'kchmck/vim-coffee-script'
 Plug 'moll/vim-node'
-Plug 'benjie/neomake-local-eslint.vim'
+Plug 'airblade/vim-gitgutter'
+" Plug 'benjie/neomake-local-eslint.vim'
 Plug 'dhruvasagar/vim-table-mode'
 " Plug 'jiangmiao/auto-pairs'
 
-Plug 'scrooloose/syntastic'
-Plug 'benekastah/neomake'
+" Plug 'vim-syntastic/syntastic'
+Plug 'neomake/neomake'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'kien/ctrlp.vim'
@@ -185,16 +186,22 @@ let g:ctrlp_user_command = {
 
 
 nnoremap <leader>. :CtrlPTag<cr>
-" let g:syntastic_javascript_eslint_exec=system('$(which eslint)')
-" Override eslint with local version where necessary.
-let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
-if matchstr(local_eslint, "^\/\\w") == ''
-  let local_eslint = getcwd() . "/" . local_eslint
-endif
+let local_eslint = '$(npm bin)/eslint'
+
 if executable(local_eslint)
-  let g:syntastic_javascript_eslint_exec = local_eslint
+  let b:neomake_javascript_eslint_exe = local_eslint
 endif
-let g:neomake_javascript_enabled_makers=['eslint', 'rubylint']
+
+" NEOMAKE
+let g:neomake_javascript_enabled_makers=['eslint']
+let g:neomake_ruby_enabled_makers=['rubocop']
+let g:neomake_place_signs=1
+hi NeomakeErrorMsg ctermbg=13
+hi MyWarningMsg ctermfg=1
+let g:neomake_warning_sign = {'text': '!', 'texthl': 'NeomakeErrorMsg'}
+let g:neomake_error_sign = { 'text': '»', 'texthl': 'MyWarningMsg'}
+
+
 
 "Trigger check syntax for eslint
 autocmd! BufWritePost,BufEnter * Neomake
@@ -217,6 +224,16 @@ command! RemoveExtraEmptyLines %!cat -s
 "Insert Lines before each line
 command! AddNumber  %s/^/\=printf('%-2d', line('.'))
 command! ConverTabsToSpaces %s/\t/  /g
+function! CleanUpReactFile() 
+  let save_cursor = getpos(".")
+  %s/ \{2,}/ /g
+  %s/{/{ /g
+  %s/}/ }/g
+  %s/ \{2,}/ /g
+  execute "normal! \gg \<S-v> \<S-g>="
+  call setpos('.', save_cursor)
+endfunction
+command! FormatBraces :call CleanUpReactFile()
 
 " Strip trailing whitespace for code files on save
 function! CleanUp()
@@ -245,7 +262,7 @@ let g:jsx_ext_required = 0 "Allow jsx in normal js files
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 
-" hi SLLineNr ctermbg=0
+" hi SpellBad ctermbg=0
 
 " Formats the statusline
 
@@ -327,10 +344,10 @@ function! Status(winnum)
   endif
 
   " file name
-  let stat .= Color(active, 'SLArrows', active ? ' »' : ' «')
+  let stat .= Color(active, 'StatusLine', active ? ' »' : ' «')
   let stat .= ' %<'
   let stat .= '%f'
-  let stat .= ' ' . Color(active, 'SLArrows', active ? '«' : '»')
+  let stat .= ' ' . Color(active, 'StatusLine', active ? '«' : '»')
 
   " file modified
   let modified = getbufvar(bufnum, '&modified')
@@ -343,11 +360,11 @@ function! Status(winnum)
   " paste
   if active
     if getwinvar(a:winnum, '&spell')
-      let stat .= Color(active, 'SLLineNr', ' S')
+      let stat .= Color(active, 'SpellBad', ' S')
     endif
 
     if getwinvar(a:winnum, '&paste')
-      let stat .= Color(active, 'SLLineNr', ' P')
+      let stat .= Color(active, 'Statement', ' Paste ')
     endif
 
   endif
@@ -365,6 +382,8 @@ function! Status(winnum)
       :
     endif
   endif
+
+  let stat .= '~[%{&ff} %{&fenc}]~'
 
   if !empty(head)
     let stat .= Color(active, 'SLBranch', ' ← ') . head . ' '
@@ -385,4 +404,3 @@ augroup status
   autocmd!
   autocmd VimEnter,VimLeave,WinEnter,WinLeave,BufWinEnter,BufWinLeave * :RefreshStatus
 augroup END
-
