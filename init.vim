@@ -1,72 +1,58 @@
 call plug#begin('~/.vim/plugged')
-" Colorschemes
+" Colorscheme
 Plug 'alexesba/colors'
+Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 Plug 'mhartington/oceanic-next'
-Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'Addisonbean/Vim-Xcode-Theme'
+Plug 'vim-scripts/golden.vim'
+Plug 'flazz/vim-colorschemes'
 
 " utils
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/vim-easy-align'
+Plug 'kchmck/vim-coffee-script'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-eunuch' "Delete files using commands
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown' "Preview markdown files
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-markdown'
-Plug 'kchmck/vim-coffee-script'
-Plug 'moll/vim-node'
-Plug 'airblade/vim-gitgutter'
-" Plug 'benjie/neomake-local-eslint.vim'
-Plug 'dhruvasagar/vim-table-mode'
 " Plug 'jiangmiao/auto-pairs'
 
-" Plug 'vim-syntastic/syntastic'
+Plug 'dietsche/vim-lastplace'
+Plug 'godlygeek/tabular'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'mattn/emmet-vim'
+Plug 'terryma/vim-multiple-cursors'
+
+"Tools for searching
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+"Validate syntax and load configuration for editing files
 Plug 'neomake/neomake'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'mattn/emmet-vim'
-Plug 'kien/ctrlp.vim'
-Plug 'rking/ag.vim'
-Plug 'godlygeek/tabular'
-Plug 'terryma/vim-multiple-cursors'
-"Delete files using commands
-Plug 'tpope/vim-eunuch'
-Plug 'ashisha/image.vim'
-Plug 'gcmt/taboo.vim'
-Plug 'dietsche/vim-lastplace'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
-Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
-Plug 'vim-scripts/golden.vim'
-Plug 'romainl/Apprentice'
 
-"Languages
-Plug 'pangloss/vim-javascript'
-
-Plug 'mxw/vim-jsx'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-cucumber'
-Plug 'tpope/vim-haml'
-Plug 'kchmck/vim-coffee-script'
+"Languages and syntax
+Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'avakhov/vim-yaml'
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
 Plug 'chase/vim-ansible-yaml'
 Plug 'digitaltoad/vim-jade'
-Plug 'vim-scripts/xml.vim'
-Plug 'neovim/node-host', { 'do': 'npm install' }
-Plug 'vimlab/mdown.vim', { 'do': 'npm install' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
-Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
-Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'gko/vim-coloresque'
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' } " CSS3 syntax support
+Plug 'kchmck/vim-coffee-script'
 Plug 'leafgarland/typescript-vim'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-rails'
+Plug 'vim-scripts/xml.vim'
+Plug 'vimlab/mdown.vim', { 'do': 'npm install' }
+Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
 
 call plug#end()
-
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    !cargo build --release
-    UpdateRemotePlugins
-  endif
-endfunction
 
 syntax on
 filetype on
@@ -77,7 +63,13 @@ set hlsearch
 set incsearch
 set number
 set expandtab
-set autoread
+set autoread " Auto reload file when it's changed in the background
+set showmatch " Show matching brackets and parentheses
+
+" No swap files
+set noswapfile
+set nobackup
+set nowb
 let mapleader=","
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
@@ -88,12 +80,13 @@ endif
 
 map <leader>n :NERDTreeToggle <cr>
 map <Space> :noh<cr>
-set ar " autoload edited file
+" check one time after 4s of inactivity in normal mode
 nnoremap <leader>fef :normal! gg=G``<CR>
 "Toogle comments
 nnoremap <silent> <Leader>c :TComment<CR>
 vnoremap <silent> <Leader>c :TComment<CR>
 inoremap <silent> <Leader>c <Esc>:TComment<CR>i
+nnoremap <silent> <Leader>f :FZF<CR>
 
 " Use numbers to pick the tab you want (like iTerm)
 map <silent> <D-0> :tabn 0<cr>
@@ -139,53 +132,6 @@ if has("gui_vimr")
   xnoremap <M-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 end
 
-
-" Ctrlp
-let g:ctrlp_dont_split = "NERD_tree_2"
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_jump_to_buffer = 0
-let g:ctrlp_map = "<leader>f"
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_match_window_reversed = 1
-let g:ctrlp_split_window = 0
-let g:ctrlp_max_height = 20
-let g:ctrlp_max_depth = 40
-let g:ctrlp_extensions = ['tag']
-let g:ctrlp_max_files=10000
-let g:cssColorVimDoNotMessMyUpdatetime = 1
-
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
-let s:ctrlp_fallback = 'ag %s
-      \ --nocolor --nogroup --depth 5
-      \ --hidden --follow --smart-case
-      \ --ignore .bazaar
-      \ --ignore .bzr
-      \ --ignore .git
-      \ --ignore .hg
-      \ --ignore .svn
-      \ --ignore .ccache
-      \ --ignore .DS_Store
-      \ --ignore .opt1
-      \ --ignore .pylint.d
-      \ --ignore .shell
-      \ --ignore .wine
-      \ --ignore .wine-pipelight
-      \ --ignore "**/*.pyc"
-      \ --ignore "**/*.class"
-      \ --ignore "**/*.o"
-      \ -g ""'
-
-let g:ctrlp_user_command = {
-    \ 'types': {
-      \ 1: ['.git', 'cd %s && git ls-files . --cached --others --exclude-standard'],
-      \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    \ },
-    \ 'fallback': s:ctrlp_fallback
-\ }
-
-
-
-nnoremap <leader>. :CtrlPTag<cr>
 let local_eslint = '$(npm bin)/eslint'
 
 if executable(local_eslint)
@@ -224,7 +170,7 @@ command! RemoveExtraEmptyLines %!cat -s
 "Insert Lines before each line
 command! AddNumber  %s/^/\=printf('%-2d', line('.'))
 command! ConverTabsToSpaces %s/\t/  /g
-function! CleanUpReactFile() 
+function! CleanUpReactFile()
   let save_cursor = getpos(".")
   %s/ \{2,}/ /g
   %s/{/{ /g
@@ -404,3 +350,5 @@ augroup status
   autocmd!
   autocmd VimEnter,VimLeave,WinEnter,WinLeave,BufWinEnter,BufWinLeave * :RefreshStatus
 augroup END
+
+let $FZF_DEFAULT_COMMAND= 'ag -g ""'

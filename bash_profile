@@ -114,7 +114,7 @@ export EDITOR=nvim
 function cd {
         TMUX_DIRNAME=${1:-$(pwd)}
         if test "`dirname $1`" = "."; then
-                if test "$1" = "."; then 
+                if test "$1" = "."; then
                         TMUX_DIRNAME=$(pwd)
                 else
                         TMUX_DIRNAME=$(pwd)/$1
@@ -136,7 +136,7 @@ function cd {
 function tmux_start {
         TMUX_DIRNAME=${1:-$(pwd)}
         if test "`dirname $1`" = "."; then
-                if test "$1" = "."; then 
+                if test "$1" = "."; then
                         TMUX_DIRNAME=$(pwd)
                 else
                         TMUX_DIRNAME=$(pwd)/$1
@@ -172,3 +172,5 @@ function psql_stop {
         PSQL_DB_DIR=$(psql -V | egrep -o '[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}')
         pg_ctl -D /usr/local/var/postgresql/$PSQL_DB_DIR stop
 }
+
+export FZF_DEFAULT_COMMAND='ag -g ""'
