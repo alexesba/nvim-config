@@ -49,7 +49,7 @@ Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/xml.vim'
-Plug 'vimlab/mdown.vim', { 'do': 'npm install' }
+Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
 
 call plug#end()
@@ -352,3 +352,8 @@ augroup status
 augroup END
 
 let $FZF_DEFAULT_COMMAND= 'ag -g ""'
+let g:livedown_autorun = 1
+" let g:livedown_browser = "safari"
+let g:livedown_port = 1337
+
+
