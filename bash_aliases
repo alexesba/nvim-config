@@ -1,0 +1,1 @@
+/Users/alexesba/.oldvim/.bash_aliases

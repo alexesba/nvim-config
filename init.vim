@@ -352,8 +352,9 @@ augroup status
 augroup END
 
 let $FZF_DEFAULT_COMMAND= 'ag -g ""'
-let g:livedown_autorun = 1
+let g:livedown_autorun = 0
 " let g:livedown_browser = "safari"
 let g:livedown_port = 1337
-
+" Stop writing .netrwhist file
+let g:netrw_dirhistmax=0
 

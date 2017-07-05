@@ -35,15 +35,10 @@ function git_branch {
 
 export PS1="\[\e[01;32m\]\h\[\e[0m\]\[\e[01;37m\]@\[\e[0m\]\[\e[01;31m\]\u\[\e[0m\]\[\e[01;37m\]:\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\$(git_color)\]\$(git_branch)\[\033[0m\]\n$ "
 export CLICOLOR=1
-source ~/.bash_aliases
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
-alias behat=vendor/bin/behat
-alias reload='source ~/.bash_profile'
-alias be='bundle exec'
-
 
 # rbenv
 if which rbenv > /dev/null; then
@@ -174,3 +169,8 @@ function psql_stop {
 }
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
+
+# Load Custom aliases if the file exist
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
