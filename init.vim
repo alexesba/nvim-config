@@ -21,7 +21,6 @@ Plug 'tpope/vim-surround'
 
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 Plug 'mattn/emmet-vim'
 Plug 'terryma/vim-multiple-cursors'
 
