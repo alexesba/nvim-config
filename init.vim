@@ -48,7 +48,8 @@ Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/xml.vim'
-Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
+" Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
+Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
 
 call plug#end()
@@ -351,9 +352,21 @@ augroup status
 augroup END
 
 let $FZF_DEFAULT_COMMAND= 'ag -g ""'
-let g:livedown_autorun = 0
-" let g:livedown_browser = "safari"
-let g:livedown_port = 1337
-" Stop writing .netrwhist file
-let g:netrw_dirhistmax=0
+" let g:livedown_autorun = 0
+" " let g:livedown_browser = "safari"
+" let g:livedown_port = 1337
+" " Stop writing .netrwhist file
+" let g:netrw_dirhistmax=0
 
+
+let vim_markdown_preview_toggle=3
+" let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_temp_file=0
+let vim_markdown_preview_github=1
+
+
+autocmd BufRead,BufNewFile *.md,*.html,*.html.haml setlocal spell
+hi clear SpellBad
+hi SpellBad cterm=underline ctermfg=red
+set complete+=kspell
