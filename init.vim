@@ -27,7 +27,7 @@ Plug 'terryma/vim-multiple-cursors'
 "Tools for searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
+Plug 'jaawerth/nrun.vim'
 "Validate syntax and load configuration for editing files
 Plug 'neomake/neomake'
 Plug 'editorconfig/editorconfig-vim'
@@ -48,7 +48,6 @@ Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/xml.vim'
-" Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
 
@@ -64,7 +63,18 @@ set incsearch
 set number
 set expandtab
 set autoread " Auto reload file when it's changed in the background
+au FocusGained * :checktime
 set showmatch " Show matching brackets and parentheses
+
+" vim sensible
+set laststatus=2
+set ruler
+set wildmenu
+set backspace=indent,eol,start
+set complete-=i
+set smarttab
+set autoindent
+
 
 " No swap files
 set noswapfile
@@ -112,7 +122,7 @@ map <leader>8 :tabn 8<cr>
 map <leader>9 :tabn 9<cr>
 map <leader>0 :tabn 0<cr>
 
-colorscheme monokai
+colorscheme deepsea
 " set guifont=Monaco:h12
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -132,13 +142,8 @@ if has("gui_vimr")
   xnoremap <M-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 end
 
-let local_eslint = '$(npm bin)/eslint'
-
-if executable(local_eslint)
-  let b:neomake_javascript_eslint_exe = local_eslint
-endif
-
 " NEOMAKE
+let g:neomake_javascript_eslint_exe = nrun#Which('eslint')
 let g:neomake_javascript_enabled_makers=['eslint']
 let g:neomake_ruby_enabled_makers=['rubocop']
 let g:neomake_place_signs=1
@@ -146,8 +151,6 @@ hi NeomakeErrorMsg ctermbg=13
 hi MyWarningMsg ctermfg=1
 let g:neomake_warning_sign = {'text': '!', 'texthl': 'NeomakeErrorMsg'}
 let g:neomake_error_sign = { 'text': '»', 'texthl': 'MyWarningMsg'}
-
-
 
 "Trigger check syntax for eslint
 autocmd! BufWritePost,BufEnter * Neomake

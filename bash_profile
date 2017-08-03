@@ -10,7 +10,7 @@ function git_color {
   local git_status="$(git status 2> /dev/null)"
 
   if [[  $git_status =~ "Untracked files" ]]; then
-    echo -e $COLOR_OCHRE
+    echo -e $COLOR_BLUE
   elif [[ $git_status =~ "Your branch is ahead of" ]]; then
     echo -e $COLOR_YELLOW
   elif [[ $git_status =~ "nothing to commit" ]]; then
@@ -110,27 +110,27 @@ function replace_extension {
 
 export EDITOR=nvim
 
-function cd {
-  TMUX_DIRNAME=${1:-$(pwd)}
-  if test "`dirname $1`" = "."; then
-    if test "$1" = "."; then
-      TMUX_DIRNAME=$(pwd)
-    else
-      TMUX_DIRNAME=$(pwd)/$1
-    fi
-  fi
-
-  TMUX_APP=$(basename $TMUX_DIRNAME)
-  tmux has-session -t $TMUX_APP 2>/dev/null
-  if [ "$?" -eq 1 ]; then
-    builtin cd $1
-  elif [ "$SHLVL" -eq 2 ]; then
-    builtin cd $1
-  else
-    echo "Session found.  Connecting."
-    tmux attach-session -t $TMUX_APP
-  fi
-}
+# function cd {
+#   TMUX_DIRNAME=${1:-$(pwd)}
+#   if test "`dirname $1`" = "."; then
+#     if test "$1" = "."; then
+#       TMUX_DIRNAME=$(pwd)
+#     else
+#       TMUX_DIRNAME=$(pwd)/$1
+#     fi
+#   fi
+#
+#   TMUX_APP=$(basename $TMUX_DIRNAME)
+#   tmux has-session -t $TMUX_APP 2>/dev/null
+#   if [ "$?" -eq 1 ]; then
+#     builtin cd $1
+#   elif [ "$SHLVL" -eq 2 ]; then
+#     builtin cd $1
+#   else
+#     echo "Session found.  Connecting."
+#     tmux attach-session -t $TMUX_APP
+#   fi
+# }
 
 function restore_db {
   echo "Importing filename: $2 into database: $1"
@@ -141,7 +141,7 @@ function restore_db {
   fi
 }
 
-function tmux_start {
+function tmux-start {
   TMUX_DIRNAME=${1:-$(pwd)}
   if test "`dirname $1`" = "."; then
     if test "$1" = "."; then
@@ -165,18 +165,18 @@ function tmux_start {
 }
 
 
-function initpsql_current {
+function initpsql-current {
   PSQL_DB_DIR=$(psql -V | egrep -o '[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}')
   echo $PSQL_DB_DIR;
   initdb -D /usr/local/var/postgresql/$PSQL_DB_DIR
 }
 
-function psql_start {
+function psql-start {
   PSQL_DB_DIR=$(psql -V | egrep -o '[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}')
   pg_ctl -D /usr/local/var/postgresql/$PSQL_DB_DIR start
 }
 
-function psql_stop {
+function psql-stop {
   PSQL_DB_DIR=$(psql -V | egrep -o '[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}')
   pg_ctl -D /usr/local/var/postgresql/$PSQL_DB_DIR stop
 }
