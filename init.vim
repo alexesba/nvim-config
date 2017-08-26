@@ -123,6 +123,7 @@ map <leader>9 :tabn 9<cr>
 map <leader>0 :tabn 0<cr>
 
 colorscheme deepsea
+
 " set guifont=Monaco:h12
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -131,6 +132,19 @@ nnoremap <S-Up>   :<C-u>silent! move-2<CR>==
 nnoremap <S-Down> :<C-u>silent! move+<CR>==
 xnoremap <S-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
 xnoremap <S-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+
+if exists('g:GuiLoaded')
+  let g:Guifont="Operator Mono:h13"
+  " Mapping to move single line in normal mode and move blocks in visual mode
+  nnoremap <M-Up>   :<C-u>silent! move-2<CR>==
+  nnoremap <M-Down> :<C-u>silent! move+<CR>==
+  xnoremap <M-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
+  xnoremap <M-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+endif
+
+    if exists('g:GuiLoaded')
+      Guifont DejaVu Sans Mono:h15
+    endif
 
 if has("gui_vimr")
   colorscheme hemisu
@@ -182,7 +196,18 @@ function! CleanUpReactFile()
   execute "normal! \gg \<S-v> \<S-g>="
   call setpos('.', save_cursor)
 endfunction
+
+let g:table_mode_corner = '+'
 command! FormatBraces :call CleanUpReactFile()
+
+function! TogleGitHubTableMode()
+  if g:table_mode_corner == '|'
+    let g:table_mode_corner = '+'
+  else
+    let g:table_mode_corner='|'
+  endif
+endfunction
+command! ToggleGithubTable :call TogleGitHubTableMode()
 
 " Strip trailing whitespace for code files on save
 function! CleanUp()
@@ -373,3 +398,10 @@ autocmd BufRead,BufNewFile *.md,*.html,*.html.haml setlocal spell
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=red
 set complete+=kspell
+
+hi htmlArg gui=italic
+hi Comment gui=italic
+hi Type    gui=italic
+hi htmlArg cterm=italic
+hi Comment cterm=italic
+hi Type    cterm=italic ctermfg=none

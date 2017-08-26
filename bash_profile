@@ -187,3 +187,4 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
+export TERM=xterm-256color-italic
