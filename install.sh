@@ -20,6 +20,7 @@ echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
+  brew install tmux
   if [ -f ~/.tmux.conf ]; then
     echo ".tmux.conf already exist.. performing a backup before link the .tmux.conf"
     mv ~/.tmux.conf ~/.tmux.conf.old
@@ -42,5 +43,5 @@ echo "Installing vim Plug plugin"
 
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim +BundleInstall +qall
+nvim +PlugInstall +qall
 
