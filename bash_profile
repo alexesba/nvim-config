@@ -89,7 +89,9 @@ export PATH="/usr/local/sbin:$PATH"
 
 
 export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
+if [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
+  source "$(brew --prefix nvm)/nvm.sh"
+fi
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"

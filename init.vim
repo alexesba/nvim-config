@@ -1,10 +1,7 @@
 call plug#begin('~/.vim/plugged')
 " Colorscheme
 Plug 'alexesba/colors'
-Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 Plug 'mhartington/oceanic-next'
-Plug 'vim-scripts/golden.vim'
-Plug 'flazz/vim-colorschemes'
 
 " utils
 Plug 'dhruvasagar/vim-table-mode'
@@ -122,7 +119,8 @@ map <leader>8 :tabn 8<cr>
 map <leader>9 :tabn 9<cr>
 map <leader>0 :tabn 0<cr>
 
-colorscheme deepsea
+colorscheme bubblegum
+set background=dark
 
 " set guifont=Monaco:h12
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -172,6 +170,7 @@ autocmd! BufWritePost,BufEnter * Neomake
 
 " Format json files
 command! FormatJSON %!python -m json.tool
+command! FormatJSONV2 %!underscore print --outfmt json
 " Change single quotes to double
 command! DoubleQuotes %s/'\([^']*\)'/"\1"/g
 " Change double quotes to single
@@ -187,6 +186,7 @@ command! RemoveExtraEmptyLines %!cat -s
 "Insert Lines before each line
 command! AddNumber  %s/^/\=printf('%-2d', line('.'))
 command! ConverTabsToSpaces %s/\t/  /g
+
 function! CleanUpReactFile()
   let save_cursor = getpos(".")
   %s/ \{2,}/ /g
@@ -208,6 +208,20 @@ function! TogleGitHubTableMode()
   endif
 endfunction
 command! ToggleGithubTable :call TogleGitHubTableMode()
+
+function! ConfigItalicFonts()
+  if g:enable_italic_font == 1
+    hi htmlArg gui=italic
+    hi Comment gui=italic
+    hi Type    gui=italic
+    hi htmlArg cterm=italic
+    hi Comment cterm=italic
+    hi Type    cterm=italic ctermfg=none
+  endif
+endfunction
+
+autocmd! ColorScheme * call g:ConfigItalicFonts()
+autocmd! VimEnter * call g:ConfigItalicFonts()
 
 " Strip trailing whitespace for code files on save
 function! CleanUp()
@@ -398,10 +412,5 @@ autocmd BufRead,BufNewFile *.md,*.html,*.html.haml setlocal spell
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=red
 set complete+=kspell
-
-hi htmlArg gui=italic
-hi Comment gui=italic
-hi Type    gui=italic
-hi htmlArg cterm=italic
-hi Comment cterm=italic
-hi Type    cterm=italic ctermfg=none
+" Enable italic fonts
+let g:enable_italic_font = 1
