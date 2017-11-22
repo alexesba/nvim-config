@@ -120,27 +120,27 @@ map <leader>9 :tabn 9<cr>
 map <leader>0 :tabn 0<cr>
 
 colorscheme bubblegum
-set background=dark
+" set background=dark
 
 " set guifont=Monaco:h12
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-" Mapping to move single line in normal mode and move blocks in visual mode
-nnoremap <S-Up>   :<C-u>silent! move-2<CR>==
-nnoremap <S-Down> :<C-u>silent! move+<CR>==
-xnoremap <S-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
-xnoremap <S-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
-
-if exists('g:GuiLoaded')
+if exists('g:GuiLoaded') || exists('$TMUX')
   let g:Guifont="Operator Mono:h13"
   " Mapping to move single line in normal mode and move blocks in visual mode
   nnoremap <M-Up>   :<C-u>silent! move-2<CR>==
   nnoremap <M-Down> :<C-u>silent! move+<CR>==
   xnoremap <M-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
   xnoremap <M-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+else
+  " Mapping to move single line in normal mode and move blocks in visual mode
+  nnoremap <S-Up>   :<C-u>silent! move-2<CR>==
+  nnoremap <S-Down> :<C-u>silent! move+<CR>==
+  xnoremap <S-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
+  xnoremap <S-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 endif
 
-    if exists('g:GuiLoaded')
+if exists('g:GuiLoaded')
       Guifont DejaVu Sans Mono:h15
     endif
 
@@ -158,6 +158,7 @@ end
 let g:neomake_javascript_eslint_exe = nrun#Which('eslint')
 let g:neomake_javascript_enabled_makers=['eslint']
 let g:neomake_ruby_enabled_makers=['rubocop']
+let g:neomake_ruby_rubocop_args = ['--format', 'emacs', '-D']
 let g:neomake_place_signs=1
 hi NeomakeErrorMsg ctermbg=13
 hi MyWarningMsg ctermfg=1
@@ -166,6 +167,14 @@ let g:neomake_error_sign = { 'text': '»', 'texthl': 'MyWarningMsg'}
 
 "Trigger check syntax for eslint
 autocmd! BufWritePost,BufEnter * Neomake
+
+
+" bindings for neomake eslit errrors
+nmap <Leader><Space>o :lopen<CR>      " open location window
+nmap <Leader><Space>c :lclose<CR>     " close location window
+nmap <Leader><Space>, :ll<CR>         " go to current error/warning
+nmap <Leader><Space>n :lnext<CR>      " next error/warning
+nmap <Leader><Space>p :lprev<CR>      " previous error/warning
 
 
 " Format json files

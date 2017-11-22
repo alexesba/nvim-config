@@ -88,10 +88,6 @@ export PATH=$PATH:~/.composer/vendor/bin
 export PATH="/usr/local/sbin:$PATH"
 
 
-export NVM_DIR="$HOME/.nvm"
-if [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
-  source "$(brew --prefix nvm)/nvm.sh"
-fi
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -190,3 +186,8 @@ if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 export TERM=xterm-256color-italic
+
+export NVM_DIR="$HOME/.nvm"
+if [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
+  source "$(brew --prefix nvm)/nvm.sh"
+fi
