@@ -14,6 +14,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown' "Preview markdown files
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'kopischke/vim-fetch'
 " Plug 'jiangmiao/auto-pairs'
 
 Plug 'dietsche/vim-lastplace'
@@ -22,14 +23,15 @@ Plug 'mattn/emmet-vim'
 Plug 'terryma/vim-multiple-cursors'
 
 "Tools for searching
+Plug 'jaawerth/nrun.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'jaawerth/nrun.vim'
 "Validate syntax and load configuration for editing files
-Plug 'neomake/neomake'
-Plug 'editorconfig/editorconfig-vim'
 
+Plug 'editorconfig/editorconfig-vim'
+Plug 'neomake/neomake'
 "Languages and syntax
+Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'avakhov/vim-yaml'
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
@@ -45,7 +47,6 @@ Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/xml.vim'
-Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
 
 call plug#end()
@@ -54,14 +55,14 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
-set nowrap
+set autoread " Auto reload file when it's changed in the background
+set expandtab
 set hlsearch
 set incsearch
+set nowrap
 set number
-set expandtab
-set autoread " Auto reload file when it's changed in the background
-au FocusGained * :checktime
 set showmatch " Show matching brackets and parentheses
+au FocusGained * :checktime
 
 " vim sensible
 set laststatus=2
@@ -72,28 +73,30 @@ set complete-=i
 set smarttab
 set autoindent
 
-
 " No swap files
 set noswapfile
 set nobackup
 set nowb
-let mapleader=","
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-
 
 if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
+let mapleader=","
 map <leader>n :NERDTreeToggle <cr>
 map <Space> :noh<cr>
+
 " check one time after 4s of inactivity in normal mode
-nnoremap <leader>fef :normal! gg=G``<CR>
+nmap <leader>fef :normal! gg=G``<CR>
+
 "Toogle comments
-nnoremap <silent> <Leader>c :TComment<CR>
-vnoremap <silent> <Leader>c :TComment<CR>
-inoremap <silent> <Leader>c <Esc>:TComment<CR>i
-nnoremap <silent> <Leader>f :FZF<CR>
+nmap <silent> <Leader>c :TComment<CR>
+vmap <silent> <Leader>c :TComment<CR>
+imap <silent> <Leader>c <Esc>:TComment<CR>i
+
+"Using FZF as file search
+nmap <silent> <Leader>f :FZF<CR>
 
 " Use numbers to pick the tab you want (like iTerm)
 map <silent> <D-0> :tabn 0<cr>
@@ -119,39 +122,22 @@ map <leader>8 :tabn 8<cr>
 map <leader>9 :tabn 9<cr>
 map <leader>0 :tabn 0<cr>
 
-colorscheme bubblegum
-" set background=dark
-
-" set guifont=Monaco:h12
+colorscheme moria
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Mapping to move single line in normal mode and move blocks in visual mode
+nmap <M-Up>   :<C-u>silent! move-2<CR>==
+nmap <M-Down> :<C-u>silent! move+<CR>==
+xmap <M-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
+xmap <M-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 
 if exists('g:GuiLoaded') || exists('$TMUX')
   let g:Guifont="Operator Mono:h13"
-  " Mapping to move single line in normal mode and move blocks in visual mode
-  nnoremap <M-Up>   :<C-u>silent! move-2<CR>==
-  nnoremap <M-Down> :<C-u>silent! move+<CR>==
-  xnoremap <M-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
-  xnoremap <M-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
-else
-  " Mapping to move single line in normal mode and move blocks in visual mode
-  nnoremap <S-Up>   :<C-u>silent! move-2<CR>==
-  nnoremap <S-Down> :<C-u>silent! move+<CR>==
-  xnoremap <S-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
-  xnoremap <S-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 endif
-
-if exists('g:GuiLoaded')
-      Guifont DejaVu Sans Mono:h15
-    endif
 
 if has("gui_vimr")
   colorscheme hemisu
   set background=light
-  " Mapping to move single line in normal mode and move blocks in visual mode
-  nnoremap <M-Up>   :<C-u>silent! move-2<CR>==
-  nnoremap <M-Down> :<C-u>silent! move+<CR>==
-  xnoremap <M-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
-  xnoremap <M-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 end
 
 " NEOMAKE
@@ -168,14 +154,12 @@ let g:neomake_error_sign = { 'text': '»', 'texthl': 'MyWarningMsg'}
 "Trigger check syntax for eslint
 autocmd! BufWritePost,BufEnter * Neomake
 
-
 " bindings for neomake eslit errrors
 nmap <Leader><Space>o :lopen<CR>      " open location window
 nmap <Leader><Space>c :lclose<CR>     " close location window
 nmap <Leader><Space>, :ll<CR>         " go to current error/warning
 nmap <Leader><Space>n :lnext<CR>      " next error/warning
 nmap <Leader><Space>p :lprev<CR>      " previous error/warning
-
 
 " Format json files
 command! FormatJSON %!python -m json.tool
@@ -403,19 +387,14 @@ augroup status
 augroup END
 
 let $FZF_DEFAULT_COMMAND= 'ag -g ""'
-" let g:livedown_autorun = 0
-" " let g:livedown_browser = "safari"
-" let g:livedown_port = 1337
-" " Stop writing .netrwhist file
-" let g:netrw_dirhistmax=0
 
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 let vim_markdown_preview_toggle=3
 " let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_temp_file=0
 let vim_markdown_preview_github=1
-
 
 autocmd BufRead,BufNewFile *.md,*.html,*.html.haml setlocal spell
 hi clear SpellBad
