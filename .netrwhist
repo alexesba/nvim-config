@@ -1,3 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/Users/alexesba/Projects/onedocway-rails/1dw-node'
+let g:netrw_dirhist_2='/Users/alexesba/Projects/onedocway-rails/1dw-node/src/containers/CreateAppointmentContainer'
+let g:netrw_dirhist_3='/Users/alexesba/Projects/onedocway-rails/1dw-node/src/components/CreateAppointment'
+let g:netrw_dirhist_4='/Users/alexesba/Projects/onedocway-rails/1dw-node/src/components/ScheduleAppointmentMaster'
+let g:netrw_dirhist_5='/Users/alexesba/Projects/onedocway-rails/1dw-node/src/components/ScheduleAppointments'

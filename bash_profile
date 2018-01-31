@@ -49,10 +49,19 @@ if which rbenv > /dev/null; then
   eval "$(rbenv init -)";
 fi
 
+function fzf_then_open_in_editor() {
+  local file=$(fzf)
+  # Open the file if it exists
+  if [ -n "$file" ]; then
+    # Use the default editor if it's defined, otherwise Vim
+    ${EDITOR:-vim} "$file"
+  fi
+}
 
 # Note to get rid of a line just Ctrl-C
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+bind -x '"\C-f": fzf_then_open_in_editor'
 
 # Modified version of what `composer _completion -g -p composer` generates
 # Composer will only load plugins when a valid composer.json is in its working directory,
