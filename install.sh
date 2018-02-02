@@ -41,6 +41,16 @@ fi
 
 echo "Installing vim Plug plugin"
 
+read -p "Do you want to install xterm-256color-italic config file?(y/n)" -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  tic ~/.config/nvim/iterm/xterm-256color-italic.terminfo
+  echo "xterm-256color-italic installed correctly!."
+fi
+
+echo "Installing vim Plug plugin"
+
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall +qall
