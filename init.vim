@@ -122,7 +122,8 @@ map <leader>8 :tabn 8<cr>
 map <leader>9 :tabn 9<cr>
 map <leader>0 :tabn 0<cr>
 
-colorscheme moria
+:silent! colorscheme moria
+
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Mapping to move single line in normal mode and move blocks in visual mode
@@ -135,7 +136,7 @@ if exists('g:GuiLoaded') || exists('$TMUX')
   let g:Guifont="Operator Mono:h13"
 endif
 
-if has("gui_vimr")
+if has('gui_vimr')
   colorscheme hemisu
   set background=light
 end
@@ -352,6 +353,7 @@ function! Status(winnum)
 
   " right side
   let stat .= '%='
+  let head = ''
 
   " git branch
   if exists('*fugitive#head')
@@ -402,3 +404,5 @@ hi SpellBad cterm=underline ctermfg=red
 set complete+=kspell
 " Enable italic fonts
 let g:enable_italic_font = 1
+
+let g:netrw_dirhistmax = 0
