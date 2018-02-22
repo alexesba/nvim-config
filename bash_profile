@@ -138,18 +138,22 @@ function tmux-start {
 
 
 function initpsql-current {
-  PSQL_DB_DIR=$(psql -V | egrep -o '[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}')
-  echo $PSQL_DB_DIR;
+  PSQL_DB_DIR=$(psql -V | egrep -o '\d.+')
+  echo "$PSQL_DB_DIR mama el mechon"
+  if [ ! -d "/usr/local/var/postgresql/$PSQL_DB_DIR" ]; then
+     echo "Creating directory for /usr/local/var/postgresql/$PSQL_DB_DIR"
+     mkdir /usr/local/var/postgresql/$PSQL_DB_DIR
+  fi
   initdb -D /usr/local/var/postgresql/$PSQL_DB_DIR
 }
 
 function psql-start {
-  PSQL_DB_DIR=$(psql -V | egrep -o '[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}')
+  PSQL_DB_DIR=$(psql -V | egrep -o '\d.+')
   pg_ctl -D /usr/local/var/postgresql/$PSQL_DB_DIR start
 }
 
 function psql-stop {
-  PSQL_DB_DIR=$(psql -V | egrep -o '[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}')
+  PSQL_DB_DIR=$(psql -V | egrep -o '\d.+')
   pg_ctl -D /usr/local/var/postgresql/$PSQL_DB_DIR stop
 }
 
@@ -169,4 +173,11 @@ fi
 export NVM_DIR="$HOME/.nvm"
 if [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
   source "$(brew --prefix nvm)/nvm.sh"
+fi
+
+#PGVM Postgres Version Manager
+source /Users/alexesba/.pgvm/pgvm_env
+
+if [ -f "$(pwd)/.pgvmrc" ]; then
+  source $(pwd)/.pgvmrc
 fi

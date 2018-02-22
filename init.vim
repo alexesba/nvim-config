@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 " Colorscheme
+Plug 'thinca/vim-guicolorscheme'
 Plug 'alexesba/colors'
 Plug 'mhartington/oceanic-next'
 
