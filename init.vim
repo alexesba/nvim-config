@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'thinca/vim-guicolorscheme'
 Plug 'alexesba/colors'
 Plug 'mhartington/oceanic-next'
+Plug 'tomasiser/vim-code-dark'
 
 " utils
 Plug 'dhruvasagar/vim-table-mode'
@@ -16,6 +17,8 @@ Plug 'tpope/vim-markdown' "Preview markdown files
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'kopischke/vim-fetch'
+Plug 'brooth/far.vim'
+
 " Plug 'jiangmiao/auto-pairs'
 
 Plug 'dietsche/vim-lastplace'
@@ -32,6 +35,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neomake/neomake'
 "Languages and syntax
+Plug 'csscomb/vim-csscomb'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'avakhov/vim-yaml'
@@ -49,6 +53,8 @@ Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/xml.vim'
 Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
+Plug 'rhysd/vim-crystal'
+Plug 'elorest/vim-slang'
 
 call plug#end()
 
@@ -85,8 +91,8 @@ if exists('+colorcolumn')
 endif
 
 let mapleader=","
-map <leader>n :NERDTreeToggle <cr>
-map <Space> :noh<cr>
+map <silent><leader>n :NERDTreeToggle <cr>
+map <silent><Space> :noh<cr>
 
 " check one time after 4s of inactivity in normal mode
 nmap <leader>fef :normal! gg=G``<CR>
@@ -112,16 +118,16 @@ map <silent> <D-8> :tabn 8<cr>
 map <silent> <D-9> :tabn 9<cr>
 
 " Command to move among tabs in Konsole-style
-map <leader>1 :tabn 1 <cr>
-map <leader>2 :tabn 2 <cr>
-map <leader>3 :tabn 3 <cr>
-map <leader>4 :tabn 4<cr>
-map <leader>5 :tabn 5<cr>
-map <leader>6 :tabn 6<cr>
-map <leader>7 :tabn 7<cr>
-map <leader>8 :tabn 8<cr>
-map <leader>9 :tabn 9<cr>
-map <leader>0 :tabn 0<cr>
+map <silent><leader>1 :tabn 1 <cr>
+map <silent><leader>2 :tabn 2 <cr>
+map <silent><leader>3 :tabn 3 <cr>
+map <silent><leader>4 :tabn 4<cr>
+map <silent><leader>5 :tabn 5<cr>
+map <silent><leader>6 :tabn 6<cr>
+map <silent><leader>7 :tabn 7<cr>
+map <silent><leader>8 :tabn 8<cr>
+map <silent><leader>9 :tabn 9<cr>
+map <silent><leader>0 :tabn 0<cr>
 
 :silent! colorscheme moria
 
@@ -143,8 +149,13 @@ if has('gui_vimr')
 end
 
 " NEOMAKE
+
 let g:neomake_javascript_eslint_exe = nrun#Which('eslint')
 let g:neomake_javascript_enabled_makers=['eslint']
+" let g:neomake_scss_scsslint_exe = nrun#Which('scss-lint')
+let g:neomake_scss_enabled_makers = ['scsslint']
+" let g:neomake_css_csslint_exe = nrun#Which('css_lint')
+let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_ruby_enabled_makers=['rubocop']
 let g:neomake_ruby_rubocop_args = ['--format', 'emacs', '-D']
 let g:neomake_place_signs=1
@@ -165,6 +176,7 @@ nmap <Leader><Space>p :lprev<CR>      " previous error/warning
 
 " Format json files
 command! FormatJSON %!python -m json.tool
+command! RubocopFix silent! %!rubocop % -a
 command! FormatJSONV2 %!underscore print --outfmt json
 " Change single quotes to double
 command! DoubleQuotes %s/'\([^']*\)'/"\1"/g
@@ -191,6 +203,22 @@ function! CleanUpReactFile()
   execute "normal! \gg \<S-v> \<S-g>="
   call setpos('.', save_cursor)
 endfunction
+
+function! FormatHashes()
+  :silent! %s/:\([^ ]*\)\(\s*\)=>/\1: /g
+  :silent! %s/}, {/},\r {/g
+  :silent! %s/"\([^"]*\)"/'\1'/g
+  " call setpos('.', save_cursor)
+  execute "normal! \gg \<Sv> \<S-g>="
+endfunction
+
+command! UpdateRubyHashesByLines :call FormatHashes()
+
+function! UpdateRubyHashes()
+  :%s/:\([^ ]*\)\(\s*\)=>/\1:/g
+endfunction
+
+command! UpdateHashSyntax :call UpdateRubyHashes()
 
 let g:table_mode_corner = '+'
 command! FormatBraces :call CleanUpReactFile()
@@ -389,12 +417,19 @@ augroup status
   autocmd VimEnter,VimLeave,WinEnter,WinLeave,BufWinEnter,BufWinLeave * :RefreshStatus
 augroup END
 
-let $FZF_DEFAULT_COMMAND= 'ag -g ""'
+let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-let vim_markdown_preview_toggle=3
-" let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_toggle=0
+" let vim_markdown_preview_hotkey='<M-m>'
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_temp_file=0
 let vim_markdown_preview_github=1

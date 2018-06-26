@@ -62,7 +62,8 @@ function fzf_then_open_in_editor() {
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind -x '"\C-f": fzf_then_open_in_editor'
-
+export LDFLAGS=-L/usr/local/opt/openssl/lib
+export CPPFLAGS=-I/usr/local/opt/openssl/include
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
@@ -157,7 +158,13 @@ function psql-stop {
   pg_ctl -D /usr/local/var/postgresql/$PSQL_DB_DIR stop
 }
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
+function pgadmin-stop {
+  kill $(lsof  -PiTCP -sTCP:LISTEN |ag pgAdmin4 | awk '{print $2}')
+}
+
+
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
 
 # Load Custom aliases if the file exist
 if [ -f ~/.bash_aliases ]; then
@@ -176,8 +183,11 @@ if [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
 fi
 
 #PGVM Postgres Version Manager
-source /Users/alexesba/.pgvm/pgvm_env
+# source /Users/alexesba/.pgvm/pgvm_env
 
-if [ -f "$(pwd)/.pgvmrc" ]; then
-  source $(pwd)/.pgvmrc
-fi
+# if [ -f "$(pwd)/.pgvmrc" ]; then
+#   source $(pwd)/.pgvmrc
+# fi
+
+export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
+
