@@ -1,9 +1,7 @@
 call plug#begin('~/.vim/plugged')
 " Colorscheme
-Plug 'thinca/vim-guicolorscheme'
 Plug 'alexesba/colors'
 Plug 'mhartington/oceanic-next'
-Plug 'tomasiser/vim-code-dark'
 
 " utils
 Plug 'dhruvasagar/vim-table-mode'
@@ -143,13 +141,17 @@ if exists('g:GuiLoaded') || exists('$TMUX')
   let g:Guifont="Operator Mono:h13"
 endif
 
+" Config for neovim
+if (has("termguicolors"))
+ set termguicolors
+endif
+
 if has('gui_vimr')
   colorscheme hemisu
   set background=light
 end
 
 " NEOMAKE
-
 let g:neomake_javascript_eslint_exe = nrun#Which('eslint')
 let g:neomake_javascript_enabled_makers=['eslint']
 let g:neomake_scss_scsslint_exe = nrun#Which('scss-lint')
@@ -269,6 +271,10 @@ endfunction
 
 autocmd! ColorScheme * call g:ConfigItalicFonts()
 autocmd! VimEnter * call g:ConfigItalicFonts()
+"
+"
+" let g:oceanic_next_terminal_bold = 1
+" let g:oceanic_next_terminal_italic = 1
 
 " Strip trailing whitespace for code files on save
 function! CleanUp()
@@ -465,5 +471,4 @@ hi SpellBad cterm=underline ctermfg=red
 set complete+=kspell
 " Enable italic fonts
 let g:enable_italic_font = 1
-
 let g:netrw_dirhistmax = 0
