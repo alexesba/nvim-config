@@ -152,9 +152,9 @@ end
 
 let g:neomake_javascript_eslint_exe = nrun#Which('eslint')
 let g:neomake_javascript_enabled_makers=['eslint']
-" let g:neomake_scss_scsslint_exe = nrun#Which('scss-lint')
+let g:neomake_scss_scsslint_exe = nrun#Which('scss-lint')
 let g:neomake_scss_enabled_makers = ['scsslint']
-" let g:neomake_css_csslint_exe = nrun#Which('css_lint')
+let g:neomake_css_csslint_exe = nrun#Which('css_lint')
 let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_ruby_enabled_makers=['rubocop']
 let g:neomake_ruby_rubocop_args = ['--format', 'emacs', '-D']
@@ -164,8 +164,32 @@ hi MyWarningMsg ctermfg=1
 let g:neomake_warning_sign = {'text': '!', 'texthl': 'NeomakeErrorMsg'}
 let g:neomake_error_sign = { 'text': '»', 'texthl': 'MyWarningMsg'}
 
-"Trigger check syntax for eslint
-autocmd! BufWritePost,BufEnter * Neomake
+function! EslitFixFn()
+  if g:neomake_javascript_eslint_exe != "eslint not found"
+    let eslintfixcmd = g:neomake_javascript_eslint_exe ." ". expand("%:p") ." --fix"
+    execute "! ". eslintfixcmd
+  else
+    echo g:neomake_javascript_eslint_exe
+  endif
+endfunction
+
+command! EslintFix :silent!call EslitFixFn()
+
+"Trigger check syntax for js files
+if g:neomake_javascript_eslint_exe != "eslint not found"
+  autocmd! BufWritePost,BufEnter *.js,*.jsx Neomake
+endif
+
+"Trigger check syntax for scss files
+if g:neomake_scss_scsslint_exe != "scss-lint not found"
+  autocmd! BufWritePost,BufEnter *.scss Neomake
+endif
+
+"Trigger check syntax for css files
+if g:neomake_css_csslint_exe != "css_lint not found"
+  autocmd! BufWritePost,BufEnter *.css Neomake
+endif
+
 
 " bindings for neomake eslit errrors
 nmap <Leader><Space>o :lopen<CR>      " open location window
@@ -428,13 +452,14 @@ command! -bang -nargs=* Rg
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-let vim_markdown_preview_toggle=0
-" let vim_markdown_preview_hotkey='<M-m>'
+let vim_markdown_preview_toggle=1
+let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
-let vim_markdown_preview_temp_file=0
+let vim_markdown_preview_temp_file=1
 let vim_markdown_preview_github=1
 
 autocmd BufRead,BufNewFile *.md,*.html,*.html.haml setlocal spell
+
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=red
 set complete+=kspell
