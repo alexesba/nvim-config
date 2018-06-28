@@ -458,12 +458,6 @@ command! -bang -nargs=* Rg
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-let vim_markdown_preview_toggle=1
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_browser='Google Chrome'
-let vim_markdown_preview_temp_file=1
-let vim_markdown_preview_github=1
-
 autocmd BufRead,BufNewFile *.md,*.html,*.html.haml setlocal spell
 
 hi clear SpellBad
@@ -472,3 +466,7 @@ set complete+=kspell
 " Enable italic fonts
 let g:enable_italic_font = 1
 let g:netrw_dirhistmax = 0
+
+let vim_markdown_preview_toggle=3
+let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_github=1

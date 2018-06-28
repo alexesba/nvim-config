@@ -64,9 +64,6 @@ bind '"\e[B": history-search-forward'
 bind -x '"\C-f": fzf_then_open_in_editor'
 export LDFLAGS=-L/usr/local/opt/openssl/lib
 export CPPFLAGS=-I/usr/local/opt/openssl/include
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 ###-tns-completion-start-###
 if [ -f $HOME/.tnsrc ]; then
@@ -190,4 +187,3 @@ fi
 # fi
 
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
-
