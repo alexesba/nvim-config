@@ -27,10 +27,11 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'jaawerth/nrun.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Validate syntax and load configuration for editing files
 
+"Validate syntax and load configuration for editing files
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neomake/neomake'
+
 "Languages and syntax
 Plug 'csscomb/vim-csscomb'
 Plug 'JamshedVesuna/vim-markdown-preview'

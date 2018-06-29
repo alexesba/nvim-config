@@ -13,7 +13,8 @@ set hlsearch
 set incsearch
 set nowrap
 set number
-set showmatch " Show matching brackets and parentheses
+" Show matching brackets and parentheses
+set showmatch
 
 " vim sensible
 set autoindent
@@ -30,6 +31,7 @@ set nobackup
 set noswapfile
 set nowb
 
+"set the color scheme
 :silent! colorscheme moria
 
 if exists('+colorcolumn')
