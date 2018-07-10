@@ -33,6 +33,8 @@ if g:neomake_css_csslint_exe != "css_lint not found"
   autocmd! BufWritePost,BufEnter *.css Neomake
 endif
 
+autocmd! BufWritePost,BufEnter *.rb,*.rake Neomake
+
 function! EslitFixFn()
   if g:neomake_javascript_eslint_exe != "eslint not found"
     let eslintfixcmd = g:neomake_javascript_eslint_exe ." ". expand("%:p") ." --fix"
