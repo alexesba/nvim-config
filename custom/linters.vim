@@ -39,6 +39,7 @@ function! EslitFixFn()
   if g:neomake_javascript_eslint_exe != "eslint not found"
     let eslintfixcmd = g:neomake_javascript_eslint_exe ." ". expand("%:p") ." --fix"
     execute "! ". eslintfixcmd
+    :silent! Neomake
   else
     echo g:neomake_javascript_eslint_exe
   endif
