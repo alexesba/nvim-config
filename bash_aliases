@@ -1,4 +1,3 @@
-alias behat=vendor/bin/behat
 alias be='bundle exec'
 
 function custom_gvim {

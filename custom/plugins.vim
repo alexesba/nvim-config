@@ -15,6 +15,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'kopischke/vim-fetch'
 Plug 'brooth/far.vim'
+Plug 'maksimr/vim-jsbeautify'
 
 " Plug 'jiangmiao/auto-pairs'
 
