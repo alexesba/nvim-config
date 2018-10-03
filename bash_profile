@@ -179,6 +179,16 @@ if [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
   source "$(brew --prefix nvm)/nvm.sh"
 fi
 
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
+export HISTIGNORE='&:exit:x:l:history:ls*:gs:ps*:gco:gb:pwd:alex-log*:git*:editenv:[h ]*:[ \t]*'
+export HISTCONTROL=ignoreboth
+shopt -s histappend # append to history, don't overwrite it
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+export HISTFILE=~/.bash_history
+
 #PGVM Postgres Version Manager
 # source /Users/alexesba/.pgvm/pgvm_env
 
