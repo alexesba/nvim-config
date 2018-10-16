@@ -181,7 +181,7 @@ fi
 
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
-export HISTIGNORE='&:exit:x:l:history:ls*:gs:ps*:gco:gb:pwd:alex-log*:git*:editenv:[h ]*:[ \t]*'
+export HISTIGNORE='&:exit:x:q:history:gs*:gco:gb:pwd:alex-log*:git*:editenv'
 export HISTCONTROL=ignoreboth
 shopt -s histappend # append to history, don't overwrite it
 # Save and reload the history after each command finishes
@@ -189,11 +189,8 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 export HISTFILE=~/.bash_history
 
-#PGVM Postgres Version Manager
-# source /Users/alexesba/.pgvm/pgvm_env
-
-# if [ -f "$(pwd)/.pgvmrc" ]; then
-#   source $(pwd)/.pgvmrc
-# fi
+if [ -f "$(brew --prefix bash)/bin/bash" ]; then
+  export SHELL=$(brew --prefix bash)/bin/bash
+fi
 
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
