@@ -12,12 +12,11 @@ Plug 'tpope/vim-eunuch' "Delete files using commands
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown' "Preview markdown files
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
-Plug 'kopischke/vim-fetch'
-Plug 'brooth/far.vim'
-Plug 'maksimr/vim-jsbeautify'
-
-" Plug 'jiangmiao/auto-pairs'
+Plug 'kopischke/vim-fetch' "vim path/to/file.ext:12:3 in the shell to open file.ext on line 12 at column 3
+Plug 'brooth/far.vim' "Far.vim makes it easier to find and replace text through multiple files.
+Plug 'maksimr/vim-jsbeautify' "allows you to use jsbeautifier inside vim to quickly format javascript
 
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
@@ -44,13 +43,15 @@ Plug 'digitaltoad/vim-jade'
 Plug 'gko/vim-coloresque'
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' } " CSS3 syntax support
 Plug 'kchmck/vim-coffee-script'
-Plug 'leafgarland/typescript-vim'
+" Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/xml.vim'
-Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
-Plug 'rhysd/vim-crystal'
-Plug 'elorest/vim-slang'
+
+"For crystal language
+" Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
+" Plug 'rhysd/vim-crystal'
+" Plug 'elorest/vim-slang'

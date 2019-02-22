@@ -150,6 +150,13 @@ function psql-start {
   pg_ctl -D /usr/local/var/postgresql/$PSQL_DB_DIR start
 }
 
+function redis-start {
+  brew services start redis
+}
+function redis-stop {
+  brew services stop redis
+}
+
 function psql-stop {
   PSQL_DB_DIR=$(psql -V | egrep -o '\d.+')
   pg_ctl -D /usr/local/var/postgresql/$PSQL_DB_DIR stop
@@ -179,9 +186,13 @@ if [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
   source "$(brew --prefix nvm)/nvm.sh"
 fi
 
+if [ -d "$HOME/Qt5.5.0/5.5/clang_64/bin" ]; then
+  export PATH="$HOME/Qt5.5.0/5.5/clang_64/bin/:$PATH"
+fi
+
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
-export HISTIGNORE='&:exit:x:q:history:gs*:gco:gb:pwd:alex-log*:git*:editenv'
+export HISTIGNORE='&:exit:x:q:history:gs*:gco:gb:pwd:editenv'
 export HISTCONTROL=ignoreboth
 shopt -s histappend # append to history, don't overwrite it
 # Save and reload the history after each command finishes

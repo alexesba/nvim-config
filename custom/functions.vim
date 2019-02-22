@@ -36,3 +36,12 @@ function! TogleGitHubTableMode()
     let g:table_mode_corner='|'
   endif
 endfunction
+
+function! ReloadConfigFile()
+  :source $MYVIMRC
+endfunction
+command! Reload silent!call ReloadConfigFile()
+function! EditConfigurationFile()
+  :e $MYVIMRC
+endfunction
+command! OpenConfig silent!call EditConfigurationFile()

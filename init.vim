@@ -30,9 +30,11 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set nobackup
 set noswapfile
 set nowb
+set synmaxcol=2048
 
 "set the color scheme
 :silent! colorscheme moria
+:silent! set background=light
 
 if exists('+colorcolumn')
   set colorcolumn=80

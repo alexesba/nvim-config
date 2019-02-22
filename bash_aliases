@@ -18,6 +18,7 @@ alias gvim="gnvim"
 alias mvim="gnvim"
 alias vim=nvim
 alias vi=nvim
+alias vi='nvim --noplugin'
 alias git=hub
 alias hidden="ls -a | grep '^\.'"
 alias dns-clean="sudo killall -HUP mDNSResponder"

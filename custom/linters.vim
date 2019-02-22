@@ -41,9 +41,14 @@ function! EslitFixFn()
     execute "! ". eslintfixcmd
     :silent! Neomake
   else
-    echo g:neomake_javascript_eslint_exe
+    echoerr string(g:neomake_javascript_eslint_exe)
   endif
 endfunction
 
-command! EslintFix :silent!call EslitFixFn()
-command! RubocopFix silent! %!rubocop % -a
+function! RubocopFixFn()
+  execute "! rubocop % -a"
+  :silent! Neomake
+endfunction
+
+command! EslintFix silent!call EslitFixFn()
+command! RubocopFix silent!call RubocopFixFn()
