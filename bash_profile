@@ -204,4 +204,8 @@ if [ -f "$(brew --prefix bash)/bin/bash" ]; then
   export SHELL=$(brew --prefix bash)/bin/bash
 fi
 
+if [ -f "$(pwd)/.nvmrc" ]; then
+  . $(pwd)/.nvmrc
+fi
+
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
