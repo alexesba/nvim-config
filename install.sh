@@ -1,5 +1,5 @@
   # The package is installed
-  brew install neovim
+  brew bundle
 
 read -p "Do you want to install .bash_profile config file?(y/n)" -n 1 -r
 echo
