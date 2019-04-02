@@ -186,9 +186,18 @@ if [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
   source "$(brew --prefix nvm)/nvm.sh"
 fi
 
-if [ -d "$HOME/Qt5.5.0/5.5/clang_64/bin" ]; then
-  export PATH="$HOME/Qt5.5.0/5.5/clang_64/bin/:$PATH"
-fi
+# if [ -d "$HOME/Qt5.5.0/5.5/clang_64/bin" ]; then
+#   export PATH="$HOME/Qt5.5.0/5.5/clang_64/bin/:$PATH"
+# fi
+
+# if [ -d "$(brew --prefix qt@5.5)/bin" ]; then
+#   # For compilers to find qt@5.5 you may need to set:
+#   export LDFLAGS="-L/usr/local/opt/qt@5.5/lib"
+#   export CPPFLAGS="-I/usr/local/opt/qt@5.5/include"
+#   # For pkg-config to find qt@5.5 you may need to set:
+#   export PKG_CONFIG_PATH="/usr/local/opt/qt@5.5/lib/pkgconfig"
+#   export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
+# fi
 
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
