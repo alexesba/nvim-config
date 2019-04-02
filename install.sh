@@ -1,5 +1,10 @@
   # The package is installed
+read -p "Do you want to install Brew Packages config file?(y/n)" -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
   brew bundle
+fi
 
 read -p "Do you want to install .bash_profile config file?(y/n)" -n 1 -r
 echo
