@@ -75,6 +75,14 @@ let vim_markdown_preview_toggle=3
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=1
 
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
 so ~/.config/nvim/custom/highlight_trail_spaces.vim
 so ~/.config/nvim/custom/mappings.vim
 so ~/.config/nvim/custom/linters.vim

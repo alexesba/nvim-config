@@ -15,16 +15,29 @@ imap <silent> <Leader>c <Esc>:TComment<CR>i
 nmap <silent> <Leader>f :FZF<CR>
 
 " Use numbers to pick the tab you want (like iTerm)
-map <silent> <D-0> :tabn 0<cr>
-map <silent> <D-1> :tabn 1<cr>
-map <silent> <D-2> :tabn 2<cr>
-map <silent> <D-3> :tabn 3<cr>
-map <silent> <D-4> :tabn 4<cr>
-map <silent> <D-5> :tabn 5<cr>
-map <silent> <D-6> :tabn 6<cr>
-map <silent> <D-7> :tabn 7<cr>
-map <silent> <D-8> :tabn 8<cr>
-map <silent> <D-9> :tabn 9<cr>
+if g:os == "Darwin"
+  map <silent> <D-0> :tabn 0<cr>
+  map <silent> <D-1> :tabn 1<cr>
+  map <silent> <D-2> :tabn 2<cr>
+  map <silent> <D-3> :tabn 3<cr>
+  map <silent> <D-4> :tabn 4<cr>
+  map <silent> <D-5> :tabn 5<cr>
+  map <silent> <D-6> :tabn 6<cr>
+  map <silent> <D-7> :tabn 7<cr>
+  map <silent> <D-8> :tabn 8<cr>
+  map <silent> <D-9> :tabn 9<cr>
+elseif
+  map <silent> <M-0> :tabn 0<cr>
+  map <silent> <M-1> :tabn 1<cr>
+  map <silent> <M-2> :tabn 2<cr>
+  map <silent> <M-3> :tabn 3<cr>
+  map <silent> <M-4> :tabn 4<cr>
+  map <silent> <M-5> :tabn 5<cr>
+  map <silent> <M-6> :tabn 6<cr>
+  map <silent> <M-7> :tabn 7<cr>
+  map <silent> <M-8> :tabn 8<cr>
+  map <silent> <M-9> :tabn 9<cr>
+endif
 
 " Command to move among tabs in Konsole-style
 map <silent><leader>1 :tabn 1 <cr>
