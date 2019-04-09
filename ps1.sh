@@ -38,4 +38,4 @@ function git_branch {
 
 export CLICOLOR=1
 
-export PS1="\[$COLOR_GREEN\]\h\[$COLOR_RESET\]\[$COLOR_WHITE\]@\[$COLOR_RESET\]\[$COLOR_RED\]\u\[$COLOR_RESET\]\[$COLOR_WHITE\]:\[$COLOR_RESET\]\[$COLOR_YELLOW\] \[$COLOR_RESET\]\[$COLOR_YELLOW\]\w\[$COLOR_RESET\]\[$COLOR_RESET\] \[\$(git_color)\]\$(git_branch)\[$COLOR_RESET\]\n$ "
+export PS1="\[$COLOR_GREEN\]\u\[$COLOR_RESET\]\[$COLOR_WHITE\]@\[$COLOR_RESET\]\[$COLOR_RED\]\h\[$COLOR_RESET\]\[$COLOR_WHITE\]:\[$COLOR_RESET\]\[$COLOR_YELLOW\] \[$COLOR_RESET\]\[$COLOR_YELLOW\]\w\[$COLOR_RESET\]\[$COLOR_RESET\] \[\$(git_color)\]\$(git_branch)\[$COLOR_RESET\]\n$ "

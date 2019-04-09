@@ -48,6 +48,7 @@ Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-haml'
+Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/xml.vim'
 
