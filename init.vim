@@ -1,13 +1,13 @@
 call plug#begin('~/.vim/plugged')
-so ~/.config/nvim/custom/plugins.vim
+  so ~/.config/nvim/custom/plugins.vim
 call plug#end()
 
 syntax on
 filetype on
 filetype plugin on
 filetype indent on
-au FocusGained * :checktime
 set autoread " Auto reload file when it's changed in the background
+au FocusGained * :checktime
 set expandtab
 set hlsearch
 set incsearch
@@ -40,7 +40,7 @@ if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
-if exists('g:GuiLoaded') || exists('$TMUX')
+if exists('g:GuiLoaded')
   let g:Guifont="Operator Mono:h13"
 endif
 
@@ -75,20 +75,13 @@ let vim_markdown_preview_toggle=3
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=1
 
-if !exists("g:os")
-    if has("win64") || has("win32") || has("win16")
-        let g:os = "Windows"
-    else
-        let g:os = substitute(system('uname'), '\n', '', '')
-    endif
-endif
-
 so ~/.config/nvim/custom/highlight_trail_spaces.vim
+so ~/.config/nvim/custom/functions.vim
 so ~/.config/nvim/custom/mappings.vim
 so ~/.config/nvim/custom/linters.vim
-so ~/.config/nvim/custom/functions.vim
 so ~/.config/nvim/custom/commands.vim
 so ~/.config/nvim/custom/italic_fonts.vim
 so ~/.config/nvim/custom/status_bar.vim
 so ~/.config/nvim/custom/fuzzyfinder.vim
 so ~/.config/nvim/custom/grammar_checker.vim
+call SourceIfExists("~/.vimrc")

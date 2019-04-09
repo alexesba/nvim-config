@@ -16,7 +16,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "your previous configuration was renamed as ~/.bash_profile.old"
   fi
 
-  ln -s ~/.config/nvim/bash_profile ~/.bash_profile
+  ln -s ~/.config/nvim/bash_profile.sh ~/.bash_profile
   echo "bash_profile linked correctly!"
 fi
 
@@ -40,7 +40,7 @@ read -p "Do you want to install .bash_aliases config file?(y/n)" -n 1 -r
 echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  ln -s ~/.config/nvim/bash_aliases ~/.bash_aliases
+  ln -s ~/.config/nvim/bash_aliases.sh ~/.bash_aliases
   echo ".bash_aliases linked correctly!."
 fi
 

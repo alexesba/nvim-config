@@ -1,3 +1,19 @@
+" Function to source only if file exists 
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+
+" Detect Os and set the global buffer os
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
 function! CleanUpReactFile()
   let save_cursor = getpos(".")
   %s/ \{2,}/ /g
