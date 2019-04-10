@@ -6,7 +6,7 @@ fi
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
    # Add git completion to aliases
-  . /.config/nvim/git-aliases-bindings.sh
+  . ~/.config/nvim/git-aliases-bindings.sh
 fi
 
 # Use Homebrew's terminal-notifier, which is much faster than Ruby's.

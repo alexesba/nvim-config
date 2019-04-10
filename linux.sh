@@ -8,7 +8,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
    # Add git completion to aliases
-  . /.config/nvim/git-aliases-bindings.sh
+  . ~/.config/nvim/git-aliases-bindings.sh
 
 fi
 
