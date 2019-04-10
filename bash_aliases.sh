@@ -1,18 +1,5 @@
 alias be='bundle exec'
 
-function custom_gvim {
-
-  NVIMDIRNAME=${1:-$(pwd)}
-  if test "`dirname $1`" = "."; then
-    if test "$1" = "."; then
-      NVIMDIRNAME=$(pwd)
-    else
-      NVIMDIRNAME=$(pwd)/$1
-    fi
-  fi
-  open -a Neovim --args $NVIMDIRNAME
-}
-
 # Vim aliases
 alias gvim="gnvim"
 alias mvim="gnvim"
@@ -21,12 +8,9 @@ alias vi=nvim
 alias vi='nvim --noplugin'
 alias git=hub
 alias hidden="ls -a | grep '^\.'"
-alias dns-clean="sudo killall -HUP mDNSResponder"
-alias open='gnome-open'
 
 # User commands
-alias alex-log='git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short  --reverse --all'
-alias reload='source ~/.bash_profile'
+alias git-log='git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short  --reverse --all'
 
 # Git aliases
 alias ga='git add'
@@ -39,3 +23,16 @@ alias gs='git status'
 alias :q='exit'
 alias :wq='exit'
 
+if [[ "$OSTYPE" =~ ^linux ]]; then
+  alias dns-clean="sudo killall -HUP mDNSResponder"
+  # Add custom alias for linux like macosx if the gnome-open is installed.
+  if which gnome-open > /dev/null; then
+          alias open='gnome-open'
+  fi
+
+  # Add a command to reload the 
+  alias reload='source ~/.bashrc'
+
+else
+  alias reload='source ~/.bash_profile'
+fi
