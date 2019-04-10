@@ -19,7 +19,6 @@ fi
 #load common functions
 source ~/.config/nvim/functions.sh
 
-
 #Load custom bash aliases
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
@@ -49,7 +48,7 @@ shopt -s histappend # append to history, don't overwrite it
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export HISTFILE=~/.bash_history
 
-
+# Load nvmrc if exist under the current directory
 if [ -f "$(pwd)/.nvmrc" ]; then
   . $(pwd)/.nvmrc
 fi
@@ -65,9 +64,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-
+if [ -d "$HOME/.rbenv/bin" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+fi
 # rbenv
 if which rbenv > /dev/null; then
   eval "$(rbenv init -)";

@@ -1,8 +1,6 @@
 alias be='bundle exec'
 
 # Vim aliases
-alias gvim="gnvim"
-alias mvim="gnvim"
 alias vim=nvim
 alias vi=nvim
 alias vi='nvim --noplugin'
@@ -24,15 +22,14 @@ alias :q='exit'
 alias :wq='exit'
 
 if [[ "$OSTYPE" =~ ^linux ]]; then
-  alias dns-clean="sudo killall -HUP mDNSResponder"
   # Add custom alias for linux like macosx if the gnome-open is installed.
   if which gnome-open > /dev/null; then
           alias open='gnome-open'
   fi
-
-  # Add a command to reload the 
+  # Add a command to reload the
   alias reload='source ~/.bashrc'
 
 else
+  alias dns-clean="sudo killall -HUP mDNSResponder"
   alias reload='source ~/.bash_profile'
 fi
