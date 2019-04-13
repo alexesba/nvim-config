@@ -44,6 +44,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo ".bash_aliases linked correctly!."
 fi
 
+read -p "Do you want to install FZF (command line fuzzy finder)?(y/n)" -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+fi
+
 echo "Installing vim Plug plugin"
 
 read -p "Do you want to install xterm-256color-italic config file?(y/n)" -n 1 -r
