@@ -44,6 +44,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo ".bash_aliases linked correctly!."
 fi
 
+read -p "Do you want to install .hyper.js config file?(y/n)" -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  ln -s ~/.config/nvim/hyper.js ~/.hyper.js
+  echo ".hyper.js linked correctly!."
+fi
+
 read -p "Do you want to install FZF (command line fuzzy finder)?(y/n)" -n 1 -r
 echo
 
