@@ -51,6 +51,9 @@ Plug 'tpope/vim-haml'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/xml.vim'
+" Python syntax
+Plug 'vim-python/python-syntax'
+
 
 "For crystal language
 " Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support

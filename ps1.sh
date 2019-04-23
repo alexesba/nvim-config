@@ -6,6 +6,11 @@ COLOR_BLUE="\033[0;34m"
 COLOR_WHITE="\033[0;37m"
 COLOR_RESET="\033[0m"
 
+USER=${USER_PS1:-'\u'}
+HOST=${HOST_PS1:-'\h'}
+SEPARATOR=${SEPARATOR_PS1:-'@'}
+SIMBOL=${SIMBOL_PS1:-':'}
+
 function git_color {
   local git_status="$(git status 2> /dev/null)"
 
@@ -38,4 +43,4 @@ function git_branch {
 
 export CLICOLOR=1
 
-export PS1="\[$COLOR_GREEN\]\u\[$COLOR_RESET\]\[$COLOR_WHITE\]@\[$COLOR_RESET\]\[$COLOR_RED\]\h\[$COLOR_RESET\]\[$COLOR_WHITE\]:\[$COLOR_RESET\]\[$COLOR_YELLOW\] \[$COLOR_RESET\]\[$COLOR_YELLOW\]\w\[$COLOR_RESET\]\[$COLOR_RESET\] \[\$(git_color)\]\$(git_branch)\[$COLOR_RESET\]\n$ "
+export PS1="\[$COLOR_GREEN\]$USER\[$COLOR_RESET\]\[$COLOR_WHITE\]$SEPARATOR\[$COLOR_RESET\]\[$COLOR_RED\]$HOST\[$COLOR_RESET\]\[$COLOR_WHITE\]$SIMBOL\[$COLOR_RESET\]\[$COLOR_YELLOW\] \[$COLOR_RESET\]\[$COLOR_YELLOW\]\w\[$COLOR_RESET\]\[$COLOR_RESET\] \[\$(git_color)\]\$(git_branch)\[$COLOR_RESET\]\n$ "

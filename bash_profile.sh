@@ -8,6 +8,10 @@ case $- in
       *) return;;
 esac
 
+if [ -f ~/.bash_custom ]; then
+ . ~/.bash_custom
+fi
+
 # Load common configuration for PS1
 source ~/.config/nvim/ps1.sh
 
@@ -75,4 +79,13 @@ fi
 # Load Custom aliases if the file exist
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
+fi
+
+if [ -d "$HOME/.pyenv" ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+fi
+
+if which pyenv > /dev/null; then
+  eval "$(pyenv init -)";
 fi
