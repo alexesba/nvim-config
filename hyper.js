@@ -57,7 +57,7 @@ module.exports = {
     css: '',
 
     // custom CSS to embed in the terminal window
-    termCSS: '',	
+    termCSS: '',
 
     // if you're using a Linux setup which show native menus, set to false
     // default: `true` on Linux, `true` on Windows, ignored on macOS
@@ -133,22 +133,34 @@ module.exports = {
     // for advanced config flags please refer to https://hyper.is/#cfg
     hypercwd: {
       initialWorkingDirectory: '~/Projects'
-    }, 
+    },
     activeTab: {
-     symbol: '*', 
-     color: 'yellow'
+      symbol: '*',
+      color: 'yellow'
     },
     tabIcons: {
-     mapIcons: { vim: ['vim', 'vi', 'nvim'], ruby: ['irb', 'rails', 'ruby', 'bundle'] }, 
-     mapColors: { 
-       vim: '#7EBF00',
-       nvim: '#7EBF00',
-       vi: '#7EBF00', 
-       irb: '#CC0000', 
-       tail: '#FFF',
-       psql: '#316192', 
-       bundle: '#CC0000'
-      } 
+      mapIcons: {
+        vim: ['vim', 'vi', 'nvim'],
+        ruby: ['irb', 'rails', 'ruby', 'bundle'],
+        git: [
+          'git-remote-ftp',
+          'git-remote-ftps',
+          'git-remote-http',
+          'git-remote-https',
+          'hub'
+        ],
+      },
+      mapColors: {
+        vim: '#7EBF00',
+        nvim: '#7EBF00',
+        vi: '#7EBF00',
+        irb: '#CC0000',
+        tail: '#FFF',
+        psql: '#316192',
+        bundle: '#CC0000',
+        git: '#E64C33',
+        hub: '#E64C33'
+      }
     }
   },
 
@@ -161,18 +173,18 @@ module.exports = {
   // "hyper-mono-material",
   // "hyper-statusline"
   plugins: [
-  "hypercwd",
-  "hyper-mono-material",
- // "hyperterm-base16-tomorrow-night",
-  "hyperlinks",
-  "hyper-tab-icons", 
-  "hyperterm-monokai",
-  "hyper-search",
-  "hyper-active-tab"
- // "hyper-statusline"
-  //"hyper-pinker",
-//"hyper-seti-monokai"
- ],
+    "hypercwd",
+    "hyper-mono-material",
+    // "hyperterm-base16-tomorrow-night",
+    "hyperlinks",
+    "hyper-tab-icons",
+    "hyperterm-monokai",
+    "hyper-search",
+    "hyper-active-tab"
+    // "hyper-statusline"
+    //"hyper-pinker",
+    //"hyper-seti-monokai"
+  ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
