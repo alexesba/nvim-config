@@ -23,9 +23,6 @@ fi
 #load common functions
 source ~/.config/nvim/functions.sh
 
-#Load custom bash aliases
-[ -f ~/.bash_aliases ] && . ~/.bash_aliases
-
 #Load fzf bash enhancements
 if [ -f ~/.fzf.bash ]; then
  . ~/.fzf.bash
