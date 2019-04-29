@@ -45,18 +45,28 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
-export HISTIGNORE='&:exit:x:q:history:gs*:gco:gb:pwd:editenv'
-export HISTCONTROL=ignoreboth
+export HISTIGNORE='&:exit:x:q:history:gs*:gco:gb:pwd:editenv:ag'
+export HISTCONTROL=ignoreboth:erasedups
+
 shopt -s histappend # append to history, don't overwrite it
 # Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -n; history -a; history -w; history -c; history -r; $PROMPT_COMMAND"
 export HISTFILE=~/.bash_history
 
 # Load nvmrc if exist under the current directory
-if [ -f "$(pwd)/.nvmrc" ]; then
-  . $(pwd)/.nvmrc
-fi
+enter_directory() {
+  if [[ $PWD == $PREV_PWD ]]; then
+    return
+  fi
 
+  PREV_PWD=$PWD
+
+  if [[ -f .nvmrc ]]; then
+    nvm use
+  fi
+}
+
+export PROMPT_COMMAND="enter_directory $PROMPT_COMMAND"
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"

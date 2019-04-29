@@ -24,7 +24,7 @@ alias :wq='exit'
 if [[ "$OSTYPE" =~ ^linux ]]; then
   # Add custom alias for linux like macosx if the gnome-open is installed.
   if which gnome-open > /dev/null; then
-          alias open='gnome-open'
+    alias open='gnome-open'
   fi
   # Add a command to reload the
   alias reload='source ~/.bashrc'
