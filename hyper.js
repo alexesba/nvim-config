@@ -38,7 +38,7 @@ module.exports = {
     cursorShape: 'BLOCK',
 
     // set to `true` (without backticks and without quotes) for blinking cursor
-    cursorBlink: false,
+    cursorBlink: true,
 
     // color of the text
     foregroundColor: '#fff',
@@ -135,7 +135,7 @@ module.exports = {
       initialWorkingDirectory: '~/Projects'
     },
     activeTab: {
-      symbol: '*',
+      symbol: '⚡',
       color: 'yellow'
     },
     tabIcons: {
@@ -175,14 +175,11 @@ module.exports = {
   plugins: [
     "hypercwd",
     "hyper-mono-material",
-    // "hyperterm-base16-tomorrow-night",
-    "hyperlinks",
-    "hyper-tab-icons",
-    "hyperterm-monokai",
-    "hyper-search",
-    "hyper-active-tab"
-    // "hyper-statusline"
-    //"hyper-pinker",
+     "hyperlinks",
+     "hyperterm-monokai",
+     "hyper-search",
+     "hyper-active-tab",
+     "hyper-tab-icons"
     //"hyper-seti-monokai"
   ],
 
