@@ -1,3 +1,22 @@
+
+
+title () {
+    # echo -en "\e]1;$(hostname) : $1\a\e]2;$(hostname) : $2\a"
+    echo -ne "\033]0;$1 ${BASH_SIMBOL_SEPARATOR:-'-'} ${PWD##*/}\007"
+}
+
+fg () {
+  if [[ "x" == "x$1" ]]; then
+    _CMD=$(ps -o cmd --no-headers $(jobs -l | awk '/\[[0-9]\]\+/{print $2}'));
+  else
+    _CMD=$(ps -o cmd --no-headers $(jobs -l | awk '/\['$1'\]/{print $2}'));
+  fi;
+  title $(basename $(echo $_CMD | awk '{print $1}')) "$_CMD";
+  unset _CMD;
+  builtin fg $*;
+}
+
+
 if which hyper > /dev/null; then
   case "$TERM" in
     xterm*|rxvt*)
