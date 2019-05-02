@@ -9,12 +9,12 @@ module.exports = {
     updateChannel: 'stable',
 
     // default font size in pixels for all tabs
-    fontSize: 12,
+    fontSize: 14,
 
     // font family with optional fallbacks
     //fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
-    fontFamily: '"Fira Code", Menlo, "DejaVu Sans Mono", "Lucida Console", monospace',
-
+    // fontFamily: '"Fira Code", Menlo, "DejaVu Sans Mono", "Lucida Console", monospace',
+    fontFamily: '"Operator Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
@@ -74,24 +74,7 @@ module.exports = {
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
     // an array here instead of a color map object
-    colors: {
-      black: '#000000',
-      red: '#C51E14',
-      green: '#1DC121',
-      yellow: '#C7C329',
-      blue: '#0A2FC4',
-      magenta: '#C839C5',
-      cyan: '#20C5C6',
-      white: '#C7C7C7',
-      lightBlack: '#686868',
-      lightRed: '#FD6F6B',
-      lightGreen: '#67F86F',
-      lightYellow: '#FFFA72',
-      lightBlue: '#6A76FB',
-      lightMagenta: '#FD7CFC',
-      lightCyan: '#68FDFE',
-      lightWhite: '#FFFFFF',
-    },
+    colors: [],
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
@@ -129,6 +112,7 @@ module.exports = {
 
     // URL to custom bell
     // bellSoundURL: 'http://example.com/bell.mp3',
+    monokaiTheme: { cursorColor: '#FD971F' },
 
     // for advanced config flags please refer to https://hyper.is/#cfg
     hypercwd: {
@@ -173,14 +157,13 @@ module.exports = {
   // "hyper-mono-material",
   // "hyper-statusline"
   plugins: [
+    // 'hyperpower',
     "hypercwd",
-    "hyper-mono-material",
-     "hyperlinks",
-     "hyperterm-monokai",
      "hyper-search",
-     "hyper-active-tab",
-     "hyper-tab-icons"
-    //"hyper-seti-monokai"
+    "hyper-tab-icons",
+    "hyper-spotify",
+    // "hyper-active-tab",
+    "hyper-monokai-theme"
   ],
 
   // in development, you can create a directory under
