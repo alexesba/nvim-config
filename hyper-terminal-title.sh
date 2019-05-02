@@ -9,7 +9,7 @@ if which hyper > /dev/null; then
             ;;
           *)
             read -r first _ <<< $BASH_COMMAND
-                  echo -ne "\033]0;$first - ${PWD##*/}\007"
+                  echo -ne "\033]0;$first ${BASH_SIMBOL_SEPARATOR:-'-'} ${PWD##*/}\007"
                   ;;
               esac
             }
