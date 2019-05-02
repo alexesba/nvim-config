@@ -38,7 +38,7 @@ module.exports = {
     cursorShape: 'BLOCK',
 
     // set to `true` (without backticks and without quotes) for blinking cursor
-    cursorBlink: true,
+    cursorBlink: false,
 
     // color of the text
     foregroundColor: '#fff',
@@ -113,7 +113,19 @@ module.exports = {
     // URL to custom bell
     // bellSoundURL: 'http://example.com/bell.mp3',
     monokaiTheme: { cursorColor: '#FD971F' },
-
+    paneNavigation: {
+     hotkeys: {
+        navigation: {
+          up: 'shift+alt+up',
+          down: 'shift+alt+down',
+          left: 'shift+alt+left',
+          right: 'shift+alt+right'
+        },
+        jump_prefix: 'alt', // completed with 1-9 digits
+        permutation_modifier: 'shift', // Added to jump and navigation hotkeys for pane permutation
+        maximize: 'shift+alt+enter'
+      }
+    },
     // for advanced config flags please refer to https://hyper.is/#cfg
     hypercwd: {
       initialWorkingDirectory: '~/Projects'
@@ -157,12 +169,10 @@ module.exports = {
   // "hyper-mono-material",
   // "hyper-statusline"
   plugins: [
-    // 'hyperpower',
     "hypercwd",
      "hyper-search",
     "hyper-tab-icons",
-    "hyper-spotify",
-    // "hyper-active-tab",
+    "hyper-pane",
     "hyper-monokai-theme"
   ],
 
