@@ -1,7 +1,8 @@
 
-
 title () {
-    # echo -en "\e]1;$(hostname) : $1\a\e]2;$(hostname) : $2\a"
+    if [[ $@ == *"hystory"* ]]; then
+      return
+    fi
     echo -ne "\033]0;$1 ${BASH_SIMBOL_SEPARATOR:-'-'} ${PWD##*/}\007"
 }
 
@@ -16,7 +17,6 @@ fg () {
   builtin fg $*;
 }
 
-
 if which hyper > /dev/null; then
   case "$TERM" in
     xterm*|rxvt*)
@@ -27,8 +27,8 @@ if which hyper > /dev/null; then
           *\033]0*)
             ;;
           *)
-            read -r first _ <<< $BASH_COMMAND
-                  echo -ne "\033]0;$first ${BASH_SIMBOL_SEPARATOR:-'-'} ${PWD##*/}\007"
+            # read -r first _ <<< $BASH_COMMAND
+            title $BASH_COMMAND
                   ;;
               esac
             }
