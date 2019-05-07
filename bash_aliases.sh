@@ -5,7 +5,7 @@ alias vim=nvim
 alias vi=nvim
 alias vi='nvim --noplugin'
 alias git=hub
-alias hidden="ls -a | grep '^\.'"
+alias ls-hidden="ls -la | grep ' \.'"
 
 # User commands
 alias git-log='git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short  --reverse --all'

@@ -12,9 +12,6 @@ if [ -f ~/.bash_custom ]; then
  . ~/.bash_custom
 fi
 
-# Load common configuration for PS1
-source ~/.config/nvim/ps1.sh
-
 #Add funciton to dosplay the icon for Hyper terminal emulator
 if which hyper > /dev/null; then
   . ~/.config/nvim/hyper-terminal-title.sh
@@ -47,7 +44,7 @@ export HISTCONTROL=ignoreboth:erasedups
 
 shopt -s histappend # append to history, don't overwrite it
 # Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -n; history -a; history -w; history -c; history -r; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -n; history -a; history -w; history -c; history -r; $PROMPT_COMMAND"
 export HISTFILE=~/.bash_history
 
 # Load nvmrc if exist under the current directory
@@ -63,7 +60,7 @@ enter_directory() {
   fi
 }
 
-export PROMPT_COMMAND="enter_directory $PROMPT_COMMAND"
+PROMPT_COMMAND="enter_directory $PROMPT_COMMAND"
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -96,3 +93,6 @@ fi
 if which pyenv > /dev/null; then
   eval "$(pyenv init -)";
 fi
+
+# Load common configuration for PS1
+source ~/.config/nvim/ps1.sh
