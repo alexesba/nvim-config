@@ -1,6 +1,7 @@
 
 title () {
-    if [[ $@ == *"hystory"* ]]; then
+  # How to show the process name on vim when fzf is used
+    if [[ $@ == *"hystory"* ]] || [[ $@ == "fzf"* ]]; then
       return
     fi
     echo -ne "\033]0;$1 ${BASH_SIMBOL_SEPARATOR:-'-'} ${PWD##*/}\007"
