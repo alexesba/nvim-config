@@ -1,6 +1,12 @@
 " Colorscheme
 Plug 'alexesba/colors'
 Plug 'mhartington/oceanic-next'
+Plug 'machakann/vim-colorscheme-kemonofriends'
+Plug 'tomasiser/vim-code-dark'
+Plug 'aonemd/kuroi.vim'
+Plug 'tjammer/blandon.vim'
+Plug 'nikitavoloboev/vim-monokai-night'
+Plug 'nightsense/night-and-day'
 
 " utils
 Plug 'dhruvasagar/vim-table-mode'
@@ -30,7 +36,7 @@ Plug 'junegunn/fzf.vim'
 
 "Validate syntax and load configuration for editing files
 Plug 'editorconfig/editorconfig-vim'
-Plug 'neomake/neomake'
+Plug 'neomake/neomake', { 'for': ['javascript', 'ruby'] }
 
 "Languages and syntax
 Plug 'csscomb/vim-csscomb'
@@ -53,9 +59,4 @@ Plug 'tpope/vim-rails'
 Plug 'vim-scripts/xml.vim'
 " Python syntax
 Plug 'vim-python/python-syntax'
-
-
-"For crystal language
-" Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
-" Plug 'rhysd/vim-crystal'
-" Plug 'elorest/vim-slang'
+Plug 'ntpeters/vim-better-whitespace'

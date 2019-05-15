@@ -59,4 +59,6 @@ function set_ps1 {
 }
 export CLICOLOR=1
 
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
 export PROMPT_COMMAND="set_ps1 $PROMPT_COMMAND"

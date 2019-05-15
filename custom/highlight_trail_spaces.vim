@@ -1,17 +1,18 @@
 highlight Trail ctermbg=red guibg=red
-highlight Tabs ctermbg=gray guibg=gray
+highlight Tabs ctermbg=red guibg=red
 call matchadd('Trail', '\s\+$', 100)
 call matchadd('Tabs', '\t', 101)
 
 
 " highlight ExtraWhitespace ctermbg=red guibg=red
+"
 " augroup WhitespaceMatch
 "   " Remove ALL autocommands for the WhitespaceMatch group.
 "   autocmd!
 "   autocmd BufWinEnter * let w:whitespace_match_number =
 "         \ matchadd('ExtraWhitespace', '\s\+$')
-"   autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
-"   autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
+"   " autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
+"   " autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
 " augroup END
 " function! s:ToggleWhitespaceMatch(mode)
 "   let pattern = (a:mode == 'i') ? '\s\+\%#\@<!$' : '\s\+$'

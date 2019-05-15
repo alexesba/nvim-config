@@ -32,7 +32,7 @@ else
   source ~/.config/nvim/darwin.sh
 fi
 
-bind -x '"\C-f": fzf_then_open_in_editor'
+bind -x '"\C-o": fzf_then_open_in_editor'
 
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'

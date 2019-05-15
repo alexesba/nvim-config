@@ -32,9 +32,9 @@ set noswapfile
 set nowb
 set synmaxcol=2048
 
-"set the color scheme
-:silent! colorscheme moria
-:silent! set background=light
+" set the color scheme
+silent! colorscheme moria
+silent! set background=light
 
 if exists('+colorcolumn')
   set colorcolumn=80
@@ -68,7 +68,7 @@ let g:javascript_plugin_ngdoc = 1
 
 " Enable italic fonts
 let g:enable_italic_font = 1
-let g:netrw_dirhistmax = 0
+" let g:netrw_dirhistmax = 0
 
 " Configure Preview for Markdown files
 let vim_markdown_preview_toggle=3
@@ -84,4 +84,7 @@ so ~/.config/nvim/custom/italic_fonts.vim
 so ~/.config/nvim/custom/status_bar.vim
 so ~/.config/nvim/custom/fuzzyfinder.vim
 so ~/.config/nvim/custom/grammar_checker.vim
-call SourceIfExists("~/.vimrc")
+
+if !empty(glob("~/.vimrc"))
+  so ~/.vimrc
+endif
