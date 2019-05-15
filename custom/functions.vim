@@ -1,4 +1,11 @@
-" Function to source only if file exists 
+" Function to update the ~/.config/nvim repo
+function! UpdateRepoDotFiles()
+  exe '! cd ~/.config/nvim && git pull origin HEAD'
+endfunction
+
+command! UpdateDotFiles call UpdateRepoDotFiles()
+
+" Function to source only if file exists
 function! SourceIfExists(file)
   if filereadable(expand(a:file))
     exe 'source' a:file
