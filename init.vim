@@ -32,9 +32,10 @@ set noswapfile
 set nowb
 set synmaxcol=2048
 
-" set the color scheme
-silent! colorscheme moria
-silent! set background=light
+" set the color schemes
+let g:nd_themes = [
+      \ ['8:00',  'moria', 'light' ]
+      \ ]
 
 if exists('+colorcolumn')
   set colorcolumn=80

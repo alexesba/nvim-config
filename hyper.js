@@ -54,7 +54,13 @@ module.exports = {
     borderColor: '#333',
 
     // custom CSS to embed in the main window
-    css: '',
+    css:`
+     body {
+        /* we need to unset this for hyper to actually antialias correctly */
+        -webkit-backface-visibility: unset;
+        backface-visibility: unset;
+      }
+   `,
 
     // custom CSS to embed in the terminal window
     termCSS: '',
