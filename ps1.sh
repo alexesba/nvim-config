@@ -61,4 +61,4 @@ export CLICOLOR=1
 
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-export PROMPT_COMMAND="set_ps1 $PROMPT_COMMAND"
+export PROMPT_COMMAND="set_ps1; $PROMPT_COMMAND"

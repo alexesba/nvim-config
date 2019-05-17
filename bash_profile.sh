@@ -12,13 +12,13 @@ if [ -f ~/.bash_custom ]; then
  . ~/.bash_custom
 fi
 
-#Add funciton to dosplay the icon for Hyper terminal emulator
+#load common functions
+source ~/.config/nvim/functions.sh
+
+#Add function to display the icon for Hyper terminal emulator
 if which hyper > /dev/null; then
   . ~/.config/nvim/hyper-terminal-title.sh
 fi
-
-#load common functions
-source ~/.config/nvim/functions.sh
 
 #Load fzf bash enhancements
 if [ -f ~/.fzf.bash ]; then
@@ -44,22 +44,9 @@ export HISTIGNORE='&:exit:x:q:history:gs*:gco:gb:pwd:editenv:ag'
 export HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend # append to history, don't overwrite it
 # Save and reload the history after each command finishes
+PROMPT_COMMAND="loadnvmrc; $PROMPT_COMMAND"
 PROMPT_COMMAND="history -n; history -a; history -w; history -c; history -r; $PROMPT_COMMAND"
 
-# Load nvmrc if exist under the current directory
-enter_directory() {
-  if [[ $PWD == $PREV_PWD ]]; then
-    return
-  fi
-
-  PREV_PWD=$PWD
-
-  if [[ -f .nvmrc ]]; then
-    nvm use
-  fi
-}
-
-PROMPT_COMMAND="enter_directory $PROMPT_COMMAND"
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
