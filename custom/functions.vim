@@ -3,6 +3,13 @@ function! UpdateRepoDotFiles()
   exe '! cd ~/.config/nvim && git pull origin HEAD'
 endfunction
 
+function! PlayReprobado()
+  exe '!paplay ~/.config/nvim/Reprobado.ogg'
+endfunction
+command! Reprobado silent!call PlayReprobado();
+
+nmap <silent> <Leader>no :Reprobado<CR>
+
 command! UpdateDotFiles call UpdateRepoDotFiles()
 
 " Function to source only if file exists
