@@ -54,7 +54,7 @@ function backround_jobs {
 
 function set_ps1 {
   HAS_JOBS="$(jobs -p)"
-  JOBS="jobs: \[$COLOR_CYAN\]❇️ \[$COLOR_YELLOW\]$(backround_jobs)\[$COLOR_RESET\]"
+  JOBS="jobs: \[$COLOR_CYAN\] ❇️  \[$COLOR_YELLOW\]$(backround_jobs)\[$COLOR_RESET\]"
   export PS1="\[$COLOR_GREEN\]$USER\[$COLOR_RESET\]\[$COLOR_WHITE\]$SEPARATOR\[$COLOR_RESET\]\[$COLOR_RED\]$HOST\[$COLOR_RESET\]\[$COLOR_WHITE\]$SIMBOL\[$COLOR_RESET\]\[$COLOR_YELLOW\] \[$COLOR_RESET\]\[$COLOR_CYAN\]\w\[$COLOR_RESET\]\[$COLOR_RESET\] \[\$(git_color)\]\$(git_branch)\[$COLOR_RESET\] ${HAS_JOBS:+$JOBS} \n $ "
 }
 export CLICOLOR=1

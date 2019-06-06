@@ -24,6 +24,8 @@ Plug 'tpope/vim-surround'
 Plug 'kopischke/vim-fetch' "vim path/to/file.ext:12:3 in the shell to open file.ext on line 12 at column 3
 Plug 'brooth/far.vim' "Far.vim makes it easier to find and replace text through multiple files.
 Plug 'maksimr/vim-jsbeautify' "allows you to use jsbeautifier inside vim to quickly format javascript
+" Plug 'adelarsq/vim-matchit'
+Plug 'andymass/vim-matchup'
 
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
@@ -40,16 +42,17 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'neomake/neomake', { 'for': ['javascript', 'ruby'] }
 
 "Languages and syntax
-Plug 'csscomb/vim-csscomb'
+" Plug 'csscomb/vim-csscomb'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
+" Plug 'skammer/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'avakhov/vim-yaml'
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
 Plug 'chase/vim-ansible-yaml'
 Plug 'digitaltoad/vim-jade'
-Plug 'gko/vim-coloresque'
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' } " CSS3 syntax support
-Plug 'kchmck/vim-coffee-script'
+" Plug 'gko/vim-coloresque'
+" Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss']} " CSS3 syntax support
+" Plug 'kchmck/vim-coffee-script'
 " Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
@@ -59,5 +62,5 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/xml.vim'
 " Python syntax
-Plug 'vim-python/python-syntax'
+" Plug 'vim-python/python-syntax'
 Plug 'ntpeters/vim-better-whitespace'

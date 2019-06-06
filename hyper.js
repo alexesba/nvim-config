@@ -9,18 +9,18 @@ module.exports = {
     updateChannel: 'stable',
 
     // default font size in pixels for all tabs
-    fontSize: 13,
+    fontSize: 12,
 
     // font family with optional fallbacks
-    //fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+   // fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
     // fontFamily: '"Fira Code", Menlo, "DejaVu Sans Mono", "Lucida Console", monospace',
-    fontFamily: '"Operator Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: '"Operator Mono Book", Menlo, "DejaVu Sans Mono", "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
 
     // font weight for bold characters: 'normal' or 'bold'
-    fontWeightBold: 'normal',
+    fontWeightBold: 'bold',
 
     // line height as a relative unit
     lineHeight: 1,
@@ -130,7 +130,14 @@ module.exports = {
         jump_prefix: 'alt', // completed with 1-9 digits
         permutation_modifier: 'shift', // Added to jump and navigation hotkeys for pane permutation
         maximize: 'shift+alt+enter'
-      }
+      },
+indicatorStyle: {
+ position: 'absolute',
+        top: 0,
+        left: 0,
+        fontSize: '10px',
+color: '#7EBF00'
+}
     },
     // for advanced config flags please refer to https://hyper.is/#cfg
     hypercwd: {
@@ -153,11 +160,13 @@ module.exports = {
         ],
       },
       mapColors: {
+        bash: '#7EBF00',
+        shell: '#7EBF00',
         vim: '#7EBF00',
         nvim: '#7EBF00',
         vi: '#7EBF00',
         irb: '#CC0000',
-        tail: '#FFF',
+        tail: '#7EBF00',
         psql: '#316192',
         bundle: '#CC0000',
         git: '#E64C33',
@@ -175,8 +184,8 @@ module.exports = {
   // "hyper-mono-material",
   // "hyper-statusline"
   plugins: [
-    "hypercwd",
-     "hyper-search",
+    "hyper-samewd",
+     //"hyper-search",
     "hyper-tab-icons",
     "hyper-pane",
     "hyper-monokai-theme"

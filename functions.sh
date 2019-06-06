@@ -1,6 +1,6 @@
 title () {
-  # How to show the process name on vim when fzf is used
-    if [[ $@ == *"hystory"* ]] || [[ $@ == "fzf"* ]]; then
+  # How to show the process name on vim when fzf is used $date =~ ^regex$
+    if [[ $@ =~ ^source|fzf|bind|export|eval|LS_COLORS|~/.|PROMT_COMMAND|HOME|alias|history|cd|which|dev/\null|shopt|rehash|set_ps1|loadnvmrc|\[*\] ]]; then
       return
     fi
     local directory="$(basename "$PWD")"
@@ -21,6 +21,7 @@ fg () {
 
 function fzf_then_open_in_editor() {
   local file=$(fzf)
+  C_EDITOR=${EDITOR:-nvim}
   # Open the file if it exists
   if [ -n "$file" ]; then
     # Use the default editor if it's defined, otherwise Vim

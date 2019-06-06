@@ -11,7 +11,8 @@ command! DoubleQuotesC %s/'\([^']*\)'/"\1"/gc
 " Change double quotes to single with confirmation
 command! SingleQuotesC %s/"\([^"]*\)"/'\1'/gc
 " Remove extra line blank
-command! RemoveExtraEmptyLines %!cat -s
+" command! RemoveExtraEmptyLines %!cat -s
+command! RemoveExtraEmptyLines :call RemoveExtraEmptyLinesFn()
 "Insert Lines before each line
 command! AddNumber  %s/^/\=printf('%-2d', line('.'))
 command! ConverTabsToSpaces %s/\t/  /g

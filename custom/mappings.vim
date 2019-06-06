@@ -47,3 +47,8 @@ else
         xmap <S-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
         xmap <S-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 end
+
+
+
+nmap <silent> <Leader>no :Reprobado<CR>
+nmap <silent> <Leader>na :Reprobada<CR>

@@ -3,12 +3,11 @@ function! UpdateRepoDotFiles()
   exe '! cd ~/.config/nvim && git pull origin HEAD'
 endfunction
 
-function! PlayReprobado()
-  exe '!paplay ~/.config/nvim/Reprobado.ogg'
+function! PlayReprobado(file)
+  exe '!paplay '. a:file
 endfunction
-command! Reprobado silent!call PlayReprobado();
-
-nmap <silent> <Leader>no :Reprobado<CR>
+command! Reprobado silent!call PlayReprobado('~/.config/nvim/Reprobado.ogg')
+command! Reprobada silent!call PlayReprobado('~/.config/nvim/Reprobada.ogg')
 
 command! UpdateDotFiles call UpdateRepoDotFiles()
 
@@ -55,6 +54,12 @@ endfunction
 function! CleanUp()
   let save_cursor = getpos(".")
   %s/\s\+$//e
+  call setpos('.', save_cursor)
+endfunction
+
+function! RemoveExtraEmptyLinesFn()
+  let save_cursor = getpos(".")
+  :%!cat -s
   call setpos('.', save_cursor)
 endfunction
 
