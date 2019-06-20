@@ -31,6 +31,8 @@ Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'terryma/vim-multiple-cursors'
+" Tab styles
+Plug 'mkitt/tabline.vim'
 
 "Tools for searching
 Plug 'jaawerth/nrun.vim'

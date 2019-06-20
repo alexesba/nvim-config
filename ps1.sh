@@ -11,7 +11,7 @@ COLOR_OCHRE="\033[38;5;95m"
 COLOR_WHITE="\033[0;37m"
 COLOR_RESET="\033[0m"
 
-USER=${USER_PS1:-'\u'}
+_USER=${USER_PS1:-'\u'}
 HOST=${HOST_PS1:-'\h'}
 SEPARATOR=${SEPARATOR_PS1:-'@'}
 SIMBOL=${SIMBOL_PS1:-':'}
@@ -49,13 +49,13 @@ function git_branch {
 }
 
 function backround_jobs {
-  echo $(jobs -l |awk '{print $4}'|uniq -c|awk '{printf("%s %s ", $2, $1)}')
+  echo $(jobs -l |awk '{print $4}'|sort|uniq -c|awk '{printf("%s %s ", $2, $1)}')
 }
 
 function set_ps1 {
   HAS_JOBS="$(jobs -p)"
   JOBS="jobs: \[$COLOR_CYAN\] ❇️  \[$COLOR_YELLOW\]$(backround_jobs)\[$COLOR_RESET\]"
-  export PS1="\[$COLOR_GREEN\]$USER\[$COLOR_RESET\]\[$COLOR_WHITE\]$SEPARATOR\[$COLOR_RESET\]\[$COLOR_RED\]$HOST\[$COLOR_RESET\]\[$COLOR_WHITE\]$SIMBOL\[$COLOR_RESET\]\[$COLOR_YELLOW\] \[$COLOR_RESET\]\[$COLOR_CYAN\]\w\[$COLOR_RESET\]\[$COLOR_RESET\] \[\$(git_color)\]\$(git_branch)\[$COLOR_RESET\] ${HAS_JOBS:+$JOBS} \n $ "
+  export PS1="\[$COLOR_GREEN\]$_USER\[$COLOR_RESET\]\[$COLOR_WHITE\]$SEPARATOR\[$COLOR_RESET\]\[$COLOR_RED\]$HOST\[$COLOR_RESET\]\[$COLOR_WHITE\]$SIMBOL\[$COLOR_RESET\]\[$COLOR_YELLOW\] \[$COLOR_RESET\]\[$COLOR_CYAN\]\w\[$COLOR_RESET\]\[$COLOR_RESET\] \[\$(git_color)\]\$(git_branch)\[$COLOR_RESET\] ${HAS_JOBS:+$JOBS} \n $ "
 }
 export CLICOLOR=1
 
