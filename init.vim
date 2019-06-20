@@ -82,7 +82,8 @@ so ~/.config/nvim/custom/mappings.vim
 so ~/.config/nvim/custom/linters.vim
 so ~/.config/nvim/custom/commands.vim
 so ~/.config/nvim/custom/italic_fonts.vim
-so ~/.config/nvim/custom/status_bar.vim
+" so ~/.config/nvim/custom/status_bar.vim
+so ~/.config/nvim/custom/simple_status_bar.vim
 so ~/.config/nvim/custom/fuzzyfinder.vim
 so ~/.config/nvim/custom/grammar_checker.vim
 
