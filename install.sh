@@ -1,23 +1,34 @@
   # The package is installed
-read -p "Do you want to install Brew Packages config file?(y/n)" -n 1 -r
-echo
 
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  brew bundle
-fi
+  if [[ "$OSTYPE" =~ ^darwin ]]; then
+          read -p "Do you want to install Brew Packages config file?(y/n)" -n 1 -r
+          echo
 
-read -p "Do you want to install .bash_profile config file?(y/n)" -n 1 -r
-echo
+          if [[ $REPLY =~ ^[Yy]$ ]]; then
+                  brew bundle
+          fi
 
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  if [ -f ~/.bash_profile ]; then
-    echo ".bash_profile already exist.. performing a backup before link the .bash_profile"
-    mv ~/.bash_profile ~/.bash_profile.old
-    echo "your previous configuration was renamed as ~/.bash_profile.old"
   fi
 
-  ln -s ~/.config/nvim/bash_profile.sh ~/.bash_profile
-  echo "bash_profile linked correctly!"
+
+if [[ "$OSTYPE" =~ ^linux ]]; then
+        BASHFILE=.bashrc
+else
+        BASHFILE=.bash_profile
+fi
+
+read -p "Do you want to install $BASHFILE config file?(y/n)" -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  if [ -f ~/$BASHFILE ]; then
+    echo "$BASHFILE already exist.. performing a backup before link the $BASHFILE"
+    mv ~/$BASHFILE ~/$BASHFILE.old
+    echo "your previous configuration was renamed as ~/$BASHFILE.old"
+  fi
+
+  ln -s ~/.config/nvim/bash_profile.sh ~/$BASHFILE
+  echo "$BASHFILE linked correctly!"
 fi
 
 read -p "Do you want to install .tmux.conf config file?(y/n)" -n 1 -r
@@ -77,8 +88,4 @@ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
 nvim +PlugInstall +qall
 
 
-if [[ "$OSTYPE" =~ ^linux ]]; then
-  source ~/.bashrc
-else
-  source ~/.bash_profile
-fi
+source ~/$BASHFILE
