@@ -1,0 +1,79 @@
+" Configuring Ctrl-l to navigate between buffers
+nnoremap <C-l> :Buffers<CR>
+" let g:nd_latitude = '50'
+let g:nd_timeshift = '74'
+" let g:loaded_matchit = 1
+let g:matchup_matchpref = {
+    \ 'html': { 'tagnameonly': 1, },
+    \ 'javascript':  { 'tagnameonly': 1, },
+    \}
+
+function! JsxHotfix()
+    setlocal matchpairs=(:),{:},[:],<:>
+    let b:match_words = '<\@<=\([^/][^ \t>]*\)\g{hlend}[^>]*\%(/\@<!>\|$\):<\@<=/\1>'
+endfunction
+
+let g:matchup_hotfix_javascript = 'JsxHotfix'
+" let g:matchup_surround_enabled = 1
+let g:nd_themes = [
+      \ ['6:00',  'monokai', '' ]
+      \ ]
+
+" \ ['18:00', 'monokai-night', 'dark'  ],
+" \ ['4:00',  'hemisu', 'light'],
+set omnifunc=syntaxcomplete#Complete
+
+hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
+hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
+hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
+
+let g:tablineclosebutton=0
+let g:fzf_buffers_jump = 1
+let g:fzf_tags_command = 'ctags -R'
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Advanced customization using autoload functions
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+
+" Remove newbie crutches in Normal Mode
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+
+" Remove newbie crutches in Command Mode
+" cnoremap <Down> <Nop>
+" cnoremap <Left> <Nop>
+" cnoremap <Right> <Nop>
+" cnoremap <Up> <Nop>
+
+" " Remove newbie crutches in Insert Mode
+" inoremap <Down> <Nop>
+" inoremap <Left> <Nop>
+" inoremap <Right> <Nop>
+" inoremap <Up> <Nop>
+
+" Remove newbie crutches in Visual Mode
+vnoremap <Down> <Nop>
+vnoremap <Left> <Nop>
+vnoremap <Right> <Nop>
+vnoremap <Up> <Nop>
+
+
+
+let g:mkdp_auto_start = 0
+
+let g:mkdp_auto_close = 0
+
+let g:table_mode_corner='+'
+" autocmd BufferDelete *.md  :call
