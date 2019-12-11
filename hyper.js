@@ -6,7 +6,7 @@ module.exports = {
   config: {
     // choose either `'stable'` for receiving highly polished,
     // or `'canary'` for less polished but more frequent updates
-    updateChannel: 'canary',
+    updateChannel: 'stable',
 
     // default font size in pixels for all tabs
     fontSize: 12,
@@ -54,13 +54,7 @@ module.exports = {
     borderColor: '#333',
 
     // custom CSS to embed in the main window
-    css:`
-     body {
-        /* we need to unset this for hyper to actually antialias correctly */
-        -webkit-backface-visibility: unset;
-        backface-visibility: unset;
-      }
-   `,
+    css: '',
 
     // custom CSS to embed in the terminal window
     termCSS: '',
@@ -75,7 +69,7 @@ module.exports = {
     showWindowControls: '',
 
     // custom padding (CSS format, i.e.: `top right bottom left`)
-    padding: '12px 14px',
+    padding: '0 0',
 
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide

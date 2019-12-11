@@ -45,6 +45,12 @@ function! FormatHashes()
   execute "normal! \gg \<Sv> \<S-g>="
 endfunction
 
+function! FormatXMLFn()
+  :silent %s/\\"/"/g
+  :silent! %s/\\n//g
+  :silent! :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+endfunction
+
 " Converts old ruby hashes to the new syntax.
 function! UpdateRubyHashes()
   :%s/:\([^ ]*\)\(\s*\)=>/\1:/g

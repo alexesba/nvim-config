@@ -1,0 +1,63 @@
+[global_config]
+  always_split_with_profile = True
+  borderless = True
+  enabled_plugins = InactivityWatch, TerminatorThemes, ActivityWatch, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  scroll_tabbar = True
+  title_hide_sizetext = True
+[keybindings]
+  switch_to_tab_1 = <Alt>1
+  switch_to_tab_10 = <Alt>0
+  switch_to_tab_2 = <Alt>2
+  switch_to_tab_3 = <Alt>3
+  switch_to_tab_4 = <Alt>4
+  switch_to_tab_5 = <Alt>5
+  switch_to_tab_6 = <Alt>6
+  switch_to_tab_7 = <Alt>7
+  switch_to_tab_8 = <Alt>8
+  switch_to_tab_9 = <Alt>9
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = alexesba
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#272822"
+    copy_on_selection = True
+    cursor_color = "#ffffff"
+    font = Operator Mono weight=330 10
+    foreground_color = "#f8f8f2"
+    login_shell = True
+    palette = "#75715e:#f92672:#a6e22e:#f4bf75:#66d9ef:#ae81ff:#2aa198:#f9f8f5:#272822:#f92672:#a6e22e:#f4bf75:#66d9ef:#ae81ff:#2aa198:#f9f8f5"
+    scrollback_infinite = True
+    show_titlebar = False
+    use_custom_command = True
+    use_system_font = False
+  [[Monokai dark]]
+    background_color = "#272822"
+    cursor_color = "#ffffff"
+    font = Operator Mono weight=330 10
+    foreground_color = "#f8f8f2"
+    login_shell = True
+    palette = "#75715e:#f92672:#a6e22e:#f4bf75:#66d9ef:#ae81ff:#2aa198:#f9f8f5:#272822:#f92672:#a6e22e:#f4bf75:#66d9ef:#ae81ff:#2aa198:#f9f8f5"
+    show_titlebar = False
+    use_system_font = False
+  [[alexesba]]
+    background_color = "#272822"
+    copy_on_selection = True
+    cursor_color = "#f8f8f2"
+    cursor_color_fg = False
+    custom_command = TERM=xterm-256color bash -l
+    font = Operator Mono weight=330 10
+    foreground_color = "#f8f8f2"
+    login_shell = True
+    palette = "#75715e:#f92672:#a6e22e:#f4bf75:#66d9ef:#ae81ff:#2aa198:#f9f8f5:#272822:#f92672:#a6e22e:#f4bf75:#66d9ef:#ae81ff:#2aa198:#f9f8f5"
+    scrollback_infinite = True
+    show_titlebar = False
+    use_custom_command = True
+    use_system_font = False

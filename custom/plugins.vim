@@ -10,14 +10,13 @@ Plug 'nikitavoloboev/vim-monokai-night'
 Plug 'nightsense/night-and-day'
 
 " utils
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-eunuch' "Delete files using commands
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-markdown' "Preview markdown files
+" Plug 'tpope/vim-markdown' "Preview markdown files
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
@@ -26,6 +25,7 @@ Plug 'brooth/far.vim' "Far.vim makes it easier to find and replace text through 
 Plug 'maksimr/vim-jsbeautify' "allows you to use jsbeautifier inside vim to quickly format javascript
 " Plug 'adelarsq/vim-matchit'
 Plug 'andymass/vim-matchup'
+Plug 'amadeus/vim-escaper'
 
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
@@ -41,11 +41,14 @@ Plug 'junegunn/fzf.vim'
 
 "Validate syntax and load configuration for editing files
 Plug 'editorconfig/editorconfig-vim'
-Plug 'neomake/neomake', { 'for': ['javascript', 'ruby'] }
+Plug 'neomake/neomake', { 'for': ['javascript', 'ruby', 'scss', 'css', 'sass'] }
 
 "Languages and syntax
 " Plug 'csscomb/vim-csscomb'
-Plug 'JamshedVesuna/vim-markdown-preview'
+" Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'dhruvasagar/vim-table-mode'
+
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 " Plug 'skammer/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'avakhov/vim-yaml'
@@ -62,7 +65,7 @@ Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
-Plug 'vim-scripts/xml.vim'
+" Plug 'vim-scripts/xml.vim'
 " Python syntax
 " Plug 'vim-python/python-syntax'
 Plug 'ntpeters/vim-better-whitespace'

@@ -23,5 +23,8 @@ command! UpdateHashSyntax :call UpdateRubyHashes()
 command! FormatBraces :call CleanUpReactFile()
 command! ToggleGithubTable :call TogleGitHubTableMode()
 command! CleanWhiteSpaces :call CleanUp()
+command! UnscapeDoubleQuotes %s/\\"//g
+command! RemoveLineBreak %s/\\n//g
+command! FormatXML :call FormatXMLFn()
 " Vim syntax highlighting for ARB templates (ActiveAdmin) is not working
 autocmd BufRead,BufNewFile *.arb setfiletype ruby

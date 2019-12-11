@@ -31,6 +31,7 @@ set nobackup
 set noswapfile
 set nowb
 set synmaxcol=2048
+set novisualbell
 
 " set the color schemes
 let g:nd_themes = [
@@ -72,9 +73,9 @@ let g:enable_italic_font = 1
 " let g:netrw_dirhistmax = 0
 
 " Configure Preview for Markdown files
-let vim_markdown_preview_toggle=3
-let vim_markdown_preview_browser='Google Chrome'
-let vim_markdown_preview_github=1
+" let vim_markdown_preview_toggle=3
+" let vim_markdown_preview_browser='Google Chrome'
+" let vim_markdown_preview_github=1
 
 so ~/.config/nvim/custom/highlight_trail_spaces.vim
 so ~/.config/nvim/custom/functions.vim
@@ -86,6 +87,7 @@ so ~/.config/nvim/custom/italic_fonts.vim
 so ~/.config/nvim/custom/simple_status_bar.vim
 so ~/.config/nvim/custom/fuzzyfinder.vim
 so ~/.config/nvim/custom/grammar_checker.vim
+so ~/.config/nvim/custom/fzf_colors.vim
 
 if !empty(glob("~/.vimrc"))
   so ~/.vimrc
