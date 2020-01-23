@@ -69,3 +69,11 @@ Plug 'tpope/vim-rails'
 " Python syntax
 " Plug 'vim-python/python-syntax'
 Plug 'ntpeters/vim-better-whitespace'
+
+" PHP
+"
+Plug 'jwalton512/vim-blade'
+
+if !empty(glob("~/.plug.vim"))
+    so ~/.plug.vim
+endif
