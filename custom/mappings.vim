@@ -1,6 +1,6 @@
 " Set the leader key
 let mapleader=","
-noremap <silent><leader>n :NERDTreeToggle<CR>
+map <C-p> :NERDTreeToggle<CR>
 map <silent><Space> :noh<CR>
 
 " Format all the file from the first line to the end
