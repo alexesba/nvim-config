@@ -35,29 +35,25 @@ set novisualbell
 
 " set the color schemes
 let g:nd_themes = [
-      \ ['8:00',  'moria', 'light' ]
+      \ ['8:00',  'OceanicNext', '']
       \ ]
 
 if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
-if exists('g:GuiLoaded')
-  let g:Guifont="Operator Mono:h13"
-endif
-
 if has("autocmd")
   filetype plugin indent on
 end
 
-if has('nvim')
-  runtime! plugin/python_setup.vim
-endif
+" if has('nvim')
+"   runtime! plugin/python_setup.vim
+" endif
 
 " Config for neovim
 if (has("termguicolors"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  set termguicolors
+   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+   set termguicolors
 endif
 
 "Configure table mode for github
@@ -70,12 +66,6 @@ let g:javascript_plugin_ngdoc = 1
 
 " Enable italic fonts
 let g:enable_italic_font = 1
-" let g:netrw_dirhistmax = 0
-
-" Configure Preview for Markdown files
-" let vim_markdown_preview_toggle=3
-" let vim_markdown_preview_browser='Google Chrome'
-" let vim_markdown_preview_github=1
 
 so ~/.config/nvim/custom/highlight_trail_spaces.vim
 so ~/.config/nvim/custom/functions.vim
@@ -90,5 +80,5 @@ so ~/.config/nvim/custom/grammar_checker.vim
 so ~/.config/nvim/custom/fzf_colors.vim
 
 if !empty(glob("~/.vimrc"))
-  so ~/.vimrc
+ so ~/.vimrc
 endif

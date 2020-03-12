@@ -1,78 +1,72 @@
 " Colorscheme
 Plug 'alexesba/colors'
 Plug 'mhartington/oceanic-next'
-Plug 'machakann/vim-colorscheme-kemonofriends'
-Plug 'tomasiser/vim-code-dark'
-Plug 'aonemd/kuroi.vim'
-Plug 'chriskempson/base16-vim'
-Plug 'tjammer/blandon.vim'
-Plug 'nikitavoloboev/vim-monokai-night'
-Plug 'nightsense/night-and-day'
 
-" utils
-Plug 'junegunn/vim-easy-align'
-Plug 'kchmck/vim-coffee-script'
+" Vim Editor enhancers
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Vim Tab style
+Plug 'mkitt/tabline.vim'
+" tcomment provides easy to use, file-type sensible comments for Vim. It
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-eunuch' "Delete files using commands
 Plug 'tpope/vim-fugitive'
-" Plug 'tpope/vim-markdown' "Preview markdown files
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
-Plug 'kopischke/vim-fetch' "vim path/to/file.ext:12:3 in the shell to open file.ext on line 12 at column 3
-Plug 'brooth/far.vim' "Far.vim makes it easier to find and replace text through multiple files.
-Plug 'maksimr/vim-jsbeautify' "allows you to use jsbeautifier inside vim to quickly format javascript
-" Plug 'adelarsq/vim-matchit'
-Plug 'andymass/vim-matchup'
-Plug 'amadeus/vim-escaper'
+" This is a massive (in a good way) Vim plugin for editing Ruby on Rails applications.
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-cucumber'
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'avakhov/vim-yaml', {'for': 'yml'}
+Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
+"
+" Javascript syntax and highlight
+Plug 'pangloss/vim-javascript', { 'for': ['jsx', 'js'] }
+Plug 'mxw/vim-jsx', {'for': ['jsx', 'js'] }
 
+"Make Vim handle line and column numbers in file names with a minimum of fuss
+"vim path/to/file.ext:12:3 in the shell to open file.ext on line 12 at column 3
+Plug 'kopischke/vim-fetch'
+
+" match-up is a plugin that lets you highlight, navigate, and operate on sets of matching text.
+" It extends vim's % key to language-specific words instead of just single characters.
+Plug 'andymass/vim-matchup'
+"Intelligently reopen files at your last edit position in Vim. https://www.gregd.org/
 Plug 'dietsche/vim-lastplace'
+
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'terryma/vim-multiple-cursors'
-" Tab styles
-Plug 'mkitt/tabline.vim'
 
 "Tools for searching
-Plug 'jaawerth/nrun.vim'
+"A command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"A command-line fuzzy finder vim integration
 Plug 'junegunn/fzf.vim'
 
-"Validate syntax and load configuration for editing files
-Plug 'editorconfig/editorconfig-vim'
+"Linter plugins
+"which" and 'exec' functions targeted at local node project bin, with 'which' fallback
+Plug 'jaawerth/nrun.vim'
+" Asynchronous linting and make framework for Neovim/Vim
 Plug 'neomake/neomake', { 'for': ['javascript', 'ruby', 'scss', 'css', 'sass'] }
 
-"Languages and syntax
-" Plug 'csscomb/vim-csscomb'
-" Plug 'JamshedVesuna/vim-markdown-preview'
+"Using the markdown-preview.vim plugin, you can preview Markdown in real-time with a web browser.
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'dhruvasagar/vim-table-mode'
 
-Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
-" Plug 'skammer/vim-css-color', { 'for': ['css','stylus','scss'] }
-Plug 'avakhov/vim-yaml'
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
-Plug 'chase/vim-ansible-yaml'
-Plug 'digitaltoad/vim-jade'
-" Plug 'gko/vim-coloresque'
-" Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss']} " CSS3 syntax support
-" Plug 'kchmck/vim-coffee-script'
-" Plug 'leafgarland/typescript-vim'
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-Plug 'tpope/vim-cucumber'
-Plug 'tpope/vim-haml'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-rails'
-" Plug 'vim-scripts/xml.vim'
-" Python syntax
-" Plug 'vim-python/python-syntax'
+" This plugin causes all trailing whitespace characters to be highlighted.
 Plug 'ntpeters/vim-better-whitespace'
 
-" PHP
-"
-Plug 'jwalton512/vim-blade'
+" An awesome automatic table creator & formatter allowing one to create neat tables as you type.
+Plug 'dhruvasagar/vim-table-mode'
+
+" Plugin to load the .editorconfig rules
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'nightsense/night-and-day'
+
 
 if !empty(glob("~/.plug.vim"))
     so ~/.plug.vim

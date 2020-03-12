@@ -1,6 +1,10 @@
 " Set the leader key
 let mapleader=","
 map <C-p> :NERDTreeToggle<CR>
+"Using FZF as file search
+map <C-f> :FZF<CR>
+nmap <silent><Leader>f :FZF<CR>
+
 map <silent><Space> :noh<CR>
 
 " Format all the file from the first line to the end
@@ -11,8 +15,6 @@ nmap <silent> <Leader>c :TComment<CR>
 vmap <silent> <Leader>c :TComment<CR>
 imap <silent> <Leader>c <Esc>:TComment<CR>i
 
-"Using FZF as file search
-nmap <silent><Leader>f :FZF<CR>
 
 " Command to move among tabs in Konsole-style
 map <silent><leader>1 :tabn 1 <cr>
