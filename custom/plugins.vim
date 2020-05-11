@@ -38,7 +38,7 @@ Plug 'andymass/vim-matchup'
 Plug 'dietsche/vim-lastplace'
 
 Plug 'godlygeek/tabular'
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': ['jsx', 'js', 'html', 'haml'] }
 Plug 'terryma/vim-multiple-cursors'
 
 "Tools for searching

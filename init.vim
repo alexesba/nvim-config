@@ -46,15 +46,13 @@ if has("autocmd")
   filetype plugin indent on
 end
 
-" if has('nvim')
-"   runtime! plugin/python_setup.vim
-" endif
-
 " Config for neovim
 if (has("termguicolors"))
    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
    set termguicolors
 endif
+
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 "Configure table mode for github
 let g:table_mode_corner = '+'
@@ -75,9 +73,9 @@ so ~/.config/nvim/custom/commands.vim
 so ~/.config/nvim/custom/italic_fonts.vim
 " so ~/.config/nvim/custom/status_bar.vim
 so ~/.config/nvim/custom/simple_status_bar.vim
-so ~/.config/nvim/custom/fuzzyfinder.vim
-so ~/.config/nvim/custom/grammar_checker.vim
 so ~/.config/nvim/custom/fzf_colors.vim
+so ~/.config/nvim/custom/fuzzyfinder.vim
+" so ~/.config/nvim/custom/grammar_checker.vim
 
 if !empty(glob("~/.vimrc"))
  so ~/.vimrc

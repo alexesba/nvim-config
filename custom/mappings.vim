@@ -6,6 +6,9 @@ map <C-f> :FZF<CR>
 nmap <silent><Leader>f :FZF<CR>
 
 map <silent><Space> :noh<CR>
+" Toggle TableMode
+map <silent><Leader>to :TableModeToggle<CR>
+map <silent><Leader>tr :TableModeRealign<CR>
 
 " Format all the file from the first line to the end
 nmap <silent><leader>fef :normal! gg=G``<CR>
