@@ -40,3 +40,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# Note to get rid of a line just Ctrl-C
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
