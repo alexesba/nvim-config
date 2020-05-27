@@ -25,6 +25,7 @@ command! ToggleGithubTable :call TogleGitHubTableMode()
 command! CleanWhiteSpaces :call CleanUp()
 command! UnscapeDoubleQuotes %s/\\"//g
 command! RemoveLineBreak %s/\\n//g
+command! RemoveEmptyLines :g/^$/d
 command! FormatXML :call FormatXMLFn()
 " Vim syntax highlighting for ARB templates (ActiveAdmin) is not working
 autocmd BufRead,BufNewFile *.arb setfiletype ruby

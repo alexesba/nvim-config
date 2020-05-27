@@ -1,14 +1,18 @@
 env:
-  TERM: xterm-256color
+  TERM: xterm-256color-italic
 
 window:
   dimensions:
     columns: 148
     lines: 50
 
+  dpi:
+    x: 96.0
+    y: 96.0
+
   padding:
-    x: 0
-    y: 0
+    x: 8
+    y: 8
 
   dynamic_padding: false
 
@@ -34,7 +38,7 @@ window:
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  history: 10000
+  history: 100000
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
@@ -65,7 +69,7 @@ font:
     family: Operator Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Book
 
   # Bold font face
   bold:
@@ -85,12 +89,12 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     family: Operator Mono
-
-    # The `style` can be specified to pick a specific face.
-    style: Italic
+  #
+  #   # The `style` can be specified to pick a specific face.
+    style: Book Italic
 
   # Point size
-  size: 10
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -122,7 +126,7 @@ font:
   use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night Bright)
 # colors:
@@ -399,7 +403,7 @@ debug:
   # Record all characters and escape sequences as test data.
   ref_test: false
 
-# Key bindings
+  # Key bindings
 #
 # Key bindings are specified as a list of objects. Each binding will specify a
 # key and modifiers required to trigger it, terminal modes where the binding is
@@ -491,7 +495,7 @@ debug:
 #   - AppCursor
 #   - ~AppKeypad
 #   - AppKeypad
-# key_bindings:
+key_bindings:
   #- { key: Paste,                                action: Paste          }
   #- { key: Copy,                                 action: Copy           }
   #- { key: L,         mods: Control,             action: ClearLogNotice }
@@ -550,11 +554,11 @@ debug:
   # - { key: C,        mods: Control,           action: Copy             }
   # - { key: C,        mods: Control|Shift, mode: Vi, action: ClearSelection   }
   # - { key: Insert,   mods: Shift,                   action: PasteSelection   }
-  # - { key: Key0,     mods: Control,                 action: ResetFontSize    }
-  # - { key: Equals,   mods: Control,                 action: IncreaseFontSize }
-  # - { key: Add,      mods: Control,                 action: IncreaseFontSize }
-  # - { key: Subtract, mods: Control,                 action: DecreaseFontSize }
-  # - { key: Minus,    mods: Control,                 action: DecreaseFontSize }
+  - { key: Key0,     mods: Control,                 action: ResetFontSize    }
+  - { key: Equals,   mods: Control,                 action: IncreaseFontSize }
+  - { key: Add,      mods: Control,                 action: IncreaseFontSize }
+  - { key: Subtract, mods: Control,                 action: DecreaseFontSize }
+  - { key: Minus,    mods: Control,                 action: DecreaseFontSize }
 
   # (Windows only)
   # - { key: Return,   mods: Alt,           action: ToggleFullscreen }

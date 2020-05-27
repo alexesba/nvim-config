@@ -21,7 +21,6 @@ let g:nd_themes = [
 
 " \ ['18:00', 'monokai-night', 'dark'  ],
 " \ ['4:00',  'hemisu', 'light'],
-set omnifunc=syntaxcomplete#Complete
 
 hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
@@ -55,4 +54,59 @@ let NERDTreeMinimalUI=1
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
 let g:table_mode_corner='+'
-" autocmd BufferDelete *.md  :call
+
+" set omnifunc=syntaxcomplete#Complete
+
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+" inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" wrap existing omnifunc
+" Note that omnifunc does not run in background and may probably block the
+" editor. If you don't want to be blocked by omnifunc too often, you could
+" add 180ms delay before the omni wrapper:
+"  'on_complete': ['ncm2#on_complete#delay', 180,
+"               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+au User Ncm2Plugin call ncm2#register_source({
+      \ 'name' : 'css',
+      \ 'priority': 9,
+      \ 'subscope_enable': 1,
+      \ 'scope': ['css','scss'],
+      \ 'mark': 'css',
+      \ 'word_pattern': '[\w\-]+',
+      \ 'complete_pattern': ':\s*',
+      \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+      \ })
+
+
+autocmd BufWritePre * call MkDir()
+
+function! MkDir()
+   if !isdirectory(expand("<afile>:p:h"))
+      let confirmation=confirm("Create a new directory?", "&Yes\n&No")
+      if confirmation == 1
+         call mkdir(expand("<afile>:p:h"), "p")
+         lcd %:p:h
+         saveas %:t
+         echom "Created a new directory:" expand("<afile>:p:h")
+         let buf_del = bufnr("$")
+         exe "bd" . buf_del
+      endif
+      redraw
+   endif
+endfunction
