@@ -110,3 +110,21 @@ function! MkDir()
       redraw
    endif
 endfunction
+
+function! DeleteOver()
+   let save_cursor = getpos(".")
+   normal k
+   normal dd
+   call setpos(".", save_cursor)
+   normal k
+endfunction
+
+function! DeleteUnder()
+   let save_cursor = getpos(".")
+   normal j
+   normal dd
+   call setpos(".", save_cursor)
+endfunction
+
+nnoremap <Leader>d :call DeleteOver()<CR>
+nnoremap <Leader>D :call DeleteUnder()<CR>
