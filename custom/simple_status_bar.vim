@@ -1,13 +1,24 @@
 let g:modeMap={
-    \ 'n'      : 'Normal',
-    \ 'i'      : 'Insert',
-    \ 'R'      : 'Replace',
+    \ 'n'      : 'N',
+    \ 'no'     : 'N·Operator Pending',
+    \ 'v'      : 'V',
+    \ 'V'      : 'VLine',
+    \ "\<C-V>" : 'VBlock',
+    \ 's'      : 'Select',
+    \ 'S'      : 'SLine',
+    \ "\<C-S>" : 'SBlock',
+    \ 'i'      : 'I',
+    \ 'R'      : 'R',
+    \ 'Rv'     : 'VReplace',
     \ 'c'      : 'Command',
-    \ 'v'      : 'Visual',
-    \ 'V'      : 'VisualLine',
-    \ "\<C-V>" : 'VisualBlock'
+    \ 'cv'     : 'Vim Ex',
+    \ 'ce'     : 'Ex',
+    \ 'r'      : 'Prompt',
+    \ 'rm'     : 'More',
+    \ 'r?'     : 'Confirm',
+    \ '!'      : 'Shell',
+    \ 't'      : 'Terminal'
     \}
-
 " Find out current buffer's size and output it.
 function! FileSize()
   let bytes = getfsize(expand('%:p'))
@@ -30,12 +41,12 @@ function! FileSize()
 endfunction
 
 set statusline=
-set statusline+=%#Question#%{(g:modeMap[mode()]=='Normal')?'\ \ NORMAL\ ':''}
-set statusline+=%#Directory#%{(g:modeMap[mode()]=='Insert')?'\ \ INSERT\ ':''}
-set statusline+=%#DiffDelete#%{(g:modeMap[mode()]=='Replace')?'\ \ RPLACE\ ':''}
+set statusline+=%#Question#%{(g:modeMap[mode()]=='N')?'\ \ NORMAL\ ':''}
+set statusline+=%#Directory#%{(g:modeMap[mode()]=='I')?'\ \ INSERT\ ':''}
+set statusline+=%#DiffDelete#%{(g:modeMap[mode()]=='R')?'\ \ RPLACE\ ':''}
 set statusline+=%#Identifier#%{(g:modeMap[mode()]=='Command')?'\ \ COMMAND\ ':''}
-set statusline+=%#Title#%{(g:modeMap[mode()]=='VisualBlock')?'\ \ V-BLOCK\ ':''}
-set statusline+=%#Title#%{(g:modeMap[mode()]=='VisualLine')?'\ \ V-LINE\ ':''}
+set statusline+=%#Title#%{(g:modeMap[mode()]=='VBlock')?'\ \ V-BLOCK\ ':''}
+set statusline+=%#Title#%{(g:modeMap[mode()]=='VLine')?'\ \ V-LINE\ ':''}
 set statusline+=%#MatchParen#%{&paste?'\ PASTE\ ':''}
 set statusline+=\%#Cursor#\ %n\            " buffer number
 " set statusline+=%\       " colour
