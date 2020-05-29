@@ -48,14 +48,11 @@ set statusline+=%#Identifier#%{(g:modeMap[mode()]=='Command')?'\ \ COMMAND\ ':''
 set statusline+=%#Title#%{(g:modeMap[mode()]=='VBlock')?'\ \ V-BLOCK\ ':''}
 set statusline+=%#Title#%{(g:modeMap[mode()]=='VLine')?'\ \ V-LINE\ ':''}
 set statusline+=%#MatchParen#%{&paste?'\ PASTE\ ':''}
-set statusline+=\%#Cursor#\ %n\            " buffer number
-" set statusline+=%\       " colour
+set statusline+=%#Cursor#\ %n\             " buffer number
 set statusline+=%{&spell?'\ SPELL\ ':''}
-set statusline+=%#CursorLineNr# " colour
-set statusline+=%R                        " readonly flag
-set statusline+=%M                        " modified [+] flag
-set statusline+=%#Cursor#               " colour
-set statusline+=%#CursorLine#\ %t\                   " short file name
+set statusline+=%#DiffDelete#%{getbufvar(bufnr('%'),'&ro')?'\ readonly\ ':''}
+set statusline+=%#netrwDir#%{getbufvar(bufnr('%'),'&mod')?'\ +\ ':''}
+set statusline+=%#CursorLine#\ %f                   " short file name
 
 set statusline+=%=                          " right align
 set statusline+=%#CursorLine#\ %Y\   " colour File type

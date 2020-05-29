@@ -23,6 +23,9 @@ alias :wq='exit'
 
 if [[ "$OSTYPE" =~ ^linux ]]; then
   # Add custom alias for linux like macosx if the gnome-open is installed.
+  if which xdg-open > /dev/null; then
+    alias open='xdg-open'
+  fi
   if which gnome-open > /dev/null; then
     alias open='gnome-open'
   fi
