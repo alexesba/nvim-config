@@ -1,8 +1,8 @@
 " Set the leader key
 let mapleader=","
-map <C-p> :NERDTreeToggle<CR>
+map <silent><C-p> :NERDTreeToggle<CR>
 "Using FZF as file search
-map <C-f> :FZF<CR>
+map <silent><C-f> :FZF<CR>
 nmap <silent><Leader>f :FZF<CR>
 
 map <silent><Space> :noh<CR>
