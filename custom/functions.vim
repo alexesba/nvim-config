@@ -6,7 +6,9 @@ endfunction
 function! PlayReprobado(file)
   exe '!paplay '. a:file
 endfunction
+
 command! Reprobado silent!call PlayReprobado('~/.config/nvim/Reprobado.ogg')
+
 command! Reprobada silent!call PlayReprobado('~/.config/nvim/Reprobada.ogg')
 
 command! UpdateDotFiles call UpdateRepoDotFiles()
@@ -69,7 +71,6 @@ function! RemoveExtraEmptyLinesFn()
   call setpos('.', save_cursor)
 endfunction
 
-
 function! TogleGitHubTableMode()
   if g:table_mode_corner == '|'
     let g:table_mode_corner = '+'
@@ -86,9 +87,6 @@ function! EditConfigurationFile()
   :e $MYVIMRC
 endfunction
 command! OpenConfig silent!call EditConfigurationFile()
-
-
-
 
 set path=.,src
 set suffixesadd=.js,.jsx
