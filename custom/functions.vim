@@ -105,3 +105,23 @@ function! LoadMainNodeModule(fname)
 endfunction
 
 set includeexpr=LoadMainNodeModule(v:fname)
+
+function! JsxHotfix()
+    setlocal matchpairs=(:),{:},[:],<:>
+    let b:match_words = '<\@<=\([^/][^ \t>]*\)\g{hlend}[^>]*\%(/\@<!>\|$\):<\@<=/\1>'
+endfunction
+
+function! MkDir()
+   if !isdirectory(expand("<afile>:p:h"))
+      let confirmation=confirm("Create a new directory?", "&Yes\n&No")
+      if confirmation == 1
+         call mkdir(expand("<afile>:p:h"), "p")
+         lcd %:p:h
+         saveas %:t
+         echom "Created a new directory:" expand("<afile>:p:h")
+         let buf_del = bufnr("$")
+         exe "bd" . buf_del
+      endif
+      redraw
+   endif
+endfunction

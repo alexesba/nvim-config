@@ -1,112 +1,24 @@
-" Configuring Ctrl-l to navigate between buffers
-nnoremap <C-l> :Buffers<CR>
-" let g:nd_latitude = '50'
 let g:nd_timeshift = '74'
-" let g:loaded_matchit = 1
 let g:matchup_matchpref = {
     \ 'html': { 'tagnameonly': 1, },
     \ 'javascript':  { 'tagnameonly': 1, },
     \}
 
-function! JsxHotfix()
-    setlocal matchpairs=(:),{:},[:],<:>
-    let b:match_words = '<\@<=\([^/][^ \t>]*\)\g{hlend}[^>]*\%(/\@<!>\|$\):<\@<=/\1>'
-endfunction
-
 let g:matchup_hotfix_javascript = 'JsxHotfix'
-" let g:matchup_surround_enabled = 1
+
 let g:nd_themes = [
       \ ['6:00',  'monokai', '' ]
       \ ]
 
-" \ ['18:00', 'monokai-night', 'dark'  ],
-" \ ['4:00',  'hemisu', 'light'],
-
-hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
-hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
-hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
 let g:tablineclosebutton=0
 let g:fzf_buffers_jump = 1
 let g:fzf_tags_command = 'ctags -R'
-
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" Advanced customization using autoload functions
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-
-" Remove newbie crutches in Normal Mode
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Up> <Nop>
 
 let NERDTreeMinimalUI=1
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
 let g:table_mode_corner='+'
 
-" set omnifunc=syntaxcomplete#Complete
-
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
-" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
-" found' messages
-set shortmess+=c
-
-" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-" inoremap <c-c> <ESC>
-
-" When the <Enter> key is pressed while the popup menu is visible, it only
-" hides the menu. Use this mapping to close the menu and also start a new
-" line.
-" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-
-" Use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" wrap existing omnifunc
-" Note that omnifunc does not run in background and may probably block the
-" editor. If you don't want to be blocked by omnifunc too often, you could
-" add 180ms delay before the omni wrapper:
-"  'on_complete': ['ncm2#on_complete#delay', 180,
-"               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-au User Ncm2Plugin call ncm2#register_source({
-      \ 'name' : 'css',
-      \ 'priority': 9,
-      \ 'subscope_enable': 1,
-      \ 'scope': ['css','scss'],
-      \ 'mark': 'css',
-      \ 'word_pattern': '[\w\-]+',
-      \ 'complete_pattern': ':\s*',
-      \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-      \ })
-
-
+" Create the directory and files if doesn't exist
 autocmd BufWritePre * call MkDir()
-
-function! MkDir()
-   if !isdirectory(expand("<afile>:p:h"))
-      let confirmation=confirm("Create a new directory?", "&Yes\n&No")
-      if confirmation == 1
-         call mkdir(expand("<afile>:p:h"), "p")
-         lcd %:p:h
-         saveas %:t
-         echom "Created a new directory:" expand("<afile>:p:h")
-         let buf_del = bufnr("$")
-         exe "bd" . buf_del
-      endif
-      redraw
-   endif
-endfunction

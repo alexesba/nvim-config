@@ -18,14 +18,15 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-cucumber'
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+" Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'avakhov/vim-yaml', {'for': 'yml'}
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
 "
 " Javascript syntax and highlight
 Plug 'pangloss/vim-javascript', { 'for': ['jsx', 'js'] }
-Plug 'mxw/vim-jsx', {'for': ['jsx', 'js'] }
+
+Plug 'chemzqm/vim-jsx-improve', { 'for': ['jsx', 'js'] }
 
 "Make Vim handle line and column numbers in file names with a minimum of fuss
 "vim path/to/file.ext:12:3 in the shell to open file.ext on line 12 at column 3
@@ -51,7 +52,7 @@ Plug 'junegunn/fzf.vim'
 "which" and 'exec' functions targeted at local node project bin, with 'which' fallback
 Plug 'jaawerth/nrun.vim'
 " Asynchronous linting and make framework for Neovim/Vim
-Plug 'neomake/neomake', { 'for': ['javascript', 'ruby', 'scss', 'css', 'sass'] }
+Plug 'neomake/neomake', { 'on': 'NeoMake', 'for': ['javascript', 'ruby', 'scss', 'css', 'sass'] }
 
 "Using the markdown-preview.vim plugin, you can preview Markdown in real-time with a web browser.
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
