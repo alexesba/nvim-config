@@ -30,5 +30,3 @@ source ~/.config/nvim/ps1.sh
 
 # configure default editor
 export EDITOR=nvim
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
