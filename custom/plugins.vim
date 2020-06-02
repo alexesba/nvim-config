@@ -19,7 +19,7 @@ Plug 'tpope/vim-haml'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-cucumber'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-Plug 'avakhov/vim-yaml', {'for': 'yml'}
+Plug 'avakhov/vim-yaml', { 'for': ['yml','yaml', 'eruby.yaml']}
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
 "
