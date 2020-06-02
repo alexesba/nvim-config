@@ -6,7 +6,9 @@ endfunction
 function! PlayReprobado(file)
   exe '!paplay '. a:file
 endfunction
+
 command! Reprobado silent!call PlayReprobado('~/.config/nvim/Reprobado.ogg')
+
 command! Reprobada silent!call PlayReprobado('~/.config/nvim/Reprobada.ogg')
 
 command! UpdateDotFiles call UpdateRepoDotFiles()
@@ -69,7 +71,6 @@ function! RemoveExtraEmptyLinesFn()
   call setpos('.', save_cursor)
 endfunction
 
-
 function! TogleGitHubTableMode()
   if g:table_mode_corner == '|'
     let g:table_mode_corner = '+'
@@ -87,9 +88,6 @@ function! EditConfigurationFile()
 endfunction
 command! OpenConfig silent!call EditConfigurationFile()
 
-
-
-
 set path=.,src
 set suffixesadd=.js,.jsx
 
@@ -105,3 +103,23 @@ function! LoadMainNodeModule(fname)
 endfunction
 
 set includeexpr=LoadMainNodeModule(v:fname)
+
+function! JsxHotfix()
+    setlocal matchpairs=(:),{:},[:],<:>
+    let b:match_words = '<\@<=\([^/][^ \t>]*\)\g{hlend}[^>]*\%(/\@<!>\|$\):<\@<=/\1>'
+endfunction
+
+function! MkDir()
+   if !isdirectory(expand("<afile>:p:h"))
+      let confirmation=confirm("Create a new directory?", "&Yes\n&No")
+      if confirmation == 1
+         call mkdir(expand("<afile>:p:h"), "p")
+         lcd %:p:h
+         saveas %:t
+         echom "Created a new directory:" expand("<afile>:p:h")
+         let buf_del = bufnr("$")
+         exe "bd" . buf_del
+      endif
+      redraw
+   endif
+endfunction

@@ -75,6 +75,7 @@ so ~/.config/nvim/custom/italic_fonts.vim
 so ~/.config/nvim/custom/simple_status_bar.vim
 so ~/.config/nvim/custom/fzf_colors.vim
 so ~/.config/nvim/custom/fuzzyfinder.vim
+so ~/.config/nvim/custom/autocomplete.vim
 " so ~/.config/nvim/custom/grammar_checker.vim
 
 if !empty(glob("~/.vimrc"))
