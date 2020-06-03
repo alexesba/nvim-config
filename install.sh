@@ -36,7 +36,11 @@ echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  brew install tmux
+  if [[ "$OSTYPE" =~ ^linux ]]; then
+    sudo apt install tmux
+  else
+    brew install tmux
+  fi
   if [ -f ~/.tmux.conf ]; then
     echo ".tmux.conf already exist.. performing a backup before link the .tmux.conf"
     mv ~/.tmux.conf ~/.tmux.conf.old
@@ -51,7 +55,7 @@ read -p "Do you want to install .bash_aliases config file?(y/n)" -n 1 -r
 echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  ln -s ~/.config/nvim/bash_aliases.sh ~/.bash_aliases
+  ln -s ~/.config/nvim/bash-files/bash_aliases.sh ~/.bash_aliases
   echo ".bash_aliases linked correctly!."
 fi
 
@@ -59,8 +63,17 @@ read -p "Do you want to install .hyper.js config file?(y/n)" -n 1 -r
 echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  ln -s ~/.config/nvim/hyper.js ~/.hyper.js
+  ln -s ~/.config/nvim/terminals/hyper.js ~/.hyper.js
   echo ".hyper.js linked correctly!."
+fi
+
+read -p "Do you want to install .alacritty.yml config file?(y/n)" -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  mkdir ~/.config/alacritty -p
+  ln -s ~/.config/nvim/terminals/alacritty.yml ~/.config/alacritty
+  echo "alacritty.yml linked correctly!."
 fi
 
 read -p "Do you want to install FZF (command line fuzzy finder)?(y/n)" -n 1 -r

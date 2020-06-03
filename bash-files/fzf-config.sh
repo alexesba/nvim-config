@@ -1,9 +1,8 @@
-
 #Load fzf bash enhancements
 if [ -f ~/.fzf.bash ]; then
  . ~/.fzf.bash
 fi
-
+# configure fzf commands
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"

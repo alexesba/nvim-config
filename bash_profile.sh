@@ -13,20 +13,20 @@ if [ -f ~/.bash_custom ]; then
 fi
 
 #load common functions
-source ~/.config/nvim/functions.sh
+source ~/.config/nvim/bash-files/functions.sh
 
-source ~/.config/nvim/os-config.sh
-source ~/.config/nvim/fzf-config.sh
-source ~/.config/nvim/history.sh
-source ~/.config/nvim/aliases.sh
-source ~/.config/nvim/bindings.sh
-source ~/.config/nvim/dircolors.sh
-source ~/.config/nvim/nvm.sh
-source ~/.config/nvim/python.sh
-source ~/.config/nvim/rbenv.sh
+source ~/.config/nvim/bash-files/os-config.sh
+source ~/.config/nvim/bash-files/fzf-config.sh
+source ~/.config/nvim/bash-files/history.sh
+source ~/.config/nvim/bash-files/aliases.sh
+source ~/.config/nvim/bash-files/bindings.sh
+source ~/.config/nvim/bash-files/dircolors.sh
+source ~/.config/nvim/bash-files/nvm.sh
+source ~/.config/nvim/bash-files/python.sh
+source ~/.config/nvim/bash-files/rbenv.sh
 
 # Load common configuration for PS1
-source ~/.config/nvim/ps1.sh
+source ~/.config/nvim/bash-files/ps1.sh
 
 # configure default editor
 export EDITOR=nvim
