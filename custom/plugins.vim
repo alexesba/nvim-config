@@ -68,6 +68,19 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'nightsense/night-and-day'
 
+" Autocomplete plugins
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-cssomni'
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install', 'for': ['js', 'jsx']}
+
+" # exuberant-ctags for go to definition
+Plug 'ludovicchabant/vim-gutentags'
+
+
+
 
 if !empty(glob("~/.plug.vim"))
     so ~/.plug.vim

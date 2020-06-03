@@ -77,6 +77,7 @@ nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 nnoremap <Up> <Nop>
+nnoremap Q <Nop>
 
 " Configuring Ctrl-l to navigate between buffers
 nnoremap <C-l> :Buffers<CR>
