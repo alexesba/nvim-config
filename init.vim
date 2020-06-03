@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-  so ~/.config/nvim/custom/plugins.vim
+  so ~/.config/nvim/vim-files/plugins.vim
 call plug#end()
 
 syntax on
@@ -65,18 +65,18 @@ let g:javascript_plugin_ngdoc = 1
 " Enable italic fonts
 let g:enable_italic_font = 1
 
-so ~/.config/nvim/custom/highlight_trail_spaces.vim
-so ~/.config/nvim/custom/functions.vim
-so ~/.config/nvim/custom/mappings.vim
-so ~/.config/nvim/custom/linters.vim
-so ~/.config/nvim/custom/commands.vim
-so ~/.config/nvim/custom/italic_fonts.vim
-" so ~/.config/nvim/custom/status_bar.vim
-so ~/.config/nvim/custom/simple_status_bar.vim
-so ~/.config/nvim/custom/fzf_colors.vim
-so ~/.config/nvim/custom/fuzzyfinder.vim
-so ~/.config/nvim/custom/autocomplete.vim
-" so ~/.config/nvim/custom/grammar_checker.vim
+so ~/.config/nvim/vim-files/highlight_trail_spaces.vim
+so ~/.config/nvim/vim-files/functions.vim
+so ~/.config/nvim/vim-files/mappings.vim
+so ~/.config/nvim/vim-files/linters.vim
+so ~/.config/nvim/vim-files/commands.vim
+so ~/.config/nvim/vim-files/italic_fonts.vim
+" so ~/.config/nvim/vim-files/status_bar.vim
+so ~/.config/nvim/vim-files/simple_status_bar.vim
+so ~/.config/nvim/vim-files/fzf_colors.vim
+so ~/.config/nvim/vim-files/fuzzyfinder.vim
+so ~/.config/nvim/vim-files/autocomplete.vim
+" so ~/.config/nvim/vim-files/grammar_checker.vim
 
 if !empty(glob("~/.vimrc"))
  so ~/.vimrc
