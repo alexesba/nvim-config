@@ -74,7 +74,7 @@ Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-cssomni'
-Plug 'ncm2/ncm2-tern',  {'do': 'npm install', 'for': ['js', 'jsx']}
+Plug 'ncm2/ncm2-tern',  { 'do': 'npm install', 'for': ['js', 'jsx'] }
 
 " # exuberant-ctags for go to definition
 Plug 'ludovicchabant/vim-gutentags'

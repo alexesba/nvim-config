@@ -62,6 +62,7 @@ let g:javascript_plugin_ngdoc = 1
 
 " Enable italic fonts
 let g:enable_italic_font = 1
+set diffopt+=vertical
 
 so ~/.config/nvim/vim-files/highlight_trail_spaces.vim
 so ~/.config/nvim/vim-files/functions.vim
