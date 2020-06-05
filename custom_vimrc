@@ -23,3 +23,5 @@ let g:table_mode_corner='+'
 
 " Create the directory and files if doesn't exist
 autocmd BufWritePre * call MkDir()
+" Vim syntax highlighting for ARB templates (ActiveAdmin) is not working
+autocmd BufRead,BufNewFile *.arb setfiletype ruby

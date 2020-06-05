@@ -19,6 +19,7 @@ let g:modeMap={
     \ '!'      : 'Shell',
     \ 't'      : 'Terminal'
     \}
+
 " Find out current buffer's size and output it.
 function! FileSize()
   let bytes = getfsize(expand('%:p'))
@@ -55,15 +56,9 @@ set statusline+=%#netrwDir#%{getbufvar(bufnr('%'),'&mod')?'\ +\ ':''}
 set statusline+=%#CursorLine#\ %f                   " short file name
 
 set statusline+=%=                          " right align
-set statusline+=%{gutentags#statusline()}
+set statusline+=%{gutentags#statusline('[',']')}
 set statusline+=%#CursorLine#\ %Y\   " colour File type
 set statusline+=%#CursorIM#\ %3l:%-2c\     " colour line + column
 set statusline+=%#Type#\ %{FileSize()}\         "colour File Zize
 set statusline+=%#Cursor#\ %3p%%\                " percentage
 
-
-function! F()
-    normal! gv
-    throw mode()
-endfunction
-vnoremap <F9> <ESC>:call F()<CR>
