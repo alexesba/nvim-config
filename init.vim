@@ -75,6 +75,7 @@ so ~/.config/nvim/vim-files/simple_status_bar.vim
 so ~/.config/nvim/vim-files/fzf_colors.vim
 so ~/.config/nvim/vim-files/fuzzyfinder.vim
 so ~/.config/nvim/vim-files/autocomplete.vim
+so ~/.config/nvim/vim-files/gutentags.vim
 " so ~/.config/nvim/vim-files/grammar_checker.vim
 
 if !empty(glob("~/.vimrc"))
