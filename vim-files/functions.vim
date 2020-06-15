@@ -1,6 +1,6 @@
 " Function to update the ~/.config/nvim repo
 function! UpdateRepoDotFiles()
-  exe '! cd ~/.config/nvim && git pull origin HEAD'
+  exe '! cd ~/.config/nvim && git pull origin $(git rev-parse --abbrev-ref HEAD)'
 endfunction
 
 function! PlayReprobado(file)
