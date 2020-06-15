@@ -78,6 +78,11 @@ nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 nnoremap <Up> <Nop>
 nnoremap Q <Nop>
+" Disable Arrow keys in Insert mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
 " Configuring Ctrl-l to navigate between buffers
 nnoremap <C-l> :Buffers<CR>
