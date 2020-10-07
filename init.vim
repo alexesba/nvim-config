@@ -1,13 +1,13 @@
 call plug#begin('~/.vim/plugged')
-so ~/.config/nvim/custom/plugins.vim
+  so ~/.config/nvim/vim-files/plugins.vim
 call plug#end()
 
 syntax on
 filetype on
 filetype plugin on
 filetype indent on
-au FocusGained * :checktime
 set autoread " Auto reload file when it's changed in the background
+au FocusGained * :checktime
 set expandtab
 set hlsearch
 set incsearch
@@ -31,31 +31,25 @@ set nobackup
 set noswapfile
 set nowb
 set synmaxcol=2048
+set novisualbell
 
-"set the color scheme
-:silent! colorscheme moria
-:silent! set background=light
+" set the color schemes
+let g:nd_themes = [
+      \ ['8:00',  'OceanicNext', '']
+      \ ]
 
 if exists('+colorcolumn')
   set colorcolumn=80
-endif
-
-if exists('g:GuiLoaded') || exists('$TMUX')
-  let g:Guifont="Operator Mono:h13"
 endif
 
 if has("autocmd")
   filetype plugin indent on
 end
 
-if has('nvim')
-  runtime! plugin/python_setup.vim
-endif
-
 " Config for neovim
 if (has("termguicolors"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  set termguicolors
+   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+   set termguicolors
 endif
 
 "Configure table mode for github
@@ -68,27 +62,22 @@ let g:javascript_plugin_ngdoc = 1
 
 " Enable italic fonts
 let g:enable_italic_font = 1
-let g:netrw_dirhistmax = 0
+set diffopt+=vertical
 
-" Configure Preview for Markdown files
-let vim_markdown_preview_toggle=3
-let vim_markdown_preview_browser='Google Chrome'
-let vim_markdown_preview_github=1
+so ~/.config/nvim/vim-files/highlight_trail_spaces.vim
+so ~/.config/nvim/vim-files/functions.vim
+so ~/.config/nvim/vim-files/mappings.vim
+so ~/.config/nvim/vim-files/linters.vim
+so ~/.config/nvim/vim-files/commands.vim
+so ~/.config/nvim/vim-files/italic_fonts.vim
+" so ~/.config/nvim/vim-files/status_bar.vim
+so ~/.config/nvim/vim-files/simple_status_bar.vim
+so ~/.config/nvim/vim-files/fzf_colors.vim
+so ~/.config/nvim/vim-files/fuzzyfinder.vim
+so ~/.config/nvim/vim-files/autocomplete.vim
+so ~/.config/nvim/vim-files/gutentags.vim
+" so ~/.config/nvim/vim-files/grammar_checker.vim
 
-if !exists("g:os")
-    if has("win64") || has("win32") || has("win16")
-        let g:os = "Windows"
-    else
-        let g:os = substitute(system('uname'), '\n', '', '')
-    endif
+if !empty(glob("~/.vimrc"))
+ so ~/.vimrc
 endif
-
-so ~/.config/nvim/custom/highlight_trail_spaces.vim
-so ~/.config/nvim/custom/mappings.vim
-so ~/.config/nvim/custom/linters.vim
-so ~/.config/nvim/custom/functions.vim
-so ~/.config/nvim/custom/commands.vim
-so ~/.config/nvim/custom/italic_fonts.vim
-so ~/.config/nvim/custom/status_bar.vim
-so ~/.config/nvim/custom/fuzzyfinder.vim
-so ~/.config/nvim/custom/grammar_checker.vim

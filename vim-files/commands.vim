@@ -11,7 +11,8 @@ command! DoubleQuotesC %s/'\([^']*\)'/"\1"/gc
 " Change double quotes to single with confirmation
 command! SingleQuotesC %s/"\([^"]*\)"/'\1'/gc
 " Remove extra line blank
-command! RemoveExtraEmptyLines %!cat -s
+" command! RemoveExtraEmptyLines %!cat -s
+command! RemoveExtraEmptyLines :call RemoveExtraEmptyLinesFn()
 "Insert Lines before each line
 command! AddNumber  %s/^/\=printf('%-2d', line('.'))
 command! ConverTabsToSpaces %s/\t/  /g
@@ -22,5 +23,8 @@ command! UpdateHashSyntax :call UpdateRubyHashes()
 command! FormatBraces :call CleanUpReactFile()
 command! ToggleGithubTable :call TogleGitHubTableMode()
 command! CleanWhiteSpaces :call CleanUp()
-" Vim syntax highlighting for ARB templates (ActiveAdmin) is not working
-autocmd BufRead,BufNewFile *.arb setfiletype ruby
+command! UnscapeDoubleQuotes %s/\\"//g
+command! RemoveLineBreak %s/\\n//g
+command! RemoveEmptyLines :g/^$/d
+command! FormatXML :call FormatXMLFn()
+command! FormatSQL :%!sqlformat --reindent --keywords upper --identifiers lower -

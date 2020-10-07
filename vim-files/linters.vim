@@ -4,8 +4,10 @@ let g:neomake_javascript_enabled_makers=['eslint']
 let g:neomake_scss_scsslint_exe = nrun#Which('scss-lint')
 let g:neomake_scss_enabled_makers = ['scsslint']
 let g:neomake_css_csslint_exe = nrun#Which('css_lint')
+let g:neomake_python_pylama_exe = nrun#Which('pylama')
 let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_ruby_enabled_makers=['rubocop']
+let g:neomake_python_enabled_makers=['pylama']
 let g:neomake_ruby_rubocop_args = ['--format', 'emacs', '-D']
 let g:neomake_place_signs=1
 hi NeomakeErrorMsg ctermbg=13
@@ -21,6 +23,11 @@ let g:neomake_javascript_eslint_maker = {
 "Trigger check syntax for js files
 if g:neomake_javascript_eslint_exe != "eslint not found"
   autocmd! BufWritePost,BufEnter *.js,*.jsx Neomake
+endif
+
+"Trigger check syntax for py files
+if g:neomake_python_pylama_exe != "pylama not found"
+  autocmd! BufWritePost,BufEnter *.py Neomake
 endif
 
 "Trigger check syntax for scss files
