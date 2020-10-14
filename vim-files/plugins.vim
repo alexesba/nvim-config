@@ -1,5 +1,6 @@
 " Colorscheme
 Plug 'alexesba/colors'
+Plug 'tomasiser/vim-code-dark'
 Plug 'mhartington/oceanic-next'
 
 " Vim Editor enhancers

@@ -37,6 +37,8 @@ nmap <Leader><Space>, :ll<CR>         " go to current error/warning
 nmap <Leader><Space>n :lnext<CR>      " next error/warning
 nmap <Leader><Space>p :lprev<CR>      " previous error/warning
 
+nmap <silent>rt :TableModeRealign <CR>
+
 " Mapping to move single line in normal mode and move blocks in visual mode
 "
 if g:os == "Darwin"
