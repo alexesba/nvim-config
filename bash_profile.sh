@@ -13,9 +13,9 @@ if [ -f ~/.bash_custom ]; then
 fi
 
 #load common functions
+source ~/.config/nvim/bash-files/os-config.sh
 source ~/.config/nvim/bash-files/functions.sh
 
-source ~/.config/nvim/bash-files/os-config.sh
 source ~/.config/nvim/bash-files/fzf-config.sh
 source ~/.config/nvim/bash-files/history.sh
 source ~/.config/nvim/bash-files/aliases.sh
@@ -30,3 +30,4 @@ source ~/.config/nvim/bash-files/ps1.sh
 
 # configure default editor
 export EDITOR=nvim
+

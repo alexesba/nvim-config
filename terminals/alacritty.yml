@@ -343,7 +343,7 @@ live_config_reload: true
 #   - (Linux) user login shell
 #   - (Windows) powershell
 shell:
- program: /bin/bash
+ program: /usr/local/bin/bash
  args:
    - --login
 
@@ -483,7 +483,7 @@ debug:
 #   - AppCursor
 #   - ~AppKeypad
 #   - AppKeypad
-key_bindings:
+# key_bindings:
   #- { key: Paste,                                action: Paste          }
   #- { key: Copy,                                 action: Copy           }
   #- { key: L,         mods: Control,             action: ClearLogNotice }
@@ -542,11 +542,11 @@ key_bindings:
   # - { key: C,        mods: Control,           action: Copy             }
   # - { key: C,        mods: Control|Shift, mode: Vi, action: ClearSelection   }
   # - { key: Insert,   mods: Shift,                   action: PasteSelection   }
-  - { key: Key0,     mods: Control,                 action: ResetFontSize    }
-  - { key: Equals,   mods: Control,                 action: IncreaseFontSize }
-  - { key: Add,      mods: Control,                 action: IncreaseFontSize }
-  - { key: Subtract, mods: Control,                 action: DecreaseFontSize }
-  - { key: Minus,    mods: Control,                 action: DecreaseFontSize }
+  # - { key: Key0,     mods: Control,                 action: ResetFontSize    }
+  # - { key: Equals,   mods: Control,                 action: IncreaseFontSize }
+  # - { key: Add,      mods: Control,                 action: IncreaseFontSize }
+  # - { key: Subtract, mods: Control,                 action: DecreaseFontSize }
+  # - { key: Minus,    mods: Control,                 action: DecreaseFontSize }
 
   # (Windows only)
   # - { key: Return,   mods: Alt,           action: ToggleFullscreen }
@@ -586,5 +586,4 @@ key_bindings:
   #   - Trace
   #log_level: Warn
 
-  # Print all received window events.
-  #print_events: false
+  # Print all received window events.  #print_events: false
