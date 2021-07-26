@@ -1,26 +1,5 @@
-title () {
-  # How to show the process name on vim when fzf is used $date =~ ^regex$
-    if [[ $@ =~ ^source|fzf|bind|export|eval|LS_COLORS|~/.|PROMT_COMMAND|HOME|alias|history|cd|which|dev/\null|shopt|rehash|set_ps1|loadnvmrc|\[*\] ]]; then
-      return
-    fi
-    local directory="$(basename "$PWD")"
-
-    echo -ne "\033]0;$* ${BASH_SIMBOL_SEPARATOR:-'-'} $directory \007"
-}
-
-fg () {
-  if [[ "x" == "x$1" ]]; then
-    _CMD=$(ps -o cmd --no-headers $(jobs -l | awk '/\[[0-9]\]\+/{print $2}'));
-  else
-    _CMD=$(ps -o cmd --no-headers $(jobs -l | awk '/\['$1'\]/{print $2}'));
-  fi;
-  title $(basename $(echo $_CMD | awk '{print $1}')) "$_CMD";
-  unset _CMD;
-  builtin fg $*;
-}
-
 function fzf_then_open_in_editor() {
-  local file=$(__fzf_select__)
+  local file=$(fzf)
   C_EDITOR=${EDITOR:-nvim}
   # Open the file if it exists
   if [ -n "$file" ]; then

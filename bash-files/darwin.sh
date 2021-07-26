@@ -1,4 +1,3 @@
-
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
@@ -6,7 +5,7 @@ fi
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
    # Add git completion to aliases
-  . ~/.config/nvim/git-aliases-bindings.sh
+  . ~/.config/nvim/bash-files/git-aliases-bindings.sh
 fi
 
 ###-tns-completion-end-###
@@ -63,3 +62,4 @@ if [ -e ~/.terminfo/78/xterm-256color-italic ]; then
 else
   export TERM=xterm-256color
 fi
+
