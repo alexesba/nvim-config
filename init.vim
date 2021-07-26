@@ -2,12 +2,8 @@ call plug#begin('~/.vim/plugged')
   so ~/.config/nvim/vim-files/plugins.vim
 call plug#end()
 
-syntax on
-filetype on
-filetype plugin on
-filetype indent on
-set autoread " Auto reload file when it's changed in the background
-au FocusGained * :checktime
+" set autoread " Auto reload file when it's changed in the background
+" au FocusGained * :checktime
 set expandtab
 set hlsearch
 set incsearch
@@ -33,23 +29,25 @@ set nowb
 set synmaxcol=2048
 set novisualbell
 
-" set the color schemes
-let g:nd_themes = [
-      \ ['8:00',  'OceanicNext', '']
-      \ ]
-
 if exists('+colorcolumn')
-  set colorcolumn=80
+  if version > 730
+    let &colorcolumn=join(range(81,999),",")
+    match ErrorMsg '\%>80v.\+'
+    " let &colorcolumn="80,".join(range(120,999),",")
+  else
+    let &colorcolumn=80
+  endif
 endif
 
 if has("autocmd")
+  syntax on
   filetype plugin indent on
 end
 
 " Config for neovim
 if (has("termguicolors"))
-   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-   set termguicolors
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  set termguicolors
 endif
 
 "Configure table mode for github
@@ -79,5 +77,5 @@ so ~/.config/nvim/vim-files/gutentags.vim
 " so ~/.config/nvim/vim-files/grammar_checker.vim
 
 if !empty(glob("~/.vimrc"))
- so ~/.vimrc
+  so ~/.vimrc
 endif

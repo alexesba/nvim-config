@@ -1,9 +1,9 @@
 let g:nd_timeshift = '74'
 let g:matchup_matchpref = {
-    \ 'html': { 'tagnameonly': 1, },
-    \ 'javascript':  { 'tagnameonly': 1, },
-    \ 'eruby':  { 'tagnameonly': 1, },
-    \}
+      \ 'html': { 'tagnameonly': 1, },
+      \ 'javascript':  { 'tagnameonly': 1, },
+      \ 'eruby':  { 'tagnameonly': 1, },
+      \}
 
 let g:matchup_hotfix_javascript = 'JsxHotfix'
 

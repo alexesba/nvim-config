@@ -88,3 +88,10 @@ imap <right> <nop>
 
 " Configuring Ctrl-l to navigate between buffers
 nnoremap <C-l> :Buffers<CR>
+
+
+"Configure Ag in vim to search the word under the cursor and search the
+"selected text
+nmap  <silent> <A-f> :Ag <C-R><C-W><CR>
+vnoremap <silent><A-f> y:Ag <C-R>=fnameescape(@")<CR><CR>
+
