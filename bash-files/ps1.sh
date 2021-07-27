@@ -49,7 +49,7 @@ function git_branch {
 }
 
 function backround_jobs {
-  echo $(jobs -l |awk '{print $4}'|sort|uniq -c|awk '{printf("%s %s ", $2, $1)}')
+  echo $(jobs -l |awk '{print $5}'|sort|uniq -c|awk '{printf("%s: %s ", $2, $1)}')
 }
 
 function set_ps1 {

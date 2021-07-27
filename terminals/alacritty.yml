@@ -1,5 +1,5 @@
 env:
-  TERM: xterm-256color
+  TERM: xterm-256color-italic
 
 window:
   dimensions:
@@ -82,7 +82,7 @@ font:
     style: Book Italic
 
   # Point size
-  size: 11
+  size: 13
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

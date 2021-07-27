@@ -51,7 +51,7 @@ Plug 'junegunn/fzf.vim'
 
 "Linter plugins
 "which" and 'exec' functions targeted at local node project bin, with 'which' fallback
-Plug 'jaawerth/nrun.vim'
+Plug 'alexesba/nrun.vim'
 " Asynchronous linting and make framework for Neovim/Vim
 Plug 'neomake/neomake', { 'on': 'NeoMake', 'for': ['javascript', 'ruby', 'scss', 'css', 'sass'] }
 

@@ -36,3 +36,6 @@ else
   alias dns-clean="sudo killall -HUP mDNSResponder"
   alias reload='source ~/.bash_profile'
 fi
+
+alias gcoft='git branch -a| fzf | xargs git checkout -t'
+alias gcof='git branch -a| fzf | xargs git checkout'

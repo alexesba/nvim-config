@@ -4,5 +4,7 @@ if [ -d "$HOME/.pyenv" ]; then
 fi
 
 if which pyenv > /dev/null; then
-  eval "$(pyenv init -)";
+  eval "$(pyenv init --path)";
 fi
+
+
