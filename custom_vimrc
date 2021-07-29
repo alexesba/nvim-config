@@ -8,9 +8,10 @@ let g:matchup_matchpref = {
 let g:matchup_hotfix_javascript = 'JsxHotfix'
 
 let g:nd_themes = [
-      \ ['06:00',  'PaperColor', 'dark' ],
+      \ ['06:00',  'PaperColor', 'light' ],
       \ ['13:00',  'scheakur', 'light' ],
-      \ ['15:00',  'monokai', '' ]
+      \ ['15:00',  'monokai', '' ],
+      \ ['18:00',  'gruvbox', 'dark' ]
       \ ]
 
 
@@ -27,3 +28,4 @@ let g:table_mode_corner='+'
 autocmd! BufWritePre * call MkDir()
 " Vim syntax highlighting for ARB templates (ActiveAdmin) is not working
 autocmd! BufRead,BufNewFile *.arb setfiletype ruby
+

@@ -80,7 +80,7 @@ function! TogleGitHubTableMode()
 endfunction
 
 function! ReloadConfigFile()
-  :source $MYVIMRC | filetype plugin indent on
+  :source $MYVIMRC
 endfunction
 
 command! Reload silent!call ReloadConfigFile()

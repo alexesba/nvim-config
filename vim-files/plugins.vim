@@ -6,6 +6,7 @@ Plug 'scheakur/vim-scheakur'
 Plug 'mkarmona/materialbox'
 Plug 'tomasiser/vim-code-dark'
 Plug 'mhartington/oceanic-next'
+Plug 'morhetz/gruvbox'
 
 " Vim Editor enhancers
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -84,9 +85,6 @@ Plug 'ncm2/ncm2-tern',  { 'do': 'npm install', 'for': ['js', 'jsx'] }
 " # exuberant-ctags for go to definition
 Plug 'ludovicchabant/vim-gutentags'
 
-
-
-
 if !empty(glob("~/.plug.vim"))
-    so ~/.plug.vim
+  so ~/.plug.vim
 endif
