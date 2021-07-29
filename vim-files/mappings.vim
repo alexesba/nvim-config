@@ -30,7 +30,6 @@ map <silent><leader>8 :tabn 8<cr>
 map <silent><leader>9 :tabn 9<cr>
 map <silent><leader>0 :tabn 0<cr>
 
-" bindings for neomake eslit errrors: ~/.config/nvim/custom/linters.vim
 nmap <Leader><Space>o :lopen<CR>      " open location window
 nmap <Leader><Space>c :lclose<CR>     " close location window
 nmap <Leader><Space>, :ll<CR>         " go to current error/warning
