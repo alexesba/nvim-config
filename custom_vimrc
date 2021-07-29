@@ -14,12 +14,6 @@ let g:nd_themes = [
       \ ['15:00',  'monokai', '' ]
       \ ]
 
-" let g:nd_themes = [
-"   \ ['4:00',  'base16-default-light', 'light' ],
-"   \ ['11:00', 'solarized',            'light' ],
-"   \ ['18:00', 'solarized',            'dark'  ],
-"   \ ]
-
 
 let g:tablineclosebutton=0
 let g:fzf_buffers_jump = 1
@@ -31,7 +25,6 @@ let g:mkdp_auto_close = 0
 let g:table_mode_corner='+'
 
 " Create the directory and files if doesn't exist
-autocmd BufWritePre * call MkDir()
+autocmd! BufWritePre * call MkDir()
 " Vim syntax highlighting for ARB templates (ActiveAdmin) is not working
-autocmd BufRead,BufNewFile *.arb setfiletype ruby
-
+autocmd! BufRead,BufNewFile *.arb setfiletype ruby

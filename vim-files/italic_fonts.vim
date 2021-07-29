@@ -8,7 +8,14 @@ function! ConfigItalicFonts()
     hi Comment cterm=italic
     hi Type    cterm=italic ctermfg=none
   endif
+
+  if exists("*neomake#virtualtext#DefineHighlights")
+  :call neomake#virtualtext#DefineHighlights()
+ endif
 endfunction
 
-autocmd! ColorScheme * call g:ConfigItalicFonts()
-autocmd! VimEnter * call g:ConfigItalicFonts()
+augroup reload_color_schemes
+        autocmd!
+        autocmd ColorScheme * call g:ConfigItalicFonts()
+        autocmd VimEnter * call g:ConfigItalicFonts()
+augroup END

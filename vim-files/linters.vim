@@ -122,8 +122,10 @@ endfunction
 function! EslitFixFn()
   let eslintfixcmd = GetExecutablePath()
   if eslintfixcmd != ''
+    let save_cursor = getpos(".")
     execute "! ". eslintfixcmd
     :silent! Neomake
+    :call setpos('.', save_cursor)
   else
     echoerr string(eslintfixcmd)
   endif

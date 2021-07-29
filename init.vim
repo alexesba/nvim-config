@@ -62,7 +62,6 @@ let g:javascript_plugin_ngdoc = 1
 let g:enable_italic_font = 1
 set diffopt+=vertical
 
-so ~/.config/nvim/vim-files/highlight_trail_spaces.vim
 so ~/.config/nvim/vim-files/functions.vim
 so ~/.config/nvim/vim-files/mappings.vim
 so ~/.config/nvim/vim-files/linters.vim
@@ -79,7 +78,6 @@ so ~/.config/nvim/vim-files/gutentags.vim
 augroup reload_vimrc
   autocmd!
   autocmd BufWritePost $MYVIMRC :source %
-
 augroup END
 
 if !empty(glob("~/.vimrc"))
