@@ -7,9 +7,18 @@ let g:matchup_matchpref = {
 
 let g:matchup_hotfix_javascript = 'JsxHotfix'
 
+
 let g:nd_themes = [
-      \ ['6:00',  'monokai', '' ]
+      \ ['06:00',  'PaperColor', 'dark' ],
+      \ ['13:00',  'scheakur', 'light' ],
+      \ ['15:00',  'monokai', '' ]
       \ ]
+
+" let g:nd_themes = [
+"   \ ['4:00',  'base16-default-light', 'light' ],
+"   \ ['11:00', 'solarized',            'light' ],
+"   \ ['18:00', 'solarized',            'dark'  ],
+"   \ ]
 
 
 let g:tablineclosebutton=0

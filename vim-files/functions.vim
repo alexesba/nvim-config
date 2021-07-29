@@ -80,12 +80,15 @@ function! TogleGitHubTableMode()
 endfunction
 
 function! ReloadConfigFile()
-  :source $MYVIMRC
+  :source $MYVIMRC | filetype plugin indent on
 endfunction
+
 command! Reload silent!call ReloadConfigFile()
+
 function! EditConfigurationFile()
   :e $MYVIMRC
 endfunction
+
 command! OpenConfig silent!call EditConfigurationFile()
 
 set path=.,src

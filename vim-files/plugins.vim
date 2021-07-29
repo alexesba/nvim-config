@@ -1,5 +1,9 @@
 " Colorscheme
 Plug 'alexesba/colors'
+" light and dark themes
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'scheakur/vim-scheakur'
+Plug 'mkarmona/materialbox'
 Plug 'tomasiser/vim-code-dark'
 Plug 'mhartington/oceanic-next'
 
