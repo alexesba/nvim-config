@@ -7,7 +7,6 @@ let g:matchup_matchpref = {
 
 let g:matchup_hotfix_javascript = 'JsxHotfix'
 
-
 let g:nd_themes = [
       \ ['06:00',  'PaperColor', 'dark' ],
       \ ['13:00',  'scheakur', 'light' ],
