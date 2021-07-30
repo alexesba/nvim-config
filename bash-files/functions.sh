@@ -43,3 +43,7 @@ loadnvmrc() {
     nvm use
   fi
 }
+
+function colorscheme() {
+ sh ~/src/gogh/themes/$1.sh
+}

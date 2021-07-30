@@ -10,7 +10,7 @@ let g:matchup_hotfix_javascript = 'JsxHotfix'
 let g:nd_themes = [
       \ ['06:00',  'PaperColor', 'light' ],
       \ ['13:00',  'scheakur', 'light' ],
-      \ ['15:00',  'monokai', '' ],
+      \ ['15:00',  'vim-monokai-tasty', '' ],
       \ ['18:00',  'gruvbox', 'dark' ]
       \ ]
 

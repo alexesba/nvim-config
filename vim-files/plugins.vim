@@ -7,6 +7,7 @@ Plug 'mkarmona/materialbox'
 Plug 'tomasiser/vim-code-dark'
 Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
+Plug 'patstockwell/vim-monokai-tasty'
 
 " Vim Editor enhancers
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
