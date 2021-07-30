@@ -106,5 +106,14 @@ nnoremap n nzzzv
 noremap N Nzzzv
 noremap J mzJ`z
 
+" Undo break points
+inoremap , ,<C-g>u
+inoremap . .<C-g>u
+inoremap ! !<C-g>u
+inoremap ? ?<C-g>u
+
+" Jumplist Mutations:
+noremap <expr> k (v:count > 5 ? "m'". v:count : ""). 'k'
+noremap <expr> j (v:count > 5 ? "m'". v:count : ""). 'j'
 "}}}
 

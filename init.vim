@@ -18,6 +18,7 @@ let g:javascript_plugin_ngdoc = 1
 
 " Enable italic fonts
 let g:enable_italic_font = 1
+let g:colorscheme_switcher_exclude_builtins = 1
 
 so ~/.config/nvim/vim-files/functions.vim
 so ~/.config/nvim/vim-files/mappings.vim
