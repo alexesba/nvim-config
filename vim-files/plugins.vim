@@ -1,5 +1,5 @@
 " Colorscheme
-Plug 'alexesba/colors'
+"Plug 'alexesba/colors'
 " light and dark themes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'scheakur/vim-scheakur'
@@ -74,6 +74,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'nightsense/night-and-day'
+Plug 'mbbill/undotree'
 
 " Autocomplete plugins
 Plug 'ncm2/ncm2'

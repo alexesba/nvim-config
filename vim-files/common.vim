@@ -1,3 +1,4 @@
+set noerrorbells
 set expandtab
 set hlsearch
 set incsearch
@@ -7,6 +8,7 @@ set number
 set showmatch
 
 " vim sensible
+set smartindent
 set autoindent
 set backspace=indent,eol,start
 set complete-=i
