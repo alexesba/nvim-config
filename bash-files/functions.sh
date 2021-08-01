@@ -45,7 +45,7 @@ loadnvmrc() {
 }
 
 function colorscheme() {
-  if [ $# -eq 1 ] ; then
+  if [ -n "$1" ] ; then
     sh ~/src/gogh/themes/$1.sh
   else
     ls ~/src/gogh/themes
