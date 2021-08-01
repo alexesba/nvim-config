@@ -33,7 +33,7 @@ so ~/.config/nvim/vim-files/italic_fonts.vim
 " so ~/.config/nvim/vim-files/status_bar.vim
 so ~/.config/nvim/vim-files/simple_status_bar.vim
 so ~/.config/nvim/vim-files/fzf_colors.vim
-" so ~/.config/nvim/vim-files/autocomplete.vim
+so ~/.config/nvim/vim-files/autocomplete.vim
 so ~/.config/nvim/vim-files/gutentags.vim
 " so ~/.config/nvim/vim-files/grammar_checker.vim
 
