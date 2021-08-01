@@ -1,5 +1,6 @@
 " Colorscheme
-"Plug 'alexesba/colors'
+" cSpell:disable
+
 " light and dark themes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'scheakur/vim-scheakur'
@@ -10,7 +11,7 @@ Plug 'morhetz/gruvbox'
 Plug 'patstockwell/vim-monokai-tasty'
 
 " Vim Editor enhancers
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Vim Tab style
 Plug 'mkitt/tabline.vim'
 " tcomment provides easy to use, file-type sensible comments for Vim. It
@@ -49,17 +50,8 @@ Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim', { 'for': ['jsx', 'js', 'html', 'haml'] }
 Plug 'terryma/vim-multiple-cursors'
 
-"Tools for searching
-"A command-line fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"A command-line fuzzy finder vim integration
-Plug 'junegunn/fzf.vim'
-
-"Linter plugins
 "which" and 'exec' functions targeted at local node project bin, with 'which' fallback
 Plug 'alexesba/nrun.vim'
-" Asynchronous linting and make framework for Neovim/Vim
-Plug 'neomake/neomake', { 'on': 'NeoMake', 'for': ['javascript', 'ruby', 'scss', 'css', 'sass'] }
 
 "Using the markdown-preview.vim plugin, you can preview Markdown in real-time with a web browser.
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
@@ -74,18 +66,19 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'nightsense/night-and-day'
+
 Plug 'mbbill/undotree'
 
-" Autocomplete plugins
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-cssomni'
-Plug 'ncm2/ncm2-tern',  { 'do': 'npm install', 'for': ['js', 'jsx'] }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" # exuberant-ctags for go to definition
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'lambdalisue/fern.vim'
+
+"Automatically create and load views
+Plug 'senderle/restoreview'
 
 if !empty(glob("~/.plug.vim"))
   so ~/.plug.vim
