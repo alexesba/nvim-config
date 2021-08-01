@@ -1,24 +1,20 @@
-" Set The Leader Key:
-let mapleader=","
-
 "{{{1.- PLUGINS
+" cSpell:disable
 
-" NERDTreeToggle: Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-noremap <silent><C-p> :NERDTreeToggle<CR>
+" Fern: Plug 'lambdalisue/fern.vim'
+noremap <silent><C-p> :Fern . -drawer -reveal=% -toggle -width=30<CR><C-w>=
 
-" Using FZF As File Search: Plug 'junegunn/fzf.vim'
-noremap <silent><C-f> :FZF<CR>
-noremap <silent><Leader>f :FZF<CR>
-" Configuring Ctrl-l to navigate between buffers
-nnoremap <C-l> :Buffers<CR>
+" Telescope:
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff :lua require('telescope.builtin').find_files({file_ignore_patterns = {"node_modules/**,.git/**"} })<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 "Configure Ag in vim to search the word under the cursor and search the
 "selected text
 noremap  <silent> <A-f> :Ag <C-R><C-W><CR>
 vnoremap <silent><A-f> y:Ag <C-R>=fnameescape(@")<CR><CR>
-
-" Advanced customization using autoload functions
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 " Mapping selecting mappings
 noremap <leader><tab> <plug>(fzf-maps-n)
@@ -44,6 +40,71 @@ inoremap <silent> <Leader>c <Esc>:TComment<CR>i
 
 " Undotree
 noremap <silent><leader>un :UndotreeToggle<CR>
+" coc.vim 
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <leader>fs  <Plug>(coc-format-selected)
+nmap <leader>fs <Plug>(coc-format-selected)
+
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 "}}}
 
@@ -115,5 +176,8 @@ inoremap ? ?<C-g>u
 " Jumplist Mutations:
 noremap <expr> k (v:count > 5 ? "m'". v:count : ""). 'k'
 noremap <expr> j (v:count > 5 ? "m'". v:count : ""). 'j'
+
 "}}}
+
+
 

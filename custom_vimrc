@@ -5,7 +5,7 @@ let g:matchup_matchpref = {
       \ 'eruby':  { 'tagnameonly': 1, },
       \}
 
-let g:matchup_hotfix_javascript = 'JsxHotfix'
+" let g:matchup_hotfix_javascript = 'JsxHotfix'
 
 let g:nd_themes = [
       \ ['06:00',  'PaperColor', 'light' ],
@@ -24,7 +24,10 @@ let g:mkdp_auto_close = 0
 let g:table_mode_corner='+'
 
 " Create the directory and files if doesn't exist
-autocmd! BufWritePre * call MkDir()
+" autocmd! BufWritePre * call MkDir()
 " Vim syntax highlighting for ARB templates (ActiveAdmin) is not working
 autocmd! BufRead,BufNewFile *.arb setfiletype ruby
 
+let g:coc_status_error_sign = '•'
+let g:coc_status_warning_sign = '•'
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}

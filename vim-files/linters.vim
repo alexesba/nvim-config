@@ -70,19 +70,19 @@ function! ApplyCssLinter()
   endif
 endfunction
 
-augroup linters
-  autocmd!
-
-  autocmd FileType css call ApplyCssStyleLintinter()
-  autocmd FileType scss call ApplyScssStyleLintinter()
-
-  autocmd FileType css call ApplyCssLinter()
-  autocmd FileType scss call ApplyScssLinter()
-
-  autocmd FileType javascript call ApplyJavascriptLinter()
-  autocmd FileType ruby call ApplyRubocopLinter()
-augroup END
-
+" augroup linters
+"   autocmd!
+"
+"   autocmd FileType css call ApplyCssStyleLintinter()
+"   autocmd FileType scss call ApplyScssStyleLintinter()
+"
+"   autocmd FileType css call ApplyCssLinter()
+"   autocmd FileType scss call ApplyScssLinter()
+"
+"   autocmd FileType javascript call ApplyJavascriptLinter()
+"   autocmd FileType ruby call ApplyRubocopLinter()
+" augroup END
+"
 function! BuildCmd(path, args)
   return a:path ." ". expand("%:p") ." ". a:args
 endfunction

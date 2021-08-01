@@ -1,0 +1,14 @@
+{
+  "diagnostic.virtualText": true,
+  "diagnostic.messageTarget": "echo",
+  "suggest.noselect": false,
+  "solargraph.useBundler": true,
+  "solargraph.bundlerPath": "~/.rbenv/shims/bundle",
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
+  "eslint.alwaysShowStatus": true,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.infoSign": "•",
+  "diagnostic.warningSign": "»"
+}
