@@ -7,13 +7,8 @@ let g:matchup_matchpref = {
 
 " let g:matchup_hotfix_javascript = 'JsxHotfix'
 
-let g:nd_themes = [
-      \ ['06:00',  'PaperColor', 'light' ],
-      \ ['13:00',  'scheakur', 'light' ],
-      \ ['15:00',  'vim-monokai-tasty', '' ],
-      \ ['18:00',  'gruvbox', 'dark' ]
-      \ ]
-
+set background=light
+colorscheme gruvbox
 let g:tablineclosebutton=0
 let g:fzf_buffers_jump = 1
 let g:fzf_tags_command = 'ctags -R'
