@@ -80,6 +80,8 @@ Plug 'lambdalisue/fern.vim'
 "Automatically create and load views
 Plug 'senderle/restoreview'
 
+Plug 'airblade/vim-gitgutter'
+
 if !empty(glob("~/.plug.vim"))
   so ~/.plug.vim
 endif

@@ -10,5 +10,6 @@
   "eslint.alwaysShowStatus": true,
   "diagnostic.errorSign": "✘",
   "diagnostic.infoSign": "•",
-  "diagnostic.warningSign": "»"
+  "diagnostic.warningSign": "»",
+  "tsserver.enableJavascript": false
 }
