@@ -11,7 +11,6 @@ Plug 'morhetz/gruvbox'
 Plug 'patstockwell/vim-monokai-tasty'
 
 " Vim Editor enhancers
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Vim Tab style
 Plug 'mkitt/tabline.vim'
 " tcomment provides easy to use, file-type sensible comments for Vim. It
@@ -22,18 +21,14 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
 " This is a massive (in a good way) Vim plugin for editing Ruby on Rails applications.
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-haml'
 Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-cucumber'
-" Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-Plug 'avakhov/vim-yaml', { 'for': ['yml','yaml', 'eruby.yaml']}
+Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
 "
 " Javascript syntax and highlight
 Plug 'pangloss/vim-javascript', { 'for': ['jsx', 'js'] }
-
 Plug 'chemzqm/vim-jsx-improve', { 'for': ['jsx', 'js'] }
 
 "Make Vim handle line and column numbers in file names with a minimum of fuss
@@ -48,12 +43,12 @@ Plug 'dietsche/vim-lastplace'
 
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim', { 'for': ['jsx', 'js', 'html', 'haml'] }
+
 Plug 'terryma/vim-multiple-cursors'
 
 "which" and 'exec' functions targeted at local node project bin, with 'which' fallback
 Plug 'alexesba/nrun.vim'
 
-"Using the markdown-preview.vim plugin, you can preview Markdown in real-time with a web browser.
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " This plugin causes all trailing whitespace characters to be highlighted.
