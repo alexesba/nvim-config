@@ -60,7 +60,7 @@ Plug 'dhruvasagar/vim-table-mode'
 " Plugin to load the .editorconfig rules
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'nightsense/night-and-day'
+"Plug 'nightsense/night-and-day'
 
 Plug 'mbbill/undotree'
 
