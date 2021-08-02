@@ -40,7 +40,7 @@ inoremap <silent> <Leader>c <Esc>:TComment<CR>i
 
 " Undotree
 noremap <silent><leader>un :UndotreeToggle<CR>
-" coc.vim 
+" coc.vim
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)

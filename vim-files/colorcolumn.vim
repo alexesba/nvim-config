@@ -8,12 +8,12 @@ endif
 
 
 
-augroup collumnLimit
+augroup columnLimit
   autocmd!
-  autocmd BufRead,BufEnter * highlight CollumnLimit ctermbg=Red guibg=Red
+  autocmd BufRead,BufEnter * highlight ColumnLimit ctermbg=Red guibg=Red
 
-  let collumnLimit = 81
-  let pattern = '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
+  let columnLimit = 81
+  let pattern = '\%<' . (columnLimit+1) . 'v.\%>' . columnLimit . 'v'
 
-  autocmd BufRead,BufEnter * let w:m1=matchadd('CollumnLimit', pattern, -1)
+  autocmd BufRead,BufEnter * let w:m1=matchadd('ColumnLimit', pattern, -1)
 augroup END
