@@ -11,7 +11,7 @@ The tools includes in this repository are listed bellow:
 ## Menu
 
 - [Requirements](#Requirements)
-  - [Neovim](/neovim/neovim)
+  - [Neovim ~5.0](/neovim/neovim)
   - [git](https://git-scm.com/)
 - [Plugins included?](#plugins-included)
   - [Color Schemes](#color-schemes) A set of colorschemes that are pleasant for the eyes
@@ -30,9 +30,76 @@ The tools includes in this repository are listed bellow:
   - [Configuration tools](#configuration-tools)
   - [Linter tools](#linter-tools)
   - [Search tools](#search-tools)
+- [Available Mappings](#available-mappings)
 - [Steps to Install](#steps-to-install)
 
 -----
+
+### Available mappings
+
+- [Fern: File Explorer](/lambdalisue/fern.vim)
+  Simple and powerful file explorer for vim and Neovim
+  - `<C-p>`: Toggle the Fern File Explorer
+    - Mappings within the Fern File Explorer:
+      - `n` : Action to create a new file or directory: for creating directories
+              the end line needs to have the / symbol.
+              e.g  New path: my_new_directory/ or
+              New path: my_new_file[.extension] Extension could be optional.
+      - `d` : Action to delete a file or directory.
+      - `c` : Action to Copy the selected files.
+      - `m` : Action to move the selected files.
+      - `b` : Action to open the file under the cursor in a horizontal split.
+      - `v` : Action to open the file under the cursor in a vertical split.
+      - `C` : Action to clipboard copy(only works within the Fern buffer).
+      - `P` : Action to Paste the copied files into the selected directory.
+      - `M` : Action to rename/move the selected file(s).
+      - `H` : Action to toggle the hidden files within the Fern panel.
+      - `R` : Action to Reload the files without Fern panel.
+      - `>` : Action to go into a selected directory
+      - `<` : Action to go to the parent directory
+- [coc.nvim](/neoclide/coc.nvim):
+  Provides intellisense similar to VSCode
+  - `<leader>ac`: normal mode open the action menu Enter select the firs option in the list
+  - `<C-space>` : coc#refresh()
+  - `K`  : to Show documentation in preview window
+  - `gd` : calls `<Plug>(coc-definition)`
+  - `gy` : calls `<Plug>(coc-type-definition)`
+  - `gi` : calls `<Plug>(coc-implementation)`
+  - `gr` : calls `<Plug>(coc-references)`
+  - `<leader>a`  : normal mode and visual mode calls the `<Plug>(coc-codeaction-selected)`
+  - `<leader>fs` : normal monde and visual mode calls the `<Plug>(coc-format-selected)`
+  - `<leader>rn` : normal mode calls the action `<Plug>(coc-rename)`
+  - `<leader>qf` : normmal mode calls the `<Plug>(coc-fix-current)`
+  - `<space>a` : calss `<C-u>CocList diagnostics<cr>` Manage extensions.
+  - `<space>e` : calls `<C-u>CocList extensions<cr>` Show commands.
+  - `<space>c` : calls `<C-u>CocList commands<cr>` Find symbol of current document
+  - `<space>o` : calls `<C-u>CocList outline<cr> ` Search workspace symbols.
+  - `<space>s` : calls `<C-u>CocList -I symbols<cr> ` Do default action for next item.
+  - `<space>j` : calls `<C-u>CocNext<CR>
+
+- [tomtom/tcomment_vim](/tomtom/tcomment_vim)
+  Provides an easy way to comment/uncomment lines or blocks of code
+  - `gc{motion}` : Toggle comments (for small comments within one line
+                    the &filetype_inline style will be used, if
+                    defined)
+  - `gc<Count>c{motion}` : Toggle comment with count argument
+                      (see |tcomment#Comment()|)
+  - `gcc`        : Toggle comment for the current line
+  - `<leader>__` : Comment/uncomment the current line
+  - `g<{motion}` : Uncomment region
+  - `g<c`        : Uncomment the current line
+  - `g<b`        : Uncomment the current region as block
+  - `g>{motion}` : Comment region
+  - `g>c`        : Comment the current line
+  - `g>b`        : Comment the current region as block
+
+- [dhruvasagar/vim-table-mode](/dhruvasagar/vim-table-mode)
+  - `<Leader>to` : toggle the TableMode
+  - `<Leader>rt` : Align the table TableModeRealign
+  - `<Leader>tg` : Change the table corner to match the github table format.
+
+- [mbbill/undotree](/mbbill/undotree)
+  -`<leader>un` : calls the UndotreeToggle command to show the undotree pane
 
 ### Color schemes
 
@@ -47,50 +114,141 @@ The tools includes in this repository are listed bellow:
 ### Vim enhancers
 
 - [Plug 'andymass/vim-matchup'](/andymass/vim-matchup)
+  - match-up is a plugin that lets you highlight,
+    navigate, and operate on sets of matching text.
+    It extends vim's % key to language-specific words instead of just
+    single characters
 - [Plug 'airblade/vim-gitgutter'](/airblade/vim-gitgutter)
+  - A Vim plugin which shows a git diff in the sign column.
+    It shows which lines have been added, modified, or removed.
+    You can also preview, stage, and undo individual hunks;
+    and stage partial hunks. The plugin also provides a hunk text object.
 - [Plug 'dhruvasagar/vim-table-mode'](/dhruvasagar/vim-table-mode)
+  - An awesome automatic table creator & formatter allowing one to create neat
+    tables as you type.
 - [Plug 'dietsche/vim-lastplace'](/dietsche/vim-lastplace)
+  - Intelligently reopen files at your last edit position. By default git, svn,
+    and mercurial commit messages are ignored because you probably want to type
+    a new message and not re-edit the previous one.
 - [Plug 'godlygeek/tabular'](/godlygeek/tabular)
+  - This plugin aims to make the easy aligments by specific keywords
 - [Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }](/iamcco/markdown-preview.nvim)
+  - Preview markdown on your modern browser with synchronised scrolling and
+    flexible configuration
 - [Plug 'kopischke/vim-fetch'](/kopischke/vim-fetch)
+  - vim-fetch enables Vim to process line and column jump specifications in file
+    paths as found in stack traces and similar output.
+    When asked to open such a file, in- or outside Vim or via gF, Vim with
+    vim-fetch will jump to the specified line (and column, if given) instead of
+    displaying an empty, new file.
 - [Plug 'mbbill/undotree'](/mbbill/undotree)
+  - The plug-in visualizes undo history and makes it easier to browse and
+    switch between different undo branches. You might wonder what is undo
+    "branches"? It's a vim feature that allows you to go back to a state when
+    it is overwritten by the latest edit.
 - [Plug 'mkitt/tabline.vim'](/mkitt/tabline.vim)
+  - Configure tab labels within Terminal Vim with a very succinct output.
 - [Plug 'terryma/vim-multiple-cursors'](/terryma/vim-multiple-cursors)
+  - There have been many attempts at bringing Sublime Text's awesome multiple
+    selection feature into Vim, but none so far have been in my opinion a
+    faithful port that is simplistic to use, yet powerful and intuitive enough
+    for an existing Vim user. vim-multiple-cursors is yet another attempt
+    at that.
 - [Plug 'tomtom/tcomment_vim'](/tomtom/tcomment_vim)
+  - tcomment provides easy to use, file-type sensible comments for Vim. It
+    can handle embedded syntax.
 - [Plug 'tpope/vim-abolish'](/tpope/vim-abolish)
+  - Want to turn fooBar into foo_bar? Press crs (coerce to snake_case).
+    MixedCase (crm), camelCase (crc), snake_case (crs), UPPER_CASE (cru),
+    dash-case (cr-), dot.case (cr.), space case (cr<space>),
+    and Title Case (crt) are all just 3 keystrokes away.
+  - For more details about this plugin visit the author's page.
 - [Plug 'tpope/vim-bundler'](/tpope/vim-bundler)
+  - This is a lightweight bag of Vim goodies for Bundler, best accompanied by
+    rake.vim and/or rails.vim. Features:
 - [Plug 'tpope/vim-eunuch'](/tpope/vim-eunuch)
+  - Vim sugar for the UNIX shell commands that need it the most. Features include:
 - [Plug 'tpope/vim-fugitive'](/tpope/vim-fugitive)
+  - Fugitive is the premier Vim plugin for Git.
+    Or maybe it's the premier Git plugin for Vim? Either way, it's "so awesome,
+    it should be illegal". That's why it's called Fugitive.
 - [Plug 'tpope/vim-repeat'](/tpope/vim-repeat)
+  - If you've ever tried using the . command after a plugin map,
+    you were likely disappointed to discover it only repeated the last native
+    command inside that map, rather than the map as a whole.
+    That disappointment ends today. Repeat.vim remaps .
+    in a way that plugins can tap into it.
 - [Plug 'tpope/vim-surround'](/tpope/vim-surround)
+  - Surround.vim is all about "surroundings": parentheses, brackets, quotes,
+    XML tags, and more. The plugin provides mappings to easily delete,
+    change and add such surroundings in pairs.
 
 ### Syntax And Highlight
 
 - [Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }](/ap/vim-css-color)
+  - A very fast, multi-syntax context-sensitive color name highlighter
 - [Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support](/cakebaker/scss-syntax.vim)
+  - Vim Syntax File for SCSS (Sassy CSS)
 - [Plug 'mattn/emmet-vim', { 'for': ['jsx', 'js', 'html', 'haml'] }](/mattn/emmet-vim)
+  - emmet-vim is a vim plug-in which provides support for expanding abbreviations similar to emmet.
 - [Plug 'mgechev/vim-jsx'](/mgechev/vim-jsx)
+  - Syntax highlighting and indenting for JSX. JSX is a JavaScript syntax
+    transformer which translates inline XML document fragments into JavaScript
+    objects. It was developed by Facebook alongside React.
 - [Plug 'ntpeters/vim-better-whitespace'](/ntpeters/vim-better-whitespace)
+  - This plugin causes all trailing whitespace characters to be highlighted.
 - [Plug 'pangloss/vim-javascript', { 'for': ['jsx', 'js'] }](/pangloss/vim-javascript)
+  - JavaScript bundle for vim, this bundle provides syntax highlighting and
+    improved indentation.
 - [Plug 'senderle/restoreview'](/senderle/restoreview)
+  - This plugin saves and restores your view, preserving cursor positions
+    and folds. It's quite simple, but it takes steps to avoid throwing errors
+    when views no longer exist or have been changed unexpectedly.
 - [Plug 'tpope/vim-cucumber', { 'for': 'feature' }](/tpope/vim-cucumber)
+  - This is the development version of Vim's included runtime files for the Ruby
+    acceptance testing framework Cucumber. It provides syntax highlighting,
+    indenting, and some editing commands.
 - [Plug 'tpope/vim-haml', { 'for': 'haml' }](/tpope/vim-haml)
+  - This project contains the runtime files for Haml, Sass, and SCSS that ship
+    with Vim. You only need it if you want the very latest updates.
 
 ### Configuration tools
 
 - [Plug 'alexesba/nrun.vim'](/alexesba/nrun.vim)
 - [Plug 'editorconfig/editorconfig-vim'](/editorconfig/editorconfig-vim)
+  - This is an EditorConfig plugin for Vim. This plugin can be found on both
+    GitHub and Vim online.
 
 ### Linter tools
 
 - [Plug 'neoclide/coc.nvim', {'branch': 'release'}](/neoclide/coc.nvim)
+  - Make your Vim/Neovim as smart as VSCode.
+  - Plugins installed by default in this repository:
+  ```vim
+    let g:coc_global_extensions = [
+          \ 'coc-eslint',
+          \ 'coc-json',
+          \ 'coc-solargraph',
+          \ 'coc-stylelintplus',
+          \ 'coc-tsserver',
+          \ 'coc-markdownlint',
+          \ 'coc-spell-checker',
+          \ 'coc-yaml'
+          \]
+  ```
 
 ### Search tools
 
 - [Plug 'lambdalisue/fern.vim'](/lambdalisue/fern.vim)
+  - Fern (furn) is a general purpose asynchronous tree viewer written in pure
+    Vim script.
 - [Plug 'nvim-lua/plenary.nvim'](/nvim-lua/plenary.nvim)
 - [Plug 'nvim-lua/popup.nvim'](/nvim-lua/popup.nvim)
+  - An implementation of the Popup API from vim in Neovim.
 - [Plug 'nvim-telescope/telescope.nvim'](/nvim-telescope/telescope.nvim)
+  - telescope.nvim is a highly extendable fuzzy finder over lists. Built on the
+    latest awesome features from neovim core. Telescope is centered around
+    modularity, allowing for easy customization.
 
 #### ColorSchemes
 
@@ -142,7 +300,7 @@ The tools includes in this repository are listed bellow:
 
 #### gruvbox light
 
-  ![image](https://user-images.githubusercontent.com/579793/128131558-77138082-aec9-48cd-93dd-a35f20eb9d6c.png)
+  ![image](https://user-images.githubusercontent.com/579793/128131558-77138082-aec9-48cd-93dd-a35f20eb9d6c.png?)
 
   -----
 
@@ -152,16 +310,16 @@ The tools includes in this repository are listed bellow:
 <h3>
 
 ```sh
-# STEP 1: 
+# STEP 1:
 
 # installing neovim
 
 # depening on your SO one of the following commands will help you with that:
 
-# Linux: 
+# Linux:
 sudo apt update && sudo apt install neovim
 
-# macosx: 
+# macosx:
 
 brew update && brew install neovim
 
@@ -172,14 +330,14 @@ git clone git@github.com:alexesba/nvim-config.git ~/.config/nvim
 
 # or in case you have the ssh-keys:
 
-git clone https://github.com/alexesba/nvim-config.git 
-         \ ~/.config/nvim 
+git clone https://github.com/alexesba/nvim-config.git
+         \ ~/.config/nvim
          \ && cd ~/.config/nvim
 
 # Step 3: Then run the following commands within the ~/.config/nvim directory
 
-# make sure you check out the right tag version. 
- 
+# make sure you check out the right tag version.
+
  git checkout tags/vx.x.x  -b vx.x.x
 
 ./install.sh
