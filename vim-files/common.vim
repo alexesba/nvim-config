@@ -39,13 +39,13 @@ set diffopt+=vertical
 
 let g:coc_global_extensions = [
       \ 'coc-eslint',
-      \ 'coc-html',
       \ 'coc-json',
       \ 'coc-solargraph',
       \ 'coc-stylelintplus',
       \ 'coc-tsserver',
       \ 'coc-markdownlint',
-      \ 'coc-spell-checker'
+      \ 'coc-spell-checker',
+      \ 'coc-yaml'
       \]
 
 autocmd BufWritePost * GitGutter

@@ -37,7 +37,7 @@ function! GetExecutablePath()
 
  if &filetype == "ruby"
    if executable(g:ruby_rubocop_exe)
-     return BuildCmd(g:ruby_rubocop_exe, "-a")
+     return BuildCmd(g:ruby_rubocop_exe, "-A")
    endif
  endif
 endfunction
