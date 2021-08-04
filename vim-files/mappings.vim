@@ -163,6 +163,9 @@ noremap <Leader><Space>p :lprev<CR>      " previous error/warning
 
 nnoremap <leader>c :CopyFilePath<CR>
 
+" Copy from cursor to the end of the line
+nnoremap Y y$
+
 nnoremap n nzzzv
 noremap N Nzzzv
 noremap J mzJ`z

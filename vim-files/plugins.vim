@@ -25,11 +25,13 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
+
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
 "
 " Javascript syntax and highlight
 Plug 'pangloss/vim-javascript', { 'for': ['jsx', 'js'] }
-Plug 'chemzqm/vim-jsx-improve', { 'for': ['jsx', 'js'] }
+" Plug 'chemzqm/vim-jsx-improve', { 'for': ['jsx', 'js'] }
+Plug 'mgechev/vim-jsx'
 
 "Make Vim handle line and column numbers in file names with a minimum of fuss
 "vim path/to/file.ext:12:3 in the shell to open file.ext on line 12 at column 3
