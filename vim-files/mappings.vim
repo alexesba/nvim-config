@@ -30,13 +30,7 @@ inoremap <c-x><c-l> <plug>(fzf-complete-line)
 " Toggle TableMode: Plug 'dhruvasagar/vim-table-mode'
 noremap <silent><Leader>to :TableModeToggle<CR>
 noremap <silent><Leader>tr :TableModeRealign<CR>
-noremap <silent>rt :TableModeRealign <CR>
-
-"Toogle Comments: Plug 'tomtom/tcomment_vim'
-
-noremap <silent> <Leader>c :TComment<CR>
-vnoremap <silent> <Leader>c :TComment<CR>
-inoremap <silent> <Leader>c <Esc>:TComment<CR>i
+noremap <silent><Leader>tg :TableModeToggleGithubTable<CR>
 
 " Undotree
 noremap <silent><leader>un :UndotreeToggle<CR>
@@ -79,14 +73,12 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
 " Mappings for CoCList
 " Show all diagnostics.
@@ -161,7 +153,7 @@ noremap <Leader><Space>n :lnext<CR>      " next error/warning
 noremap <Leader><Space>o :lopen<CR>      " open location window
 noremap <Leader><Space>p :lprev<CR>      " previous error/warning
 
-nnoremap <leader>c :CopyFilePath<CR>
+nnoremap <leader>cf :CopyFilePath<CR>
 
 " Copy from cursor to the end of the line
 nnoremap Y y$

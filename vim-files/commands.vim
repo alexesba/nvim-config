@@ -21,7 +21,7 @@ command! ConverTabsToSpaces %s/\t/  /g
 command! UpdateRubyHashesByLines :call FormatHashes()
 command! UpdateHashSyntax :call UpdateRubyHashes()
 command! FormatBraces :call CleanUpReactFile()
-command! ToggleGithubTable :call TogleGitHubTableMode()
+command! TableModeToggleGithubTable :call TogleGitHubTableMode()
 command! CleanWhiteSpaces :call CleanUp()
 command! UnscapeDoubleQuotes %s/\\"//g
 command! RemoveLineBreak %s/\\n//g
