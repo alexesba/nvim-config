@@ -47,6 +47,12 @@ function! FormatHashes()
   execute "normal! \gg \<Sv> \<S-g>="
 endfunction
 
+function! FormatCss()
+  let save_cursor = getpos(".")
+  :silent! :%s/[{;}]/&\r/g|norm! =gg
+  call setpos('.', save_cursor)
+endfunction
+
 function! FormatXMLFn()
   :silent %s/\\"/"/g
   :silent! %s/\\n//g
