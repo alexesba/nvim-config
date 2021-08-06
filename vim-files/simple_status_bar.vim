@@ -41,6 +41,12 @@ function! FileSize()
   endif
 endfunction
 
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+
+
 set statusline=
 set statusline+=%#Question#%{(g:modeMap[mode()]=='N')?'\ \ NORMAL\ ':''}
 set statusline+=%#Directory#%{(g:modeMap[mode()]=='I')?'\ \ INSERT\ ':''}
@@ -56,7 +62,7 @@ set statusline+=%#netrwDir#%{getbufvar(bufnr('%'),'&mod')?'\ +\ ':''}
 set statusline+=%#CursorLine#\ %f                   " short file name
 
 set statusline+=%=                          " right align
-" set statusline+=%{gutentags#statusline('[',']')}
+set statusline+=%{GitStatus()}
 set statusline+=%#CursorLine#\ %Y\   " colour File type
 set statusline+=%#CursorIM#\ %3l:%-2c\     " colour line + column
 set statusline+=%#Type#\ %{FileSize()}\         "colour File Zize

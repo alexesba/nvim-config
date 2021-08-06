@@ -32,6 +32,8 @@ The tools includes in this repository are listed bellow:
   - [Search tools](#search-tools)
 - [Available Mappings](#available-mappings)
 - [Steps to Install](#steps-to-install)
+- [Adding customization](#adding-customization)
+- [Installing custom plugins](#installing-custom-plugins)
 
 -----
 
@@ -346,3 +348,73 @@ git clone https://github.com/alexesba/nvim-config.git
 
 </h3>
 
+-----
+
+## Adding Customization
+
+There is a way to customize the vim appearance. by following the steps listed
+bellow:
+
+```sh
+Step:1 Open/create the following file under your home directory.
+vim ~/.vimrc
+
+# Now you can start adding your own configuration.
+
+# e.g: changing the default colorscheme 
+
+#    | name              | background light | background dark |
+#    |-------------------|------------------|-----------------|
+#    | OceanicNext       | false            | false           |
+#    | gruvbox           | true             | true            |
+#    | materialbox       | true             | true            |
+#    | scheakur          | true             | true            |
+#    | OceanicNextLight  | false            | false           |
+#    | vim-monokai-tasty | false            | false           |
+#    | PaperColor        | true             | true            |
+#    | codedark          | false            | false           |
+
+# There is a special configuration for the colorscheme ayu you will need to 
+# choose only one from the following list.
+
+#    | colorscheme | ayucolor |
+#    |-------------|----------|
+#    | ayu         | light    |
+#    | ayu         | mirage   |
+#    | ayu         | dark     |
+
+# let ayucolor="light"  " for light version of theme
+# let ayucolor="mirage" " for mirage version of theme
+# let ayucolor="dark"   " for dark version of theme
+
+# colorscheme ayu -> if you decide to go with the ayu scheme
+
+# for other color scheme with background ligth choose only one of the next commands
+# set background=light 
+# set background=dark 
+
+# then set your colorscheme variable e.gruvbox
+
+let ayucolor=light
+colorscheme ayu
+```
+
+## Installing custom plugins
+
+```sh
+# create the .plug.vim file under your home directory
+vim ~/.plug.vim
+
+# And add the plugins you want.
+
+#e.g
+
+Plug 'Yggdroot/indentLine'
+
+# After that call the command 
+
+:Reload 
+:PlugInstall
+
+# And that's it. you have done with the installation.
+```
