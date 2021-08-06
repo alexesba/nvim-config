@@ -9,7 +9,7 @@ Plug 'morhetz/gruvbox'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'scheakur/vim-scheakur'
 Plug 'tomasiser/vim-code-dark'
-Plug 'ayu-theme/ayu-vim' 
+Plug 'ayu-theme/ayu-vim'
 "}}}
 
 "{{ Vim Editor enhancers:
