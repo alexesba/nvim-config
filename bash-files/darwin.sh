@@ -1,11 +1,7 @@
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
-fi
-
-if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
-   . `brew --prefix`/etc/bash_completion.d/git-completion.bash
+if  [[ -r `brew --prefix`/etc/profile.d/bash_completion.sh ]]; then
+    . `brew --prefix`/etc/profile.d/bash_completion.sh
    # Add git completion to aliases
-  . ~/.config/nvim/bash-files/git-aliases-bindings.sh
+   # . ~/.config/nvim/bash-files/git-aliases-bindings.sh
 fi
 
 ###-tns-completion-end-###
@@ -19,7 +15,6 @@ fi
 
 function initpsql-current {
   PSQL_DB_DIR=$(psql -V | egrep -o '\d.+')
-  echo "$PSQL_DB_DIR mama el mechon"
   if [ ! -d "/usr/local/var/postgresql/$PSQL_DB_DIR" ]; then
      echo "Creating directory for /usr/local/var/postgresql/$PSQL_DB_DIR"
      mkdir /usr/local/var/postgresql/$PSQL_DB_DIR
@@ -56,10 +51,3 @@ function restore_db {
     echo "The file $2 doesn't exist"
   fi
 }
-
-# if [ -e ~/.terminfo/78/xterm-256color-italic ]; then
-#   export TERM=xterm-256color-italic
-# else
-#   export TERM=xterm-256color
-# fi
-#

@@ -1,20 +1,16 @@
   # The package is installed
-
-  if [[ "$OSTYPE" =~ ^darwin ]]; then
-          read -p "Do you want to install Brew Packages config file?(y/n)" -n 1 -r
-          echo
-
-          if [[ $REPLY =~ ^[Yy]$ ]]; then
-                  brew bundle
-          fi
-
-  fi
-
+cat << "EOF"
+       _       _    __ _ _             _           _        _ _
+    __| | ___ | |_ / _(_) | ___  ___  (_)_ __  ___| |_ __ _| | | ___ _ __
+   / _` |/ _ \| __| |_| | |/ _ \/ __| | | '_ \/ __| __/ _` | | |/ _ \ '__|
+  | (_| | (_) | |_|  _| | |  __/\__ \ | | | | \__ \ || (_| | | |  __/ |
+   \__,_|\___/ \__|_| |_|_|\___||___/ |_|_| |_|___/\__\__,_|_|_|\___|_|
+EOF
 
 if [[ "$OSTYPE" =~ ^linux ]]; then
-        BASHFILE=.bashrc
+  BASHFILE=.bashrc
 else
-        BASHFILE=.bash_profile
+  BASHFILE=.bash_profile
 fi
 
 read -p "Do you want to install $BASHFILE config file?(y/n)" -n 1 -r
@@ -28,6 +24,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   fi
 
   ln -s ~/.config/nvim/bash_profile.sh ~/$BASHFILE
+
   echo "$BASHFILE linked correctly!"
 fi
 
@@ -48,6 +45,7 @@ then
   fi
 
   ln -s ~/.config/nvim/tmux.conf ~/.tmux.conf
+
   echo "tmux.conf linked correctly!."
 fi
 
@@ -59,19 +57,19 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo ".bash_aliases linked correctly!."
 fi
 
-read -p "Do you want to install .hyper.js config file?(y/n)" -n 1 -r
+read -p "Do you want to install alacritty.yml config file?(y/n)" -n 1 -r
 echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  ln -s ~/.config/nvim/terminals/hyper.js ~/.hyper.js
-  echo ".hyper.js linked correctly!."
-fi
 
-read -p "Do you want to install .alacritty.yml config file?(y/n)" -n 1 -r
-echo
-
-if [[ $REPLY =~ ^[Yy]$ ]]; then
   mkdir ~/.config/alacritty -p
+
+  if [ -f ~/.config/alacritty/alacritty.yml ]; then
+    echo "~/.config/alacritty/alacritty.yml already exist.. performing a backup before link the alacritty.yml"
+    mv ~/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml.old
+    echo "your previous configuration was renamed as ~/.config/alacritty/alacritty.yml.old"
+  fi
+
   ln -s ~/.config/nvim/terminals/alacritty.yml ~/.config/alacritty
   echo "alacritty.yml linked correctly!."
 fi
@@ -82,16 +80,6 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
-fi
-
-echo "Installing vim Plug plugin"
-
-read -p "Do you want to install xterm-256color-italic config file?(y/n)" -n 1 -r
-echo
-
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  tic ~/.config/nvim/iterm/xterm-256color-italic.terminfo
-  echo "xterm-256color-italic installed correctly!."
 fi
 
 echo "Installing vim Plug plugin"

@@ -18,7 +18,6 @@ so ~/.config/nvim/vim-files/linters.vim
 so ~/.config/nvim/vim-files/commands.vim
 so ~/.config/nvim/vim-files/italic_fonts.vim
 so ~/.config/nvim/vim-files/simple_status_bar.vim
-so ~/.config/nvim/vim-files/fzf_colors.vim
 so ~/.config/nvim/vim-files/autocomplete.vim
 so ~/.config/nvim/vim-files/gutentags.vim
 so ~/.config/nvim/vim-files/reload_vimrc.vim

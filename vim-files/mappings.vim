@@ -10,6 +10,8 @@ nnoremap <leader>ff :lua require('telescope.builtin').find_files({file_ignore_pa
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fc <cmd>Telescope colorscheme<cr>
+nnoremap <leader>fm <cmd>Telescope keymaps<cr>
 
 "Configure Ag in vim to search the word under the cursor and search the
 "selected text
