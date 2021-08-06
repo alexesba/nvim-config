@@ -43,15 +43,19 @@ The tools includes in this repository are listed bellow:
   Simple and powerful file explorer for vim and Neovim
   - `<C-p>`: Toggle the Fern File Explorer
     - Mappings within the Fern File Explorer:
-      - `n` : Action to create a new file or directory: for creating directories
+      - `o` : Action to Expand or collapse the directories/also open files
+      - `<CR>` : Action to Expand or collapse the directories
+      - `an` : Action to create a new file or directory: for creating directories
               the end line needs to have the / symbol.
               e.g  New path: my_new_directory/ or
               New path: my_new_file[.extension] Extension could be optional.
+              use `an` because `n` is used to go to the next match
       - `d` : Action to delete a file or directory.
       - `c` : Action to Copy the selected files.
       - `m` : Action to move the selected files.
       - `b` : Action to open the file under the cursor in a horizontal split.
       - `v` : Action to open the file under the cursor in a vertical split.
+      - `t` : Action to open the file under the cursor in a new tab.
       - `C` : Action to clipboard copy(only works within the Fern buffer).
       - `P` : Action to Paste the copied files into the selected directory.
       - `M` : Action to rename/move the selected file(s).
