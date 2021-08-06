@@ -31,13 +31,14 @@ The tools includes in this repository are listed bellow:
   - [Linter tools](#linter-tools)
   - [Search tools](#search-tools)
 - [Available Mappings](#available-mappings)
+- [Available Commands](#available-commands)
 - [Steps to Install](#steps-to-install)
 - [Adding customization](#adding-customization)
 - [Installing custom plugins](#installing-custom-plugins)
 
 -----
 
-### Available mappings
+### Available Mappings
 
 - [Fern: File Explorer](/lambdalisue/fern.vim)
   Simple and powerful file explorer for vim and Neovim
@@ -106,6 +107,32 @@ The tools includes in this repository are listed bellow:
 
 - [mbbill/undotree](/mbbill/undotree)
   -`<leader>un` : calls the UndotreeToggle command to show the undotree pane
+- Custom mappings:
+  - Alt+k: in normal mode moves up the current line under the cursor.
+  - Alt+j: in normal mode moves down the current line under the cursor.
+  - Alt+k: in visual mode moves the selected lines up
+  - Alt+j: in visual mode moves the selected lines down
+
+### Available Commands
+
+- UpdateRepoDotFiles: keep updated your checkout branch(HEAD)
+- FormatJSONV: format JSON files using python json.tool
+- FormatJSONV2: format JSON files using underscore. to use command you need to
+  have installed underscore-cli `npm install -g underscore-cli`
+- FormatCss: command to expand ofuscated/minified css files.
+- FormatXML: command to expand and format xml files
+- FormatSQL: command to format sql files using sqlformat in ubuntu
+- FormatSQL2: command to format using a npm package in order to use this command
+  make sure you have installed globally: `npm i -g sql-formatter-cli`
+- CopyFilePath: command to copy the current file path to the clipboard
+- SingleQuotesC: replace all the single quotes with double
+  with confirmation
+- SingleQuotes: command to replace single quotes with double no confirmation
+  required.
+- DoubleQuotesC: same as SingleQuotesC but changes single quotes to double quotes
+- DoubleQuotes: Same as DoubleQuotes but ask for confirmation
+- RemoveExtraEmptyLines: command to cleanup double empty lines and keep only
+  one
 
 ### Color schemes
 
@@ -365,7 +392,7 @@ vim ~/.vimrc
 
 # Now you can start adding your own configuration.
 
-# e.g: changing the default colorscheme 
+# e.g: changing the default colorscheme
 
 #    | name              | background light | background dark |
 #    |-------------------|------------------|-----------------|
@@ -378,8 +405,8 @@ vim ~/.vimrc
 #    | PaperColor        | true             | true            |
 #    | codedark          | false            | false           |
 
-# There is a special configuration for the colorscheme ayu you will need to 
-# choose only one from the following list.
+# There is a special configuration for the colorscheme ayu, for this color 
+# you will need to choose only one from the following list.
 
 #    | colorscheme | ayucolor |
 #    |-------------|----------|
@@ -394,8 +421,8 @@ vim ~/.vimrc
 # colorscheme ayu -> if you decide to go with the ayu scheme
 
 # for other color scheme with background ligth choose only one of the next commands
-# set background=light 
-# set background=dark 
+# set background=light
+# set background=dark
 
 # then set your colorscheme variable e.gruvbox
 
@@ -415,9 +442,9 @@ vim ~/.plug.vim
 
 Plug 'Yggdroot/indentLine'
 
-# After that call the command 
+# After that call the command
 
-:Reload 
+:Reload
 :PlugInstall
 
 # And that's it. you have done with the installation.

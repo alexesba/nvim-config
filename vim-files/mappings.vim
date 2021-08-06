@@ -119,17 +119,10 @@ noremap <silent><leader>9 :tabn 9<cr>
 noremap <silent><leader>0 :tabn 0<cr>
 
 " Mapping to move single line in normal mode and move blocks in visual mode
-if g:os == "Darwin"
-    noremap <A-j>:<C-u>silent! move+<CR>==
-    noremap <A-k>:<C-u>silent! move-2<CR>==
-    xnoremap <A-j>:<C-u>silent! '<,'>move'>+<CR>gv=gv
-    xnoremap <A-k>:<C-u>silent! '<,'>move-2<CR>gv=gv
-else
-    noremap <A-k>   :<C-u>silent! move-2<CR>==
-    noremap <A-j> :<C-u>silent! move+<CR>==
-    xnoremap <A-k>   :<C-u>silent! '<,'>move-2<CR>gv=gv
-    xnoremap <A-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
-end
+nnoremap <A-k> :<C-u>silent! move-2<CR>==
+nnoremap <A-j> :<C-u>silent! move+<CR>==
+xnoremap <A-k> :<C-u>silent! '<,'>move-2<CR>gv=gv
+xnoremap <A-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 
 noremap <silent> <Leader>no :Reprobado<CR>
 noremap <silent> <Leader>na :Reprobada<CR>
