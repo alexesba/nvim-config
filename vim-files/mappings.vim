@@ -2,7 +2,7 @@
 " cSpell:disable
 
 " Fern: Plug 'lambdalisue/fern.vim'
-nmap <silent><C-p> :Fern . -drawer -reveal=% -toggle -width=30<CR><Plug>(fern-action-zoom:reset)
+nmap <silent><C-p> :Fern . -drawer -reveal=% -toggle -width=30<CR><Plug>(fern-action-zoom:reset)<C-W>=
 
 " Telescope:
 " Find files using Telescope command-line sugar.
