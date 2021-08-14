@@ -2,7 +2,7 @@
 " cSpell:disable
 
 " Fern: Plug 'lambdalisue/fern.vim'
-nmap <silent><C-p> :Fern . -drawer -reveal=% -toggle -width=30<CR><Plug>(fern-action-zoom:reset)
+nmap <silent><C-p> :Fern . -drawer -reveal=% -toggle -width=30<CR><Plug>(fern-action-zoom:reset)<C-W>=
 
 " Telescope:
 " Find files using Telescope command-line sugar.
@@ -142,13 +142,20 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" Disable Arrow keys in Visual Mode
+vnoremap <Down> <Nop>
+vnoremap <Left> <Nop>
+vnoremap <Right> <Nop>
+vnoremap <Up> <Nop>
+"}}}
+
 noremap <Leader><Space>, :ll<CR>         " go to current error/warning
 noremap <Leader><Space>c :lclose<CR>     " close location window
 noremap <Leader><Space>n :lnext<CR>      " next error/warning
 noremap <Leader><Space>o :lopen<CR>      " open location window
 noremap <Leader><Space>p :lprev<CR>      " previous error/warning
 
-nnoremap <leader>cf :CopyFilePath<CR>
+nnoremap <leader>cf :CopyFilePath<CR>:echo "File path copied!"<CR>
 
 " Copy from cursor to the end of the line
 nnoremap Y y$

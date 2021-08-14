@@ -68,5 +68,5 @@ let g:jsx_ext_required = 0 "Allow jsx in normal js files
 
 " Enable italic fonts
 let g:enable_italic_font = 1
-
+let g:gruvbox_italic = 1
 autocmd BufWritePost * GitGutter
