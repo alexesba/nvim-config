@@ -100,6 +100,9 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+nmap <silent> <Leader>j <Plug>(coc-diagnostic-next-error)
+nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev-error)
+
 "}}}
 
 "{{{2.- CUSTOM MAPPINGS
