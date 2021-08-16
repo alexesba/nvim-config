@@ -3,13 +3,13 @@
 
 "{{ colorSchemes: light and dark themes
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'ayu-theme/ayu-vim'
 Plug 'mhartington/oceanic-next'
 Plug 'mkarmona/materialbox'
 Plug 'morhetz/gruvbox'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'scheakur/vim-scheakur'
 Plug 'tomasiser/vim-code-dark'
-Plug 'ayu-theme/ayu-vim'
 "}}}
 
 "{{ Vim Editor enhancers:
@@ -22,7 +22,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'kopischke/vim-fetch'
 Plug 'mbbill/undotree'
 Plug 'mkitt/tabline.vim'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-bundler'
