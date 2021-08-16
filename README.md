@@ -181,12 +181,9 @@ The tools includes in this repository are listed bellow:
     it is overwritten by the latest edit.
 - [Plug 'mkitt/tabline.vim'](/mkitt/tabline.vim)
   - Configure tab labels within Terminal Vim with a very succinct output.
-- [Plug 'terryma/vim-multiple-cursors'](/terryma/vim-multiple-cursors)
-  - There have been many attempts at bringing Sublime Text's awesome multiple
-    selection feature into Vim, but none so far have been in my opinion a
-    faithful port that is simplistic to use, yet powerful and intuitive enough
-    for an existing Vim user. vim-multiple-cursors is yet another attempt
-    at that.
+- [Plug 'mg979/vim-visual-multi'](/mg979/vim-visual-multi)
+  - It's called vim-visual-multi in analogy with visual-block, 
+    but the plugin works mostly from normal mode.
 - [Plug 'tomtom/tcomment_vim'](/tomtom/tcomment_vim)
   - tcomment provides easy to use, file-type sensible comments for Vim. It
     can handle embedded syntax.
