@@ -100,13 +100,16 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+nmap <silent> <Leader>j <Plug>(coc-diagnostic-next-error)
+nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev-error)
+
 "}}}
 
 "{{{2.- CUSTOM MAPPINGS
 
 " Format all the file from the first line to the end
 noremap <silent><leader>fef :normal! gg=G``<CR>
-noremap <silent><Space> :noh<CR>
+noremap <silent><Esc> :noh<CR>
 
 " Command to move among tabs in Konsole-style
 noremap <silent><leader>1 :tabn 1 <cr>
@@ -148,12 +151,6 @@ vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
 "}}}
-
-noremap <Leader><Space>, :ll<CR>         " go to current error/warning
-noremap <Leader><Space>c :lclose<CR>     " close location window
-noremap <Leader><Space>n :lnext<CR>      " next error/warning
-noremap <Leader><Space>o :lopen<CR>      " open location window
-noremap <Leader><Space>p :lprev<CR>      " previous error/warning
 
 nnoremap <leader>cf :CopyFilePath<CR>:echo "File path copied!"<CR>
 
