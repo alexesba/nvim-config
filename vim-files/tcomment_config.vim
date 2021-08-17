@@ -1,18 +1,3 @@
-" let g:tablineclosebutton
-
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 0
-let g:table_mode_corner='+'
-
-set background=light
-let ayucolor="light"
-colorscheme ayu
-
-" Create the directory and files if doesn't exist
-autocmd! BufWritePre * call MkDir()
-" Vim syntax highlighting for ARB templates (ActiveAdmin) is not working
-autocmd! BufRead,BufNewFile *.arb setfiletype ruby
-
 autocmd! FileType javascriptreact
       \ call tcomment#type#Define('javascriptreact', {'commentstring_rx': '\%%(// %s\|{/* %s */}\)', 'commentstring': '{/* %s */}'})
       \ call tcomment#type#Define('javascriptreact_block', '{/* %s */}')

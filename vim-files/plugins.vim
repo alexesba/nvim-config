@@ -42,6 +42,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'senderle/restoreview'
 Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'juanchanco/vim-jbuilder', { 'for': 'jbuilder' }
 "}}}
 
 "{{ Configuration tools:

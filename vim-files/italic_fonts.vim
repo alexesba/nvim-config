@@ -5,7 +5,6 @@ function! ConfigItalicFonts()
     hi PreProc gui=italic
     hi Special gui=italic
     hi Statement gui=italic
-    hi String gui=italic
     hi Type gui=italic
     hi Keyword gui=italic
     hi GruvboxAqua gui=italic

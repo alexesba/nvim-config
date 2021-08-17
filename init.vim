@@ -20,4 +20,5 @@ so ~/.config/nvim/vim-files/italic_fonts.vim
 so ~/.config/nvim/vim-files/simple_status_bar.vim
 so ~/.config/nvim/vim-files/autocomplete.vim
 so ~/.config/nvim/vim-files/gutentags.vim
+so ~/.config/nvim/vim-files/tcomment_config.vim
 so ~/.config/nvim/vim-files/reload_vimrc.vim
