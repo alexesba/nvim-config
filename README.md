@@ -376,6 +376,22 @@ git clone https://github.com/alexesba/nvim-config.git
 
 </h3>
 
+### Optional Installation
+
+```sh
+# If you want to use the "live grep" option for Telescope, then you need to make
+# sure that the "rg" command is installed in your system.
+
+# To check if you have rg execute the command bellow.
+
+which rg
+
+# If you don't have it you have to install it in order to be able to use the
+# "live grep" feature.
+
+brew install rg
+```
+
 -----
 
 ## Adding Customization
@@ -402,7 +418,7 @@ vim ~/.vimrc
 #    | PaperColor        | true             | true            |
 #    | codedark          | false            | false           |
 
-# There is a special configuration for the colorscheme ayu, for this color 
+# There is a special configuration for the colorscheme ayu, for this color
 # you will need to choose only one from the following list.
 
 #    | colorscheme | ayucolor |
