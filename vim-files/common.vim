@@ -54,11 +54,11 @@ let g:coc_global_extensions = [
 let g:matchup_matchpref = {
       \ 'eruby':  { 'tagnameonly': 1, },
       \ 'html': { 'tagnameonly': 1, },
-      \ 'javascript':  { 'tagnameonly': 1, }
       \}
 
 " for jsx we need a special matcher function
 let g:matchup_hotfix_javascriptreact = 'JsxHotfix'
+let g:matchup_hotfix_javascript = 'JsxHotfix'
 
 "Configure table mode for github
 let g:table_mode_corner = '+'
