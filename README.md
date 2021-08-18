@@ -230,10 +230,6 @@ The tools includes in this repository are listed bellow:
 - [Plug 'pangloss/vim-javascript', { 'for': ['jsx', 'js'] }](/pangloss/vim-javascript)
   - JavaScript bundle for vim, this bundle provides syntax highlighting and
     improved indentation.
-- [Plug 'senderle/restoreview'](/senderle/restoreview)
-  - This plugin saves and restores your view, preserving cursor positions
-    and folds. It's quite simple, but it takes steps to avoid throwing errors
-    when views no longer exist or have been changed unexpectedly.
 - [Plug 'tpope/vim-cucumber', { 'for': 'feature' }](/tpope/vim-cucumber)
   - This is the development version of Vim's included runtime files for the Ruby
     acceptance testing framework Cucumber. It provides syntax highlighting,

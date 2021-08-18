@@ -36,10 +36,8 @@ Plug 'tpope/vim-surround'
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
 Plug 'mattn/emmet-vim', { 'for': ['jsx', 'js', 'html', 'haml'] }
-Plug 'pangloss/vim-javascript', { 'for': ['jsx', 'js'] }
-Plug 'mgechev/vim-jsx', { 'for': ['jsx', 'js'] }
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'senderle/restoreview'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'juanchanco/vim-jbuilder', { 'for': 'jbuilder' }

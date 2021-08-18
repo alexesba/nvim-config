@@ -51,9 +51,6 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 xmap <leader>fs  <Plug>(coc-format-selected)
 nmap <leader>fs <Plug>(coc-format-selected)
 
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 

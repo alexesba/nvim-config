@@ -1,5 +1,4 @@
 " Format json files
-" autocmd! InsertLeave,BufEnter * redraw!
 command! FormatJSON %!python -m json.tool
 command! FormatJSONV2 %!underscore print --outfmt json
 command! FormatCss :call FormatCss()
