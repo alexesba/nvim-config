@@ -65,5 +65,3 @@ let g:table_mode_corner = '+'
 
 " Enable italic fonts
 let g:enable_italic_font = 1
-
-autocmd! BufWritePost * GitGutter
