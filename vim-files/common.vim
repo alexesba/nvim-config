@@ -58,15 +58,12 @@ let g:matchup_matchpref = {
       \}
 
 " for jsx we need a special matcher function
-let g:matchup_hotfix_javascript = 'JsxHotfix'
+let g:matchup_hotfix_javascriptreact = 'JsxHotfix'
 
 "Configure table mode for github
 let g:table_mode_corner = '+'
 
-" Configure jsx files for javascript
-let g:jsx_ext_required = 0 "Allow jsx in normal js files
-
 " Enable italic fonts
 let g:enable_italic_font = 1
 
-autocmd BufWritePost * GitGutter
+autocmd! BufWritePost * GitGutter
