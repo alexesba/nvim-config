@@ -11,7 +11,7 @@ set expandtab
 set nobackup
 set nowrap
 set nowritebackup
-set cmdheight=2
+"set cmdheight=2
 set autoindent
 set hlsearch
 set incsearch

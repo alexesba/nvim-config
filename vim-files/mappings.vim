@@ -106,7 +106,7 @@ nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev-error)
 
 " Format all the file from the first line to the end
 noremap <silent><leader>fef :normal! gg=G``<CR>
-noremap <silent><Esc> :noh<CR>
+nnoremap <silent><Esc> :noh<CR>
 
 " Command to move among tabs in Konsole-style
 noremap <silent><leader>1 :tabn 1 <cr>
