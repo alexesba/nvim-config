@@ -3,7 +3,7 @@
 
 "{{ colorSchemes: light and dark themes
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'ayu-theme/ayu-vim'
+Plug 'alexesba/ayu-vim'
 Plug 'mhartington/oceanic-next'
 Plug 'mkarmona/materialbox'
 Plug 'morhetz/gruvbox'

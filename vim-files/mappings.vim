@@ -4,45 +4,36 @@
 " Fern: Plug 'lambdalisue/fern.vim'
 nmap <silent><C-p> :Fern . -drawer -reveal=% -toggle -width=30<CR><Plug>(fern-action-zoom:reset)<C-W>=
 
-" Telescope:
+" Telescope: {{{
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff :lua require('telescope.builtin').find_files({file_ignore_patterns = {"node_modules/**,.git/**"} })<cr>
+nnoremap <leader>ff :lua require('telescope.builtin').find_files({file_ignore_patterns = {'node_modules/*', '.git/**'} })<CR>
+nnoremap <expr><leader>fk ':Telescope live_grep<cr>' . expand('<cword>')
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fc <cmd>Telescope colorscheme<cr>
 nnoremap <leader>fm <cmd>Telescope keymaps<cr>
+"}}}
 
-"Configure Ag in vim to search the word under the cursor and search the
-"selected text
-noremap  <silent> <A-f> :Ag <C-R><C-W><CR>
-vnoremap <silent><A-f> y:Ag <C-R>=fnameescape(@")<CR><CR>
-
-" Mapping selecting mappings
-noremap <leader><tab> <plug>(fzf-maps-n)
-xnoremap <leader><tab> <plug>(fzf-maps-x)
-onoremap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-inoremap <c-x><c-k> <plug>(fzf-complete-word)
-inoremap <c-x><c-f> <plug>(fzf-complete-path)
-inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
-inoremap <c-x><c-l> <plug>(fzf-complete-line)
-
-" Toggle TableMode: Plug 'dhruvasagar/vim-table-mode'
+" Toggle TableMode: Plug 'dhruvasagar/vim-table-mode' {{{
 noremap <silent><Leader>to :TableModeToggle<CR>
 noremap <silent><Leader>tr :TableModeRealign<CR>
 noremap <silent><Leader>tg :TableModeToggleGithubTable<CR>
+"}}}
 
-" Undotree
+" Undotree: {{{
 noremap <silent><leader>un :UndotreeToggle<CR>
-" coc.vim
+"}}}
+
+" coc.vim: {{{
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
@@ -79,7 +70,7 @@ inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
-" Mappings for CoCList
+" Mappings for CoCList 
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
@@ -102,7 +93,7 @@ nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev-error)
 
 "}}}
 
-"{{{2.- CUSTOM MAPPINGS
+" 2.- CUSTOM MAPPINGS: {{{
 
 " Format all the file from the first line to the end
 noremap <silent><leader>fef :normal! gg=G``<CR>
@@ -161,6 +152,8 @@ noremap J mzJ`z
 " Undo break points
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
+inoremap - -<C-g>u
+inoremap : :<C-g>u
 inoremap ! !<C-g>u
 inoremap ? ?<C-g>u
 

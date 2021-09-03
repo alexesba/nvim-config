@@ -22,8 +22,8 @@ set ruler
 " No swap files
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set noswapfile
-set nowb
-set synmaxcol=2048
+set synmaxcol=281
+set cursorline
 
 set signcolumn=yes
 
