@@ -10,16 +10,15 @@ function fzf_then_open_in_editor() {
 
 function tmux-start {
   TMUX_DIRNAME=${1:-$(pwd)}
-  if test "`dirname $1`" = "."; then
-    if test "$1" = "."; then
-      TMUX_DIRNAME=$(pwd)
-    else
-      TMUX_DIRNAME=$(pwd)/$1
-    fi
+
+  if test "$TMUX_DIRNAME" = "."; then
+    TMUX_DIRNAME=$(pwd)
   fi
 
   TMUX_APP=$(basename $TMUX_DIRNAME)
+
   tmux has-session -t $TMUX_APP 2>/dev/null
+
   if [ "$?" -eq 1 ] ; then
     echo "No Session found.  Creating and configuring."
     pushd $TMUX_DIRNAME
@@ -28,6 +27,9 @@ function tmux-start {
   else
     echo "Session found.  Connecting."
   fi
+
+  sleep 0.5
+
   tmux attach-session -t $TMUX_APP
 }
 
