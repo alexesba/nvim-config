@@ -1,4 +1,4 @@
-function! ConfigItalicFonts()
+function! ConfigItalicFonts() abort
   if exists("g:enable_italic_font") && g:enable_italic_font == 1
     hi Comment gui=italic
     hi Constant gui=italic

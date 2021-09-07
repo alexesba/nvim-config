@@ -53,7 +53,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "}}
 
 "{{ Search tools:
-Plug 'lambdalisue/fern.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'

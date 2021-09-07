@@ -45,8 +45,13 @@ let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-markdownlint',
       \ 'coc-spell-checker',
-      \ 'coc-yaml'
+      \ 'coc-yaml',
+      \ 'coc-explorer'
       \]
+
+let g:coc_filetype_map = {
+      \ 'rspec.ruby': 'ruby',
+      \ }
 
 " highlight only the tags names for ruby
 " and js

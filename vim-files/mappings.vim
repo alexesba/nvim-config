@@ -2,7 +2,17 @@
 " cSpell:disable
 
 " Fern: Plug 'lambdalisue/fern.vim'
-nmap <silent><C-p> :Fern . -drawer -reveal=% -toggle -width=30<CR><Plug>(fern-action-zoom:reset)<C-W>=
+nnoremap <silent><C-p> :CocCommand explorer --position left --width 40 --sources=file+<CR>
+
+" Use preset argument to open it
+nnoremap <space>ed :CocCommand explorer --preset .nvim --template=file<CR>
+nnoremap <space>ef :CocCommand explorer --preset floating --template=file+<CR>
+nnoremap <space>ec :CocCommand explorer --preset cocConfig<CR>
+nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
+
+" List all presets
+nnoremap <space>el :CocList explPresets<CR>
+
 
 " Telescope: {{{
 " Find files using Telescope command-line sugar.
