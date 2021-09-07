@@ -9,6 +9,5 @@ endfunction
 
 augroup cucumber_syntax
   autocmd!
-  autocmd ColorScheme * call g:ConfigCucumberSyntax()
-  autocmd VimEnter * call g:ConfigItalicFonts()
+  autocmd FileType cucumber call g:ConfigCucumberSyntax()
 augroup END

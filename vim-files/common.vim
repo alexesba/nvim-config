@@ -36,7 +36,6 @@ endif
 " " Configure the diff tool vertical
 set diffopt+=vertical
 " set pumblend=20
-
 let g:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-json',
@@ -51,6 +50,7 @@ let g:coc_global_extensions = [
 
 let g:coc_filetype_map = {
       \ 'rspec.ruby': 'ruby',
+      \ 'cucumber': 'ruby',
       \ }
 
 " highlight only the tags names for ruby
