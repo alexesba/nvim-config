@@ -55,7 +55,6 @@ font:
     #   - (Linux) monospace
     #   - (Windows) Consolas
     family: OperatorMono Nerd Font
-
     # The `style` can be specified to pick a specific face.
     style: Book
 
@@ -66,7 +65,6 @@ font:
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     family: OperatorMono Nerd Font
-
     # The `style` can be specified to pick a specific face.
     style: Bold
 
@@ -77,8 +75,7 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     family: OperatorMono Nerd Font
-  #
-  #   # The `style` can be specified to pick a specific face.
+    # The `style` can be specified to pick a specific face.
     style: Book Italic
 
   # Point size
