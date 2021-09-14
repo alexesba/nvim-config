@@ -1,0 +1,10 @@
+[merge]
+  tool = nvim_tool
+  keepBackup = false
+[mergetool "nvim_tool"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[user]
+[mergetool]
+  keepBackup = false
+[core]
+	excludesfile = ~/.gitignore

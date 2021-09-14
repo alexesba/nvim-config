@@ -36,8 +36,8 @@ Plug 'tpope/vim-surround'
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
 Plug 'mattn/emmet-vim', { 'for': ['jsx', 'js', 'html', 'haml'] }
-Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'yuezk/vim-js', { 'for': 'js' }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': 'jsx' }
 Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'juanchanco/vim-jbuilder', { 'for': 'jbuilder' }
@@ -49,7 +49,7 @@ Plug 'editorconfig/editorconfig-vim'
 "}}
 
 "{{ Linter tools
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'on': 'CocCommand'} 
 "}}
 
 "{{ Search tools:
