@@ -80,7 +80,7 @@ inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
-" Mappings for CoCList 
+" Mappings for CoCList
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
@@ -163,6 +163,7 @@ noremap J mzJ`z
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
 inoremap - -<C-g>u
+inoremap _ _<C-g>u
 inoremap : :<C-g>u
 inoremap ! !<C-g>u
 inoremap ? ?<C-g>u
