@@ -49,7 +49,7 @@ Plug 'editorconfig/editorconfig-vim'
 "}}
 
 "{{ Linter tools
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'on': 'CocCommand' }
+Plug 'neoclide/coc.nvim'
 "}}
 
 "{{ Search tools:

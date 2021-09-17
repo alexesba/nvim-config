@@ -42,7 +42,7 @@ function! GetExecutablePath()
  endif
 endfunction
 
-function! EslitFixFn()
+function! EslintFixFn()
   let eslintfixcmd = GetExecutablePath()
   if eslintfixcmd != ''
     let save_cursor = getpos(".")
@@ -54,4 +54,4 @@ function! EslitFixFn()
   endif
 endfunction
 
-command! EslintFix silent! call EslitFixFn()
+command! EslintFix silent! call EslintFixFn()

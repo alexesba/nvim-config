@@ -23,5 +23,10 @@
   "explorer.buffer.root.template": "[icon & 1] OPEN EDITORS",
   "explorer.file.root.template": "[icon & 1] [hidden & 1] Project: ([root]) [fullpath]",
   "explorer.file.child.template": "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]",
-  "explorer.previewAction.onHover": false
+  "explorer.previewAction.onHover": false,
+  "cSpell.userWords": [
+    "expl",
+    "nrun",
+    "pylama"
+  ]
 }
