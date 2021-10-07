@@ -33,14 +33,14 @@ endfunction
 
 function! FormatCss()
   let save_cursor = getpos(".")
-  :silent! :%s/[{;}]/&\r/g|norm! =gg
+  :silent! %s/[{;}]/&\r/g|norm! =gg
   call setpos('.', save_cursor)
 endfunction
 
 function! FormatXMLFn()
   :silent %s/\\"/"/g
   :silent! %s/\\n//g
-  :silent! :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+  :silent! %!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 endfunction
 
 " Converts old ruby hashes to the new syntax.

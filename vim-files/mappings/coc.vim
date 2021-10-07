@@ -1,19 +1,18 @@
 " coc.vim: {{{
 " Use preset argument to open it
-nnoremap <space>ed :CocCommand explorer --preset .nvim --template=file<CR>
-nnoremap <space>ef :CocCommand explorer --preset floating --template=file+<CR>
-nnoremap <space>ec :CocCommand explorer --preset cocConfig<CR>
-nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
+nnoremap <leader>ed :CocCommand explorer --preset .nvim <CR>
+nnoremap <leader>ef :CocCommand explorer --preset floating<CR>
+nnoremap <leader>ec :CocCommand explorer --preset cocConfig<CR>
+nnoremap <leader>eb :CocCommand explorer --preset buffer<CR>
 
 " List all presets
-nnoremap <space>el :CocList explPresets<CR>
+nnoremap <space>l :CocList explPresets<CR>
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph

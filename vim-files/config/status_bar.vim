@@ -42,8 +42,9 @@ function! FileSize()
 endfunction
 
 function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
+  " let [a,m,r] = GitGutterGetHunkSummary()
+  " return printf('+%d ~%d -%d', a, m, r)
+  return get(b:,'gitsigns_status','')
 endfunction
 
 
