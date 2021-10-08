@@ -3,10 +3,10 @@ call plug#begin('~/.vim/plugged')
   so ~/.config/nvim/vim-files/plugins.vim
 call plug#end()
 
-so ~/.config/nvim/vim-files/config/common.vim
+lua require('config.nvim')
+lua require('config.matchup')
+
 so ~/.config/nvim/vim-files/config/colorcolumn.vim
-so ~/.config/nvim/vim-files/config/explorer.vim
-so ~/.config/nvim/vim-files/config/matchup.vim
 so ~/.config/nvim/vim-files/config/coc.vim
 so ~/.config/nvim/vim-files/config/tcomment.vim
 so ~/.config/nvim/vim-files/config/cucumber.vim

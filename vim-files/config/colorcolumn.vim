@@ -1,4 +1,4 @@
-let colorcolumn=join(range(81,999),",")
+let &colorcolumn=join(range(81,999),",")
 
 augroup columnLimit
   autocmd!

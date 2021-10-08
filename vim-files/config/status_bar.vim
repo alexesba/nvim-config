@@ -42,8 +42,6 @@ function! FileSize()
 endfunction
 
 function! GitStatus()
-  " let [a,m,r] = GitGutterGetHunkSummary()
-  " return printf('+%d ~%d -%d', a, m, r)
   return get(b:,'gitsigns_status','')
 endfunction
 
@@ -68,4 +66,3 @@ set statusline+=%#CursorLine#\ %Y\   " colour File type
 set statusline+=%#CursorIM#\ %3l:%-2c\     " colour line + column
 set statusline+=%#Type#\ %{FileSize()}\         "colour File Zize
 set statusline+=%#Cursor#\ %3p%%\                " percentage
-
