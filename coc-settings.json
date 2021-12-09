@@ -1,11 +1,11 @@
 {
   "codeLens.enable": true,
-  "diagnostic.errorSign": "✘",
+  "diagnostic.errorSign": "☠",
   "diagnostic.hintSign": "☀",
-  "diagnostic.infoSign": "☞",
+  "diagnostic.infoSign": "➜",
   "diagnostic.messageTarget": "echo",
   "diagnostic.virtualText": true,
-  "diagnostic.warningSign": "⚠",
+  "diagnostic.warningSign": "⚡",
   "eslint.alwaysShowStatus": true,
   "solargraph.bundlerPath": "~/.rbenv/shims/bundle",
   "solargraph.diagnostics": true,
@@ -16,7 +16,8 @@
   "solargraph.checkGemVersion": true,
   "solargraph.hover": true,
   "suggest.noselect": false,
-  "tsserver.enableJavascript": false,
+  "tsserver.enableJavascript": true,
+  "javascript.referencesCodeLens.enable": false,
   "yaml.completion": true,
   "yaml.schemaStore.enable": true,
   "yaml.validate": true,
@@ -26,9 +27,45 @@
   "explorer.file.root.template": "[icon & 1] [hidden & 1] Project: ([root]) [fullpath]",
   "explorer.file.child.template": "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]",
   "explorer.previewAction.onHover": false,
+  "Lua.diagnostics.globals": [
+    "vim"
+  ],
+  "languageserver": {
+    "R": {
+      "command": "/usr/bin/R",
+      "args" : [ "--slave", "-e", "languageserver::run()"],
+      "filetypes" : ["r"]
+    }
+  },
+  "Lua.workspace.library" :{
+    "/usr/share/nvim/runtime/lua": true,
+    "/usr/share/nvim/runtime/lua/vim/lsp": true
+  },
   "cSpell.userWords": [
+    "FHIR",
+    "Marp",
+    "Nerdfont",
+    "Onedocway",
+    "Todos",
+    "UNITEDHEALTHCARE",
+    "WALKIN",
+    "alexesba",
+    "automock",
+    "currenlty",
     "expl",
+    "fullpath",
+    "glyphicon",
+    "javascripts",
+    "multiline",
+    "noselect",
     "nrun",
-    "pylama"
+    "nvim",
+    "optum",
+    "ordinalized",
+    "pylama",
+    "resouce",
+    "serializers",
+    "solargraph",
+    "webm"
   ]
 }

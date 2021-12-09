@@ -11,7 +11,7 @@ Plug 'rafamadriz/neon'
 
 "{{ Vim Editor enhancers:
 Plug 'andymass/vim-matchup'
-Plug 'lewis6991/gitsigns.nvim'
+Plug 'airblade/vim-gitgutter'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
@@ -27,12 +27,14 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dispatch'
 "}}}
 
 "{{ Syntax and highlight
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 Plug 'juanchanco/vim-jbuilder', { 'for': 'jbuilder' }
+Plug 'shmup/vim-sql-syntax', { 'for': 'sql'  }
 "}}}
 
 "{{ Configuration tools:
@@ -49,6 +51,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'akinsho/toggleterm.nvim'
 "}}
 
 

@@ -8,7 +8,8 @@ let g:table_mode_corner='+'
 " let ayucolor="mirage"
 " let ayucolor = 'dark'
 let ayucolor="light"
-colorscheme ayu
+" colorscheme ayu
+colorscheme sonokai
 
 " Create the directory and files if doesn't exist
 autocmd! BufWritePre * call MkDir()

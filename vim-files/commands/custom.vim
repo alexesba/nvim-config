@@ -29,5 +29,6 @@ command! RemoveEmptyLines :g/^$/d
 command! FormatXML :call FormatXMLFn()
 command! FormatSQL :%!sqlformat --reindent --keywords upper --identifiers lower -
 command! FormatSQL2 :%!sql-formatter-cli
-command! CopyFilePath let @+= expand("%:p")
+command! CopyFullPath let @+= expand("%:p")
+command! CopyRelativePath let @+= expand("%")
 command! ShowHiName :exe 'hi '.synIDattr(synstack(line('.'), col('.'))[-1], 'name')
