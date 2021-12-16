@@ -1,5 +1,6 @@
 function fzf_then_open_in_editor() {
   local file=$(fzf)
+  echo $file
   C_EDITOR=${EDITOR:-nvim}
   # Open the file if it exists
   if [ -n "$file" ]; then
@@ -51,5 +52,14 @@ function colorscheme() {
     sh ~/src/gogh/themes/$1.sh
   else
     ls ~/src/gogh/themes
+  fi
+}
+
+function restore_db {
+  echo "Importing filename: $2 into database: $1"
+  if [ -f $2 ]; then
+    pg_restore --verbose --clean --no-acl --no-owner  -d $1 $2
+  else
+    echo "The file $2 doesn't exist"
   fi
 }

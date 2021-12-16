@@ -33,3 +33,5 @@ vim.g.mapleader = ","
 
 vim.g.table_mode_corner = '+'
 vim.g.enable_italic_font = 1
+vim.inccommand=nosplit
+

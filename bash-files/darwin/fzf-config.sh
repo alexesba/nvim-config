@@ -1,8 +1,4 @@
-#LOAD FZF BASH ENHANCEMENTS
-
-if [ -f ~/.fzf.bash ]; then
- . ~/.fzf.bash
-fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # CONFIGURE FZF COMMANDS
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
