@@ -41,4 +41,4 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 setopt prompt_subst
 
-PROMPT='%F{green}%n%f@%F{red}%~%f $(show_background_jobs)'$'\n%f%F{yellow}~> %f'
+PROMPT='%F{green}%n%f@%F{red}%~%f $(git_branch) $(show_background_jobs)'$'\n%f%F{yellow}~> %f'

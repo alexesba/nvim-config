@@ -1,11 +1,10 @@
 function fzf_then_open_in_editor() {
-  local file=$(fzf)
-  echo $file
-  C_EDITOR=${EDITOR:-nvim}
+  file=$(fzf </dev/tty)
   # Open the file if it exists
-  if [ -n "$file" ]; then
+  if [[ -n "$file" ]]; then
     # Use the default editor if it's defined, otherwise Vim
-    eval $C_EDITOR "$file"
+    $EDITOR "$file"
+    zle reset-prompt
   fi
 }
 

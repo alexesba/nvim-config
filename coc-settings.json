@@ -42,6 +42,7 @@
     "/usr/share/nvim/runtime/lua/vim/lsp": true
   },
   "cSpell.userWords": [
+    "Docway",
     "FHIR",
     "Marp",
     "Nerdfont",
@@ -64,8 +65,10 @@
     "ordinalized",
     "pylama",
     "resouce",
+    "reuqires",
     "serializers",
     "solargraph",
+    "uitk",
     "webm"
   ]
 }
