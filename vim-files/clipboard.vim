@@ -1,3 +1,4 @@
+if has("win32")
 let g:clipboard = {
       \   'name': 'win32yank-wsl',
       \   'copy': {
@@ -10,3 +11,4 @@ let g:clipboard = {
       \   },
       \   'cache_enabled': 0,
       \ }
+endif
