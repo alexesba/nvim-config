@@ -19,16 +19,16 @@ SIMBOL=${SIMBOL_PS1:-':'}
 function git_color {
   local git_status="$(git status 2> /dev/null)"
 
-  if [[  $git_status =~ "Untracked files" ]]; then
-    echo -e $COLOR_RED
-  elif [[ $git_status =~ "Your branch is ahead of" ]]; then
-    echo -e $COLOR_GREEN
-  elif [[ $git_status =~ "nothing to commit" ]]; then
-    echo -e $COLOR_RESET
+  if [[ $git_status =~ "Changes to be committed" ]]; then
+    echo -e $COLOR_BLUE
   elif [[ $git_status =~ "Changes not staged for commit" ]]; then
     echo -e $COLOR_RED
-  elif [[ $git_status =~ "Changes to be committed" ]]; then
-    echo -e $COLOR_PURPLE
+  elif [[  $git_status =~ "Untracked files" ]]; then
+    echo -e $COLOR_CYAN
+  elif [[ $git_status =~ "Your branch is ahead of" ]]; then
+    echo -e $COLOR_WHITE
+  elif [[ $git_status =~ "nothing to commit" ]]; then
+    echo -e $COLOR_GREEN
   else
     echo -e $COLOR_RESET
   fi
