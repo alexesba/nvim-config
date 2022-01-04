@@ -16,7 +16,7 @@
   "solargraph.checkGemVersion": true,
   "solargraph.hover": true,
   "suggest.noselect": false,
-  "tsserver.enableJavascript": true,
+  "tsserver.enableJavascript": false,
   "javascript.referencesCodeLens.enable": false,
   "yaml.completion": true,
   "yaml.schemaStore.enable": true,
@@ -30,13 +30,6 @@
   "Lua.diagnostics.globals": [
     "vim"
   ],
-  "languageserver": {
-    "R": {
-      "command": "/usr/bin/R",
-      "args" : [ "--slave", "-e", "languageserver::run()"],
-      "filetypes" : ["r"]
-    }
-  },
   "Lua.workspace.library" :{
     "/usr/share/nvim/runtime/lua": true,
     "/usr/share/nvim/runtime/lua/vim/lsp": true

@@ -23,3 +23,5 @@ let g:tagalong_verbose = 0
 let g:tagalong_additional_filetypes = ['javascript']
 let g:gitgutter_realtime = 0
 let g:table_mode_color_cells = 1
+
+let g:plug_threads = 1

@@ -3,8 +3,8 @@
 
 "{{ colorSchemes: light and dark themes
 Plug 'alexesba/ayu-vim'
-Plug 'sainnhe/sonokai'
 Plug 'lourenci/github-colors'
+Plug 'sainnhe/sonokai'
 Plug 'mhartington/oceanic-next'
 Plug 'rafamadriz/neon'
 "}}}
@@ -17,7 +17,6 @@ Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'kopischke/vim-fetch'
-Plug 'mbbill/undotree'
 Plug 'mkitt/tabline.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'tomtom/tcomment_vim'
@@ -43,7 +42,10 @@ Plug 'editorconfig/editorconfig-vim'
 "}}
 
 "{{ Linter tools
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
+Plug 'neomake/neomake', { 'on': 'Neomake' }
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "}}
 
 "{{ Search tools:
