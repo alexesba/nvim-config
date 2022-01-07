@@ -79,5 +79,7 @@ inoremap ? ?<C-g>u
 noremap <expr> k (v:count > 5 ? "m'". v:count : ""). 'k'
 noremap <expr> j (v:count > 5 ? "m'". v:count : ""). 'j'
 
+" auto complete menu
+nnoremap <silent><leader>ac :CodeActionMenu<CR>
 "}}}
 

@@ -20,18 +20,14 @@ Plug 'kopischke/vim-fetch'
 Plug 'mkitt/tabline.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-eunuch'
 "}}}
 
 "{{ Syntax and highlight
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 Plug 'juanchanco/vim-jbuilder', { 'for': 'jbuilder' }
 Plug 'shmup/vim-sql-syntax', { 'for': 'sql'  }
 "}}}
@@ -43,9 +39,9 @@ Plug 'editorconfig/editorconfig-vim'
 
 "{{ Linter tools
 Plug 'preservim/nerdtree'
-Plug 'neomake/neomake', { 'on': 'Neomake' }
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'hrsh7th/nvim-compe'
+Plug 'neovim/nvim-lspconfig'
+Plug 'antoinemadec/FixCursorHold.nvim'
 "}}
 
 "{{ Search tools:

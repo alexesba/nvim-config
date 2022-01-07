@@ -1,4 +1,4 @@
-if has("win32")
+if executable('win32yank.exe')
 let g:clipboard = {
       \   'name': 'win32yank-wsl',
       \   'copy': {
