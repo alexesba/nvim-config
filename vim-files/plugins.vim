@@ -11,7 +11,8 @@ Plug 'rafamadriz/neon'
 
 "{{ Vim Editor enhancers:
 Plug 'andymass/vim-matchup'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
@@ -24,6 +25,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
 "}}}
 
 "{{ Syntax and highlight
@@ -42,6 +44,7 @@ Plug 'preservim/nerdtree'
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'weilbith/nvim-code-action-menu'
 "}}
 
 "{{ Search tools:

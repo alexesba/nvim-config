@@ -45,6 +45,8 @@ function! GitStatus()
   if(exists('GitGutterGetHunkSummary'))
     let [a,m,r] = GitGutterGetHunkSummary()
     return printf('+%d ~%d -%d', a, m, r)
+  elseif exists("b:gitsigns_status")
+    return get(b:,'gitsigns_status','')
   endif
 endfunction
 

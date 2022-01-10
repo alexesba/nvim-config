@@ -15,9 +15,9 @@ lua require('config.eslint')
 lua require('config.solargraph')
 lua require('config.stylelint_lsp')
 
-lua require('config.lsp')
 lua require('config.cursorhold')
-
+lua require('config.lsp')
+lua require('config.gitsigns')
 
 so ~/.config/nvim/vim-files/config/colorcolumn.vim
 so ~/.config/nvim/vim-files/config/tcomment.vim
