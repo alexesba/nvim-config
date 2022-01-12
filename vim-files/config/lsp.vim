@@ -8,4 +8,7 @@ nnoremap <silent> <A-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <A-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <A-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics{focusable=false}
+autocmd CursorHold * lua vim.diagnostic.open_float(0, { 
+      \ scope = 'line', 
+      \ focusable = false
+      \ })

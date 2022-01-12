@@ -21,7 +21,7 @@ set.listchars = {
   trail = '~'
 }
 set.swapfile = true
-set.synmaxcol = 281
+set.synmaxcol = 150
 set.cursorline = true
 set.signcolumn = 'yes'
 set.termguicolors = true

@@ -14,10 +14,13 @@ lua require('config.tsserver')
 lua require('config.eslint')
 lua require('config.solargraph')
 lua require('config.stylelint_lsp')
+lua require('config.lualanguageserver')
 
 lua require('config.cursorhold')
 lua require('config.lsp')
 lua require('config.gitsigns')
+lua require('config.codeActionMenu')
+lua require('config.nvimtree')
 
 so ~/.config/nvim/vim-files/config/colorcolumn.vim
 so ~/.config/nvim/vim-files/config/tcomment.vim
@@ -25,7 +28,6 @@ so ~/.config/nvim/vim-files/config/status_bar.vim
 so ~/.config/nvim/vim-files/config/nerd_tree.vim
 so ~/.config/nvim/vim-files/config/lsp.vim
 so ~/.config/nvim/vim-files/linters.vim
-"so ~/.config/nvim/vim-files/config/neomake.vim
 so ~/.config/nvim/vim-files/functions/custom.vim
 so ~/.config/nvim/vim-files/mappings/nerd_tree.vim
 so ~/.config/nvim/vim-files/mappings/telescope.vim

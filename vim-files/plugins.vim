@@ -7,11 +7,13 @@ Plug 'lourenci/github-colors'
 Plug 'sainnhe/sonokai'
 Plug 'mhartington/oceanic-next'
 Plug 'rafamadriz/neon'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'rakr/vim-one'
+Plug 'phanviet/vim-monokai-pro'
 "}}}
 
 "{{ Vim Editor enhancers:
 Plug 'andymass/vim-matchup'
-"Plug 'airblade/vim-gitgutter'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'dietsche/vim-lastplace'
@@ -40,7 +42,9 @@ Plug 'editorconfig/editorconfig-vim'
 "}}
 
 "{{ Linter tools
-Plug 'preservim/nerdtree'
+"Plug 'preservim/nerdtree'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 Plug 'antoinemadec/FixCursorHold.nvim'

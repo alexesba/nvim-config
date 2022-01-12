@@ -136,3 +136,11 @@ function! NerdTreeToggleFind()
     endif
 endfunction
 
+
+function! LspInstallServers()
+  :!npm install -g typescript typescript-language-server stylelint-lsp vscode-langservers-extracted
+
+  if filereadable('./Gemfile')
+    :!gem install solargraph
+  endif
+endfunction

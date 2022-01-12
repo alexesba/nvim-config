@@ -1,3 +1,9 @@
+autoload -Uz vcs_info
+
+precmd() {vcs_info}
+
+zstyle ':vcs_info:git:*' formats '%b'
+
 function git_color {
   local git_status="$(git status 2> /dev/null)"
   if [[ $git_status =~ "Changes to be committed" ]]; then
@@ -16,7 +22,7 @@ function git_color {
 }
 
 function git_branch() {
-    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+    branch=${vcs_info_msg_0_}
     if [[ $branch == "" ]]; then
         :
     else
