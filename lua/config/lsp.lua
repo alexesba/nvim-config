@@ -1,12 +1,9 @@
 local signs = {
   Error = " ",
-  -- Warning = "",
   Warn = "",
   Hint = "",
-  -- Information = " ",
   Info = " "
 }
--- local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
