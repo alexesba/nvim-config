@@ -138,7 +138,8 @@ endfunction
 
 
 function! LspInstallServers()
-  :!npm install -g typescript typescript-language-server stylelint-lsp vscode-langservers-extracted
+  :!npm install -g typescript typescript-language-server stylelint-lsp vscode-langservers-extracted @emacs-grammarly/unofficial-grammarly-language-server
+
 
   if filereadable('./Gemfile')
     :!gem install solargraph

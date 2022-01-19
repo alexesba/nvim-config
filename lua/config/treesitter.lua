@@ -5,11 +5,11 @@ require'nvim-treesitter.configs'.setup {
   },
 
   ensure_installed = {
-    'javascript',
-    'ruby',
-    'lua',
     'bash',
+    'javascript',
     'json',
+    'lua',
+    'ruby',
     'typescript'
   }
 }
