@@ -4,7 +4,7 @@ function! UpdateRepoDotFiles()
 endfunction
 
 function! PlayReprobado(file)
-  exe '!ogg123 '. a:file
+  call asyncrun#run('!', '' ,  'ogg123 '.a:file)
 endfunction
 
 command! Reprobado silent!call PlayReprobado('~/.config/nvim/Reprobado.ogg')
