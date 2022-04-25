@@ -7,9 +7,11 @@ lua require('config.nvim')
 lua require('config.matchup')
 lua require('config.treesitter')
 lua require('config.colorizer')
-"lua require('config.terminal')
+lua require('config.terminal')
 lua require('config.compe')
 " Linters
+" lua vim.lsp.set_log_level('debug')
+
 lua require('config.tsserver')
 lua require('config.eslint')
 lua require('config.solargraph')
@@ -36,10 +38,10 @@ so ~/.config/nvim/vim-files/linters.vim
 so ~/.config/nvim/vim-files/functions/custom.vim
 so ~/.config/nvim/vim-files/mappings/nerd_tree.vim
 so ~/.config/nvim/vim-files/mappings/telescope.vim
+so ~/.config/nvim/vim-files/mappings/vim-bundle.vim
 so ~/.config/nvim/vim-files/mappings/custom.vim
 so ~/.config/nvim/vim-files/commands/custom.vim
 so ~/.config/nvim/vim-files/fonts/italic.vim
 so ~/.config/nvim/vim-files/reload_vimrc.vim
 so ~/.config/nvim/vim-files/marp.vim
 so ~/.config/nvim/vim-files/clipboard.vim
-

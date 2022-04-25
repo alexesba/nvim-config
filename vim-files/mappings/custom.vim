@@ -83,3 +83,7 @@ noremap <expr> j (v:count > 5 ? "m'". v:count : ""). 'j'
 nnoremap <silent><leader>ac :CodeActionMenu<CR>
 "}}}
 
+
+
+:nnoremap <Leader>rp :%s/\<<C-r><C-w>\>/
+

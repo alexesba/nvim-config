@@ -20,6 +20,9 @@ alias gdc='git diff --cached'
 alias gs='git status'
 alias :q='exit'
 alias :wq='exit'
+alias lvim='nvim -u ~/lite.vim'
+alias pvim='nvim -u ~/performance.vim'
+alias tig='TERM=xterm-256color tig'
 
 if [[ "$OSTYPE" =~ ^linux ]]; then
   # Add custom alias for linux like macosx if the gnome-open is installed.
@@ -30,11 +33,11 @@ if [[ "$OSTYPE" =~ ^linux ]]; then
     alias open='gnome-open'
   fi
   # Add a command to reload the
-  alias reload='source ~/.bashrc'
+  alias reload='source ~/.zshrc'
 
 else
   alias dns-clean="sudo killall -HUP mDNSResponder"
-  alias reload='source ~/.bash_profile'
+  alias reload='source ~/.zshrc'
 fi
 
 alias gcoft='git branch -a| fzf | xargs git checkout -t'

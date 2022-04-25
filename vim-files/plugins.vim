@@ -2,7 +2,8 @@
 " cSpell:disable
 
 "{{ colorSchemes: light and dark themes
-Plug 'alexesba/ayu-vim'
+" Plug 'alexesba/ayu-vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'lourenci/github-colors'
 Plug 'sainnhe/sonokai'
 Plug 'mhartington/oceanic-next'
@@ -28,8 +29,14 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-bundler'
+" Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 "}}}
+
+Plug 'mattn/emmet-vim', { 'for': ['html', 'erb', 'javascriptreact'] }
+
 
 "{{ Syntax and highlight
 Plug 'norcalli/nvim-colorizer.lua'
@@ -52,15 +59,13 @@ Plug 'weilbith/nvim-code-action-menu'
 "}}
 
 "{{ Search tools:
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'commit': '668de0951a36ef17016074f1120b6aacbe6c4515'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'akinsho/toggleterm.nvim'
 "}}
-
-
 
 if !empty(glob("~/.plug.vim"))
   so ~/.plug.vim

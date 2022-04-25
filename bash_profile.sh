@@ -8,5 +8,9 @@ case $- in
       *) return;;
 esac
 
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+
 source ~/.config/nvim/bash-files/os-config.sh
 
