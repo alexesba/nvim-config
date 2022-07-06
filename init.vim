@@ -1,24 +1,28 @@
-" cSpell:disable
+" " cSpell:disable
 call plug#begin('~/.vim/plugged')
   so ~/.config/nvim/vim-files/plugins.vim
 call plug#end()
 
-"Loads the basic stuff such as showmatch, autoindent, numbers, etc.
-so ~/.config/nvim/vim-files/common.vim
+lua require('config.nvim')
+lua require('config.matchup')
+lua require('config.treesitter')
+lua require('config.colorizer')
+lua require('config.terminal')
+"lua require('config.gitsigns')
 
-" Load Fer.vim configuration and netrw plugins
-so ~/.config/nvim/vim-files/ferinit.vim
-"
-"Loads the fonfiguration for colorcolumn
-so ~/.config/nvim/vim-files/colorcolumn.vim
-
-so ~/.config/nvim/vim-files/functions.vim
-so ~/.config/nvim/vim-files/mappings.vim
+so ~/.config/nvim/vim-files/config/colorcolumn.vim
+so ~/.config/nvim/vim-files/config/coc.vim
+so ~/.config/nvim/vim-files/config/tcomment.vim
+so ~/.config/nvim/vim-files/config/cucumber.vim
+so ~/.config/nvim/vim-files/config/status_bar.vim
+so ~/.config/nvim/vim-files/functions/custom.vim
+so ~/.config/nvim/vim-files/mappings/coc.vim
+so ~/.config/nvim/vim-files/mappings/explorer.vim
+so ~/.config/nvim/vim-files/mappings/telescope.vim
+so ~/.config/nvim/vim-files/mappings/custom.vim
 so ~/.config/nvim/vim-files/linters.vim
-so ~/.config/nvim/vim-files/commands.vim
-so ~/.config/nvim/vim-files/italic_fonts.vim
-so ~/.config/nvim/vim-files/simple_status_bar.vim
-so ~/.config/nvim/vim-files/autocomplete.vim
-so ~/.config/nvim/vim-files/autocmd_config.vim
-so ~/.config/nvim/vim-files/tcomment_config.vim
+so ~/.config/nvim/vim-files/commands/custom.vim
+so ~/.config/nvim/vim-files/fonts/italic.vim
 so ~/.config/nvim/vim-files/reload_vimrc.vim
+so ~/.config/nvim/vim-files/marp.vim
+so ~/.config/nvim/vim-files/clipboard.vim

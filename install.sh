@@ -46,6 +46,7 @@ then
 
   ln -s ~/.config/nvim/tmux.conf ~/.tmux.conf
 
+
   echo "tmux.conf linked correctly!."
 fi
 
@@ -69,6 +70,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     mv ~/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml.old
     echo "your previous configuration was renamed as ~/.config/alacritty/alacritty.yml.old"
   fi
+
+  source ~/.config/nvim/terminfo/install.sh
 
   ln -s ~/.config/nvim/terminals/alacritty.yml ~/.config/alacritty
   echo "alacritty.yml linked correctly!."

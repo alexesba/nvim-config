@@ -54,8 +54,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: Operator Mono
-
+    family: OperatorMono Nerd Font
     # The `style` can be specified to pick a specific face.
     style: Book
 
@@ -65,8 +64,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Operator Mono
-
+    family: OperatorMono Nerd Font
     # The `style` can be specified to pick a specific face.
     style: Bold
 
@@ -76,9 +74,8 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Operator Mono
-  #
-  #   # The `style` can be specified to pick a specific face.
+    family: OperatorMono Nerd Font
+    # The `style` can be specified to pick a specific face.
     style: Book Italic
 
   # Point size
@@ -175,29 +172,29 @@ draw_bold_text_with_bright_colors: false
 colors:
   # Default colors
   primary:
-    background: '#1E282C'
-    foreground: '#C3C7D1'
+    background: '#121b21'
+    foreground: '#b3b8c3'
 
   # Normal colors
   normal:
-    black: '#073641'
-    red: '#EB606B'
-    green: '#C3E88D'
-    yellow: '#F7EB95'
-    blue: '#80CBC3'
-    magenta: '#FF2490'
-    cyan: '#AEDDFF'
+    black: '#121C21'
+    red: '#E44754'
+    green: '#89BD82'
+    yellow: '#F7BD51'
+    blue: '#5486C0'
+    magenta: '#B77EB8'
+    cyan: '#50A5A4'
     white: '#FFFFFF'
 
   # Bright colors
   bright:
-    black: '#002B36'
-    red: '#EB606B'
-    green: '#C3E88D'
-    yellow: '#F7EB95'
-    blue: '#7DC6BF'
-    magenta: '#6C71C3'
-    cyan: '#34434D'
+    black: '#52606B'
+    red: '#E44754'
+    green: '#89BD82'
+    yellow: '#F7BD51'
+    blue: '#5486C0'
+    magenta: '#B77EB8'
+    cyan: '#50A5A4'
     white: '#FFFFFF'
 
   # Dim colors

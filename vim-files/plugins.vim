@@ -2,14 +2,11 @@
 " cSpell:disable
 
 "{{ colorSchemes: light and dark themes
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'alexesba/ayu-vim'
+Plug 'sainnhe/sonokai'
+Plug 'lourenci/github-colors'
 Plug 'mhartington/oceanic-next'
-Plug 'mkarmona/materialbox'
-Plug 'morhetz/gruvbox'
-Plug 'patstockwell/vim-monokai-tasty'
-Plug 'scheakur/vim-scheakur'
-Plug 'tomasiser/vim-code-dark'
+Plug 'rafamadriz/neon'
 "}}}
 
 "{{ Vim Editor enhancers:
@@ -30,17 +27,14 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dispatch'
 "}}}
 
 "{{ Syntax and highlight
-Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
-Plug 'mattn/emmet-vim', { 'for': ['jsx', 'js', 'html', 'haml'] }
-Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-cucumber', { 'for': 'feature' }
-Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'juanchanco/vim-jbuilder', { 'for': 'jbuilder' }
+Plug 'shmup/vim-sql-syntax', { 'for': 'sql'  }
 "}}}
 
 "{{ Configuration tools:
@@ -53,10 +47,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "}}
 
 "{{ Search tools:
-Plug 'lambdalisue/fern.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'akinsho/toggleterm.nvim'
 "}}
 
 

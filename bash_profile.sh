@@ -8,26 +8,5 @@ case $- in
       *) return;;
 esac
 
-if [ -f ~/.bash_custom ]; then
- . ~/.bash_custom
-fi
-
-#load common functions
 source ~/.config/nvim/bash-files/os-config.sh
-source ~/.config/nvim/bash-files/functions.sh
 
-source ~/.config/nvim/bash-files/fzf-config.sh
-source ~/.config/nvim/bash-files/history.sh
-source ~/.config/nvim/bash-files/aliases.sh
-source ~/.config/nvim/bash-files/bindings.sh
-source ~/.config/nvim/bash-files/dircolors.sh
-source ~/.config/nvim/bash-files/nvm.sh
-source ~/.config/nvim/bash-files/python.sh
-source ~/.config/nvim/bash-files/rbenv.sh
-
-# Load common configuration for PS1
-source ~/.config/nvim/bash-files/ps1.sh
-
-# configure default editor
-export EDITOR=nvim
-export TERMINAL=alacritty
