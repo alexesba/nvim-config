@@ -126,17 +126,6 @@ function! UnMinify()
     normal ggVG=
 endfunction
 
-function! NerdTreeToggleFind()
-    if exists("g:NERDTree") && g:NERDTree.IsOpen()
-        NERDTreeClose
-    elseif filereadable(expand('%'))
-        NERDTreeFind
-    else
-        NERDTree
-    endif
-endfunction
-
-
 function! LspInstallServers()
   :!npm install -g typescript typescript-language-server stylelint-lsp vscode-langservers-extracted @emacs-grammarly/unofficial-grammarly-language-server
 

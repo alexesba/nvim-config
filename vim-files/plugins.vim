@@ -15,6 +15,7 @@ Plug 'phanviet/vim-monokai-pro'
 
 "{{ Vim Editor enhancers:
 Plug 'andymass/vim-matchup'
+Plug 'AndrewRadev/tagalong.vim', { 'for': ['javascriptreact', 'html', 'eruby', 'haml'] }
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'dietsche/vim-lastplace'
