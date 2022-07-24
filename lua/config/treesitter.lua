@@ -11,6 +11,7 @@ require'nvim-treesitter.configs'.setup {
     'lua',
     'ruby',
     'typescript',
-    'html'
+    'html',
+    'elixir'
   }
 }

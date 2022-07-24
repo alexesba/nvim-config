@@ -17,6 +17,8 @@ lua require('config.eslint')
 lua require('config.solargraph')
 lua require('config.stylelint_lsp')
 lua require('config.lualanguageserver')
+lua require('config.elixir');
+lua require('config.cssls');
 lua require('config.cucumber')
 "lua require('config.grammarly')
 " lua require('config.remark_ls')

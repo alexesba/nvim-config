@@ -1,9 +1,12 @@
 local util = require 'lspconfig.util'
 
 require'lspconfig'.stylelint_lsp.setup {
-  filetypes = { "sass", "scss", "css" },
-  stylelintplus  = {
-    autoFixOnFormat = true
+  enable = true,
+  filetypes = { 'css', 'less', 'scss', 'sugarss', 'wxss' },
+  settings = {
+    stylelintplus  = {
+      autoFixOnFormat = true
+    }
   },
   handlers = {
     ["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -13,3 +16,4 @@ require'lspconfig'.stylelint_lsp.setup {
   },
   root_dir =  util.root_pattern('.stylelintrc.json', 'package.json')
 }
+
