@@ -34,7 +34,6 @@ lua require('config.nvimtree')
 so ~/.config/nvim/vim-files/config/colorcolumn.vim
 so ~/.config/nvim/vim-files/config/tcomment.vim
 so ~/.config/nvim/vim-files/config/status_bar.vim
-so ~/.config/nvim/vim-files/config/nerd_tree.vim
 so ~/.config/nvim/vim-files/config/lsp.vim
 so ~/.config/nvim/vim-files/linters.vim
 so ~/.config/nvim/vim-files/functions/custom.vim
