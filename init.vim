@@ -16,6 +16,7 @@ lua require('config.tsserver')
 lua require('config.eslint')
 lua require('config.solargraph')
 lua require('config.stylelint_lsp')
+lua require('config.html')
 lua require('config.lualanguageserver')
 lua require('config.elixir');
 lua require('config.cssls');
