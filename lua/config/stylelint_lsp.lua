@@ -1,7 +1,6 @@
 local util = require 'lspconfig.util'
-
 require'lspconfig'.stylelint_lsp.setup {
-  enable = true,
+--   enable = true,
   filetypes = { 'css', 'less', 'scss', 'sugarss', 'wxss' },
   settings = {
     stylelintplus  = {
@@ -14,6 +13,5 @@ require'lspconfig'.stylelint_lsp.setup {
       virtual_text = false
     })
   },
-  root_dir =  util.root_pattern('.stylelintrc.json', 'package.json')
+--   root_dir =  util.root_pattern('.stylelintrc.json', 'package.json')
 }
-

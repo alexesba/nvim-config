@@ -127,7 +127,7 @@ function! UnMinify()
 endfunction
 
 function! LspInstallServers()
-  :!npm install -g typescript typescript-language-server stylelint-lsp vscode-langservers-extracted @emacs-grammarly/unofficial-grammarly-language-server
+  :!npm install --location=global typescript typescript-language-server stylelint-lsp vscode-langservers-extracted @emacs-grammarly/unofficial-grammarly-language-server
 
 
   if filereadable('./Gemfile')
