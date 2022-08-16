@@ -1,4 +1,3 @@
-" " cSpell:disable
 call plug#begin('~/.vim/plugged')
   so ~/.config/nvim/vim-files/plugins.vim
 call plug#end()
@@ -37,14 +36,10 @@ lua require('config.nvimtree')
 lua require('config.commands')
 lua require('config.statusLine')
 lua require('config.komentary')
-"lua require('config.colorcolumn');
 lua require('config.mappings')
 lua require('config.augroups')
 
- " so ~/.config/nvim/vim-files/config/colorcolumn.vim
 so ~/.config/nvim/vim-files/functions/custom.vim
-" so ~/.config/nvim/vim-files/fonts/italic.vim
-" so ~/.config/nvim/vim-files/reload_vimrc.vim
 so ~/.config/nvim/vim-files/marp.vim
 
 if !empty(glob("~/.vimrc"))
