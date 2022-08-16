@@ -50,7 +50,6 @@ function! GitStatus()
   endif
 endfunction
 
-
 set statusline=
 set statusline+=%#Question#%{(g:modeMap[mode()]=='N')?'\ \ NORMAL\ ':''}
 set statusline+=%#Directory#%{(g:modeMap[mode()]=='I')?'\ \ INSERT\ ':''}
