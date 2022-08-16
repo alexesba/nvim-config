@@ -43,11 +43,6 @@ map("n", "<leader>8", ":tabn 8<cr>", { noremap = true, silent = true })
 map("n", "<leader>9", ":tabn 9<cr>", { noremap = true, silent = true })
 map("n", "<leader>0", ":tabn 0<cr>", { noremap = true, silent = true})
 
-map("n", "<A-k>", ":<C-u>! move-2<CR>==", { noremap = true, silent = true })
-map("n", "<A-j>", ":<C-u>! move+<CR>==", { noremap = true, silent = true })
-map("x", "<A-k>", ":<C-u>! '<,'>move-2<CR>gv=gv", { noremap = true, silent = true })
-map("x", "<A-j>", ":<C-u>! '<,'>move'>+<CR>gv=gv", { noremap = true, silent = true });
-
 map("n", "<leader>no", ":Reprobado<CR>", { silent = true })
 map("n", "<leader>na", ":Reprobada<CR>", { silent = true })
 

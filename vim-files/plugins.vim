@@ -34,6 +34,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-bundler'
+Plug 'fedepujol/move.nvim'
+
 " Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 "}}}
 
