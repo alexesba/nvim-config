@@ -3,6 +3,7 @@ local util = require 'lspconfig.util'
 require'lspconfig'.stylelint_lsp.setup {
   enable = true,
   filetypes = { 'css', 'less', 'scss', 'sugarss', 'wxss' },
+  on_attach = OnAttach,
   settings = {
     stylelintplus  = {
       autoFixOnFormat = true

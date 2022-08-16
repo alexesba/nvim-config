@@ -1,1 +1,3 @@
-require'lspconfig'.remark_ls.setup{}
+require'lspconfig'.remark_ls.setup{
+  on_attach = OnAttach,
+}

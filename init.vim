@@ -21,6 +21,8 @@ lua require('config.lualanguageserver')
 lua require('config.elixir');
 lua require('config.cssls');
 lua require('config.cucumber')
+lua require('config.sqlls')
+
 "lua require('config.grammarly')
 " lua require('config.remark_ls')
 lua require('config.jsonls')
@@ -32,18 +34,19 @@ lua require('config.gitsigns')
 lua require('config.codeActionMenu')
 lua require('config.nvimtree')
 
-so ~/.config/nvim/vim-files/config/colorcolumn.vim
-so ~/.config/nvim/vim-files/config/tcomment.vim
-so ~/.config/nvim/vim-files/config/status_bar.vim
-so ~/.config/nvim/vim-files/config/lsp.vim
-so ~/.config/nvim/vim-files/linters.vim
+lua require('config.commands')
+lua require('config.statusLine')
+lua require('config.komentary')
+"lua require('config.colorcolumn');
+lua require('config.mappings')
+lua require('config.augroups')
+
+ " so ~/.config/nvim/vim-files/config/colorcolumn.vim
 so ~/.config/nvim/vim-files/functions/custom.vim
-so ~/.config/nvim/vim-files/mappings/nerd_tree.vim
-so ~/.config/nvim/vim-files/mappings/telescope.vim
-so ~/.config/nvim/vim-files/mappings/vim-bundle.vim
-so ~/.config/nvim/vim-files/mappings/custom.vim
-so ~/.config/nvim/vim-files/commands/custom.vim
-so ~/.config/nvim/vim-files/fonts/italic.vim
-so ~/.config/nvim/vim-files/reload_vimrc.vim
+" so ~/.config/nvim/vim-files/fonts/italic.vim
+" so ~/.config/nvim/vim-files/reload_vimrc.vim
 so ~/.config/nvim/vim-files/marp.vim
-so ~/.config/nvim/vim-files/clipboard.vim
+
+if !empty(glob("~/.vimrc"))
+  so ~/.vimrc
+endif

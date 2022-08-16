@@ -4,4 +4,4 @@ export PATH="$HOME/lua-language-server/bin:$PATH"
 alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
 
 export EDITOR=nvim
-export TERMINAL=alacritty
+export TERMINAL=kitty

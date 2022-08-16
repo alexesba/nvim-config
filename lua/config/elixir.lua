@@ -4,5 +4,6 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 require('lspconfig').elixirls.setup {
   cmd = { "elixir-ls" },
-  capabilities = capabilities
+  capabilities = capabilities,
+  on_attach = OnAttach,
 }

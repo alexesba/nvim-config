@@ -1,1 +1,3 @@
-require'lspconfig'.grammarly.setup{}
+require'lspconfig'.grammarly.setup{
+  on_attach = OnAttach,
+}

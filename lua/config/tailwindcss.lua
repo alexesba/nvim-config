@@ -1,1 +1,3 @@
-require'lspconfig'.tailwindcss.setup{}
+require'lspconfig'.tailwindcss.setup{
+  on_attach = OnAttach
+}

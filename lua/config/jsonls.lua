@@ -3,4 +3,5 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require'lspconfig'.jsonls.setup {
   capabilities = capabilities,
+  on_attach = OnAttach
 }

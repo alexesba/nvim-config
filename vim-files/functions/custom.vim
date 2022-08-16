@@ -61,7 +61,7 @@ function! RemoveExtraEmptyLinesFn()
   call setpos('.', save_cursor)
 endfunction
 
-function! TogleGitHubTableMode()
+function! ToggleGitHubTableMode()
   if g:table_mode_corner == '|'
     let g:table_mode_corner = '+'
   else
@@ -127,10 +127,34 @@ function! UnMinify()
 endfunction
 
 function! LspInstallServers()
-  :!npm install -g typescript typescript-language-server stylelint-lsp vscode-langservers-extracted @emacs-grammarly/unofficial-grammarly-language-server
-
+  :!npm install -g typescript 
+        \ typescript-language-server 
+        \ stylelint-lsp 
+        \ vscode-langservers-extracted 
+        \ @emacs-grammarly/unofficial-grammarly-language-server
+        \ sql-language-server
 
   if filereadable('./Gemfile')
     :!gem install solargraph
   endif
 endfunction
+
+function! ConfigItalicFonts() abort
+  if exists("g:enable_italic_font") && g:enable_italic_font == 1
+    hi Comment gui=italic
+    hi Constant gui=italic
+    hi PreProc gui=italic
+    hi Special gui=italic
+    hi Statement gui=italic
+    hi Type gui=italic
+    hi Keyword gui=italic
+    hi jsImport gui=italic
+    hi jsThis gui=italic
+    hi jsSuper gui=italic
+    hi cucumberWhen gui=italic
+    hi cucumberThen gui=italic
+    hi GruvboxAqua gui=italic
+    hi GruvboxOrange gui=italic
+  endif
+endfunction
+
