@@ -3,7 +3,8 @@
 
 "{{ colorSchemes: light and dark themes
 " Plug 'alexesba/ayu-vim'
-Plug 'ayu-theme/ayu-vim'
+" Plug 'ayu-theme/ayu-vim'
+Plug 'luxed/ayu-vim'
 Plug 'lourenci/github-colors'
 Plug 'sainnhe/sonokai'
 Plug 'mhartington/oceanic-next'
@@ -39,7 +40,7 @@ Plug 'fedepujol/move.nvim'
 " Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 "}}}
 
-Plug 'mattn/emmet-vim', { 'for': ['html', 'erb', 'javascriptreact'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'erb', 'javascriptreact', 'typescriptreact'] }
 
 
 "{{ Syntax and highlight
