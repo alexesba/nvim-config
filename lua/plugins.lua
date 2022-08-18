@@ -89,7 +89,6 @@ Plugins.init = function(use)
     end
   }
 
-
   use { 'mattn/emmet-vim', ft = { 'html', 'erb', 'javascriptreact' } }
 
   use {
@@ -191,6 +190,5 @@ Plugins.init = function(use)
     require('packer').sync()
   end
 end
-
 
 return Plugins

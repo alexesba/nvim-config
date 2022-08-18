@@ -47,11 +47,6 @@ loadnvmrc() {
 }
 
 function colorscheme() {
-  # if [ -n "$1" ] ; then
-  #   sh ~/src/gogh/themes/$1.sh
-  # else
-  #   ls ~/src/gogh/themes
-  # fi
   sh ~/src/gogh/themes/$(ls ~/src/gogh/themes |sed -e 's/\.sh$//' | fzf).sh
 }
 
