@@ -141,6 +141,7 @@ endfunction
 
 function! ConfigItalicFonts() abort
   if exists("g:enable_italic_font") && g:enable_italic_font == 1
+    hi TabLineSel cterm=bold ctermfg=114 ctermbg=237 gui=bold guifg=#99c794 guibg=#343d46
     hi Comment gui=italic
     hi Constant gui=italic
     hi PreProc gui=italic

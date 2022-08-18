@@ -35,7 +35,7 @@ vim.g.enable_italic_font = 1
 vim.inccommand='nosplit'
 vim.opt.colorcolumn = '81'
 
-function OnAttach(client, bufnr)
+function OnAttach(_, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)

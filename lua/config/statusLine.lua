@@ -99,13 +99,17 @@ M.get_filename = function(self)
   return " %<%F "
 end
 
-M.get_filetype = function()
+M.get_filetype = function(self)
   local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
-  local icon = require'nvim-web-devicons'.get_icon(file_name, file_ext, { default = true })
+  local icon, color = require'nvim-web-devicons'.get_icon(file_name, file_ext, { default = true })
   local filetype = vim.bo.filetype
-
   if filetype == '' then return '' end
-  return string.format(' %s %s ', icon, filetype):lower()
+  return string.format(
+  ' %s %s %s ',
+  '%#'..color..'#',
+  icon..' '..self.colors.active,
+  filetype
+  ):lower()
 end
 
 M.get_line_col = function(self)
