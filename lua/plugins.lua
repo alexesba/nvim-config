@@ -146,7 +146,7 @@ Plugins.init = function(use)
 
   use {
     'weilbith/nvim-code-action-menu',
-    cofig = function()
+    config = function()
       require('config.plugins.codeActionMenu')
     end
   }

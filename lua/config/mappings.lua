@@ -83,8 +83,8 @@ map("i", "!", "!<C-g>u")
 map("i", "?", "?<C-g>u")
 
 -- Jumplist Mutations:
-map("n", "k", "(v:count > 5 ? \"m'\". v:count : \"\"). 'k'", { expr = true })
-map("n", "j", "(v:count > 5 ? \"m'\". v:count : \"\"). 'j'", { expr = true })
+map("n", "k", "(v:count > 5 ? \"m'\". v:count : \"\"). 'k'", { expr = true, silent = true })
+map("n", "j", "(v:count > 5 ? \"m'\". v:count : \"\"). 'j'", { expr = true, silent = true })
 
 -- auto complete menu
 map("n", "<leader>ac", ":CodeActionMenu<CR>", { silent = true })
