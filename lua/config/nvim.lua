@@ -36,7 +36,7 @@ vim.inccommand='nosplit'
 vim.opt.colorcolumn = '81'
 
 function OnAttach(_, bufnr)
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap=true, silent=true, buffer=bufnr}
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
@@ -45,7 +45,7 @@ function OnAttach(_, bufnr)
   vim.keymap.set('n', '<space>h', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<space>k', vim.diagnostic.goto_prev, bufopts)
   vim.keymap.set('n', '<space>j', vim.diagnostic.goto_next, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)

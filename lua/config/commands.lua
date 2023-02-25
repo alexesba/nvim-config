@@ -95,7 +95,18 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
-'UpdateHashSyntax',
+'HashNewSyntax',
+[[:call HashNewSyntax()]],
+{ desc = "update hash old to new syntax" }
+)
+vim.api.nvim_create_user_command(
+'HashOldSyntax',
+[[:call HashOldSyntax()]],
+{ desc = "update hash new to old syntax" }
+)
+
+vim.api.nvim_create_user_command(
+'HashNewSyntax',
 [[:call UpdateRubyHashes()]],
 { desc = "update hash syntax" }
 )

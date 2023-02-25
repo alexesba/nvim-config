@@ -80,10 +80,7 @@ require'nvim-tree'.setup {
     }
   },
   view = {
-    width = 45,
-    height = 30,
-    hide_root_folder = false,
-    side = 'left',
+    adaptive_size = true,
     mappings = {
       custom_only = true,
       list = list

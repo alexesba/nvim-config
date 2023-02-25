@@ -14,7 +14,7 @@ M.separators = {
 }
 
 -- highlight groups
-M.colors = {
+M.colors = setmetatable({
   active        = '%#StatusLine#',
   inactive      = '%#StatuslineNC#',
   mode          = '%#Mode#',
@@ -25,7 +25,15 @@ M.colors = {
   filetype_alt  = '%#FiletypeAlt#',
   line_col      = '%#LineCol#',
   line_col_alt  = '%#LineColAlt#',
-}
+  -- Status mode colors
+  Normal        = '%#Question#',
+  Insert        = '%#Directory#',
+	Command       = '%#Identifier#'
+}, {
+  __index = function()
+      return '%#StatusLine#'
+  end
+})
 
 M.trunc_width = setmetatable({
   mode       = 80,
@@ -72,11 +80,12 @@ M.modes = setmetatable({
 
 M.get_current_mode = function(self)
   local current_mode = api.nvim_get_mode().mode
-
+  local mode =  self.modes[current_mode][1];
+  local color = self.colors[mode]
   if self:is_truncated(self.trunc_width.mode) then
-    return string.format(' %s ', self.modes[current_mode][2]):upper()
+    return string.format(' %s %s ', color,self.modes[current_mode][2]):upper()
   end
-  return string.format(' %s ', self.modes[current_mode][1]):upper()
+  return string.format(' %s %s ', color, self.modes[current_mode][1]):upper()
 end
 
 M.get_git_status = function(self)
@@ -85,11 +94,14 @@ M.get_git_status = function(self)
   local is_head_empty = signs.head ~= ''
 
   if self:is_truncated(self.trunc_width.git_status) then
-    return is_head_empty and string.format('  %s ', signs.head or '') or ''
+    return is_head_empty and string.format(
+    '  +%s ~%s -%s',
+    signs.added, signs.changed, signs.removed, signs.head
+  ) or ''
   end
 
   return is_head_empty and string.format(
-    ' +%s ~%s -%s |  %s ',
+    '  +%s ~%s -%s',
     signs.added, signs.changed, signs.removed, signs.head
   ) or ''
 end
@@ -112,11 +124,14 @@ M.get_filetype = function(self)
   ):lower()
 end
 
-M.get_line_col = function(self)
-  if self:is_truncated(self.trunc_width.line_col) then return ' %l:%c ' end
-  return ' Ln %l, Col %c '
+M.get_paste_mode = function(self)
+  return "%#MatchParen#%{&paste? ' PASTE ' :''}"
 end
 
+M.get_line_col = function(self)
+  if self:is_truncated(self.trunc_width.line_col) then return ' %3l:%-2c ' end
+  return ' %3l:%-2c '
+end
 
 M.set_active = function(self)
   local colors = self.colors
@@ -130,10 +145,12 @@ M.set_active = function(self)
   local filetype = colors.filetype .. self:get_filetype()
   local line_col = colors.line_col .. self:get_line_col()
   local line_col_alt = colors.line_col_alt .. self.separators[active_sep][2]
+	local paste_mode = self.get_paste_mode()
 
   return table.concat({
-    colors.active, mode, mode_alt, git, git_alt,
-    "%=", filename, "%=",
+    colors.active, mode, mode_alt,paste_mode,
+    filename, "%=",
+    git, git_alt,
     filetype_alt, filetype, line_col_alt, line_col
   })
 end

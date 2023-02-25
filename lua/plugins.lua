@@ -1,8 +1,26 @@
 local Plugins = {};
 Plugins.init = function(use)
+  use { 'JoosepAlviste/nvim-ts-context-commentstring' }
   use { 'wbthomason/packer.nvim' }
+  use {'rorymckinley/vim-rubyhash'}
+  use { 'aca/marp.nvim' }
+  use {
+    "brymer-meneses/grammar-guard.nvim",
+    requires = {
+      "neovim/nvim-lspconfig",
+      "williamboman/nvim-lsp-installer",
+    },
+    config = function()
+      require('config.linters.grammar-guard')
+    end
+  }
 
-  use { 'ayu-theme/ayu-vim' }
+  use {
+    'Shatur/neovim-ayu',
+    config = function()
+      require('config.plugins.neovim-ayu')
+    end
+  }
 
   use { 'lourenci/github-colors' }
 
@@ -166,6 +184,13 @@ Plugins.init = function(use)
     requires='kyazdani42/nvim-web-devicons',
     config = function()
       require('config.plugins.luatab')
+    end
+  }
+
+  use {
+    'rgroli/other.nvim',
+    config = function()
+      require('config.plugins.other')
     end
   }
 

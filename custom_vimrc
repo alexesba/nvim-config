@@ -4,9 +4,9 @@ let g:table_mode_corner='+'
 
 " let ayucolor="mirage"
 " let ayucolor = 'dark'
-let ayucolor="light"
+let ayucolor="mirage"
 " colorscheme ayu
-let neon_style='light'
+let neon_style='dark'
 
 " Available values: `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`, `'espresso'`
 " Create the directory and files if doesn't exist

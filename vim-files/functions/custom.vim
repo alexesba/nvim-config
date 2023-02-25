@@ -44,8 +44,12 @@ function! FormatXMLFn()
 endfunction
 
 " Converts old ruby hashes to the new syntax.
-function! UpdateRubyHashes()
+function! HashNewSyntax()
   :%s/:\([^ ]*\)\(\s*\)=>/\1:/g
+endfunction
+
+function! HashOldSyntax()
+  :%s/\(\w*\): \([':]\)/:\1 => \2/g
 endfunction
 
 " Strip trailing whitespace for code files on save
