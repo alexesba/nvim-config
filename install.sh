@@ -9,16 +9,19 @@ EOF
 # Shell configuration
 
 if which zsh > /dev/null; then
-  SHELL=$(which zsh)
+  TEM_SHELL=$(which zsh)
 elif which bash > /dev/null; then
-  SHELL=$(which bash)
+  TEM_SHELL=$(which bash)
 fi
 
-if [[ "$SHELL" =~ ^zsh ]]; then
-  BASHFILE=.zshrc
-elif [[ "$SHELL" =~ ^bash ]]; then
-  BASHFILE=.bashrc
+
+if [[ $TEM_SHELL == *'zsh' ]]; then
+  BASHFILE=".zshrc"
+elif [[ $TEM_SHELL == *'bash' ]]; then
+  BASHFILE=".bashrc"
 fi
+
+echo "$TEM_SHELL was selected as default shell"
 
 read -p "Do you want to install $BASHFILE config file?(y/n)" -n 1 -r
 echo
