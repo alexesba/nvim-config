@@ -1,1 +1,1 @@
-require('ayu').colorscheme()
+require('ayu')

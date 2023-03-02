@@ -2,8 +2,14 @@ local Plugins = {};
 Plugins.init = function(use)
   use { 'JoosepAlviste/nvim-ts-context-commentstring' }
   use { 'wbthomason/packer.nvim' }
-  use {'rorymckinley/vim-rubyhash'}
-  use { 'aca/marp.nvim' }
+  use {
+    'rorymckinley/vim-rubyhash',
+    ft = {'erb', 'ruby' }
+  }
+  use {
+    'aca/marp.nvim',
+    ft = {'md', 'markdown' }
+  }
   use {
     "brymer-meneses/grammar-guard.nvim",
     requires = {
