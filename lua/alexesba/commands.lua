@@ -18,7 +18,11 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
 'RemoveExtraEmptyLines',
-'call RemoveExtraEmptyLinesFn()',
+function ()
+  local save_cursor = vim.fn.getpos(".")
+  vim.cmd[[:%!cat -s]]
+  vim.fn.setpos('.', save_cursor)
+end,
 { desc = 'Remove extra empty lines' }
 )
 
@@ -96,18 +100,18 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
 'HashNewSyntax',
-[[:call HashNewSyntax()]],
+[[:%s/:\([^ ]*\)\(\s*\)=>/\1:/g]],
 { desc = "update hash old to new syntax" }
 )
 vim.api.nvim_create_user_command(
 'HashOldSyntax',
-[[:call HashOldSyntax()]],
+[[:%s/\(\w*\): \([':]\)/:\1 => \2/g]],
 { desc = "update hash new to old syntax" }
 )
 
 vim.api.nvim_create_user_command(
 'HashNewSyntax',
-[[:call UpdateRubyHashes()]],
+[[:%s/:\([^ ]*\)\(\s*\)=>/\1:/g]],
 { desc = "update hash syntax" }
 )
 
@@ -119,13 +123,23 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
 'TableModeToggle',
-[[:call ToggleGitHubTableMode()]],
+function ()
+  if vim.g.table_mode_corner == '|' then
+    vim.g.table_mode_corner = '+'
+  else
+    vim.g.table_mode_corner='|'
+  end
+end,
 { desc = "toggle git hub table mode" }
 )
 
 vim.api.nvim_create_user_command(
 'CleanWhiteSpaces',
-[[:call CleanUp()]],
+function ()
+  local save_cursor = vim.fn.getpos(".")
+  vim.cmd[[%s/\s\+$//e]]
+  vim.fn.setpos('.', save_cursor)
+end,
 { desc = "Clean White spaces" }
 )
 
@@ -151,4 +165,27 @@ vim.api.nvim_create_user_command(
 'ShowHiName',
 [[:exe 'hi '.synIDattr(synstack(line('.'), col('.'))[-1], 'name')]],
 { desc = "show hi name" }
+)
+
+vim.api.nvim_create_user_command(
+'Reprobado',
+[[silent!:lua PlayAudio('~/.config/nvim/Reprobado.ogg')]],
+{ desc = 'Play Reprobado'}
+)
+vim.api.nvim_create_user_command(
+'Reprobada',
+[[silent!:lua PlayAudio('~/.config/nvim/Reprobada.ogg')]],
+{ desc = 'Play Reprobada'}
+)
+
+vim.api.nvim_create_user_command(
+'OpenConfig',
+[[:e $MYVIMRC]],
+{ desc = 'Edit VIMRC file' }
+)
+
+vim.api.nvim_create_user_command(
+'Reload',
+[[:so $MYVIMRC]],
+{ desc = 'Reload VIMRC file' }
 )
