@@ -1,2 +1,1 @@
 require('alexesba')
-require('autoreload')
