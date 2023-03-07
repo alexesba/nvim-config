@@ -5,5 +5,5 @@ vim.g.matchup_matchpref = {
 
 -- for jsx we need a special matcher function
 
-vim.g.matchup_hotfix_javascriptreact = 'JsxHotfix'
-vim.g.matchup_hotfix_javascript = 'JsxHotfix'
+-- vim.g.matchup_hotfix_javascriptreact = 'JsxHotfix'
+-- vim.g.matchup_hotfix_javascript = 'JsxHotfix'
