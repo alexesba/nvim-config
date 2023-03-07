@@ -25,10 +25,8 @@ local ReloadColorSchemes = vim.api.nvim_create_augroup(
 
 vim.api.nvim_create_autocmd(
 "ColorScheme,VimEnter", {
-  command = [[
-  call g:ConfigItalicFonts()
-  ]],
-  group = ReloadColorSchemes
+  group = ReloadColorSchemes,
+  callback = ConfigItalicFonts
 })
 
 local ReloadVimrc = vim.api.nvim_create_augroup(

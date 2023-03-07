@@ -90,3 +90,6 @@ map("n", "j", "(v:count > 5 ? \"m'\". v:count : \"\"). 'j'", { expr = true, sile
 map("n", "<leader>ac", ":CodeActionMenu<CR>", { silent = true })
 
 map("n", "<leader>rp", ":%s/\\<<C-r><C-w>\\>/")
+
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")

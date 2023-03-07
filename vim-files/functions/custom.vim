@@ -142,24 +142,3 @@ function! LspInstallServers()
     :!gem install solargraph
   endif
 endfunction
-
-function! ConfigItalicFonts() abort
-  if exists("g:enable_italic_font") && g:enable_italic_font == 1
-    hi TabLineSel cterm=bold ctermfg=114 ctermbg=237 gui=bold guifg=#99c794 guibg=#343d46
-    hi Comment gui=italic
-    hi Constant gui=italic
-    hi PreProc gui=italic
-    hi Special gui=italic
-    hi Statement gui=italic
-    hi Type gui=italic
-    hi Keyword gui=italic
-    hi jsImport gui=italic
-    hi jsThis gui=italic
-    hi jsSuper gui=italic
-    hi cucumberWhen gui=italic
-    hi cucumberThen gui=italic
-    hi GruvboxAqua gui=italic
-    hi GruvboxOrange gui=italic
-  endif
-endfunction
-
