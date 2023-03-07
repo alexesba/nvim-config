@@ -1,4 +1,4 @@
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
   use { 'JoosepAlviste/nvim-ts-context-commentstring' }
   use { 'wbthomason/packer.nvim' }
   use { 'rorymckinley/vim-rubyhash', ft = {'erb', 'ruby' } }
