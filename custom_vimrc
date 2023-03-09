@@ -1,22 +1,5 @@
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 0
-let g:table_mode_corner='+'
-
-" let ayucolor="mirage"
-" let ayucolor = 'dark'
 let ayucolor="mirage"
 " colorscheme ayu
 let neon_style='dark'
-
-" Available values: `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`, `'espresso'`
-" Create the directory and files if doesn't exist
 let sonokai_style = 'atlantis'
 colorscheme sonokai
-set background=light
-"autocmd! BufWritePre * call MkDir()
-" Vim syntax highlighting for ARB templates (ActiveAdmin) is not working
-autocmd! BufRead,BufNewFile *.arb setfiletype ruby
-autocmd! BufNewFile,BufRead,BufEnter *.jbuilder setf jbuilder
-let g:tagalong_verbose = 0
-let g:tagalong_additional_filetypes = ['javascript']
-let g:table_mode_color_cells = 1

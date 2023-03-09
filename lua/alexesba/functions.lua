@@ -30,7 +30,6 @@ function LspInstallServers()
         \ typescript-language-server
         \ stylelint-lsp
         \ vscode-langservers-extracted
-        \ @emacs-grammarly/unofficial-grammarly-language-server
         \ sql-language-server
   ]]
 

@@ -59,8 +59,12 @@ require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
   use { 'rgroli/other.nvim' }
-  use { 'neovim/nvim-lspconfig', }
   use({ 'rose-pine/neovim', as = 'rose-pine' })
+  use {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig'
+  }
 
 
   if PackerBootstrap then
