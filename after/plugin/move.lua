@@ -1,9 +1,0 @@
-local map = require('utils.map').map
-map('n', '<A-j>', ":MoveLine(1)<CR>", { silent = true })
-map('n', '<A-k>', ":MoveLine(-1)<CR>", { silent = true })
-map('v', '<A-j>', ":MoveBlock(1)<CR>", { silent = true })
-map('v', '<A-k>', ":MoveBlock(-1)<CR>", { silent = true })
-map('n', '<A-l>', ":MoveHChar(1)<CR>", { silent = true })
-map('n', '<A-h>', ":MoveHChar(-1)<CR>", { silent = true })
-map('v', '<A-l>', ":MoveHBlock(1)<CR>", { silent = true })
-map('v', '<A-h>', ":MoveHBlock(-1)<CR>", { silent = true })
