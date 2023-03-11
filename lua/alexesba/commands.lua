@@ -189,3 +189,9 @@ vim.api.nvim_create_user_command(
 [[:so $MYVIMRC]],
 { desc = 'Reload VIMRC file' }
 )
+
+vim.api.nvim_create_user_command(
+'ColorScheme',
+ require('telescope.builtin').colorscheme,
+{ desc = 'Reload VIMRC file' }
+)
