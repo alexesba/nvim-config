@@ -1,4 +1,7 @@
-require'lspconfig'.tsserver.setup{
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+require('lspconfig').tsserver.setup({
+  capabilities = capabilities,
   on_attach = OnAttach,
   preferences = {
     quotePreference ="auto"
@@ -9,4 +12,4 @@ require'lspconfig'.tsserver.setup{
       virtual_text = false
     })
   }
-}
+})

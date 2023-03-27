@@ -20,7 +20,7 @@ alias gdc='git diff --cached'
 alias gs='git status'
 alias :q='exit'
 alias :wq='exit'
-alias lvim='nvim -u ~/lite.vim'
+alias lvim='nvim --clean -u NONE -i NONE'
 alias pvim='nvim -u ~/performance.vim'
 alias tig='TERM=xterm-256color tig'
 

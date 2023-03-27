@@ -3,7 +3,7 @@ local map = require('utils.map').map
 map(
 "n",
 "<C-p>",
-":NvimTreeFindFileToggle<CR>", {
+":NvimTreeFindFileToggle!<CR>", {
   silent = true,
   noremap = true
 });

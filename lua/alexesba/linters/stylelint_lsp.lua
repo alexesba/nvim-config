@@ -1,8 +1,9 @@
-local util = require 'lspconfig.util'
-require'lspconfig'.stylelint_lsp.setup {
---   enable = true,
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+require('lspconfig').stylelint_lsp.setup({
   filetypes = { 'css', 'less', 'scss', 'sugarss', 'wxss' },
   on_attach = OnAttach,
+  capabilities = capabilities,
   settings = {
     stylelintplus  = {
       autoFixOnFormat = true
@@ -14,5 +15,4 @@ require'lspconfig'.stylelint_lsp.setup {
       virtual_text = false
     })
   },
---   root_dir =  util.root_pattern('.stylelintrc.json', 'package.json')
-}
+})

@@ -47,7 +47,7 @@ loadnvmrc() {
 }
 
 function colorscheme() {
-  sh ~/src/gogh/themes/$(ls ~/src/gogh/themes |sed -e 's/\.sh$//' | fzf).sh
+  sh ~/src/gogh/installs/$(ls ~/src/gogh/installs/ |sed -e 's/\.sh$//' | fzf).sh
 }
 
 function restore_db {

@@ -1,4 +1,7 @@
-require'lspconfig'.solargraph.setup{
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+require('lspconfig').solargraph.setup({
+  capabilities = capabilities,
   diagnostic = true,
   definitions  = true,
   on_attach = OnAttach,
@@ -8,4 +11,4 @@ require'lspconfig'.solargraph.setup{
       virtual_text = false
     })
   }
-}
+})

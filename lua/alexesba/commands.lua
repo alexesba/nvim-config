@@ -122,7 +122,7 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
-'TableModeToggle',
+'GithubTableModeToggle',
 function ()
   if vim.g.table_mode_corner == '|' then
     vim.g.table_mode_corner = '+'
