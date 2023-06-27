@@ -3,6 +3,10 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
 
+  matchup = {
+    enable = true
+  },
+
   highlight = {
     enable = true,
    additional_vim_regex_highlighting = false,

@@ -70,16 +70,17 @@ require('packer').startup(function(use)
 
   -- Color schemes
   use {
-    'Shatur/neovim-ayu',
+    'embark-theme/vim',
     'folke/tokyonight.nvim',
-    'lourenci/github-colors',
     'mhartington/oceanic-next',
-    'phanviet/vim-monokai-pro',
-    'projekt0n/github-nvim-theme',
     'rafamadriz/neon',
     'rakr/vim-one',
+    'sainnhe/edge',
     'sainnhe/gruvbox-material',
     'sainnhe/sonokai',
+    'savq/melange-nvim',
+    'shatur/neovim-ayu',
+    'yonlu/omni.vim',
   }
 
   if PackerBootstrap then
