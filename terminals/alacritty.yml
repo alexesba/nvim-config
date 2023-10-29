@@ -48,38 +48,28 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    # Font family
-    #
-    # Default:
-    #   - (macOS) Menlo
-    #   - (Linux) monospace
-    #   - (Windows) Consolas
     family: OperatorMono Nerd Font
-    # The `style` can be specified to pick a specific face.
     style: Book
+    # family: Iosevka Term
+    # style: Regular
 
   # Bold font face
   bold:
-    # Font family
-    #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
     family: OperatorMono Nerd Font
-    # The `style` can be specified to pick a specific face.
     style: Bold
+    #
+    # family: Iosevka Term
+    # style: Bold
 
   # Italic font face
   italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
     family: OperatorMono Nerd Font
-    # The `style` can be specified to pick a specific face.
     style: Book Italic
+    # family: Iosevka Term
+    # style: Italic
 
   # Point size
-  size: 13
+  size: 14
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -172,30 +162,30 @@ draw_bold_text_with_bright_colors: false
 colors:
   # Default colors
   primary:
-    background: '#121b21'
-    foreground: '#b3b8c3'
+    background: '#2C2E34'
+    foreground: '#E2E2E3'
 
   # Normal colors
   normal:
-    black: '#121C21'
-    red: '#E44754'
-    green: '#89BD82'
-    yellow: '#F7BD51'
-    blue: '#5486C0'
-    magenta: '#B77EB8'
-    cyan: '#50A5A4'
-    white: '#FFFFFF'
+    black: '#2C2E34'
+    red: '#FC5D7C'
+    green: '#9ED072'
+    yellow: '#E7C664'
+    blue: '#F39660'
+    magenta: '#B39DF3'
+    cyan: '#76CCE0'
+    white: '#E2E2E3'
 
   # Bright colors
   bright:
-    black: '#52606B'
-    red: '#E44754'
-    green: '#89BD82'
-    yellow: '#F7BD51'
-    blue: '#5486C0'
-    magenta: '#B77EB8'
-    cyan: '#50A5A4'
-    white: '#FFFFFF'
+    black: '#7F8490'
+    red: '#FC5D7C'
+    green: '#9ED072'
+    yellow: '#E7C664'
+    blue: '#F39660'
+    magenta: '#B39DF3'
+    cyan: '#76CCE0'
+    white: '#E2E2E3'
 
   # Dim colors
   #
@@ -251,7 +241,7 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+window.opacity: 1.0
 
 # Mouse bindings
 #
@@ -340,7 +330,7 @@ live_config_reload: true
 #   - (Linux) user login shell
 #   - (Windows) powershell
 shell:
-  program: /usr/bin/bash
+  program: /opt/homebrew/bin/zsh
   args:
   - --login
 

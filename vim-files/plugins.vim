@@ -2,37 +2,48 @@
 " cSpell:disable
 
 "{{ colorSchemes: light and dark themes
-Plug 'alexesba/ayu-vim'
-Plug 'sainnhe/sonokai'
+" Plug 'alexesba/ayu-vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'lourenci/github-colors'
+Plug 'sainnhe/sonokai'
 Plug 'mhartington/oceanic-next'
 Plug 'rafamadriz/neon'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'rakr/vim-one'
+Plug 'phanviet/vim-monokai-pro'
 "}}}
 
 "{{ Vim Editor enhancers:
 Plug 'andymass/vim-matchup'
-Plug 'airblade/vim-gitgutter'
+Plug 'AndrewRadev/tagalong.vim', { 'for': ['javascriptreact', 'html', 'eruby', 'haml'] }
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'skywind3000/asyncrun.vim'
 Plug 'kopischke/vim-fetch'
-Plug 'mbbill/undotree'
 Plug 'mkitt/tabline.vim'
 Plug 'mg979/vim-visual-multi'
-Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
+" Plug 'tomtom/tcomment_vim'
+Plug 'b3nj5m1n/kommentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-bundler'
+Plug 'fedepujol/move.nvim'
+
+" Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 "}}}
+
+Plug 'mattn/emmet-vim', { 'for': ['html', 'erb', 'javascriptreact'] }
+
 
 "{{ Syntax and highlight
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'tpope/vim-cucumber', { 'for': 'feature' }
 Plug 'juanchanco/vim-jbuilder', { 'for': 'jbuilder' }
 Plug 'shmup/vim-sql-syntax', { 'for': 'sql'  }
 "}}}
@@ -43,18 +54,22 @@ Plug 'editorconfig/editorconfig-vim'
 "}}
 
 "{{ Linter tools
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'hrsh7th/nvim-compe'
+Plug 'neovim/nvim-lspconfig'
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'weilbith/nvim-code-action-menu'
 "}}
 
 "{{ Search tools:
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'akinsho/toggleterm.nvim'
 "}}
-
-
 
 if !empty(glob("~/.plug.vim"))
   so ~/.plug.vim

@@ -8,7 +8,8 @@ if !exists(":VimMarp")
   function s:BeginMarp()
     if s:toggle
       if &filetype == 'markdown'
-        AsyncRun -mode=term -rows=5 -focus=0 marp "%:p" && wsl-open "%:r".html && marp "%:p" -w
+        " AsyncRun -mode=term -rows=5 -focus=0 marp "%:p" -w && open "%:p:r.html" && marp "%:p" -w
+        AsyncRun marp "%"  && open "%:r".html && marp "%"  --watch
         let s:toggle = 0
       else
         echo 'Filetype is not markdown'

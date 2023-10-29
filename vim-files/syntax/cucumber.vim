@@ -11,3 +11,4 @@ augroup cucumber_syntax
   autocmd!
   autocmd FileType cucumber call g:ConfigCucumberSyntax()
 augroup END
+
