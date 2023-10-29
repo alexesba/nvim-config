@@ -3,28 +3,28 @@ local columnLimit = vim.api.nvim_create_augroup(
 )
 
 vim.api.nvim_create_autocmd(
-"BufRead,BufEnter", {
+{ "BufRead", "BufEnter" }, {
   command = [[
    highlight ColumnLimit ctermbg=Red guibg=Red
   ]],
   group = columnLimit
 })
 
-vim.api.nvim_create_autocmd(
-"BufRead,BufEnter", {
-  command = [[
-  let w:m1=matchadd('ColumnLimit', '\%<' . (&colorcolumn+1) . 'v.\%>' . &colorcolumn . 'v' , -1)
-  ]],
-  group = columnLimit
-}
-)
+--vim.api.nvim_create_autocmd(
+--{ "BufRead", "BufEnter" }, {
+--  command = [[
+--  let w:m1=matchadd('ColumnLimit', '\%<' . (&colorcolumn+1) . 'v.\%>' . &colorcolumn . 'v' , -1)
+--  ]],
+--  group = columnLimit
+--}
+--)
 
 local ReloadColorSchemes = vim.api.nvim_create_augroup(
 "ReloadColorSchemes", { clear = true }
 )
 
 vim.api.nvim_create_autocmd(
-"ColorScheme,VimEnter", {
+{ "ColorScheme","VimEnter" }, {
   group = ReloadColorSchemes,
   callback = ConfigItalicFonts
 })
@@ -45,13 +45,13 @@ vim.api.nvim_create_autocmd(
 })
 
 vim.api.nvim_create_autocmd(
-'BufRead,BufNewFile',{
+{ 'BufRead', 'BufNewFile' },{
   pattern = { "*.arb" },
   command = "setfiletype ruby"
 })
 
 vim.api.nvim_create_autocmd(
-'BufNewFile,BufRead,BufEnter', {
+{ 'BufNewFile', 'BufRead', 'BufEnter' }, {
   pattern = { "*.jbuilder" },
   command = "setf jbuilder"
 });

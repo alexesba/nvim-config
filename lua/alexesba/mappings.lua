@@ -8,6 +8,9 @@ map(
   noremap = true
 });
 
+-- Markdown Preview
+map('n', '<leader>mp', "<cmd>MarkdownPreviewToggle<cr>", { silent = true, noremap = true })
+
 -- Telescope
 map("n", "<leader>ff", ":lua require('telescope.builtin').find_files({file_ignore_patterns = {'node_modules/*', '.git/**'} })<CR>", {
   noremap = true,

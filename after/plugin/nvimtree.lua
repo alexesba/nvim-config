@@ -96,9 +96,6 @@ require'nvim-tree'.setup {
   },
   view = {
     adaptive_size = true,
-    mappings = {
-      custom_only = true,
-    },
     number = false,
     relativenumber = false,
     signcolumn = "yes"
