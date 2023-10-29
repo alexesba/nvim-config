@@ -8,9 +8,13 @@ map(
   noremap = true
 });
 
+-- Markdown Preview
+map('n', '<leader>mp', "<cmd>MarkdownPreviewToggle<cr>", { silent = true, noremap = true })
+
 -- Telescope
 map("n", "<leader>ff", ":lua require('telescope.builtin').find_files({file_ignore_patterns = {'node_modules/*', '.git/**'} })<CR>", {
-  noremap = true
+  noremap = true,
+  silent = true
 })
 map('n', '<leader>fk', "<cmd>lua require('telescope.builtin').grep_string()<cr>", { silent = true, noremap = true })
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>",{ noremap = true })

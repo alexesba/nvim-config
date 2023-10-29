@@ -1,8 +1,11 @@
 local tagalog_file_types = { 'javascriptreact', 'html', 'eruby', 'haml', }
 local markdown_file_types = { 'md', 'markdown' }
 local emmet_file_types = { 'html', 'erb', 'javascriptreact' }
-
-require('packer').startup(function(use)
+local packer = require('packer');
+packer.init({
+  max_jobs = 5
+})
+packer.startup(function(use)
   use { 'JoosepAlviste/nvim-ts-context-commentstring' }
   use { 'aca/marp.nvim', ft = { 'md', 'markdown' } }
   use { 'andymass/vim-matchup' }
@@ -45,6 +48,7 @@ require('packer').startup(function(use)
   use { 'kyazdani42/nvim-web-devicons' }
   use { 'kyazdani42/nvim-tree.lua' }
   use { 'akinsho/toggleterm.nvim' }
+  use { 'windwp/nvim-ts-autotag' }
   use {
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
@@ -84,6 +88,6 @@ require('packer').startup(function(use)
   }
 
   if PackerBootstrap then
-    require('packer').sync()
+    packer.sync()
   end
 end)
