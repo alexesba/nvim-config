@@ -5,17 +5,15 @@ local function on_attach(bufnr)
     return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
 
-
   -- Default mappings not inserted as:
   --  remove_keymaps = true
   --  OR
   --  view.mappings.custom_only = true
 
-
   -- Mappings migrated from view.mappings.list
-  --
   -- You will need to insert "your code goes here" for any mappings with a custom action_cb
-  if(api) then
+
+  if (api) then
     vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
     vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
     vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
@@ -54,19 +52,19 @@ end
 
 local nvim_tree = prequire('nvim-tree')
 
-if(nvim_tree) then
-    nvim_tree.setup({
-    on_attach = on_attach,
+if (nvim_tree) then
+  nvim_tree.setup({
+    on_attach           = on_attach,
     disable_netrw       = false,
     hijack_netrw        = false,
     open_on_tab         = false,
     hijack_cursor       = false,
     update_cwd          = false,
-    hijack_directories   = {
+    hijack_directories  = {
       enable = false,
       auto_open = false,
     },
-    diagnostics = {
+    diagnostics         = {
       enable = false,
       icons = {
         hint = "",
@@ -80,87 +78,87 @@ if(nvim_tree) then
       update_cwd  = true,
       ignore_list = {}
     },
-    system_open = {
+    system_open         = {
       cmd  = nil,
       args = {}
     },
-    filters = {
+    filters             = {
       dotfiles = true,
       custom = {}
     },
-    git = {
+    git                 = {
       enable = true,
       ignore = true,
       timeout = 500,
     },
-    actions = {
+    actions             = {
       open_file = {
         resize_window = false
       }
     },
-    view = {
+    view                = {
       adaptive_size = true,
       number = false,
       relativenumber = false,
       signcolumn = "yes"
     },
 
-        renderer = {
-          add_trailing = false,
-          group_empty = false,
-          highlight_git = false,
-          full_name = false,
-          highlight_opened_files = "none",
-          root_folder_modifier = ":~",
-          indent_markers = {
-            enable = false,
-            icons = {
-              corner = "└",
-              edge = "│",
-              item = "│",
-              none = " ",
-            },
-          },
-          icons = {
-            webdev_colors = true,
-            git_placement = "before",
-            padding = " ",
-            symlink_arrow = " ➛ ",
-            show = {
-              file = true,
-              folder = true,
-              folder_arrow = true,
-              git = true,
-            },
-            glyphs = {
-              default = "",
-              symlink = "",
-              bookmark = "",
-              folder = {
-                arrow_closed = "",
-                arrow_open = "",
-                default = "",
-                open = "",
-                empty = "",
-                empty_open = "",
-                symlink = "",
-                symlink_open = "",
-              },
-              git = {
-                unstaged = "✗",
-                staged = "✓",
-                unmerged = "",
-                renamed = "➜",
-                untracked = "★",
-                deleted = "",
-                ignored = "◌",
-              },
-            },
-          },
-          special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
-          symlink_destination = true,
+    renderer            = {
+      add_trailing = false,
+      group_empty = false,
+      highlight_git = false,
+      full_name = false,
+      highlight_opened_files = "none",
+      root_folder_modifier = ":~",
+      indent_markers = {
+        enable = false,
+        icons = {
+          corner = "└",
+          edge = "│",
+          item = "│",
+          none = " ",
         },
-    trash = {
+      },
+      icons = {
+        webdev_colors = true,
+        git_placement = "before",
+        padding = " ",
+        symlink_arrow = " ➛ ",
+        show = {
+          file = true,
+          folder = true,
+          folder_arrow = true,
+          git = true,
+        },
+        glyphs = {
+          default = "",
+          symlink = "",
+          bookmark = "",
+          folder = {
+            arrow_closed = "",
+            arrow_open = "",
+            default = "",
+            open = "",
+            empty = "",
+            empty_open = "",
+            symlink = "",
+            symlink_open = "",
+          },
+          git = {
+            unstaged = "✗",
+            staged = "✓",
+            unmerged = "",
+            renamed = "➜",
+            untracked = "★",
+            deleted = "",
+            ignored = "◌",
+          },
+        },
+      },
+      special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+      symlink_destination = true,
+    },
+    trash               = {
       cmd = "trash",
       require_confirm = true
     }
