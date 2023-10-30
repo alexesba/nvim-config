@@ -2,4 +2,4 @@ let ayucolor="mirage"
 " colorscheme ayu
 let neon_style='dark'
 let sonokai_style = 'atlantis'
-colorscheme sonokai
+silent! colorscheme sonokai
