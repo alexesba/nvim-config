@@ -15,23 +15,23 @@ M.separators = {
 
 -- highlight groups
 M.colors = setmetatable({
-  active        = '%#StatusLine#',
-  inactive      = '%#StatuslineNC#',
-  mode          = '%#Mode#',
-  mode_alt      = '%#ModeAlt#',
-  git           = '%#Git#',
-  git_alt       = '%#GitAlt#',
-  filetype      = '%#Filetype#',
-  filetype_alt  = '%#FiletypeAlt#',
-  line_col      = '%#LineCol#',
-  line_col_alt  = '%#LineColAlt#',
+  active       = '%#StatusLine#',
+  inactive     = '%#StatuslineNC#',
+  mode         = '%#Mode#',
+  mode_alt     = '%#ModeAlt#',
+  git          = '%#Git#',
+  git_alt      = '%#GitAlt#',
+  filetype     = '%#Filetype#',
+  filetype_alt = '%#FiletypeAlt#',
+  line_col     = '%#LineCol#',
+  line_col_alt = '%#LineColAlt#',
   -- Status mode colors
-  Normal        = '%#Question#',
-  Insert        = '%#Directory#',
-	Command       = '%#Identifier#'
+  Normal       = '%#Question#',
+  Insert       = '%#Directory#',
+  Command      = '%#Identifier#'
 }, {
   __index = function()
-      return '%#StatusLine#'
+    return '%#StatusLine#'
   end
 })
 
@@ -42,7 +42,7 @@ M.trunc_width = setmetatable({
   line_col   = 60,
 }, {
   __index = function()
-      return 80
+    return 80
   end
 })
 
@@ -52,52 +52,52 @@ M.is_truncated = function(_, width)
 end
 
 M.modes = setmetatable({
-  ['n']  = {'Normal', 'N'};
-  ['no'] = {'N·Pending', 'N·P'} ;
-  ['v']  = {'Visual', 'V' };
-  ['V']  = {'V·Line', 'V·L' };
-  [''] = {'V·Block', 'V·B'}; -- this is not ^V, but it's , they're different
-  ['s']  = {'Select', 'S'};
-  ['S']  = {'S·Line', 'S·L'};
-  [''] = {'S·Block', 'S·B'}; -- same with this one, it's not ^S but it's 
-  ['i']  = {'Insert', 'I'};
-  ['ic'] = {'Insert', 'I'};
-  ['R']  = {'Replace', 'R'};
-  ['Rv'] = {'V·Replace', 'V·R'};
-  ['c']  = {'Command', 'C'};
-  ['cv'] = {'Vim·Ex ', 'V·E'};
-  ['ce'] = {'Ex ', 'E'};
-  ['r']  = {'Prompt ', 'P'};
-  ['rm'] = {'More ', 'M'};
-  ['r?'] = {'Confirm ', 'C'};
-  ['!']  = {'Shell ', 'S'};
-  ['t']  = {'Terminal ', 'T'};
+  ['n']  = { 'Normal', 'N' },
+  ['no'] = { 'N·Pending', 'N·P' },
+  ['v']  = { 'Visual', 'V' },
+  ['V']  = { 'V·Line', 'V·L' },
+  ['']  = { 'V·Block', 'V·B' }, -- this is not ^V, but it's , they're different
+  ['s']  = { 'Select', 'S' },
+  ['S']  = { 'S·Line', 'S·L' },
+  ['']  = { 'S·Block', 'S·B' }, -- same with this one, it's not ^S but it's 
+  ['i']  = { 'Insert', 'I' },
+  ['ic'] = { 'Insert', 'I' },
+  ['R']  = { 'Replace', 'R' },
+  ['Rv'] = { 'V·Replace', 'V·R' },
+  ['c']  = { 'Command', 'C' },
+  ['cv'] = { 'Vim·Ex ', 'V·E' },
+  ['ce'] = { 'Ex ', 'E' },
+  ['r']  = { 'Prompt ', 'P' },
+  ['rm'] = { 'More ', 'M' },
+  ['r?'] = { 'Confirm ', 'C' },
+  ['!']  = { 'Shell ', 'S' },
+  ['t']  = { 'Terminal ', 'T' },
 }, {
   __index = function()
-      return {'Unknown', 'U'} -- handle edge cases
+    return { 'Unknown', 'U' } -- handle edge cases
   end
 })
 
 M.get_current_mode = function(self)
   local current_mode = api.nvim_get_mode().mode
-  local mode =  self.modes[current_mode][1];
+  local mode = self.modes[current_mode][1];
   local color = self.colors[mode]
   if self:is_truncated(self.trunc_width.mode) then
-    return string.format(' %s %s ', color,self.modes[current_mode][2]):upper()
+    return string.format(' %s %s ', color, self.modes[current_mode][2]):upper()
   end
   return string.format(' %s %s ', color, self.modes[current_mode][1]):upper()
 end
 
 M.get_git_status = function(self)
   -- use fallback because it doesn't set this variable on the initial `BufEnter`
-  local signs = vim.b.gitsigns_status_dict or {head = '', added = 0, changed = 0, removed = 0}
+  local signs = vim.b.gitsigns_status_dict or { head = '', added = 0, changed = 0, removed = 0 }
   local is_head_empty = signs.head ~= ''
 
   if self:is_truncated(self.trunc_width.git_status) then
     return is_head_empty and string.format(
-    '  +%s ~%s -%s',
-    signs.added, signs.changed, signs.removed, signs.head
-  ) or ''
+      '  +%s ~%s -%s',
+      signs.added, signs.changed, signs.removed, signs.head
+    ) or ''
   end
 
   return is_head_empty and string.format(
@@ -113,15 +113,25 @@ end
 
 M.get_filetype = function(self)
   local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
-  local icon, color = require'nvim-web-devicons'.get_icon(file_name, file_ext, { default = true })
-  local filetype = vim.bo.filetype
-  if filetype == '' then return '' end
-  return string.format(
-  ' %s %s %s ',
-  '%#'..color..'#',
-  icon..' '..self.colors.active,
-  filetype
-  ):lower()
+  local nvim_web_devicons = prequire('nvim-web-devicons')
+  local filetype = ''
+  if (nvim_web_devicons) then
+    local icon, color = nvim_web_devicons.get_icon(file_name, file_ext, { default = true })
+    filetype = vim.bo.filetype
+    if filetype == '' then return '' end
+    return string.format(
+      ' %s %s %s ',
+      '%#' .. color .. '#',
+      icon .. ' ' .. self.colors.active,
+      filetype
+    ):lower()
+  else
+    return string.format(
+      ' %s %s ',
+      self.colors.active,
+      filetype
+    ):lower()
+  end
 end
 
 M.get_paste_mode = function(self)
@@ -145,10 +155,10 @@ M.set_active = function(self)
   local filetype = colors.filetype .. self:get_filetype()
   local line_col = colors.line_col .. self:get_line_col()
   local line_col_alt = colors.line_col_alt .. self.separators[active_sep][2]
-	local paste_mode = self.get_paste_mode()
+  local paste_mode = self.get_paste_mode()
 
   return table.concat({
-    colors.active, mode, mode_alt,paste_mode,
+    colors.active, mode, mode_alt, paste_mode,
     filename, "%=",
     git, git_alt,
     filetype_alt, filetype, line_col_alt, line_col

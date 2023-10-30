@@ -1,1 +1,1 @@
-require('ayu')
+prequire('ayu')
