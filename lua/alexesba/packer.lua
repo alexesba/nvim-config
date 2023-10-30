@@ -52,10 +52,9 @@ if (packer) then
     use {
       "nvim-treesitter/nvim-treesitter",
       run = function()
-        local ts_update = prequire('nvim-treesitter.install')
+        local ts_update = require('nvim-treesitter.install')
         if (ts_update) then
           ts_update.update({ with_sync = true })
-          ts_update()
         end
       end,
     }
