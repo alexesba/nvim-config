@@ -21,6 +21,7 @@ if (packer) then
     use { 'skywind3000/asyncrun.vim' }
     use { 'wbthomason/packer.nvim' }
     use { 'lewis6991/gitsigns.nvim' }
+    use { 'lukoshkin/highlight-whitespace' }
     use {
       'tpope/vim-abolish',
       'tpope/vim-bundler',
@@ -67,7 +68,7 @@ if (packer) then
       after = "nvim-treesitter",
     }
     use {
-      'windwp/nvim-ts-autotag' ,
+      'windwp/nvim-ts-autotag',
       after = 'nvim-ts-context-commentstring',
     }
     use {

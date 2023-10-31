@@ -3,7 +3,7 @@ local lspconfig = prequire('lspconfig')
 
 
 if(lspconfig) then
-  local capabilities = cmp_nvim_lsp.default_capabilities()
+  local capabilities = cmp_nvim_lsp and cmp_nvim_lsp.default_capabilities()
 
 lspconfig.cssls.setup({
   capabilities = capabilities,

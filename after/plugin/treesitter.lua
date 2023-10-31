@@ -10,6 +10,8 @@ if (nvim_tresitter_configs) then
     },
     autotag               = {
       enable = true,
+      enable_rename = true,
+      filetypes = { 'xml', 'javascriptreact', 'html', 'eruby', 'haml', }
     },
 
     highlight             = {

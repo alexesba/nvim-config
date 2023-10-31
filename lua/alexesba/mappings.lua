@@ -1,23 +1,24 @@
 local map = require('utils.map').map
 -- nvimtree
 map(
-"n",
-"<C-p>",
-":NvimTreeFindFileToggle!<CR>", {
-  silent = true,
-  noremap = true
-});
+  "n",
+  "<C-p>",
+  ":NvimTreeFindFileToggle!<CR>", {
+    silent = true,
+    noremap = true
+  });
 
 -- Markdown Preview
 map('n', '<leader>mp', "<cmd>MarkdownPreviewToggle<cr>", { silent = true, noremap = true })
 
 -- Telescope
-map("n", "<leader>ff", ":lua require('telescope.builtin').find_files({file_ignore_patterns = {'node_modules/*', '.git/**'} })<CR>", {
+map("n", "<leader>ff",
+  ":lua require('telescope.builtin').find_files({file_ignore_patterns = {'node_modules/*', '.git/**'} })<CR>", {
   noremap = true,
   silent = true
 })
 map('n', '<leader>fk', "<cmd>lua require('telescope.builtin').grep_string()<cr>", { silent = true, noremap = true })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>",{ noremap = true })
+map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true })
 map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { noremap = true })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { noremap = true })
 map("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>", { noremap = true })
@@ -27,14 +28,14 @@ map("n", "<leader>fm", "<cmd>Telescope keymaps<cr>", { noremap = true })
 map("n", "<leader>bo", "':Bopen '. expand('<cword>') .'<cr>'", { noremap = true, expr = true })
 
 -- Toggle TableMode: Plug 'dhruvasagar/vim-table-mode'
-map("n",  "<Leader>to", ":TableModeToggle<CR>", { noremap = true, silent = true })
-map("n",  "<Leader>tr", ":TableModeRealign<CR>", { noremap = true, silent = true })
-map("n",  "<Leader>tg", ":TableModeToggleGithubTable<CR>", { noremap = true, silent = true })
+map("n", "<Leader>to", ":TableModeToggle<CR>", { noremap = true, silent = true })
+map("n", "<Leader>tr", ":TableModeRealign<CR>", { noremap = true, silent = true })
+map("n", "<Leader>tg", ":TableModeToggleGithubTable<CR>", { noremap = true, silent = true })
 
- -- 2.- CUSTOM MAPPINGS: {{{
- -- Format all the file from the first line to the end
-map("n", "<leader>fef",  ":normal! gg=G``<CR>", { noremap = true, silent = true })
-map("n",  "<Esc>", ":noh<CR>", { noremap = true, silent = true });
+-- 2.- CUSTOM MAPPINGS: {{{
+-- Format all the file from the first line to the end
+map("n", "<leader>fef", ":normal! gg=G``<CR>", { noremap = true, silent = true })
+map("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true });
 
 map("n", "<leader>1", ":tabn 1<cr>", { noremap = true, silent = true })
 map("n", "<leader>2", ":tabn 2<cr>", { noremap = true, silent = true })
@@ -45,7 +46,7 @@ map("n", "<leader>6", ":tabn 6<cr>", { noremap = true, silent = true })
 map("n", "<leader>7", ":tabn 7<cr>", { noremap = true, silent = true })
 map("n", "<leader>8", ":tabn 8<cr>", { noremap = true, silent = true })
 map("n", "<leader>9", ":tabn 9<cr>", { noremap = true, silent = true })
-map("n", "<leader>0", ":tabn 0<cr>", { noremap = true, silent = true})
+map("n", "<leader>0", ":tabn 0<cr>", { noremap = true, silent = true })
 
 map("n", "<leader>no", ":Reprobado<CR>", { silent = true })
 map("n", "<leader>na", ":Reprobada<CR>", { silent = true })
@@ -58,15 +59,15 @@ map("n", "<Up>", "<Nop>")
 map("n", "Q", "<Nop>")
 
 -- Disable Arrow keys in Insert mode
-map("i","<up>", "<nop>")
-map("i","<down>", "<nop>")
-map("i","<left>", "<nop>")
-map("i","<right>", "<nop>")
+map("i", "<up>", "<nop>")
+map("i", "<down>", "<nop>")
+map("i", "<left>", "<nop>")
+map("i", "<right>", "<nop>")
 
 -- Disable Arrow keys in Visual Mode
 map("v", "<Down>", "<Nop>")
 map("v", "<Left>", "<Nop>")
-map("v","<Right>", "<Nop>")
+map("v", "<Right>", "<Nop>")
 map("v", "<Up>", "<Nop>")
 
 map("n", "<leader>cf", ":CopyFullPath<CR>:echo \"File path copied!\"<CR>");
