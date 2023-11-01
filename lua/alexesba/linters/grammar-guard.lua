@@ -1,4 +1,4 @@
---[[ local lspServer = require('utils.lspServer')
+--[[ local lspServer = require('alexesba.utils.lspServer')
 
 lspServer.configure('grammar_guard',{
   cmd = { '/Users/alexesba/.local/share/nvim/lsp_servers/ltex/ltex-ls/bin/ltex-ls' },

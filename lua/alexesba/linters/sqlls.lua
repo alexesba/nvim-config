@@ -1,3 +1,3 @@
-local lspServer = require('utils.lspServer')
+local lspServer = require('alexesba.utils.lspServer')
 
 lspServer.configure('sqlls')

@@ -1,39 +1,5 @@
-local map = require('utils.map').map
--- nvimtree
-map(
-  "n",
-  "<C-p>",
-  ":NvimTreeFindFileToggle!<CR>", {
-    silent = true,
-    noremap = true
-  });
+local map = require('alexesba.utils.map').map
 
--- Markdown Preview
-map('n', '<leader>mp', "<cmd>MarkdownPreviewToggle<cr>", { silent = true, noremap = true })
-
--- Telescope
-map("n", "<leader>ff",
-  ":lua require('telescope.builtin').find_files({file_ignore_patterns = {'node_modules/*', '.git/**'} })<CR>", {
-  noremap = true,
-  silent = true
-})
-map('n', '<leader>fk', "<cmd>lua require('telescope.builtin').grep_string()<cr>", { silent = true, noremap = true })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true })
-map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { noremap = true })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { noremap = true })
-map("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>", { noremap = true })
-map("n", "<leader>fm", "<cmd>Telescope keymaps<cr>", { noremap = true })
-
--- Bundle Open
-map("n", "<leader>bo", "':Bopen '. expand('<cword>') .'<cr>'", { noremap = true, expr = true })
-
--- Toggle TableMode: Plug 'dhruvasagar/vim-table-mode'
-map("n", "<Leader>to", ":TableModeToggle<CR>", { noremap = true, silent = true })
-map("n", "<Leader>tr", ":TableModeRealign<CR>", { noremap = true, silent = true })
-map("n", "<Leader>tg", ":TableModeToggleGithubTable<CR>", { noremap = true, silent = true })
-
--- 2.- CUSTOM MAPPINGS: {{{
--- Format all the file from the first line to the end
 map("n", "<leader>fef", ":normal! gg=G``<CR>", { noremap = true, silent = true })
 map("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true });
 
@@ -90,9 +56,6 @@ map("i", "?", "?<C-g>u")
 -- Jumplist Mutations:
 map("n", "k", "(v:count > 5 ? \"m'\". v:count : \"\"). 'k'", { expr = true, silent = true })
 map("n", "j", "(v:count > 5 ? \"m'\". v:count : \"\"). 'j'", { expr = true, silent = true })
-
--- auto complete menu
-map("n", "<leader>ac", ":CodeActionMenu<CR>", { silent = true })
 
 map("n", "<leader>rp", ":%s/\\<<C-r><C-w>\\>/")
 

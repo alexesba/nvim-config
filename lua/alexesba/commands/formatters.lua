@@ -121,17 +121,6 @@ vim.api.nvim_create_user_command(
   { desc = "format braces" }
 )
 
-vim.api.nvim_create_user_command(
-  'GithubTableModeToggle',
-  function()
-    if vim.g.table_mode_corner == '|' then
-      vim.g.table_mode_corner = '+'
-    else
-      vim.g.table_mode_corner = '|'
-    end
-  end,
-  { desc = "toggle git hub table mode" }
-)
 
 vim.api.nvim_create_user_command(
   'CleanWhiteSpaces',
@@ -189,13 +178,3 @@ vim.api.nvim_create_user_command(
   [[:so $MYVIMRC]],
   { desc = 'Reload VIMRC file' }
 )
-
-local telescope = prequire('telescope')
-
-if (telescope) then
-  vim.api.nvim_create_user_command(
-    'ColorScheme',
-    require('telescope.builtin').colorscheme,
-    { desc = 'Reload VIMRC file' }
-  )
-end

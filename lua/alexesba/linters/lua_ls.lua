@@ -1,4 +1,4 @@
-local lspServer = require('utils.lspServer')
+local lspServer = require('alexesba.utils.lspServer')
 
 lspServer.configure('lua_ls', {
   settings = {
