@@ -1,6 +1,6 @@
 local lspServer = {}
 local lspconfig = prequire('lspconfig')
-local buildSettings = prequire('utils.lsp_default_settings')
+local buildSettings = prequire('alexesba.utils.lsp_default_settings')
 
 lspServer.configure = function(serverName, settings)
   if(settings == nil) then
