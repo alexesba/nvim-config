@@ -1,6 +1,6 @@
 function ConfigItalicFonts()
   if (vim.fn.exists("g:enable_italic_font") and vim.g.enable_italic_font == 1) then
-    vim.api.nvim_set_hl(0, 'TabLineSel', { ctermfg=114, ctermbg=237, bold = true, fg='#99c794',  bg='#343d46' })
+    vim.api.nvim_set_hl(0, 'TabLineSel', { ctermfg = 114, ctermbg = 237, bold = true, fg = '#99c794', bg = '#343d46' })
     vim.api.nvim_set_hl(0, 'Comment', { italic = true })
     vim.api.nvim_set_hl(0, 'Constant', { italic = true })
     vim.api.nvim_set_hl(0, 'PreProc', { italic = true })
@@ -18,14 +18,13 @@ function ConfigItalicFonts()
   end
 end
 
-
 function PlayAudio(file)
-  local file_path = 'ogg123 '..file
-  vim.api.nvim_call_function('asyncrun#run', { '!', '' , file_path })
+  local file_path = 'ogg123 ' .. file
+  vim.api.nvim_call_function('asyncrun#run', { '!', '', file_path })
 end
 
 function LspInstallServers()
-  vim.cmd[[
+  vim.cmd [[
   :!npm install -g typescript
         \ typescript-language-server
         \ stylelint-lsp
@@ -34,6 +33,6 @@ function LspInstallServers()
   ]]
 
   if vim.fn.filereadable('./Gemfile') then
-    vim.cmd[[:!gem install solargraph]]
+    vim.cmd [[:!gem install solargraph]]
   end
 end

@@ -184,8 +184,6 @@ Statusline = setmetatable(M, {
   end
 })
 
--- set statusline
--- TODO: replace this once we can define autocmd using lua
 api.nvim_exec([[
   augroup Statusline
   au!
@@ -194,35 +192,3 @@ api.nvim_exec([[
   au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline('explorer')
   augroup END
 ]], false)
-
-----[[
---  NOTE: I don't use this since the statusline already has
---  so much stuff going on. Feel free to use it!
---  credit: https://github.com/nvim-lua/lsp-status.nvim
---
---  I now use `tabline` to display these errors, go to `_bufferline.lua` if you
---  want to check that out
-----]]
--- Statusline.get_lsp_diagnostic = function(self)
---   local result = {}
---   local levels = {
---     errors = 'Error',
---     warnings = 'Warning',
---     info = 'Information',
---     hints = 'Hint'
---   }
-
---   for k, level in pairs(levels) do
---     result[k] = vim.lsp.diagnostic.get_count(0, level)
---   end
-
---   if self:is_truncated(120) then
---     return ''
---   else
---     return string.format(
---       "| :%s :%s :%s :%s ",
---       result['errors'] or 0, result['warnings'] or 0,
---       result['info'] or 0, result['hints'] or 0
---     )
---   end
--- end

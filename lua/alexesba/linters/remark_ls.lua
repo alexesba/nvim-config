@@ -1,12 +1,3 @@
-local cmp_nvim_lsp = prequire('cmp_nvim_lsp')
-local lspconfig = prequire('lspconfig')
+local lspServer = require('alexesba.utils.lspServer')
 
-if(lspconfig) then
-  local capabilities = cmp_nvim_lsp and cmp_nvim_lsp.default_capabilities()
-  if(capabilities) then
-    lspconfig.remark_ls.setup({
-      on_attach = OnAttach,
-      capabilities = capabilities
-    })
-  end
-end
+lspServer.configure('remark_ls')

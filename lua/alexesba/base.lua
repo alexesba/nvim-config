@@ -10,7 +10,7 @@ set.autoindent = true
 set.hlsearch = true
 set.incsearch = true
 set.showmatch = true
-set.backspace = { 'indent','eol','start' }
+set.backspace = { 'indent', 'eol', 'start' }
 set.laststatus = 2
 set.ruler = true
 set.listchars = {
@@ -32,18 +32,18 @@ vim.g.mapleader = ","
 
 vim.g.table_mode_corner = '+'
 vim.g.enable_italic_font = 1
-vim.inccommand='nosplit'
+vim.inccommand = 'nosplit'
 vim.opt.colorcolumn = '81'
 
 function prequire(...)
-    local status, lib = pcall(require, ...)
-    if(status) then return lib end
-    --Library failed to load, so perhaps return `nil` or something?
-    return nil
+  local status, lib = pcall(require, ...)
+  if (status) then return lib end
+  --Library failed to load, so perhaps return `nil` or something?
+  return nil
 end
 
 function OnAttach(_, bufnr)
-  local bufopts = { noremap=true, silent=true, buffer=bufnr}
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
@@ -57,14 +57,14 @@ function OnAttach(_, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.api.nvim_create_autocmd("CursorHold", {
-    buffer=bufnr,
+    buffer = bufnr,
     callback = function()
       local opts = {
         focusable = false,
         scope = 'line',
         close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
         border = 'rounded',
-        source = 'always',  -- show source in diagnostic popup window
+        source = 'always', -- show source in diagnostic popup window
         prefix = ' '
       }
 
@@ -74,9 +74,9 @@ function OnAttach(_, bufnr)
 
       local cursor_pos = vim.api.nvim_win_get_cursor(0)
       if (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2]) and
-        #vim.diagnostic.get() > 0
+          #vim.diagnostic.get() > 0
       then
-          vim.diagnostic.open_float(nil, opts)
+        vim.diagnostic.open_float(nil, opts)
       end
 
       vim.b.diagnostics_pos = cursor_pos
