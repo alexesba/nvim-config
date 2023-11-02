@@ -3,7 +3,7 @@
 
 > nvim-config: Provides a set of tools used for web development the main goal
 behind this repository is to provide an easy way to install in an easy way all
-the necessary plugins for neovim and start coding without spending too much time
+the necessary plugins for Neovim and start coding without spending too much time
 configuring the plugins manually.
 
 - [Requirements](#Requirements)
@@ -48,6 +48,7 @@ configuring the plugins manually.
 - [savq/melange-nvim](http://github.com/savq/melange-nvim)
 - [shatur/neovim-ayu](http://github.com/shatur/neovim-ayu)
 - [yonlu/omni.vim](http://github.com/yonlu/omni.vim)
+
 
 ### Plugins
 - [AndrewRadev/tagalong.vim](http://github.com/AndrewRadev/tagalong.vim)
@@ -148,7 +149,7 @@ git clone https://github.com/alexesba/nvim-config.git
 # If you want to use the "live grep" option for Telescope, then you need to make
 # sure that the "rg" command is installed in your system.
 
-# To check if you have rg execute the command bellow.
+# To check if you have rg execute the command below.
 
 which rg
 
