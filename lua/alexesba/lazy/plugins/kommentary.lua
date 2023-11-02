@@ -1,5 +1,6 @@
 return {
   "b3nj5m1n/kommentary",
+  lazy = true,
   keys = {
     { "<leader>c",  "<Plug>kommentary_line_default",        noremap = true, mode = "n" },
     { "<leader>__", "<Plug>kommentary_line_default",        noremap = true, mode = "n" },

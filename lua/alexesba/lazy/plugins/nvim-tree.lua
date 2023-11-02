@@ -50,7 +50,9 @@ local function on_attach(bufnr)
   end
 end
 
-return  { 'kyazdani42/nvim-tree.lua', opts = {
+return {
+  'kyazdani42/nvim-tree.lua',
+  opts = {
     on_attach           = on_attach,
     disable_netrw       = false,
     hijack_netrw        = false,
@@ -62,7 +64,7 @@ return  { 'kyazdani42/nvim-tree.lua', opts = {
       auto_open = false,
     },
     diagnostics         = {
-      enable = false,
+      enable = true,
       icons = {
         hint = "",
         info = "",
@@ -159,4 +161,7 @@ return  { 'kyazdani42/nvim-tree.lua', opts = {
       cmd = "trash",
       require_confirm = true
     }
-} }
+  },
+  cmd = "NvimTreeFindFileToggle",
+  lazy = true
+}

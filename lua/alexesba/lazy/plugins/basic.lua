@@ -1,11 +1,10 @@
 return {
   { 'andymass/vim-matchup' },
-  { 'dhruvasagar/vim-table-mode' },
-  { 'dietsche/vim-lastplace' },
-  { 'godlygeek/tabular' },
+  { 'dhruvasagar/vim-table-mode', cmd = { 'TableModeToggle',  'TableModeEnable'} },
+  { 'dietsche/vim-lastplace', event = { 'BufRead'} },
+  { 'godlygeek/tabular', cmd = 'Tabularize' },
   { 'kopischke/vim-fetch' },
   { 'mg979/vim-visual-multi' },
-  { 'skywind3000/asyncrun.vim' },
   { 'tpope/vim-abolish' },
   {
     'tpope/vim-bundler',
@@ -13,10 +12,9 @@ return {
     ft = 'ruby'
   },
   { 'tpope/vim-eunuch' },
-  { 'tpope/vim-fugitive' },
+  { 'tpope/vim-fugitive', cmd = 'Git'},
   { 'tpope/vim-repeat' },
   { 'tpope/vim-surround' },
-  { 'norcalli/nvim-colorizer.lua' },
   { 'editorconfig/editorconfig-vim' },
   { 'kyazdani42/nvim-web-devicons' },
   { 'kyazdani42/nvim-tree.lua' },
@@ -35,17 +33,17 @@ return {
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
-    dependencies = { "nvim-treesitter" },
+    dependencies = { 'nvim-treesitter' },
   },
   {
     'windwp/nvim-ts-autotag',
     dependencies = { 'nvim-ts-context-commentstring' },
+    lazy = true
   },
   {
     'nvim-lua/popup.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
-  { 'alvarosevilla95/luatab.nvim' },
   {
     'shmup/vim-sql-syntax',
     ft = 'sql'
