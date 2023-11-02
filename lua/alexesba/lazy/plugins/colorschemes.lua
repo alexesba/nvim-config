@@ -1,11 +1,14 @@
 return {
-  { 'embark-theme/vim',         lazy = true },
-  { 'folke/tokyonight.nvim',    lazy = true },
-  { 'mhartington/oceanic-next', lazy = true },
-  { 'rafamadriz/neon',          lazy = true },
-  { 'rakr/vim-one',             lazy = true },
-  { 'sainnhe/edge',             lazy = true },
-  { 'sainnhe/gruvbox-material', lazy = true },
+  { 'embark-theme/vim',         event = { "BufRead", "BufEnter" } },
+  { 'folke/tokyonight.nvim',    event = { "BufRead", "BufEnter" } },
+  { 'mhartington/oceanic-next', event = { "BufRead", "BufEnter" } },
+  { 'rafamadriz/neon',          event = { "BufRead", "BufEnter" } },
+  { 'rakr/vim-one',             event = { "BufRead", "BufEnter" } },
+  { 'sainnhe/edge',             event = { "BufRead", "BufEnter" } },
+  { 'sainnhe/gruvbox-material', event = { "BufRead", "BufEnter" } },
+  { 'savq/melange-nvim',        event = { "BufRead", "BufEnter" } },
+  { 'shatur/neovim-ayu',        event = { "BufRead", "BufEnter" } },
+  { 'yonlu/omni.vim',           event = { "BufRead", "BufEnter" } },
   {
     'sainnhe/sonokai',
     config = function()
@@ -13,7 +16,4 @@ return {
       vim.cmd [[silent! colorscheme sonokai]]
     end
   },
-  { 'savq/melange-nvim', lazy = true },
-  { 'shatur/neovim-ayu', lazy = true },
-  { 'yonlu/omni.vim',    lazy = true },
 }

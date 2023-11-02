@@ -89,6 +89,7 @@ return {
         end
         added[lang] = true
         return true
+---@diagnostic disable-next-line: param-type-mismatch
       end, opts.ensure_installed)
     end
     require("nvim-treesitter.configs").setup(opts)

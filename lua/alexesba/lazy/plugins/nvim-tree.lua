@@ -163,5 +163,5 @@ return {
     }
   },
   cmd = "NvimTreeFindFileToggle",
-  lazy = true
+  keys = { { "<C-p>" } },
 }
