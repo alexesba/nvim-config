@@ -35,7 +35,7 @@ vim.g.enable_italic_font = 1
 vim.inccommand = 'nosplit'
 vim.opt.colorcolumn = '81'
 
-function prequire(...)
+function Prequire(...)
   local status, lib = pcall(require, ...)
   if (status) then return lib end
   --Library failed to load, so perhaps return `nil` or something?

@@ -113,7 +113,7 @@ end
 
 M.get_filetype = function(self)
   local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
-  local nvim_web_devicons = prequire('nvim-web-devicons')
+  local nvim_web_devicons = Prequire('nvim-web-devicons')
   local filetype = ''
   if (nvim_web_devicons) then
     local icon, color = nvim_web_devicons.get_icon(file_name, file_ext, { default = true })
@@ -134,7 +134,7 @@ M.get_filetype = function(self)
   end
 end
 
-M.get_paste_mode = function(self)
+M.get_paste_mode = function(_)
   return "%#MatchParen#%{&paste? ' PASTE ' :''}"
 end
 

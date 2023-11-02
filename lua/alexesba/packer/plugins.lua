@@ -1,7 +1,7 @@
 local tagalog_file_types = { 'javascriptreact', 'html', 'eruby', 'haml', }
 local markdown_file_types = { 'md', 'markdown' }
 local emmet_file_types = { 'html', 'erb', 'javascriptreact' }
-local packer = prequire('packer');
+local packer = Prequire('packer');
 
 if (packer) then
   packer.init({
