@@ -22,7 +22,7 @@ if (lazy) then
       -- Ad LazyVim and import its plugins
       { 'LazyVim/LazyVim' },
       -- import our plugins
-      { import = 'alexesba.lazy.plugins' }
+      { import = 'alexesba.lazy.plugins' },
     },
     performance = {
       rtp = {

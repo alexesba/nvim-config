@@ -1,8 +1,8 @@
 return {
   { 'andymass/vim-matchup' },
-  { 'dhruvasagar/vim-table-mode', cmd = { 'TableModeToggle',  'TableModeEnable'} },
-  { 'dietsche/vim-lastplace', event = { 'BufRead'} },
-  { 'godlygeek/tabular', cmd = 'Tabularize' },
+  { 'dhruvasagar/vim-table-mode', cmd = { 'TableModeToggle', 'TableModeEnable' } },
+  { 'dietsche/vim-lastplace',     event = { 'BufRead' } },
+  { 'godlygeek/tabular',          cmd = 'Tabularize' },
   { 'kopischke/vim-fetch' },
   { 'mg979/vim-visual-multi' },
   { 'tpope/vim-abolish' },
@@ -12,7 +12,7 @@ return {
     ft = 'ruby'
   },
   { 'tpope/vim-eunuch' },
-  { 'tpope/vim-fugitive', cmd = 'Git'},
+  { 'tpope/vim-fugitive',           cmd = 'Git' },
   { 'tpope/vim-repeat' },
   { 'tpope/vim-surround' },
   { 'editorconfig/editorconfig-vim' },
@@ -52,4 +52,8 @@ return {
     'mattn/emmet-vim',
     ft = { 'html', 'erb', 'javascriptreact' }
   },
+  {
+    'dcampos/nvim-snippy',
+    dependencies = { 'honza/vim-snippets' }
+  }
 }
