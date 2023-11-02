@@ -1,5 +1,5 @@
-let ayucolor="mirage"
-" colorscheme ayu
-let neon_style='dark'
-let sonokai_style = 'atlantis'
-silent! colorscheme sonokai
+" let ayucolor="mirage"
+" " colorscheme ayu
+" let neon_style='dark'
+" let sonokai_style = 'atlantis'
+" silent! colorscheme sonokai
