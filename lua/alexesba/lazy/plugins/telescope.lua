@@ -13,12 +13,10 @@ return {
     { "<leader>fm", function() require("teelscope.builtin").keymaps() end,     { silent = true, noremap = true } },
   },
   opts = {
-    defaults = {
-      pickers = {
-        colorscheme = {
-          enable_preview = true
-        }
+    pickers = {
+      colorscheme = {
+        enable_preview = true
       }
-    },
+    }
   }
 }
