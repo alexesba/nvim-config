@@ -102,46 +102,32 @@ configuring the plugins manually.
 - [windwp/nvim-ts-autotag](http://github.com/windwp/nvim-ts-autotag)
 
 ## Installation
-<!-- Zero width character is used to put extra blank lines before and after code -->
 
-<h3>
+- **Step 1**: installing neovim
+  Depending on your Operating system select one of the following commands:
 
-```sh
-# STEP 1:
+   - Linux: `sudo apt update && sudo apt install neovim`
+  
+   - macOS: `brew update && brew install neovim`
 
-# installing neovim
+- **Step 2**: Clone the repository
+  ```sh
+  git clone git@github.com:alexesba/nvim-config.git ~/.config/nvim
+  
+  # or in case you have the ssh-keys:
 
-# depening on your SO one of the following commands will help you with that:
+  git clone https://github.com/alexesba/nvim-config.git ~/.config/nvim
+  ```
+- **Step 3**: Then run the following commands within the ~/.config/nvim directory
+  to make sure you check out the right tag version.
+  ```sh
+   cd ~/.config/nvim
 
-# Linux:
-sudo apt update && sudo apt install neovim
+   git checkout tags/vx.x.x  -b vx.x.x
 
-# macosx:
-
-brew update && brew install neovim
-
-# Step 2:
-git clone git@github.com:alexesba/nvim-config.git ~/.config/nvim
-        \ && cd ~/.config/nvim
-
-
-# or in case you have the ssh-keys:
-
-git clone https://github.com/alexesba/nvim-config.git
-         \ ~/.config/nvim
-         \ && cd ~/.config/nvim
-
-# Step 3: Then run the following commands within the ~/.config/nvim directory
-
-# make sure you check out the right tag version.
-
- git checkout tags/vx.x.x  -b vx.x.x
-
-./install.sh
-
-```
-
-</h3>
+  # Optional since Packer bootstrap tool will install Packer automatically once you open Neovim 
+  ./install.sh
+  ```
 
 ### Optional Installation
 
