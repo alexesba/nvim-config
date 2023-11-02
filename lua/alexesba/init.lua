@@ -1,6 +1,7 @@
 require('alexesba.base')
-require('alexesba.packer.bootstrap')
-require('alexesba.packer.plugins')
+require('alexesba.lazy')
+--[[ require('alexesba.packer.bootstrap')
+require('alexesba.packer.plugins') ]]
 require('alexesba.functions')
 require('alexesba.commands')
 require('alexesba.mappings')
