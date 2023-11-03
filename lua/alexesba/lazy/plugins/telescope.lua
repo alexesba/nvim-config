@@ -4,6 +4,14 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
   lazy = false,
   keys = {
+    {
+      "<leader>ff",
+      function()
+        require('telescope.builtin').find_files({ file_ignore_patterns = { 'node_modules/*', '.git/**' } })
+      end,
+      noremap = true,
+      silent = true
+    },
     { "<leader>fk", function() require("telescope.builtin").grep_string() end, { silent = true, noremap = true } },
     { "<leader>fk", function() require("telescope.builtin").grep_string() end, { silent = true, noremap = true } },
     { "<leader>fg", function() require("teelscope.builtin").live_grep() end,   { silent = true, noremap = true } },

@@ -8,5 +8,8 @@ return {
     vim.g.mkdp_auto_start = 0
     vim.g.mkdp_auto_close = 0
     vim.g.mkdp_theme = 'white'
-  end
+  end,
+  keys = {
+    { '<leader>mp', "<cmd>MarkdownPreviewToggle<cr>", silent = true, noremap = true }
+  }
 }
