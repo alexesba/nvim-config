@@ -64,7 +64,7 @@ return {
       auto_open = false,
     },
     diagnostics         = {
-      enable = true,
+      enable = false,
       icons = {
         hint = "",
         info = "",
