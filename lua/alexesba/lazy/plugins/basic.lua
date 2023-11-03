@@ -15,7 +15,7 @@ return {
     keys = { { "gf" } },
     ft = 'ruby'
   },
-  { 'tpope/vim-fugitive',           cmd = 'Git' },
+  { 'tpope/vim-fugitive',           cmd = { 'Git', 'Gread', 'Gwrite', 'Glgrep', 'Gdiffsplit', 'Gsplit', 'Gedit' } },
   { 'tpope/vim-repeat',             event = "VeryLazy" },
   { 'tpope/vim-surround',           keys = { "cs", "ds", "cS", "yS", "yss", "ySs", "ySS", "S", "gS" } },
   { 'editorconfig/editorconfig-vim' },
