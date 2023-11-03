@@ -163,5 +163,5 @@ return {
     }
   },
   cmd = "NvimTreeFindFileToggle",
-  keys = { { "<C-p>", "<cmd>NvimTreeFindFileToggle<cr>", noremap = true, silent = true } },
+  keys = { { "<C-p>", "<cmd>NvimTreeFindFileToggle!<cr>", noremap = true, silent = true } },
 }
