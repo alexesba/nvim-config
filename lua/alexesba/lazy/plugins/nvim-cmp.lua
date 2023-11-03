@@ -4,18 +4,21 @@ return {
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/cmp-cmdline' },
+    -- { 'hrsh7th/cmp-cmdline' },
     {
       'dcampos/nvim-snippy',
-      dependencies = { 'honza/vim-snippets' }
+      dependencies = {
+        'dcampos/cmp-snippy',
+        'honza/vim-snippets'
+      }
     },
   },
   config = function()
     vim.o.completeopt = "menuone,noselect"
+
     local cmp = require('cmp');
     cmp.setup({
       snippet = {
-        -- REQUIRED - you must specify a snippet engine
         expand = function(args)
           require('snippy').expand_snippet(args.body)
         end,
@@ -39,6 +42,7 @@ return {
       }),
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
+        { name = 'snippy' },
         { name = 'path' },
       }, {
         {
