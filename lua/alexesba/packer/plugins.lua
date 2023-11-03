@@ -78,7 +78,6 @@ if (packer) then
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline'
     }
-    use { 'antoinemadec/FixCursorHold.nvim' }
     use { 'weilbith/nvim-code-action-menu' }
     use { 'nvim-lua/popup.nvim', requires = 'nvim-lua/plenary.nvim' }
 
@@ -88,6 +87,11 @@ if (packer) then
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig'
+    }
+
+    use {
+      'dcampos/nvim-snippy',
+      requires = { 'honza/vim-snippets' }
     }
 
     -- Color schemes

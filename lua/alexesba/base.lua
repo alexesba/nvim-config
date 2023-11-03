@@ -56,6 +56,7 @@ function OnAttach(_, bufnr)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.opt.updatetime = 100
   vim.api.nvim_create_autocmd("CursorHold", {
     buffer = bufnr,
     callback = function()
