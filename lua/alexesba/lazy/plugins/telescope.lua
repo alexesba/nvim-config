@@ -14,11 +14,11 @@ return {
     },
     { "<leader>fk", function() require("telescope.builtin").grep_string() end, { silent = true, noremap = true } },
     { "<leader>fk", function() require("telescope.builtin").grep_string() end, { silent = true, noremap = true } },
-    { "<leader>fg", function() require("teelscope.builtin").live_grep() end,   { silent = true, noremap = true } },
-    { "<leader>fb", function() require("teelscope.builtin").buffers() end,     { silent = true, noremap = true } },
-    { "<leader>fh", function() require("teelscope.builtin").help_tags() end,   { silent = true, noremap = true } },
-    { "<leader>fc", function() require("teelscope.builtin").colorscheme() end, { silent = true, noremap = true } },
-    { "<leader>fm", function() require("teelscope.builtin").keymaps() end,     { silent = true, noremap = true } },
+    { "<leader>fg", function() require("telescope.builtin").live_grep() end,   { silent = true, noremap = true } },
+    { "<leader>fb", function() require("telescope.builtin").buffers() end,     { silent = true, noremap = true } },
+    { "<leader>fh", function() require("telescope.builtin").help_tags() end,   { silent = true, noremap = true } },
+    { "<leader>fc", function() require("telescope.builtin").colorscheme() end, { silent = true, noremap = true } },
+    { "<leader>fm", function() require("telescope.builtin").keymaps() end,     { silent = true, noremap = true } },
   },
   opts = {
     pickers = {
