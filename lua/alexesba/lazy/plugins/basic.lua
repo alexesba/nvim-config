@@ -1,8 +1,6 @@
 return {
-  { 'andymass/vim-matchup' },
-  { 'dhruvasagar/vim-table-mode', cmd = { 'TableModeToggle', 'TableModeEnable' } },
-  { 'dietsche/vim-lastplace',     event = { 'BufRead' } },
-  { 'godlygeek/tabular',          cmd = 'Tabularize' },
+  { 'dietsche/vim-lastplace', event = { 'BufRead' } },
+  { 'godlygeek/tabular',      cmd = 'Tabularize' },
   { 'kopischke/vim-fetch' },
   {
     'mg979/vim-visual-multi',
@@ -21,6 +19,7 @@ return {
   { 'editorconfig/editorconfig-vim' },
   { 'kyazdani42/nvim-web-devicons' },
   { 'skywind3000/asyncrun.vim',     event = "VeryLazy" },
+  { 'andymass/vim-matchup',         ft = { "javascriptreact", "ruby", "javascript", "json", "lua", "eruby" } },
   {
     'aca/marp.nvim',
     ft = { 'md', 'markdown' }

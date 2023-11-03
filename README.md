@@ -55,12 +55,10 @@ configuring the plugins manually.
 - [JoosepAlviste/nvim-ts-context-commentstring](http://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - [aca/marp.nvim](http://github.com/aca/marp.nvim)
 - [akinsho/toggleterm.nvim](http://github.com/akinsho/toggleterm.nvim)
-- [alexesba/nrun.vim](http://github.com/alexesba/nrun.vim)
+- [skywind3000/asyncrun.vim](http://github.com/skywind3000/asyncrun.vim)
 - [alvarosevilla95/luatab.nvim](http://github.com/alvarosevilla95/luatab.nvim)
 - [andymass/vim-matchup](http://github.com/andymass/vim-matchup)
-- [antoinemadec/FixCursorHold.nvim](http://github.com/antoinemadec/FixCursorHold.nvim)
 - [b3nj5m1n/kommentary](http://github.com/b3nj5m1n/kommentary) 
-- [brymer-meneses/grammar-guard.nvim](http://github.com/brymer-meneses/grammar-guard.nvim)
 - [dhruvasagar/vim-table-mode](http://github.com/dhruvasagar/vim-table-mode)
 - [dietsche/vim-lastplace](http://github.com/dietsche/vim-lastplace)
 - [editorconfig/editorconfig-vim](http://github.com/editorconfig/editorconfig-vim)
@@ -71,7 +69,6 @@ configuring the plugins manually.
 - [hrsh7th/cmp-path](http://github.com/hrsh7th/cmp-path)
 - [hrsh7th/nvim-cmp](http://github.com/hrsh7th/nvim-cmp)
 - [iamcco/markdown-preview.nvim](http://github.com/iamcco/markdown-preview.nvim)
-- [juanchanco/vim-jbuilder](http://github.com/juanchanco/vim-jbuilder)
 - [kopischke/vim-fetch](http://github.com/kopischke/vim-fetch)
 - [kyazdani42/nvim-tree.lua](http://github.com/kyazdani42/nvim-tree.lua)
 - [kyazdani42/nvim-web-devicons](http://github.com/kyazdani42/nvim-web-devicons)
@@ -84,10 +81,8 @@ configuring the plugins manually.
 - [nvim-telescope/telescope.nvim](http://github.com/nvim-telescope/telescope.nvim)
 - [nvim-treesitter/nvim-treesitter](http://github.com/nvim-treesitter/nvim-treesitter)
 - [nvim-treesitter/nvim-treesitter-textobjects](http://github.com/nvim-treesitter/nvim-treesitter-textobjects)
-- [rgroli/other.nvim](http://github.com/rgroli/other.nvim)
 - [rorymckinley/vim-rubyhash](http://github.com/rorymckinley/vim-rubyhash)
 - [shmup/vim-sql-syntax](http://github.com/shmup/vim-sql-syntax)
-- [skywind3000/asyncrun.vim](http://github.com/skywind3000/asyncrun.vim)
 - [tpope/vim-abolish](http://github.com/tpope/vim-abolish)
 - [tpope/vim-bundler](http://github.com/tpope/vim-bundler)
 - [tpope/vim-dispatch](http://github.com/tpope/vim-dispatch)
@@ -95,9 +90,9 @@ configuring the plugins manually.
 - [tpope/vim-fugitive](http://github.com/tpope/vim-fugitive)
 - [tpope/vim-repeat](http://github.com/tpope/vim-repeat)
 - [tpope/vim-surround](http://github.com/tpope/vim-surround)
-- [wbthomason/packer.nvim](http://github.com/wbthomason/packer.nvim)
+- [LazyVim/LazyVim](http://github.com/LazyVim/LazyVim)
 - [weilbith/nvim-code-action-menu](http://github.com/weilbith/nvim-code-action-menu)
-- [williamboman/mason-lspconfig.nvim](http://github.com/williamboman/mason-lspconfig.nvim)
+- [williamboman/mason-lspconfig.nvim](http://github.com/williambomaLazyVim/LazyVim)
 - [williamboman/mason.nvim](http://github.com/williamboman/mason.nvim)
 - [windwp/nvim-ts-autotag](http://github.com/windwp/nvim-ts-autotag)
 
@@ -111,6 +106,7 @@ configuring the plugins manually.
    - macOS: `brew update && brew install neovim`
 
 - **Step 2**: Clone the repository
+
   ```sh
   git clone git@github.com:alexesba/nvim-config.git ~/.config/nvim
   
@@ -125,9 +121,8 @@ configuring the plugins manually.
 
    git checkout tags/vx.x.x  -b vx.x.x
 
-  # Optional since Packer bootstrap tool will install Packer automatically once you open Neovim 
-  ./install.sh
   ```
+- **Step 4**: Open neovim to run the installer
 
 ### Optional Installation
 
