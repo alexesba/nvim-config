@@ -11,6 +11,7 @@ configuring the plugins manually.
   - [git](https://git-scm.com/)
 - [Color Schemes](#color-schemes) A set of colorschemes that are pleasant for the eyes
 - [Plugins](#plugins)
+- [Default LSP servers](#default-lsp-servers)
 - [Installtion](#installation)
 
 -----
@@ -73,7 +74,7 @@ configuring the plugins manually.
 - [kyazdani42/nvim-tree.lua](http://github.com/kyazdani42/nvim-tree.lua)
 - [kyazdani42/nvim-web-devicons](http://github.com/kyazdani42/nvim-web-devicons)
 - [lewis6991/gitsigns.nvim](http://github.com/lewis6991/gitsigns.nvim)
-- [mattn/emmet-vim](http://github.com/mattn/emmet-vim) 
+- [olrtg/nvim-emmet](http://github.com/olrtg/nvim-emmet) 
 - [mg979/vim-visual-multi](http://github.com/mg979/vim-visual-multi)
 - [neovim/nvim-lspconfig](http://github.com/neovim/nvim-lspconfig)
 - [norcalli/nvim-colorizer.lua](http://github.com/norcalli/nvim-colorizer.lua)
@@ -89,12 +90,26 @@ configuring the plugins manually.
 - [tpope/vim-eunuch](http://github.com/tpope/vim-eunuch)
 - [tpope/vim-fugitive](http://github.com/tpope/vim-fugitive)
 - [tpope/vim-repeat](http://github.com/tpope/vim-repeat)
-- [tpope/vim-surround](http://github.com/tpope/vim-surround)
+- [kylechui/nvim-surround](http://github.com/kylechui/nvim-surround)
 - [LazyVim/LazyVim](http://github.com/LazyVim/LazyVim)
 - [weilbith/nvim-code-action-menu](http://github.com/weilbith/nvim-code-action-menu)
 - [williamboman/mason-lspconfig.nvim](http://github.com/williambomaLazyVim/LazyVim)
 - [williamboman/mason.nvim](http://github.com/williamboman/mason.nvim)
 - [windwp/nvim-ts-autotag](http://github.com/windwp/nvim-ts-autotag)
+
+## Default lsp servers
+  - lua_ls
+  - jsonls
+  - cssls
+  - tsserver
+  - stylelint_lsp
+  - sqlls
+  - solargraph
+  - bashls
+  - eslint
+  - html
+  - yamlls
+  - emmet_language_server
 
 ## Installation
 
