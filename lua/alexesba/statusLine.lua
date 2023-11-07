@@ -187,6 +187,7 @@ Statusline = setmetatable(M, {
 api.nvim_exec([[
   augroup Statusline
   au!
+  au WinEnter,BufEnter highlight WinSeparator guibg=none
   au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
   au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline('explorer')
