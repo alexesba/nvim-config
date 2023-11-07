@@ -22,17 +22,3 @@ function PlayAudio(file)
   local file_path = 'ogg123 ' .. file
   vim.api.nvim_call_function('asyncrun#run', { '!', '', file_path })
 end
-
-function LspInstallServers()
-  vim.cmd [[
-  :!npm install -g typescript
-        \ typescript-language-server
-        \ stylelint-lsp
-        \ vscode-langservers-extracted
-        \ sql-language-server
-  ]]
-
-  if vim.fn.filereadable('./Gemfile') then
-    vim.cmd [[:!gem install solargraph]]
-  end
-end
