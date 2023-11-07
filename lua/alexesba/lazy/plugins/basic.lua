@@ -15,7 +15,6 @@ return {
   },
   { 'tpope/vim-fugitive',           cmd = { 'Git', 'Gread', 'Gwrite', 'Glgrep', 'Gdiffsplit', 'Gsplit', 'Gedit' } },
   { 'tpope/vim-repeat',             event = "VeryLazy" },
-  { 'tpope/vim-surround',           keys = { "cs", "ds", "cS", "yS", "yss", "ySs", "ySS", "S", "gS" } },
   { 'editorconfig/editorconfig-vim' },
   { 'kyazdani42/nvim-web-devicons' },
   { 'skywind3000/asyncrun.vim',     event = "VeryLazy" },
@@ -49,9 +48,5 @@ return {
   {
     'shmup/vim-sql-syntax',
     ft = 'sql'
-  },
-  {
-    'mattn/emmet-vim',
-    ft = { 'html', 'erb', 'javascriptreact' }
   }
 }

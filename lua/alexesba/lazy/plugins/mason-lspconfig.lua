@@ -9,7 +9,10 @@ return {
       'sqlls',
       'solargraph',
       'bashls',
-      'eslint'
+      'eslint',
+      'html',
+      'yamlls',
+      'emmet_language_server'
     }
   }
 }
