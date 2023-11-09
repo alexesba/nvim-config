@@ -1,5 +1,5 @@
 local set = vim.opt
-set.number = true
+set.relativenumber = true
 set.cp = false
 set.hidden = true
 set.expandtab = true
@@ -84,3 +84,10 @@ function OnAttach(_, bufnr)
     end
   })
 end
+
+set.wildignore:append({
+  "blue.vim", "darkblue.vim", "default.vim", "delek.vim", "desert.vim",
+  "elflord.vim", "evening.vim", "industry.vim", "koehler.vim", "morning.vim",
+  "murphy.vim", "pablo.vim", "peachpuff.vim", "ron.vim", "shine.vim", "slate.vim",
+  "torte.vim", "zellner.vim"
+})

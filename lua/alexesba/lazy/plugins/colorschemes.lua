@@ -5,10 +5,13 @@ return {
   { 'rafamadriz/neon',          event = { "BufRead", "BufEnter" } },
   { 'rakr/vim-one',             event = { "BufRead", "BufEnter" } },
   { 'sainnhe/edge',             event = { "BufRead", "BufEnter" } },
-  { 'sainnhe/gruvbox-material', event = { "BufRead", "BufEnter" } },
+  { "ellisonleao/gruvbox.nvim", event = { "BufRead", "BufEnter" } },
   { 'savq/melange-nvim',        event = { "BufRead", "BufEnter" } },
   { 'shatur/neovim-ayu',        event = { "BufRead", "BufEnter" } },
   { 'yonlu/omni.vim',           event = { "BufRead", "BufEnter" } },
+  { 'Mofiqul/vscode.nvim',      event = { "BufRead", "BufEnter" } },
+  { 'rmehri01/onenord.nvim',    event = { "BufRead", "BufEnter" } },
+  { "adisen99/codeschool.nvim", event = { "BufRead", "BufEnter" }, dependencies = { "rktjmp/lush.nvim" } },
   {
     'sainnhe/sonokai',
     config = function()
