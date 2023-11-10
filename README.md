@@ -93,7 +93,7 @@ configuring the plugins manually.
 - [kylechui/nvim-surround](http://github.com/kylechui/nvim-surround)
 - [LazyVim/LazyVim](http://github.com/LazyVim/LazyVim)
 - [weilbith/nvim-code-action-menu](http://github.com/weilbith/nvim-code-action-menu)
-- [williamboman/mason-lspconfig.nvim](http://github.com/williambomaLazyVim/LazyVim)
+- [williamboman/mason-lspconfig.nvim](http://github.com/williamboman/mason-lspconfig.nvim)
 - [williamboman/mason.nvim](http://github.com/williamboman/mason.nvim)
 - [windwp/nvim-ts-autotag](http://github.com/windwp/nvim-ts-autotag)
 
