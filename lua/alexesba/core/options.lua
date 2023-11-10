@@ -25,16 +25,13 @@ set.synmaxcol = 150
 set.cursorline = true
 set.signcolumn = 'yes'
 set.termguicolors = true
-
+set.colorcolumn = '81'
+set.updatetime = 100
 set.diffopt:append { 'vertical' }
-
 vim.g.mapleader = ","
-
 vim.g.table_mode_corner = '+'
 vim.g.enable_italic_font = 1
 vim.inccommand = 'nosplit'
-vim.opt.colorcolumn = '81'
-vim.opt.updatetime = 100
 
 set.wildignore:append({
   "blue.vim", "darkblue.vim", "default.vim", "delek.vim", "desert.vim",
