@@ -1,5 +1,6 @@
 return {
   'hrsh7th/nvim-cmp',
+  event = "InsertEnter",
   dependencies = {
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
@@ -14,13 +15,18 @@ return {
     },
   },
   config = function()
-    vim.o.completeopt = "menuone,noselect"
+    -- vim.o.completeopt = "menuone,noselect"
+    local cmp = require('cmp')
 
-    local cmp = require('cmp');
+    local snippy = require('snippy')
+
     cmp.setup({
+      completion = {
+        completeopt = "menuone,noselect",
+      },
       snippet = {
         expand = function(args)
-          require('snippy').expand_snippet(args.body)
+          snippy.expand_snippet(args.body)
         end,
       },
       window = {

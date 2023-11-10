@@ -1,6 +1,11 @@
 return {
-  'neovim/nvim-lspconfig',
-  config = function()
+  "neovim/nvim-lspconfig",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    { "antosha417/nvim-lsp-file-operations", config = true },
+  },
+  event        = { "BufReadPre", "BufNewFile" },
+  config       = function()
     local signs = {
       Error = " ",
       Warn = "",
