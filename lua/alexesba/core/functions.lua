@@ -19,6 +19,7 @@ function ConfigItalicFonts()
 end
 
 function PlayAudio(file)
-  local file_path = 'ogg123 ' .. file
+  local audio_dir = vim.fn.stdpath('config') .. '/lua/alexesba/ogg-files/'
+  local file_path = 'ogg123 ' .. audio_dir .. file
   vim.api.nvim_call_function('asyncrun#run', { '!', '', file_path })
 end
