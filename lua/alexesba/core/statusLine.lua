@@ -13,6 +13,13 @@ M.separators = {
   blank = { '', '' },
 }
 
+local symbols = {
+  unix = '', -- e712
+  dos = '', -- e70f
+  mac = '', -- e711
+}
+
+
 -- highlight groups
 M.colors = setmetatable({
   active       = '%#StatusLine#',
@@ -24,6 +31,8 @@ M.colors = setmetatable({
   filetype     = '%#Filetype#',
   filetype_alt = '%#FiletypeAlt#',
   line_col     = '%#LineCol#',
+  fileformat  = '%#Special#',
+  fileformat_alt = '%#SpecialAlt#',
   line_col_alt = '%#LineColAlt#',
   -- Status mode colors
   Normal       = '%#Question#',
@@ -106,6 +115,10 @@ M.get_git_status = function(self)
   ) or ''
 end
 
+M.get_fileformat = function(self)
+  return string.format(' %s ', symbols[vim.bo.fileformat])
+end
+
 M.get_filename = function(self)
   if self:is_truncated(self.trunc_width.filename) then return " %<%f " end
   return " %<%F "
@@ -153,15 +166,27 @@ M.set_active = function(self)
   local filename = colors.inactive .. self:get_filename()
   local filetype_alt = colors.filetype_alt .. self.separators[active_sep][2]
   local filetype = colors.filetype .. self:get_filetype()
+  local fileformat = colors.file_format .. self:get_fileformat()
   local line_col = colors.line_col .. self:get_line_col()
   local line_col_alt = colors.line_col_alt .. self.separators[active_sep][2]
+  local fileformat_alt = colors.fileformat_alt ..self.separators[active_sep][2]
   local paste_mode = self.get_paste_mode()
 
   return table.concat({
-    colors.active, mode, mode_alt, paste_mode,
-    filename, "%=",
-    git, git_alt,
-    filetype_alt, filetype, line_col_alt, line_col
+    colors.active,
+    mode,
+    mode_alt,
+    paste_mode,
+    filename,
+    "%=",
+    git,
+    git_alt,
+    fileformat_alt,
+    fileformat,
+    filetype_alt,
+    filetype,
+    line_col_alt,
+    line_col
   })
 end
 
