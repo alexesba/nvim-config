@@ -6,11 +6,18 @@ return {
   },
   event        = { "BufReadPre", "BufNewFile" },
   config       = function()
-    local signs = {
-      Error = "",
-      Warn = "",
+    --[[ local signs = {
+      Error = "󰈸",
+      Warn = "󰌸",
       Hint = "󱩓",
-      Info = " "
+      Info = ""
+    } ]]
+
+    local signs = {
+      Error = "",
+      Warn = "",
+      Hint = "",
+      Info = ""
     }
 
     for type, icon in pairs(signs) do
