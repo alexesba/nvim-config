@@ -7,9 +7,9 @@ return {
   event        = { "BufReadPre", "BufNewFile" },
   config       = function()
     local signs = {
-      Error = " ",
+      Error = "",
       Warn = "",
-      Hint = "",
+      Hint = "󱩓",
       Info = " "
     }
 
