@@ -1,25 +1,86 @@
-function ConfigItalicFonts()
-  if (vim.fn.exists("g:enable_italic_font") and vim.g.enable_italic_font == 1) then
-    vim.api.nvim_set_hl(0, 'TabLineSel', { ctermfg = 114, ctermbg = 237, bold = true, fg = '#99c794', bg = '#343d46' })
-    vim.api.nvim_set_hl(0, 'Comment', { italic = true })
-    vim.api.nvim_set_hl(0, 'Constant', { italic = true })
-    vim.api.nvim_set_hl(0, 'PreProc', { italic = true })
-    vim.api.nvim_set_hl(0, 'Special', { italic = true })
-    vim.api.nvim_set_hl(0, 'Statement', { italic = true })
-    vim.api.nvim_set_hl(0, 'Type', { italic = true })
-    vim.api.nvim_set_hl(0, 'Keyword', { italic = true })
-    vim.api.nvim_set_hl(0, 'jsImport', { italic = true })
-    vim.api.nvim_set_hl(0, 'jsThis', { italic = true })
-    vim.api.nvim_set_hl(0, 'jsSuper', { italic = true })
-    vim.api.nvim_set_hl(0, 'cucumberWhen', { italic = true })
-    vim.api.nvim_set_hl(0, 'cucumberThen', { italic = true })
-    vim.api.nvim_set_hl(0, 'GruvboxAqua', { italic = true })
-    vim.api.nvim_set_hl(0, 'GruvboxOrange', { italic = true })
-  end
-end
+local cmdPreserveCursorPosition = require('alexesba.utils.cmdPreservePosition')
 
 function PlayAudio(file)
   local audio_dir = vim.fn.stdpath('config') .. '/lua/alexesba/ogg-files/'
   local file_path = 'ogg123 ' .. audio_dir .. file
   vim.api.nvim_call_function('asyncrun#run', { '!', '', file_path })
+end
+
+function FormatCss()
+  cmdPreserveCursorPosition([[silent! :%s/[{;}]/&\r/g|norm! =gg]])
+end
+
+function FormatXML()
+  local save_cursor = vim.fn.getpos(".")
+  vim.cmd [[silent! %s/\\"/"/g]]
+  vim.cmd [[silent! %s/\\n//g]]
+  vim.cmd [[silent! :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"]]
+  vim.fn.setpos('.', save_cursor)
+end
+
+function RemoveExtraEmptyLines()
+  cmdPreserveCursorPosition([[%!cat -s]])
+end
+
+function ConvertTabToSpaces()
+  cmdPreserveCursorPosition([[%s/\t/  /g]])
+end
+
+function RemoveEmptyLines()
+  cmdPreserveCursorPosition([[g/^$/d]])
+end
+
+function FormatSQL()
+  cmdPreserveCursorPosition([[
+  '%!sqlformat --reindent --keywords upper --identifiers lower -'
+  ]])
+end
+
+function FormatSQLV2()
+  cmdPreserveCursorPosition([[%!sql-formatter-cli]])
+end
+
+function DoubleQuotes()
+  cmdPreserveCursorPosition([[%s/'\([^']*\)'/"\1"/g]])
+end
+
+function SingleQuotes()
+  cmdPreserveCursorPosition([[%s/"\([^"]*\)"/'\1'/g]])
+end
+
+function FormatHashes()
+  local save_cursor = vim.fn.getpos(".")
+  vim.cmd [[
+    silent! %s/:\([^ ]*\)\(\s*\)=>/\1: /g |
+    silent! %s/}, {/},\r {/g |
+    silent! %s/"\([^"]*\)"/'\1'/g
+  ]]
+  vim.cmd.normal(
+    vim.api.nvim_replace_termcodes('gg<S-v><S-g>=', true, true, true)
+  )
+  vim.fn.setpos('.', save_cursor)
+end
+
+function HashNewSyntax()
+  cmdPreserveCursorPosition([[:%s/:\([^ ]*\)\(\s*\)=>/\1:/g]])
+end
+
+function HashOldSyntax()
+  cmdPreserveCursorPosition([[:%s/\(\w*\): \([':]\)/:\1 => \2/g]])
+end
+
+function UnscapeDoubleQuotes()
+  cmdPreserveCursorPosition([[%s/\\"//g]])
+end
+
+function RemoveLineBreak()
+  cmdPreserveCursorPosition([[%s/\\n//g]])
+end
+
+function CleanWhiteSpaces()
+  cmdPreserveCursorPosition([[%s/\s\+$//e]])
+end
+
+function AddLineNumbers()
+  cmdPreserveCursorPosition([[%s/^/\=printf('%-2d', line('.'))]])
 end

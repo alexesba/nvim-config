@@ -12,47 +12,43 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
   'FormatCss',
-  'call FormatCss()',
+  FormatCss,
   { desc = 'Format css using regex' }
 )
 
 vim.api.nvim_create_user_command(
   'RemoveExtraEmptyLines',
-  function()
-    local save_cursor = vim.fn.getpos(".")
-    vim.cmd [[:%!cat -s]]
-    vim.fn.setpos('.', save_cursor)
-  end,
+  RemoveExtraEmptyLines,
   { desc = 'Remove extra empty lines' }
 )
 
 vim.api.nvim_create_user_command(
-  'AddNumber',
-  "%s/^=printf('%-2d', line('.'))",
+  'AddLineNumbers',
+  AddLineNumbers,
   { desc = 'Add number for the entire file' }
 )
 
 vim.api.nvim_create_user_command(
   'ConvertTabToSpaces',
-  '%s/\t/  /g',
+  ConvertTabToSpaces,
   { desc = 'Convert Tab to spaces' }
 )
 
 vim.api.nvim_create_user_command(
   'RemoveEmptyLines',
-  'g/^$/d',
+  RemoveEmptyLines,
   { desc = 'Remove Empty Lines' }
 )
 
 vim.api.nvim_create_user_command(
   'FormatSQL',
-  '%!sqlformat --reindent --keywords upper --identifiers lower -',
+  FormatSQL,
   { desc = 'Format SQL files using sqlformat' }
 )
 
 vim.api.nvim_create_user_command(
   'FormatSQLV2',
-  '%!sql-formatter-cli',
+  FormatSQLV2,
   { desc = 'Format SQL using sql-formatter-cli' }
 )
 
@@ -70,13 +66,13 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
   'DoubleQuotes',
-  [[%s/'\([^']*\)'/"\1"/g]],
+  DoubleQuotes,
   { desc = "Replace single quotes with double quotes" }
 )
 
 vim.api.nvim_create_user_command(
   'SingleQuotes',
-  [[%s/"\([^"]*\)"/'\1'/g]],
+  SingleQuotes,
   { desc = "Replace double quotes with single quotes" }
 )
 
@@ -94,59 +90,48 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
   'UpdateRubyHashesByLines',
-  [[:call FormatHashes()]],
+  FormatHashes,
   { desc = "Update ruby hashes by lines" }
 )
 
 vim.api.nvim_create_user_command(
   'HashNewSyntax',
-  [[:%s/:\([^ ]*\)\(\s*\)=>/\1:/g]],
+  HashNewSyntax,
   { desc = "update hash old to new syntax" }
 )
 vim.api.nvim_create_user_command(
   'HashOldSyntax',
-  [[:%s/\(\w*\): \([':]\)/:\1 => \2/g]],
+  HashOldSyntax,
   { desc = "update hash new to old syntax" }
 )
 
 vim.api.nvim_create_user_command(
   'HashNewSyntax',
-  [[:%s/:\([^ ]*\)\(\s*\)=>/\1:/g]],
+  HashOldSyntax,
   { desc = "update hash syntax" }
 )
 
 vim.api.nvim_create_user_command(
-  'FormatBraces',
-  [[:call CleanUpReactFile()]],
-  { desc = "format braces" }
-)
-
-
-vim.api.nvim_create_user_command(
   'CleanWhiteSpaces',
-  function()
-    local save_cursor = vim.fn.getpos(".")
-    vim.cmd [[%s/\s\+$//e]]
-    vim.fn.setpos('.', save_cursor)
-  end,
+  CleanWhiteSpaces,
   { desc = "Clean White spaces" }
 )
 
 vim.api.nvim_create_user_command(
   'UnscapeDoubleQuotes',
-  [[%s/\\"//g]],
+  UnscapeDoubleQuotes,
   { desc = "unscape double quotes" }
 )
 
 vim.api.nvim_create_user_command(
   'RemoveLineBreak',
-  [[%s/\\n//g]],
+  RemoveLineBreak,
   { desc = "remove line break" }
 )
 
 vim.api.nvim_create_user_command(
   'FormatXML',
-  [[:call FormatXMLFn()]],
+  FormatXML,
   { desc = "format xml" }
 )
 
