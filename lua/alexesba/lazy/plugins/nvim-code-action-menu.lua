@@ -1,9 +1,9 @@
 return {
   'weilbith/nvim-code-action-menu',
-  cmd = "CodeActionMenu",
+  cmd = 'CodeActionMenu',
   keys = {
     {
-      "<leader>ac", ":CodeActionMenu<cr>", silent = true, noremap = true
+      '<leader>ac', ':CodeActionMenu<cr>', silent = true, noremap = true
     }
   },
   config = function()

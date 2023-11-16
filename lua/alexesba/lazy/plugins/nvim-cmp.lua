@@ -1,6 +1,6 @@
 return {
   'hrsh7th/nvim-cmp',
-  event = "InsertEnter",
+  event = 'InsertEnter',
   dependencies = {
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
@@ -15,14 +15,14 @@ return {
     },
   },
   config = function()
-    -- vim.o.completeopt = "menuone,noselect"
+    -- vim.o.completeopt = 'menuone,noselect'
     local cmp = require('cmp')
 
     local snippy = require('snippy')
 
     cmp.setup({
       completion = {
-        completeopt = "menuone,noselect",
+        completeopt = 'menuone,noselect',
       },
       snippet = {
         expand = function(args)
@@ -40,11 +40,11 @@ return {
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         -- ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping {
+        ['<CR>'] = cmp.mapping {
           i = cmp.mapping.confirm { select = true },
         },
-        ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
+        ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
       }),
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -52,7 +52,7 @@ return {
         { name = 'path' },
       }, {
         {
-          name = "buffer",
+          name = 'buffer',
           option = {
             get_bufnrs = function()
               return vim.api.nvim_list_bufs()

@@ -1,5 +1,5 @@
 return {
-  "LunarVim/bigfile.nvim",
-  event = { "FileReadPre", "BufReadPre", "User FileOpened" },
+  'LunarVim/bigfile.nvim',
+  event = { 'FileReadPre', 'BufReadPre', 'User FileOpened' },
   opts = {}
 }

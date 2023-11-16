@@ -54,91 +54,91 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
   'CopyFullPath',
-  'let @+= expand("%:p")',
+  [[let @+= expand('%:p')]],
   { desc = 'Copy file full path' }
 )
 
 vim.api.nvim_create_user_command(
   'CopyRelativePath',
-  'let @+= expand("%")',
+  [[let @+= expand('%')]],
   { desc = 'Copy file relative path' }
 )
 
 vim.api.nvim_create_user_command(
   'DoubleQuotes',
   DoubleQuotes,
-  { desc = "Replace single quotes with double quotes" }
+  { desc = 'Replace single quotes with double quotes' }
 )
 
 vim.api.nvim_create_user_command(
   'SingleQuotes',
   SingleQuotes,
-  { desc = "Replace double quotes with single quotes" }
+  { desc = 'Replace double quotes with single quotes' }
 )
 
 vim.api.nvim_create_user_command(
   'DoubleQuotesC',
-  [[%s/'\([^']*\)'/"\1"/gc]],
-  { desc = "Replace single quotes with double quotes with confirmation" }
+  [[%s/'\([^']*\)'/'\1'/gc]],
+  { desc = 'Replace single quotes with double quotes with confirmation' }
 )
 
 vim.api.nvim_create_user_command(
   'SingleQuotesC',
-  [[%s/"\([^"]*\)"/'\1'/gc]],
-  { desc = "Replace double quotes with single quotes with confirmation" }
+  [[%s/'\([^']*\)"/'\1'/gc]],
+  { desc = 'Replace double quotes with single quotes with confirmation' }
 )
 
 vim.api.nvim_create_user_command(
   'UpdateRubyHashesByLines',
   FormatHashes,
-  { desc = "Update ruby hashes by lines" }
+  { desc = 'Update ruby hashes by lines' }
 )
 
 vim.api.nvim_create_user_command(
   'HashNewSyntax',
   HashNewSyntax,
-  { desc = "update hash old to new syntax" }
+  { desc = 'update hash old to new syntax' }
 )
 vim.api.nvim_create_user_command(
   'HashOldSyntax',
   HashOldSyntax,
-  { desc = "update hash new to old syntax" }
+  { desc = 'update hash new to old syntax' }
 )
 
 vim.api.nvim_create_user_command(
   'HashNewSyntax',
   HashOldSyntax,
-  { desc = "update hash syntax" }
+  { desc = 'update hash syntax' }
 )
 
 vim.api.nvim_create_user_command(
   'CleanWhiteSpaces',
   CleanWhiteSpaces,
-  { desc = "Clean White spaces" }
+  { desc = 'Clean White spaces' }
 )
 
 vim.api.nvim_create_user_command(
   'UnscapeDoubleQuotes',
   UnscapeDoubleQuotes,
-  { desc = "unscape double quotes" }
+  { desc = 'unscape double quotes' }
 )
 
 vim.api.nvim_create_user_command(
   'RemoveLineBreak',
   RemoveLineBreak,
-  { desc = "remove line break" }
+  { desc = 'remove line break' }
 )
 
 vim.api.nvim_create_user_command(
   'FormatXML',
   FormatXML,
-  { desc = "format xml" }
+  { desc = 'format xml' }
 )
 
 vim.api.nvim_create_user_command(
   'ShowHiName',
   [[:exe 'hi '.synIDattr(synstack(line('.'), col('.'))[-1], 'name')]],
-  { desc = "show hi name" }
+  { desc = 'show hi name' }
 )
 vim.api.nvim_create_user_command(
   'Reprobado',

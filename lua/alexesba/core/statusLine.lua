@@ -120,12 +120,12 @@ M.get_fileformat = function(self)
 end
 
 M.get_filename = function(self)
-  if self:is_truncated(self.trunc_width.filename) then return " %<%f " end
-  return " %<%F "
+  if self:is_truncated(self.trunc_width.filename) then return ' %<%f ' end
+  return ' %<%F '
 end
 
 M.get_filetype = function(self)
-  local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
+  local file_name, file_ext = fn.expand('%:t'), fn.expand('%:e')
   local nvim_web_devicons = require('nvim-web-devicons')
   local filetype = ''
   if (nvim_web_devicons) then
@@ -148,7 +148,7 @@ M.get_filetype = function(self)
 end
 
 M.get_paste_mode = function(_)
-  return "%#MatchParen#%{&paste? ' PASTE ' :''}"
+  return [[%#MatchParen#%{&paste? ' PASTE ' :''}]]
 end
 
 M.get_line_col = function(self)
@@ -178,7 +178,7 @@ M.set_active = function(self)
     mode_alt,
     paste_mode,
     filename,
-    "%=",
+    '%=',
     git,
     git_alt,
     fileformat_alt,
@@ -203,9 +203,9 @@ end
 
 Statusline = setmetatable(M, {
   __call = function(statusline, mode)
-    if mode == "active" then return statusline:set_active() end
-    if mode == "inactive" then return statusline:set_inactive() end
-    if mode == "explorer" then return statusline:set_explorer() end
+    if mode == 'active' then return statusline:set_active() end
+    if mode == 'inactive' then return statusline:set_inactive() end
+    if mode == 'explorer' then return statusline:set_explorer() end
   end
 })
 

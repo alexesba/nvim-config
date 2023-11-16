@@ -29,18 +29,18 @@ set.termguicolors = true
 set.colorcolumn = '81'
 set.updatetime = 100
 set.diffopt:append { 'vertical' }
-vim.g.mapleader = ","
+vim.g.mapleader = ','
 vim.g.table_mode_corner = '+'
 vim.g.enable_italic_font = 1
 vim.inccommand = 'nosplit'
 
 set.wildignore:append({
-  "blue.vim", "darkblue.vim", "default.vim", "delek.vim", "desert.vim",
-  "elflord.vim", "evening.vim", "industry.vim", "koehler.vim", "morning.vim",
-  "murphy.vim", "pablo.vim", "peachpuff.vim", "ron.vim", "shine.vim", "slate.vim",
-  "torte.vim", "zellner.vim"
+  'blue.vim', 'darkblue.vim', 'default.vim', 'delek.vim', 'desert.vim',
+  'elflord.vim', 'evening.vim', 'industry.vim', 'koehler.vim', 'morning.vim',
+  'murphy.vim', 'pablo.vim', 'peachpuff.vim', 'ron.vim', 'shine.vim', 'slate.vim',
+  'torte.vim', 'zellner.vim'
 })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = 'rounded',
 })

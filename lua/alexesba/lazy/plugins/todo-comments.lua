@@ -1,11 +1,11 @@
 return {
   'folke/todo-comments.nvim',
   dependencies = {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
   cmd = { 'TodoTrouble', 'TodoTelescope' },
-  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  event = { 'BufReadPost', 'BufNewFile', 'BufWritePre' },
   config = true,
   -- stylua: ignore
   keys = {

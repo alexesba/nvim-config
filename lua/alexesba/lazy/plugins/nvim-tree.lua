@@ -11,7 +11,7 @@ local function on_attach(bufnr)
   --  view.mappings.custom_only = true
 
   -- Mappings migrated from view.mappings.list
-  -- You will need to insert "your code goes here" for any mappings with a custom action_cb
+  -- You will need to insert 'your code goes here' for any mappings with a custom action_cb
 
   if (api) then
     vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
@@ -66,10 +66,10 @@ return {
     diagnostics         = {
       enable = false,
       icons = {
-        hint = "",
-        info = "",
-        warning = "",
-        error = "",
+        hint = '',
+        info = '',
+        warning = '',
+        error = '',
       }
     },
     update_focused_file = {
@@ -99,7 +99,7 @@ return {
       adaptive_size = true,
       number = false,
       relativenumber = false,
-      signcolumn = "yes"
+      signcolumn = 'yes'
     },
 
     renderer            = {
@@ -107,22 +107,22 @@ return {
       group_empty = false,
       highlight_git = false,
       full_name = false,
-      highlight_opened_files = "none",
-      root_folder_modifier = ":~",
+      highlight_opened_files = 'none',
+      root_folder_modifier = ':~',
       indent_markers = {
         enable = false,
         icons = {
-          corner = "└",
-          edge = "│",
-          item = "│",
-          none = " ",
+          corner = '└',
+          edge = '│',
+          item = '│',
+          none = ' ',
         },
       },
       icons = {
         webdev_colors = true,
-        git_placement = "before",
-        padding = " ",
-        symlink_arrow = " ➛ ",
+        git_placement = 'before',
+        padding = ' ',
+        symlink_arrow = ' ➛ ',
         show = {
           file = true,
           folder = true,
@@ -130,38 +130,38 @@ return {
           git = true,
         },
         glyphs = {
-          default = "",
-          symlink = "",
-          bookmark = "",
+          default = '',
+          symlink = '',
+          bookmark = '',
           folder = {
-            arrow_closed = "",
-            arrow_open = "",
-            default = "",
-            open = "",
-            empty = "",
-            empty_open = "",
-            symlink = "",
-            symlink_open = "",
+            arrow_closed = '',
+            arrow_open = '',
+            default = '',
+            open = '',
+            empty = '',
+            empty_open = '',
+            symlink = '',
+            symlink_open = '',
           },
           git = {
-            unstaged = "✗",
-            staged = "✓",
-            unmerged = "",
-            renamed = "➜",
-            untracked = "★",
-            deleted = "",
-            ignored = "◌",
+            unstaged = '✗',
+            staged = '✓',
+            unmerged = '',
+            renamed = '➜',
+            untracked = '★',
+            deleted = '',
+            ignored = '◌',
           },
         },
       },
-      special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+      special_files = { 'Cargo.toml', 'Makefile', 'README.md', 'readme.md' },
       symlink_destination = true,
     },
     trash               = {
-      cmd = "trash",
+      cmd = 'trash',
       require_confirm = true
     }
   },
-  cmd = "NvimTreeFindFileToggle",
-  keys = { { "<C-p>", "<cmd>NvimTreeFindFileToggle!<cr>", noremap = true, silent = true } },
+  cmd = 'NvimTreeFindFileToggle',
+  keys = { { '<C-p>', '<cmd>NvimTreeFindFileToggle!<cr>', noremap = true, silent = true } },
 }

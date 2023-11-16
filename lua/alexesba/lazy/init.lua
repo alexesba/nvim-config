@@ -27,13 +27,13 @@ if (lazy) then
     performance = {
       rtp = {
         disabled_plugins = {
-          "gzip",
-          "matchit",
-          "matchparen",
-          "tarPlugin",
-          "tohtml",
-          "tutor",
-          "zipPlugin",
+          'gzip',
+          'matchit',
+          'matchparen',
+          'tarPlugin',
+          'tohtml',
+          'tutor',
+          'zipPlugin',
         },
       },
     }
