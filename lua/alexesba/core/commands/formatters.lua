@@ -78,13 +78,13 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
   'DoubleQuotesC',
-  [[%s/'\([^']*\)'/'\1'/gc]],
+  [[%s/'\([^']*\)'/"\1"/gc]],
   { desc = 'Replace single quotes with double quotes with confirmation' }
 )
 
 vim.api.nvim_create_user_command(
   'SingleQuotesC',
-  [[%s/'\([^']*\)"/'\1'/gc]],
+  [[%s/"\([^"]*\)"/'\1'/gc]],
   { desc = 'Replace double quotes with single quotes with confirmation' }
 )
 
