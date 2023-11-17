@@ -12,9 +12,11 @@ end
 
 function FormatXML()
   local save_cursor = vim.fn.getpos(".")
-  vim.cmd [[silent! %s/\\"/"/g]]
-  vim.cmd [[silent! %s/\\n//g]]
-  vim.cmd [[silent! :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"]]
+  vim.cmd [[
+    silent! %s/\\"/"/g |
+    silent! %s/\\n//g |
+    silent! %!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+  ]]
   vim.fn.setpos('.', save_cursor)
 end
 
