@@ -1,5 +1,4 @@
 require('alexesba.linters.cssls')
-require('alexesba.linters.cucumber')
 require('alexesba.linters.elixir')
 require('alexesba.linters.eslint')
 require('alexesba.linters.grammar-guard')
