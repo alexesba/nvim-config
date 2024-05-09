@@ -1,0 +1,7 @@
+require('basic.linters.emmet')
+require('basic.linters.eslint')
+require('basic.linters.lua_ls')
+require('basic.linters.solargraph')
+require('basic.linters.stylelint_lsp')
+require('basic.linters.tailwindcss')
+require('basic.linters.tsserver')
