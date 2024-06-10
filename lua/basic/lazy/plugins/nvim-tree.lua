@@ -119,7 +119,7 @@ return {
         },
       },
       icons = {
-        webdev_colors = true,
+        webdev_colors = false,
         git_placement = 'before',
         padding = ' ',
         symlink_arrow = ' ➛ ',

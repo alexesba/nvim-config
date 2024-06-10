@@ -1,2 +1,2 @@
-require('alexesba.core')
+require('core')
 require('alexesba.lazy')

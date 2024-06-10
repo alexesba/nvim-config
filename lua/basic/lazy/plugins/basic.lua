@@ -17,7 +17,6 @@ return {
     ft = { 'javascriptreact', 'ruby', 'javascript', 'json', 'lua', 'eruby' }
   },
   { 'dietsche/vim-lastplace',       event = { 'BufRead' } },
-  { 'editorconfig/editorconfig-vim' },
   { 'godlygeek/tabular',            cmd = 'Tabularize' },
   { 'kopischke/vim-fetch' },
   { 'kyazdani42/nvim-web-devicons' },
