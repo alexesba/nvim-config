@@ -49,6 +49,7 @@ return {
         { name = 'nvim_lsp' },
         { name = 'snippy' },
         { name = 'path' },
+        { name = "codeium" },
       }, {
         {
           name = 'buffer',

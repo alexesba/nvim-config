@@ -1,5 +1,6 @@
 return {
-  'williamboman/mason-lspconfig.nvim', opts = {
+  'williamboman/mason-lspconfig.nvim',
+  opts = {
     ensure_installed = {
       'lua_ls',
       'jsonls',
@@ -12,7 +13,9 @@ return {
       'eslint',
       'html',
       'yamlls',
-      'emmet_language_server'
+      'emmet_language_server',
+      'tailwindcss',
+      'typos_lsp'
     }
   }
 }
