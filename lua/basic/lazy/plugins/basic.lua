@@ -9,10 +9,6 @@ return {
     event = { 'BufRead', 'BufEnter' }
   },
   {
-    'aca/marp.nvim',
-    ft = { 'md', 'markdown' }
-  },
-  {
     'andymass/vim-matchup',
     ft = { 'javascriptreact', 'ruby', 'javascript', 'json', 'lua', 'eruby' }
   },
@@ -56,10 +52,6 @@ return {
   {
     'tpope/vim-fugitive',
     cmd = { 'Git', 'Gread', 'Gwrite', 'Glgrep', 'Gdiffsplit', 'Gsplit', 'Gedit' }
-  },
-  {
-    'tpope/vim-repeat',
-    event = 'VeryLazy'
   },
   {
     'windwp/nvim-ts-autotag',
