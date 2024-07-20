@@ -1,1 +1,7 @@
-require('basic')
+require("config.lazy")
+require('linters.')
+require('core.functions')
+require('core.augroups')
+require('core.commands')
+require('core.mappings')
+require('core.statusLine')

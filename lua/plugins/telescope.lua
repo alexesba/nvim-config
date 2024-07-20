@@ -26,5 +26,16 @@ return {
         enable_preview = true
       }
     }
-  }
+  },
+ config = function(_, opts)
+    local telescope = require('telescope')
+
+    telescope.setup(opts)
+
+    vim.api.nvim_create_user_command(
+      'ColorScheme',
+      require('telescope.builtin').colorscheme,
+      { desc = 'Reload VIMRC file' }
+    )
+  end
 }
