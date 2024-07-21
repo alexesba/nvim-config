@@ -50,6 +50,8 @@ return {
         { name = 'snippy' },
         { name = 'path' },
         { name = "codeium" },
+        { name = "vim-dadbod-completion" },
+
       }, {
         {
           name = 'buffer',
