@@ -1,3 +1,1 @@
-require("config.lazy")
-require('core')
-require("linters")
+require("config")
