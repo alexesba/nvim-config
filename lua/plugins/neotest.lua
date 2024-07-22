@@ -16,4 +16,11 @@ return {
       }
     })
   end,
+  keys = {
+    { '<leader>rt', function() require("neotest").run.run() end, noremap = true, silent = true },
+    { '<leader>rf', function() require("neotest").run.run(vim.fn.expand("%")) end, noremap = true, silent = true },
+    { '<leader>ra', function() require("neotest").run.run(vim.fn.getcwd() .. "/spec") end, noremap = true, silent = true },
+    { '<leader>ro', function() require("neotest").output.open() end, noremap = true, silent = true },
+    { '<leader>os', function() require("neotest").summary.toggle() end, noremap = true, silent = true },
+  }
 }
