@@ -162,6 +162,7 @@ return {
       require_confirm = true
     }
   },
+  lazy = true,
   cmd = 'NvimTreeFindFileToggle',
   keys = { { '<C-p>', '<cmd>NvimTreeFindFileToggle!<cr>', noremap = true, silent = true } },
 }
