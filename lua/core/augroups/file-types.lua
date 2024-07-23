@@ -5,6 +5,12 @@ vim.api.nvim_create_autocmd(
   })
 
 vim.api.nvim_create_autocmd(
+  { 'BufRead', 'BufNewFile' }, {
+    pattern = { "*.slim" },
+    command = "setfiletype slim"
+  })
+
+vim.api.nvim_create_autocmd(
   { 'BufNewFile', 'BufRead', 'BufEnter' }, {
     pattern = { "*.jbuilder" },
     command = "setf jbuilder"

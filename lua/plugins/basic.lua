@@ -57,5 +57,9 @@ return {
     'windwp/nvim-ts-autotag',
     dependencies = { 'nvim-ts-context-commentstring' },
     event = { 'BufRead', 'BufNewFile', 'BufEnter' }
+  },
+  {
+    'slim-template/vim-slim',
+    ft = 'slim'
   }
 }
