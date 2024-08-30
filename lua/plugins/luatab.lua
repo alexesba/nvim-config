@@ -5,5 +5,6 @@ return {
   },
   config = function()
     require('luatab').setup({})
-  end
+  end,
+  event = { "BufWinEnter" }
 }

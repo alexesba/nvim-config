@@ -21,7 +21,7 @@ set.listchars = {
   tab = '>-',
   trail = '~'
 }
-set.swapfile = true
+set.swapfile = false
 set.synmaxcol = 150
 set.cursorline = true
 set.signcolumn = 'yes'
@@ -45,4 +45,4 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = 'rounded',
 })
 
-set.cmdheight=0
+-- set.cmdheight=0

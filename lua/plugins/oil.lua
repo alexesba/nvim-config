@@ -1,6 +1,8 @@
 return {
   'stevearc/oil.nvim',
-  opts = {},
+  opts = {
+    default_file_explorer = true
+  },
   -- Optional dependencies
   dependencies = { 'nvim-web-devicons' },
   cmd = { 'Exp', 'Explore', 'Explorer' },

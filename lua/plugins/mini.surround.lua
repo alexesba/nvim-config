@@ -5,5 +5,6 @@ return {
   },
   config = function(_, opts)
     require('mini.surround').setup(opts)
-  end
+  end,
+  event = "BufReadPost"
 }

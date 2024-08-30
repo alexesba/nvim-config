@@ -1,4 +1,5 @@
 return {
   'Bekaboo/deadcolumn.nvim',
-  opts = {}
+  opts = {},
+  event = "BufReadPost"
 }

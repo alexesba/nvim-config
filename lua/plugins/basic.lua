@@ -21,14 +21,16 @@ return {
     cmd = 'Tabularize'
   },
   { 'kopischke/vim-fetch' },
-  { 'kyazdani42/nvim-web-devicons' },
+  { 'kyazdani42/nvim-web-devicons', lazy = true },
   {
     'mg979/vim-visual-multi',
     event = { 'BufReadPost', 'BufNewFile', 'BufWritePre' },
   },
   {
     'nvim-lua/popup.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    event = "BufRead",
+
   },
   { 'rorymckinley/vim-rubyhash', ft = { 'erb', 'ruby' } },
   {
@@ -37,7 +39,7 @@ return {
   },
   {
     'skywind3000/asyncrun.vim',
-    event = 'VeryLazy'
+    cmd = 'AsyncRun'
   },
   {
     'tpope/vim-abolish',
@@ -56,7 +58,7 @@ return {
   {
     'windwp/nvim-ts-autotag',
     dependencies = { 'nvim-ts-context-commentstring' },
-    event = { 'BufRead', 'BufNewFile', 'BufEnter' }
+    ft = { "html", "javascript", "typescript", "xml", "javascriptreact", "typescriptreact", "svelte", "eruby", "yaml" }, -- Add more filetypes as needed
   },
   {
     'slim-template/vim-slim',
