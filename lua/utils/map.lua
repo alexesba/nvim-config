@@ -1,13 +1,13 @@
 local M = {}
 function M.map(mode, lhs, rhs, opts)
-    -- default options
-    local options = { noremap = true }
+  -- default options
+  local options = { noremap = true }
 
-    if opts then
-        options = vim.tbl_extend('force', options, opts)
-    end
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
 
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-return M;
+return M

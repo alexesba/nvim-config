@@ -1,1 +1,0 @@
-require('core.commands.formatters')

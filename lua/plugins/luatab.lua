@@ -1,10 +1,10 @@
 return {
-  'alvarosevilla95/luatab.nvim',
+  "alvarosevilla95/luatab.nvim",
   dependencies = {
-    'nvim-web-devicons'
+    "nvim-web-devicons",
   },
   config = function()
-    require('luatab').setup({})
+    require("luatab").setup({})
   end,
-  event = { "BufWinEnter" }
+  event = { "BufWinEnter" },
 }

@@ -1,46 +1,34 @@
 return {
-  'stevearc/oil.nvim',
+  "stevearc/oil.nvim",
   opts = {
-    default_file_explorer = true
+    default_file_explorer = true,
   },
   -- Optional dependencies
-  dependencies = { 'nvim-web-devicons' },
-  cmd = { 'Exp', 'Explore', 'Explorer' },
+  dependencies = { "nvim-web-devicons" },
+  cmd = { "Exp", "Explore", "Explorer" },
   keys = {
     {
-      '-',
+      "-",
       function()
-        require('oil').open()
+        require("oil").open()
       end,
-      desc = 'Open Parent Directory',
-      noremap = true
-    }
+      desc = "Open Parent Directory",
+      noremap = true,
+    },
   },
   config = function(_, opts)
-    require('oil').setup(opts)
+    require("oil").setup(opts)
 
-    vim.api.nvim_create_user_command(
-      'Explorer',
-      function()
-        require('oil').open()
-      end,
-      { desc = 'Open Current Directory' }
-    )
+    vim.api.nvim_create_user_command("Explorer", function()
+      require("oil").open()
+    end, { desc = "Open Current Directory" })
 
-    vim.api.nvim_create_user_command(
-      'Explore',
-      function()
-        require('oil').open()
-      end,
-      { desc = 'Open Current Directory' }
-    )
+    vim.api.nvim_create_user_command("Explore", function()
+      require("oil").open()
+    end, { desc = "Open Current Directory" })
 
-    vim.api.nvim_create_user_command(
-      'Exp',
-      function()
-        require('oil').open()
-      end,
-      { desc = 'Open Current Directory' }
-    )
-  end
+    vim.api.nvim_create_user_command("Exp", function()
+      require("oil").open()
+    end, { desc = "Open Current Directory" })
+  end,
 }

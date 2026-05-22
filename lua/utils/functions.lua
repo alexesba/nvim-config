@@ -1,8 +1,8 @@
-local cmdPreserveCursorPosition = require('utils.cmdPreservePosition')
+local cmdPreserveCursorPosition = require("utils.cmdPreservePosition")
 
 function PlayAudio(file)
-  local audio_dir = vim.fn.stdpath('config') .. '/lua/ogg-files/'
-  local cmd = 'AsyncRun ogg123 ' .. audio_dir .. file
+  local audio_dir = vim.fn.stdpath("config") .. "/lua/ogg/"
+  local cmd = "AsyncRun ogg123 " .. audio_dir .. file
   vim.cmd(cmd)
 end
 
@@ -12,12 +12,12 @@ end
 
 function FormatXML()
   local save_cursor = vim.fn.getpos(".")
-  vim.cmd [[
+  vim.cmd([[
     silent! %s/\\"/"/g |
     silent! %s/\\n//g |
     silent! %!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
-  ]]
-  vim.fn.setpos('.', save_cursor)
+  ]])
+  vim.fn.setpos(".", save_cursor)
 end
 
 function RemoveExtraEmptyLines()
@@ -52,15 +52,13 @@ end
 
 function FormatHashes()
   local save_cursor = vim.fn.getpos(".")
-  vim.cmd [[
+  vim.cmd([[
     silent! %s/:\([^ ]*\)\(\s*\)=>/\1: /g |
     silent! %s/}, {/},\r {/g |
     silent! %s/"\([^"]*\)"/'\1'/g
-  ]]
-  vim.cmd.normal(
-    vim.api.nvim_replace_termcodes('gg<S-v><S-g>=', true, true, true)
-  )
-  vim.fn.setpos('.', save_cursor)
+  ]])
+  vim.cmd.normal(vim.api.nvim_replace_termcodes("gg<S-v><S-g>=", true, true, true))
+  vim.fn.setpos(".", save_cursor)
 end
 
 function HashNewSyntax()
