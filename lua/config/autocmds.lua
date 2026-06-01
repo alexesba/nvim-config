@@ -80,3 +80,9 @@ vim.api.nvim_create_user_command("Reprobada", [[silent!:lua PlayAudio('Reprobada
 vim.api.nvim_create_user_command("OpenConfig", [[:e $MYVIMRC]], { desc = "Edit VIMRC file" })
 
 vim.api.nvim_create_user_command("Reload", [[:so $MYVIMRC]], { desc = "Reload VIMRC file" })
+
+vim.api.nvim_create_user_command(
+  "ColorScheme",
+  require("telescope.builtin").colorscheme,
+  { desc = "Change colorscheme file" }
+)

@@ -1,5 +1,6 @@
 return {
   "stevearc/oil.nvim",
+  lazy = false,
   opts = {
     default_file_explorer = true,
   },
@@ -30,5 +31,16 @@ return {
     vim.api.nvim_create_user_command("Exp", function()
       require("oil").open()
     end, { desc = "Open Current Directory" })
+  end,
+  -- Open directory when using nvim .
+  init = function()
+    vim.api.nvim_create_autocmd("VimEnter", {
+      callback = function()
+        local arg = vim.fn.argv(0)
+        if arg and vim.fn.isdirectory(arg) == 1 then
+          vim.cmd("Oil " .. arg)
+        end
+      end,
+    })
   end,
 }

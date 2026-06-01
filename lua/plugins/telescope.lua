@@ -18,13 +18,6 @@ return {
       { silent = true, noremap = true },
     },
     {
-      "<leader>fk",
-      function()
-        require("telescope.builtin").grep_string()
-      end,
-      { silent = true, noremap = true },
-    },
-    {
       "<leader>fg",
       function()
         require("telescope.builtin").live_grep()
@@ -67,15 +60,4 @@ return {
       },
     },
   },
-  config = function(_, opts)
-    local telescope = require("telescope")
-
-    telescope.setup(opts)
-
-    vim.api.nvim_create_user_command(
-      "ColorScheme",
-      require("telescope.builtin").colorscheme,
-      { desc = "Change colorscheme file" }
-    )
-  end,
 }
