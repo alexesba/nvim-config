@@ -81,6 +81,34 @@ vim.api.nvim_create_user_command("OpenConfig", [[:e $MYVIMRC]], { desc = "Edit V
 
 vim.api.nvim_create_user_command("Reload", [[:so $MYVIMRC]], { desc = "Reload VIMRC file" })
 
+local diag_ns = vim.api.nvim_create_namespace("cursorline_diagnostics")
+local hl_map = {
+  [vim.diagnostic.severity.ERROR] = "DiagnosticVirtualTextError",
+  [vim.diagnostic.severity.WARN]  = "DiagnosticVirtualTextWarn",
+  [vim.diagnostic.severity.INFO]  = "DiagnosticVirtualTextInfo",
+  [vim.diagnostic.severity.HINT]  = "DiagnosticVirtualTextHint",
+}
+
+vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufEnter", "DiagnosticChanged" }, {
+  callback = function(args)
+    local buf = args.buf
+    vim.api.nvim_buf_clear_namespace(buf, diag_ns, 0, -1)
+    local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1
+    local diagnostics = vim.diagnostic.get(buf, { lnum = lnum })
+    if #diagnostics == 0 then return end
+
+    local virt_texts = {}
+    for _, diag in ipairs(diagnostics) do
+      table.insert(virt_texts, { "  " .. diag.message, hl_map[diag.severity] })
+    end
+
+    vim.api.nvim_buf_set_extmark(buf, diag_ns, lnum, 0, {
+      virt_text = virt_texts,
+      virt_text_pos = "eol",
+    })
+  end,
+})
+
 vim.api.nvim_create_user_command(
   "ColorScheme",
   require("telescope.builtin").colorscheme,
