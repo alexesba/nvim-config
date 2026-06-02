@@ -59,8 +59,9 @@ set.wildignore:append({
 })
 
 set.list = false
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-})
+local _hover = vim.lsp.handlers.hover
+vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
+  _hover(err, result, ctx, vim.tbl_extend("force", config or {}, { border = "rounded" }))
+end
 
 -- set.cmdheight=0
