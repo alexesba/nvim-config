@@ -59,4 +59,5 @@ set.wildignore:append({
 })
 
 set.list = false
+set.updatetime = 500 -- ms before CursorHold fires (affects diagnostic float speed)
 -- set.cmdheight=0
