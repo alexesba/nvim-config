@@ -81,14 +81,6 @@ vim.api.nvim_create_user_command("OpenConfig", [[:e $MYVIMRC]], { desc = "Edit V
 
 vim.api.nvim_create_user_command("Reload", [[:so $MYVIMRC]], { desc = "Reload VIMRC file" })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-
-local function set_float_highlights()
-  vim.api.nvim_set_hl(0, "FloatBorder", { link = "DiagnosticFloatingInfo" })
-end
-set_float_highlights()
-vim.api.nvim_create_autocmd("ColorScheme", { callback = set_float_highlights })
 
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
