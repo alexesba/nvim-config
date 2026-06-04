@@ -13,50 +13,65 @@ For LazyVim’s built-in features and default keymaps, see the [LazyVim document
 
 ## Installation
 
-### Automated (recommended)
+Use `install.sh` — it checks dependencies, backs up any existing config, installs into `~/.config/nvim`, syncs plugins, and opens Neovim.
 
-From a clone of this repo:
+There are **three ways** to install (the script picks the right one automatically):
+
+| Situation | What `./install.sh` does |
+| --- | --- |
+| **`curl \| bash`** | **clone** — clones into `~/.config/nvim` |
+| **Clone into `~/.config/nvim`**, then `./install.sh` | **ready** — config is already in place; only syncs plugins (no backup, no symlink) |
+| **Clone elsewhere** (e.g. `~/Projects/nvim-config`), then `./install.sh` | **link** — symlinks `~/.config/nvim` → that folder |
+
+### Option 1 — One command (`curl`)
 
 ```bash
-git clone https://github.com/alexesba/nvim-config.git
-cd nvim-config
-chmod +x install.sh
+curl -fsSL https://raw.githubusercontent.com/alexesba/nvim-config/master/install.sh | bash
+```
+
+Clones into `~/.config/nvim`, syncs plugins, opens Neovim.
+
+### Option 2 — Clone directly into `~/.config/nvim`
+
+```bash
+git clone https://github.com/alexesba/nvim-config.git ~/.config/nvim
+cd ~/.config/nvim
 ./install.sh
 ```
 
-The script will:
+The repo is already where Neovim expects it. The script detects **ready** mode: it does **not** move or symlink your config, only runs plugin sync and opens Neovim.
 
-1. Check for `git` and Neovim (install Neovim via Homebrew/apt/pacman/dnf if missing)
-2. Back up an existing `~/.config/nvim` to `~/.config/nvim.bak.<timestamp>`
-3. Symlink this repo to `~/.config/nvim`
-4. Run `nvim --headless "+Lazy! sync"` to install all plugins
-5. Open Neovim
-
-One-liner (clone + install, no local repo):
+### Option 3 — Clone anywhere else, then `./install.sh`
 
 ```bash
-git clone --depth 1 https://github.com/alexesba/nvim-config.git /tmp/nvim-config \
-  && /tmp/nvim-config/install.sh
+git clone https://github.com/alexesba/nvim-config.git ~/Projects/nvim-config
+cd ~/Projects/nvim-config
+./install.sh
 ```
 
-Environment variables (optional):
+Uses **link** mode: symlinks `~/.config/nvim` → your clone. Good if you keep the repo under `~/Projects` (or similar) and edit it there.
+
+**Rule of thumb:** if you run `./install.sh` from inside the repo, the script checks whether that folder **is** `~/.config/nvim` (ready) or should be **linked** to it (link).
+
+### What the script does
+
+1. Check for `git` and Neovim (install Neovim via Homebrew/apt/pacman/dnf if missing)
+2. Back up existing `~/.config/nvim` to `~/.config/nvim.bak.<timestamp>`
+3. **clone** or **link** as above
+4. Run `nvim --headless "+Lazy! sync"` to install plugins
+5. Open Neovim
+
+```bash
+./install.sh --help   # usage and environment variables
+```
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `INSTALL_DIR` | `~/.config/nvim` | Where config is installed |
-| `REPO_URL` | `https://github.com/alexesba/nvim-config.git` | Clone URL when not run from repo |
+| `INSTALL_DIR` | `~/.config/nvim` | Neovim config path |
+| `REPO_URL` | `https://github.com/alexesba/nvim-config.git` | Clone URL (**clone** mode) |
+| `INSTALL_MODE` | auto (`ready` / `link` / `clone`) | Force `clone` or `link` |
 
-### Manual
-
-```bash
-mv ~/.config/nvim ~/.config/nvim.bak
-git clone https://github.com/alexesba/nvim-config.git ~/.config/nvim
-cd ~/.config/nvim
-nvim --headless "+Lazy! sync" +qa
-nvim
-```
-
-Run `:Lazy` to check plugin status, `:Lazy sync` to install or update plugins, and `:LazyExtras` to manage LazyVim extras.
+After install: `:Lazy`, `:Lazy sync`, `:LazyExtras`.
 
 ## What’s included
 
