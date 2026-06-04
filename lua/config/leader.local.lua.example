@@ -1,0 +1,3 @@
+-- Copy to leader.local.lua (or let install.sh create it) to customize <leader>.
+-- Examples: ","  " "  "\\"
+vim.g.mapleader = ","

@@ -34,6 +34,17 @@ set.colorcolumn = "81"
 set.updatetime = 100
 set.diffopt:append({ "vertical" })
 vim.g.mapleader = ","
+vim.g.maplocalleader = "\\"
+
+-- Optional override from install.sh or manual setup (gitignored)
+local leader_local = vim.fn.stdpath("config") .. "/lua/config/leader.local.lua"
+if vim.fn.filereadable(leader_local) == 1 then
+  local ok, err = pcall(dofile, leader_local)
+  if not ok then
+    vim.notify("Failed to load leader.local.lua: " .. err, vim.log.levels.WARN)
+  end
+end
+
 vim.g.table_mode_corner = "+"
 vim.g.enable_italic_font = 1
 vim.inccommand = "nosplit"

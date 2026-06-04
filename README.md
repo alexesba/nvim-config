@@ -58,8 +58,9 @@ Uses **link** mode: symlinks `~/.config/nvim` → your clone. Good if you keep t
 1. Check for `git` and Neovim (install Neovim via Homebrew/apt/pacman/dnf if missing)
 2. Back up existing `~/.config/nvim` to `~/.config/nvim.bak.<timestamp>`
 3. **clone** or **link** as above
-4. Run `nvim --headless "+Lazy! sync"` to install plugins
-5. Open Neovim
+4. Ask for your `<leader>` key when run interactively (default `,`; skipped if `leader.local.lua` already exists)
+5. Run `nvim --headless "+Lazy! sync"` to install plugins
+6. Open Neovim
 
 ```bash
 ./install.sh --help   # usage and environment variables
@@ -71,6 +72,8 @@ Uses **link** mode: symlinks `~/.config/nvim` → your clone. Good if you keep t
 | `REPO_URL` | `https://github.com/alexesba/nvim-config.git` | Clone URL (**clone** mode) |
 | `REPO_BRANCH` | `master` | Branch to clone |
 | `INSTALL_MODE` | auto (`ready` / `link` / `clone`) | Force `clone` or `link` |
+| `MAPLEADER` | `,` | Leader key when install is non-interactive (`curl \| bash`) |
+| `FORCE_LEADER` | — | Set to `1` to choose leader again during install |
 
 After install: `:Lazy`, `:Lazy sync`, `:LazyExtras`.
 
@@ -80,7 +83,7 @@ After install: `:Lazy`, `:Lazy sync`, `:LazyExtras`.
 
 - **LazyVim** — IDE-style defaults (LSP, formatting, linting, treesitter, which-key, etc.)
 - **lazy.nvim** — plugin manager
-- **Leader key** — `,` (comma), set in `lua/config/options.lua`
+- **Leader key** — `<leader>` (default: `,` comma). `install.sh` can prompt for your choice and writes `lua/config/leader.local.lua` (gitignored). Change later by editing that file or copying from `lua/config/leader.local.lua.example`
 
 ### LazyVim extras (`lazyvim.json`)
 
@@ -128,19 +131,19 @@ Saved theme path: `~/.local/state/nvim/last-colorscheme`
 
 | Key | Action |
 | --- | --- |
-| `,ff` | Find files (ignores `node_modules`, `.git`) |
-| `,fg` | Live grep |
-| `,fk` | Grep word under cursor |
-| `,fb` | Buffers |
-| `,fh` | Help tags |
-| `,fc` | Colorscheme picker (preview enabled; choice is persisted) |
-| `,fm` | Keymaps |
+| `<leader>ff` | Find files (ignores `node_modules`, `.git`) |
+| `<leader>fg` | Live grep |
+| `<leader>fk` | Grep word under cursor |
+| `<leader>fb` | Buffers |
+| `<leader>fh` | Help tags |
+| `<leader>fc` | Colorscheme picker (preview enabled; choice is persisted) |
+| `<leader>fm` | Keymaps |
 
 `:ColorScheme` also opens the colorscheme picker.
 
 ### Colorschemes
 
-1. `,fc` or `:ColorScheme` — pick a theme in Telescope.
+1. `<leader>fc` or `:ColorScheme` — pick a theme in Telescope.
 2. Or `:colorscheme <name>` (e.g. `sonokai`, `tokyonight`).
 3. Restart Neovim — your last theme is restored automatically.
 
@@ -161,7 +164,7 @@ rm -f ~/.local/state/nvim/last-colorscheme
 
 | Key | Action |
 | --- | --- |
-| `,mp` | Toggle Markdown preview (`markdown` / `md` buffers) |
+| `<leader>mp` | Toggle Markdown preview (`markdown` / `md` buffers) |
 
 ### Database (Dadbod)
 
@@ -176,7 +179,7 @@ rm -f ~/.local/state/nvim/last-colorscheme
 
 | Key | Action |
 | --- | --- |
-| `,1` … `,9`, `,0` | Go to tab 1–9 / last tab |
+| `<leader>1` … `<leader>9`, `<leader>0` | Go to tab 1–9 / last tab |
 
 ### Config
 
@@ -184,8 +187,8 @@ rm -f ~/.local/state/nvim/last-colorscheme
 | --- | --- |
 | `:OpenConfig` | Edit `$MYVIMRC` |
 | `:Reload` | Source config |
-| `,fef` | Format whole buffer (`gg=G`) |
-| `,cf` | Copy full file path to clipboard |
+| `<leader>fef` | Format whole buffer (`gg=G`) |
+| `<leader>cf` | Copy full file path to clipboard |
 
 ### Custom commands (`:command`)
 
@@ -197,18 +200,18 @@ Paths: `CopyFullPath`, `CopyRelativePath`
 
 Misc: `ShowHiName` (highlight group under cursor), `Reprobado` / `Reprobada` (audio; needs `ogg123`)
 
-Use `:command` or Telescope `,fm` to discover more.
+Use `:command` or Telescope `<leader>fm` to discover more.
 
 ### Other custom normal-mode maps
 
 | Key | Action |
 | --- | --- |
-| `,no` / `,na` | Play Reprobado / Reprobada sound |
-| `,rp` | Start substitute for word under cursor |
+| `<leader>no` / `<leader>na` | Play Reprobado / Reprobada sound |
+| `<leader>rp` | Start substitute for word under cursor |
 | `Y` | Yank to end of line |
 | `Esc` | Clear search highlight |
 
-LazyVim’s own maps (LSP, windows, etc.) still apply — press `,` and wait for which-key, or check [LazyVim keymaps](https://www.lazyvim.org/keymaps).
+LazyVim’s own maps (LSP, windows, etc.) still apply — press `<leader>` and wait for which-key, or check [LazyVim keymaps](https://www.lazyvim.org/keymaps).
 
 ## Project layout
 
