@@ -81,7 +81,6 @@ vim.api.nvim_create_user_command("OpenConfig", [[:e $MYVIMRC]], { desc = "Edit V
 
 vim.api.nvim_create_user_command("Reload", [[:so $MYVIMRC]], { desc = "Reload VIMRC file" })
 
-
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
     vim.diagnostic.open_float(nil, { focus = false })
