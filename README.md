@@ -69,6 +69,7 @@ Uses **link** mode: symlinks `~/.config/nvim` → your clone. Good if you keep t
 | --- | --- | --- |
 | `INSTALL_DIR` | `~/.config/nvim` | Neovim config path |
 | `REPO_URL` | `https://github.com/alexesba/nvim-config.git` | Clone URL (**clone** mode) |
+| `REPO_BRANCH` | `master` | Branch to clone |
 | `INSTALL_MODE` | auto (`ready` / `link` / `clone`) | Force `clone` or `link` |
 
 After install: `:Lazy`, `:Lazy sync`, `:LazyExtras`.

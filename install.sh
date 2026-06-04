@@ -14,6 +14,8 @@ set -euo pipefail
 
 INSTALL_DIR="${INSTALL_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/nvim}"
 REPO_URL="${REPO_URL:-https://github.com/alexesba/nvim-config.git}"
+REPO_BRANCH="${REPO_BRANCH:-master}"
+INSTALL_SCRIPT_URL="${INSTALL_SCRIPT_URL:-https://raw.githubusercontent.com/alexesba/nvim-config/${REPO_BRANCH}/install.sh}"
 INSTALL_MODE="${INSTALL_MODE:-}"
 MIN_NVIM_VERSION="0.11.2"
 BACKUP_SUFFIX="$(date +%Y%m%d-%H%M%S)"
@@ -32,14 +34,16 @@ Install modes:
   ready   Auto: repo already lives at ${INSTALL_DIR} — only syncs plugins
 
 Examples:
-  curl -fsSL https://raw.githubusercontent.com/alexesba/nvim-config/master/install.sh | bash
-  git clone ${REPO_URL} ${INSTALL_DIR} && cd ${INSTALL_DIR} && ./install.sh
-  git clone ${REPO_URL} ~/Projects/nvim-config && cd ~/Projects/nvim-config && ./install.sh
+  curl -fsSL ${INSTALL_SCRIPT_URL} | bash
+  git clone -b ${REPO_BRANCH} ${REPO_URL} ${INSTALL_DIR} && cd ${INSTALL_DIR} && ./install.sh
+  git clone -b ${REPO_BRANCH} ${REPO_URL} ~/Projects/nvim-config && cd ~/Projects/nvim-config && ./install.sh
 
 Environment:
-  INSTALL_DIR    Target config path (default: ~/.config/nvim)
-  REPO_URL       Git clone URL for clone mode
-  INSTALL_MODE   clone | link (same as the argument)
+  INSTALL_DIR         Target config path (default: ~/.config/nvim)
+  REPO_URL            Git clone URL for clone mode
+  REPO_BRANCH         Git branch to clone (default: ${REPO_BRANCH})
+  INSTALL_SCRIPT_URL  Raw install.sh URL for curl (derived from REPO_BRANCH)
+  INSTALL_MODE        clone | link (same as the argument)
 EOF
 }
 
@@ -159,7 +163,7 @@ backup_existing() {
 install_clone() {
   info "Mode: clone — installing into $INSTALL_DIR"
   mkdir -p "$(dirname "$INSTALL_DIR")"
-  git clone --depth 1 "$REPO_URL" "$INSTALL_DIR"
+  git clone --depth 1 --branch "$REPO_BRANCH" "$REPO_URL" "$INSTALL_DIR"
 }
 
 install_link() {
