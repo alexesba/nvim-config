@@ -1,7 +1,0 @@
-require('alexesba.mappings.bundle')
-require('alexesba.mappings.custom')
-require('alexesba.mappings.markdown-preview')
-require('alexesba.mappings.nvim-code-action-menu')
-require('alexesba.mappings.nvim-tree')
-require('alexesba.mappings.telescope')
-require('alexesba.mappings.vim-table-mode')
