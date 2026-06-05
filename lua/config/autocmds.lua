@@ -77,10 +77,6 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command("Reprobado", [[silent!:lua PlayAudio('Reprobado.ogg')]], { desc = "Play Reprobado" })
 vim.api.nvim_create_user_command("Reprobada", [[silent!:lua PlayAudio('Reprobada.ogg')]], { desc = "Play Reprobada" })
 
-vim.api.nvim_create_user_command("OpenConfig", [[:e $MYVIMRC]], { desc = "Edit VIMRC file" })
-
-vim.api.nvim_create_user_command("Reload", [[:so $MYVIMRC]], { desc = "Reload VIMRC file" })
-
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
     vim.diagnostic.open_float(nil, { focus = false })

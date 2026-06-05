@@ -185,10 +185,11 @@ rm -f ~/.local/state/nvim/last-colorscheme
 
 | Key / command | Action |
 | --- | --- |
-| `:OpenConfig` | Edit `$MYVIMRC` |
-| `:Reload` | Source config |
+| `<leader>l` | Lazy plugin manager (`:Lazy`) |
 | `<leader>fef` | Format whole buffer (`gg=G`) |
 | `<leader>cf` | Copy full file path to clipboard |
+
+To browse config files, use Telescope `<leader>ff` from `~/.config/nvim`, or run `:LazyDev` while editing Lua config. Restart Neovim after structural config changes (lazy.nvim does not fully reload on `:source`).
 
 ### Custom commands (`:command`)
 
