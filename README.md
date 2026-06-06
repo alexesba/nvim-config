@@ -97,7 +97,7 @@ After install: `:Lazy`, `:Lazy sync`, `:LazyExtras`.
 
 | Plugin | Role |
 | --- | --- |
-| `telescope.nvim` | Fuzzy finder (files, grep, buffers, colorschemes, keymaps) |
+| Snacks picker (LazyVim default) | Fuzzy finder — files, grep, buffers, colorschemes, keymaps |
 | `oil.nvim` | File explorer (default explorer; Neo-tree / mini.files disabled) |
 | `luatab.nvim` | Tab line UI |
 | `noice.nvim` | Rounded LSP hover/signature borders (cmdline/messages left to defaults) |
@@ -121,29 +121,35 @@ After install: `:Lazy`, `:Lazy sync`, `:LazyExtras`.
 - Arrow keys disabled in Normal / Insert / Visual (use `hjkl`)
 - Search centering (`n` / `N` with `zz`), better `J` join, undo breakpoints in Insert
 - **Diagnostics** — virtual text off; float opens on `CursorHold` (see `lua/plugins/lsp.lua`, `lua/config/autocmds.lua`)
-- **Colorschemes** — default Tokyo Night (moon); last pick restored on startup (Telescope or `:colorscheme`); fallback Tokyo Night if saved theme fails
+- **Colorschemes** — default Tokyo Night (moon); last pick restored on startup (`:ColorScheme`, `<leader>uC`, or `:colorscheme`); fallback Tokyo Night if saved theme fails
 
 Saved theme path: `~/.local/state/nvim/last-colorscheme`
 
 ## Usage
 
-### Telescope
+### Snacks picker (LazyVim)
+
+Common maps from the default Snacks picker extra:
 
 | Key | Action |
 | --- | --- |
-| `<leader>ff` | Find files (ignores `node_modules`, `.git`) |
-| `<leader>fg` | Live grep |
-| `<leader>fk` | Grep word under cursor |
-| `<leader>fb` | Buffers |
-| `<leader>fh` | Help tags |
-| `<leader>fc` | Colorscheme picker (preview enabled; choice is persisted) |
-| `<leader>fm` | Keymaps |
+| `<leader><space>` | Find files (project root) |
+| `<leader>ff` | Find files (project root) |
+| `<leader>fg` | Live grep (project root; custom — overrides LazyVim’s git-files on this key) |
+| `<leader>sg` | Live grep (project root; LazyVim default) |
+| `<leader>sG` | Live grep (cwd) |
+| `<leader>fk` | Grep word under cursor / visual selection (project root) |
+| `<leader>sw` | Same as `<leader>fk` (LazyVim default key) |
+| `<leader>fb` / `<leader>,` | Buffers |
+| `<leader>fc` | Find config file |
+| `<leader>sk` | Keymaps |
+| `<leader>sh` | Help pages |
 
-`:ColorScheme` also opens the colorscheme picker.
+Press `<leader>` and wait for which-key for the full list.
 
 ### Colorschemes
 
-1. `<leader>fc` or `:ColorScheme` — pick a theme in Telescope.
+1. `<leader>uC` or `:ColorScheme` — pick a theme in Snacks (live preview, works on empty buffers).
 2. Or `:colorscheme <name>` (e.g. `sonokai`, `tokyonight`).
 3. Restart Neovim — your last theme is restored automatically.
 
@@ -186,10 +192,10 @@ rm -f ~/.local/state/nvim/last-colorscheme
 | Key / command | Action |
 | --- | --- |
 | `<leader>l` | Lazy plugin manager (`:Lazy`) |
-| `<leader>fef` | Format whole buffer (`gg=G`) |
 | `<leader>cf` | Copy full file path to clipboard |
+| `<leader>fc` | Find config file (Snacks picker) |
 
-To browse config files, use Telescope `<leader>ff` from `~/.config/nvim`, or run `:LazyDev` while editing Lua config. Restart Neovim after structural config changes (lazy.nvim does not fully reload on `:source`).
+Restart Neovim after structural config changes (lazy.nvim does not fully reload on `:source`). While editing Lua config, `:LazyDev` adds LSP and tooling for plugin development.
 
 ### Custom commands (`:command`)
 
@@ -201,7 +207,7 @@ Paths: `CopyFullPath`, `CopyRelativePath`
 
 Misc: `ShowHiName` (highlight group under cursor), `Reprobado` / `Reprobada` (audio; needs `ogg123`)
 
-Use `:command` or Telescope `<leader>fm` to discover more.
+Use `:command` or Snacks `<leader>sk` to browse keymaps and discover more.
 
 ### Other custom normal-mode maps
 

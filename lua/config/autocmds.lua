@@ -83,8 +83,6 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 
-vim.api.nvim_create_user_command(
-  "ColorScheme",
-  require("telescope.builtin").colorscheme,
-  { desc = "Change colorscheme file" }
-)
+vim.api.nvim_create_user_command("ColorScheme", function()
+  require("snacks").picker.colorschemes()
+end, { desc = "Pick colorscheme (Snacks picker with preview)" })
