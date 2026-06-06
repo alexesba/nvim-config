@@ -34,9 +34,36 @@ vim.api.nvim_create_user_command("FormatSQL", FormatSQL, { desc = "Format SQL fi
 
 vim.api.nvim_create_user_command("FormatSQLV2", FormatSQLV2, { desc = "Format SQL using sql-formatter-cli" })
 
-vim.api.nvim_create_user_command("CopyFullPath", [[let @+= expand('%:p')]], { desc = "Copy file full path" })
+local function copy_to_clipboard(path, title)
+  if path == "" then
+    vim.notify("Not a file buffer", vim.log.levels.WARN)
+    return
+  end
+  vim.fn.setreg("+", path)
+  vim.notify(path, vim.log.levels.INFO, { title = title })
+end
 
-vim.api.nvim_create_user_command("CopyRelativePath", [[let @+= expand('%')]], { desc = "Copy file relative path" })
+vim.api.nvim_create_user_command("CopyFullPath", function()
+  copy_to_clipboard(vim.fs.normalize(vim.fn.expand("%:p")), "Full path copied")
+end, { desc = "Copy file full path" })
+
+vim.api.nvim_create_user_command("CopyRelativePath", function()
+  local full = vim.fs.normalize(vim.fn.expand("%:p"))
+  if full == "" then
+    vim.notify("Not a file buffer", vim.log.levels.WARN)
+    return
+  end
+
+  local root = LazyVim.root({ normalize = true })
+  local rel = root and vim.fs.relpath(root, full) or nil
+
+  -- File outside project root: fall back to path relative to cwd
+  if not rel or vim.startswith(rel, "..") then
+    rel = vim.fn.fnamemodify(full, ":~:.")
+  end
+
+  copy_to_clipboard(rel, "Relative path copied")
+end, { desc = "Copy file path relative to project root" })
 
 vim.api.nvim_create_user_command("DoubleQuotes", DoubleQuotes, { desc = "Replace single quotes with double quotes" })
 
@@ -83,8 +110,6 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 
-vim.api.nvim_create_user_command(
-  "ColorScheme",
-  require("telescope.builtin").colorscheme,
-  { desc = "Change colorscheme file" }
-)
+vim.api.nvim_create_user_command("ColorScheme", function()
+  require("snacks").picker.colorschemes()
+end, { desc = "Pick colorscheme (Snacks picker with preview)" })

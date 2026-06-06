@@ -3,7 +3,6 @@
 -- Add any additional keymaps here
 local map = require("utils.map").map
 
-map("n", "<leader>fef", ":normal! gg=G``<CR>", { noremap = true, silent = true })
 map("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true })
 
 map("n", "<leader>1", ":tabn 1<cr>", { noremap = true, silent = true })
@@ -39,7 +38,8 @@ map("v", "<Left>", "<Nop>")
 map("v", "<Right>", "<Nop>")
 map("v", "<Up>", "<Nop>")
 
-map("n", "<leader>cf", ":CopyFullPath<CR>:echo 'File path copied!'<CR>")
+map("n", "<leader>yp", ":CopyFullPath<CR>", { noremap = true, silent = true })
+map("n", "<leader>yr", ":CopyRelativePath<CR>", { noremap = true, silent = true })
 
 -- Copy from cursor to the end of the line
 map("n", "Y", "y$")
