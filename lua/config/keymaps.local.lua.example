@@ -1,0 +1,6 @@
+-- Personal keymaps (gitignored).
+-- Copy to keymaps.local.lua or run install.sh (creates this file if missing).
+-- Loaded after lua/config/keymaps.lua.
+
+-- local map = require("utils.map").map
+-- map("n", "<leader>x", "<cmd>echo 'my map'<cr>", { noremap = true, silent = true })

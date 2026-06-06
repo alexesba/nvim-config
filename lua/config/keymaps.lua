@@ -1,6 +1,6 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- Personal overrides: lua/config/keymaps.local.lua (gitignored; see keymaps.local.lua.example)
 local map = require("utils.map").map
 
 map("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true })
@@ -64,3 +64,5 @@ map("n", "<leader>rp", [[:%s/<C-r><C-w>/]])
 
 map("v", "J", [[:m '>+1<CR>gv=gv]])
 map("v", "K", [[:m '<-2<CR>gv=gv]])
+
+require("utils.local").load("keymaps")

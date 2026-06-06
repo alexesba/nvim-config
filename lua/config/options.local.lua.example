@@ -1,0 +1,8 @@
+-- Personal vim options (gitignored).
+-- Copy to options.local.lua or run install.sh (creates this file if missing).
+-- Loaded after lua/config/options.lua — safe across git pull.
+
+-- vim.opt.relativenumber = false
+-- vim.opt.colorcolumn = "100"
+-- vim.opt.wrap = true
+-- vim.g.some_plugin_setting = true

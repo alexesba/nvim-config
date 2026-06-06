@@ -1,3 +1,4 @@
--- Copy to leader.local.lua (or let install.sh create it) to customize <leader>.
+-- Copy to leader.local.lua (gitignored) to customize <leader>.
+-- install.sh creates this file on first run; re-run with FORCE_LEADER=1 to change.
 -- Examples: ","  " "  "\\"
 vim.g.mapleader = ","
