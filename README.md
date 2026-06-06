@@ -1,6 +1,6 @@
 # Neovim configuration (LazyVim)
 
-Personal Neovim setup based on [LazyVim](https://github.com/LazyVim/LazyVim), managed with [lazy.nvim](https://github.com/folke/lazy.nvim). It extends the LazyVim starter with custom plugins, editor options, Telescope mappings, colorscheme persistence, and workflow commands for Ruby, SQL, JSON, and more.
+Personal Neovim setup based on [LazyVim](https://github.com/LazyVim/LazyVim), managed with [lazy.nvim](https://github.com/folke/lazy.nvim). It extends LazyVim with third-party plugins, local overrides, colorscheme persistence, and workflow commands for Ruby, SQL, JSON, and more.
 
 For LazyVim’s built-in features and default keymaps, see the [LazyVim documentation](https://lazyvim.github.io).
 
@@ -93,21 +93,73 @@ After install: `:Lazy`, `:Lazy sync`, `:LazyExtras`.
 | `ai.copilot-chat` | Copilot Chat |
 | `coding.mini-surround` | Surround text with pairs (brackets, quotes, etc.) |
 
-### Custom plugins (`lua/plugins/`)
+### Third-party plugins (not part of LazyVim)
 
-| Plugin | Role |
+These are added under `lua/plugins/` and are **not** shipped with LazyVim by default. LazyVim’s own stack (LSP, Treesitter, Snacks picker, Tokyo Night, etc.) is documented in the [LazyVim docs](https://www.lazyvim.org/plugins).
+
+| Plugin | Config file | Why it’s here |
+| --- | --- | --- |
+| [oil.nvim](https://github.com/stevearc/oil.nvim) | `oil.lua` | Default file explorer (Neo-tree / mini.files / Snacks explorer disabled) |
+| [luatab.nvim](https://github.com/alvarosevilla95/luatab.nvim) | `luatab.lua` | Tab line UI (bufferline disabled) |
+| [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim) | `markdown_preview.lua` | Live Markdown preview in the browser |
+| [vim-dadbod](https://github.com/tpope/vim-dadbod) + [UI](https://github.com/kristijanhusak/vim-dadbod-ui) + completion | `dadbod.lua` | SQL database connections and query buffers |
+| [vim-abolish](https://github.com/tpope/vim-abolish) | `tpope.lua` | Case and variant word operations (`cr*` maps) |
+| [vim-bundler](https://github.com/tpope/vim-bundler) | `tpope.lua` | Jump to gems from `Gemfile` (`gf` in Ruby buffers) |
+| [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim) | `asyncrun.lua` | Background shell jobs (used by `:Reprobado` / `:Reprobada` audio) |
+| [vim-fetch](https://github.com/kopischke/vim-fetch) | `vim-fetch.lua` | Preserve file cursor position across reloads |
+| [sonokai](https://github.com/sainnhe/sonokai) | `sonokai.lua` | Extra colorscheme (lazy-loaded; pick via Snacks or `:colorscheme`) |
+| [clipring.nvim](https://github.com/alexesba/clipring.nvim) | `clipring.lua` | Persistent yank/clipboard history ring |
+
+#### oil.nvim
+
+- Replaces LazyVim’s default file trees as the primary explorer.
+- `-` opens the parent directory; `:Explorer` / `:Explore` / `:Exp` open Oil in the current directory.
+- `nvim .` opens Oil when you pass a directory on the command line.
+
+#### markdown-preview.nvim
+
+- **Requires a one-time build:** lazy.nvim runs `cd app && npx --yes yarn` on install.
+- Loads only for `markdown` / `md` filetypes.
+- `<leader>mp` toggles the browser preview (`MarkdownPreviewToggle`).
+- Preview does not auto-start or auto-close (`mkdp_auto_start` / `mkdp_auto_close` are off).
+
+#### vim-dadbod stack
+
+- `:DBUI` opens the database UI; `:DBUIToggle`, `:DBUIAddConnection`, `:DBUIFindBuffer` are also available.
+- SQL completion loads in `sql` / `mysql` / `plsql` buffers via `vim-dadbod-completion`.
+- Connection strings and UI layout follow vim-dadbod-ui defaults (Nerd Font icons enabled).
+
+#### tpope (Ruby workflow)
+
+- **vim-abolish** — case and abbreviation helpers on `crs`, `crm`, `crc`, `cru`, `cr-`, `cr.`.
+- **vim-bundler** — `gf` on a gem name in a Ruby buffer jumps to the bundled gem (may overlap with LazyVim git/maps; only active in `ruby` filetype).
+
+#### asyncrun.vim + audio commands
+
+- `:AsyncRun` runs shell commands without blocking the editor.
+- Custom `:Reprobado` / `:Reprobada` commands play Ogg files from `lua/ogg/` via `ogg123`.
+- `system-deps.lua` tries to install `vorbis-tools` if `ogg123` is missing (Homebrew / apt / pacman / dnf / zypper).
+
+#### clipring.nvim
+
+- `<leader>yh` opens the yank history picker.
+- Ring is persisted across sessions (`persist = true`, up to 100 entries).
+
+#### sonokai
+
+- Not loaded until selected; install list includes it in `lua/config/lazy.lua` for `:colorscheme sonokai` or the Snacks colorscheme picker.
+
+### LazyVim overrides (tweaks, not new plugins)
+
+| File | What it changes |
 | --- | --- |
-| Snacks picker (LazyVim default) | Fuzzy finder — files, grep, buffers, colorschemes, keymaps |
-| `oil.nvim` | File explorer (default explorer; Neo-tree / mini.files disabled) |
-| `luatab.nvim` | Tab line UI |
-| `noice.nvim` | Rounded LSP hover/signature borders (cmdline/messages left to defaults) |
-| `vim-dadbod` + UI | Database connections and SQL buffers |
-| `tpope/vim-abolish`, `vim-bundler` | Ruby/refactor helpers |
-| `markdown-preview.nvim` | Live Markdown preview in browser |
-| `asyncrun.vim` | Run shell commands asynchronously |
-| `sainnhe/sonokai` | Sonokai colorscheme (lazy-loaded) |
-| `colorscheme-persist` | Remember last colorscheme across sessions |
-| `clipring.nvim` | Persistent clipboard/yank history ring |
+| `snaks.lua` | Disables Snacks file explorer (Oil is used instead); custom Snacks picker keys (`<leader>fg`, `<leader>fk`) |
+| `noice.lua` | Rounded LSP hover borders only; cmdline/messages/popupmenu stay on Vim defaults |
+| `lsp.lua` | Disables diagnostic virtual text (float on `CursorHold` in `autocmds.lua`) |
+| `colorscheme-persist.lua` | Saves/restores last colorscheme to `~/.local/state/nvim/last-colorscheme` |
+| `disabled.lua` | Turns off `bufferline.nvim`, `neo-tree.nvim`, `mini.files` |
+| `nvin-web-devicons.lua` | Ensures devicons are lazy-loaded (dependency for Oil, luatab) |
+| `system-deps.lua` | Meta-spec that installs system `vorbis-tools` when needed (not a Neovim plugin) |
 
 ### Disabled LazyVim plugins
 
