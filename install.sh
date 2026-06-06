@@ -46,6 +46,7 @@ Environment:
   INSTALL_MODE        clone | link (same as the argument)
   MAPLEADER           Leader key (non-interactive installs; default: ,)
   FORCE_LEADER        Set to 1 to re-prompt even if leader.local.lua exists
+  FORCE_LOCAL         Set to 1 to re-copy options/keymaps .local.lua from examples
 EOF
 }
 
@@ -229,6 +230,31 @@ EOF
   info "Leader key saved to lua/config/leader.local.lua"
 }
 
+seed_local_from_example() {
+  local name="$1"
+  local root example target
+  root="$(config_root)"
+  example="$root/lua/config/${name}.local.lua.example"
+  target="$root/lua/config/${name}.local.lua"
+  mkdir -p "$(dirname "$target")"
+
+  if [[ -f "$target" && -z "${FORCE_LOCAL:-}" ]]; then
+    return
+  fi
+  if [[ ! -f "$example" ]]; then
+    return
+  fi
+
+  cp "$example" "$target"
+  info "Created lua/config/${name}.local.lua from example (gitignored; edit freely)"
+}
+
+configure_local_files() {
+  configure_leader
+  seed_local_from_example "options"
+  seed_local_from_example "keymaps"
+}
+
 sync_plugins() {
   info "Installing plugins (lazy.nvim sync)..."
   nvim --headless "+Lazy! sync" +qa
@@ -275,7 +301,7 @@ main() {
       ;;
   esac
 
-  configure_leader
+  configure_local_files
   sync_plugins
   open_nvim
 }

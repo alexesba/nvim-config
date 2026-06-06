@@ -1,6 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+-- Personal overrides: lua/config/options.local.lua (gitignored; see options.local.lua.example)
+local load_local = require("utils.local").load
 local set = vim.opt
 vim.o.winborder = "rounded"
 set.number = true
@@ -36,14 +37,7 @@ set.diffopt:append({ "vertical" })
 vim.g.mapleader = ","
 vim.g.maplocalleader = "\\"
 
--- Optional override from install.sh or manual setup (gitignored)
-local leader_local = vim.fn.stdpath("config") .. "/lua/config/leader.local.lua"
-if vim.fn.filereadable(leader_local) == 1 then
-  local ok, err = pcall(dofile, leader_local)
-  if not ok then
-    vim.notify("Failed to load leader.local.lua: " .. err, vim.log.levels.WARN)
-  end
-end
+load_local("leader")
 
 vim.g.table_mode_corner = "+"
 vim.g.enable_italic_font = 1
@@ -73,3 +67,5 @@ set.wildignore:append({
 set.list = false
 set.updatetime = 500 -- ms before CursorHold fires (affects diagnostic float speed)
 -- set.cmdheight=0
+
+load_local("options")

@@ -59,8 +59,9 @@ Uses **link** mode: symlinks `~/.config/nvim` → your clone. Good if you keep t
 2. Back up existing `~/.config/nvim` to `~/.config/nvim.bak.<timestamp>`
 3. **clone** or **link** as above
 4. Ask for your `<leader>` key when run interactively (default `,`; skipped if `leader.local.lua` already exists)
-5. Run `nvim --headless "+Lazy! sync"` to install plugins
-6. Open Neovim
+5. Seed `options.local.lua` and `keymaps.local.lua` from examples if missing (never overwrites existing files)
+6. Run `nvim --headless "+Lazy! sync"` to install plugins
+7. Open Neovim
 
 ```bash
 ./install.sh --help   # usage and environment variables
@@ -74,8 +75,11 @@ Uses **link** mode: symlinks `~/.config/nvim` → your clone. Good if you keep t
 | `INSTALL_MODE` | auto (`ready` / `link` / `clone`) | Force `clone` or `link` |
 | `MAPLEADER` | `,` | Leader key when install is non-interactive (`curl \| bash`) |
 | `FORCE_LEADER` | — | Set to `1` to choose leader again during install |
+| `FORCE_LOCAL` | — | Set to `1` to re-copy `options.local.lua` / `keymaps.local.lua` from examples |
 
 After install: `:Lazy`, `:Lazy sync`, `:LazyExtras`.
+
+**Clone without `install.sh`?** Defaults work out of the box (`<leader>` is `,`). Run `nvim --headless "+Lazy! sync" +qa` once, then copy any `*.local.lua.example` to `*.local.lua` to customize (those files are gitignored).
 
 ## What’s included
 
@@ -83,7 +87,7 @@ After install: `:Lazy`, `:Lazy sync`, `:LazyExtras`.
 
 - **LazyVim** — IDE-style defaults (LSP, formatting, linting, treesitter, which-key, etc.)
 - **lazy.nvim** — plugin manager
-- **Leader key** — `<leader>` (default: `,` comma). `install.sh` can prompt for your choice and writes `lua/config/leader.local.lua` (gitignored). Change later by editing that file or copying from `lua/config/leader.local.lua.example`
+- **Leader key** — `<leader>` (default: `,` comma). Override in `lua/config/leader.local.lua` (gitignored)
 
 ### LazyVim extras (`lazyvim.json`)
 
@@ -290,18 +294,105 @@ LazyVim’s own maps (LSP, windows, etc.) still apply — press `<leader>` and w
 ├── lua/
 │   ├── config/
 │   │   ├── lazy.lua      # lazy.nvim + LazyVim bootstrap
-│   │   ├── options.lua   # vim options, leader, UI prefs
-│   │   ├── keymaps.lua   # Custom keymaps
+│   │   ├── options.lua   # vim options + loads leader/options .local.lua
+│   │   ├── keymaps.lua   # Custom keymaps + loads keymaps.local.lua
+│   │   ├── leader.local.lua.example
+│   │   ├── options.local.lua.example
+│   │   ├── keymaps.local.lua.example
 │   │   ├── autocmds.lua  # Autocmds + user commands
 │   │   └── colorscheme.lua  # Persist/load theme helpers
 │   ├── plugins/          # Plugin specs (one file per concern)
-│   └── utils/            # Shared helpers (map, functions, etc.)
+│   └── utils/
+│       └── local.lua       # dofile loader for gitignored *.local.lua overlays
 └── README.md
 ```
 
 Add or override plugins by creating files under `lua/plugins/`; they are imported automatically from `lua/config/lazy.lua`.
 
 ## Customization
+
+### Personal settings (`.local.lua` overlays)
+
+Tracked defaults live in `lua/config/options.lua` and `lua/config/keymaps.lua`. Put **your** machine-specific changes in gitignored `*.local.lua` files so `git pull` never conflicts with your personal prefs.
+
+#### How it works
+
+`lua/utils/local.lua` provides a small loader used by the config:
+
+```lua
+require("utils.local").load("options")  -- dofile lua/config/options.local.lua if it exists
+```
+
+- Looks for `lua/config/<name>.local.lua` under your Neovim config directory (`stdpath("config")`).
+- Missing files are skipped silently (no error).
+- Syntax or runtime errors in a `.local.lua` file show a `vim.notify` warning; Neovim still starts with repo defaults.
+
+#### Files and load order
+
+| Gitignored file | Example template | When it loads | Typical contents |
+| --- | --- | --- | --- |
+| `leader.local.lua` | `leader.local.lua.example` | Early in `options.lua`, right after default `vim.g.mapleader` | `vim.g.mapleader`, `vim.g.maplocalleader` |
+| `options.local.lua` | `options.local.lua.example` | End of `options.lua`, after all repo `vim.opt` / `vim.g` | `vim.opt.*`, `vim.g.*`, plugin globals |
+| `keymaps.local.lua` | `keymaps.local.lua.example` | End of `keymaps.lua`, after repo keymaps | `map(...)` calls via `utils.map` |
+
+Leader loads **before** other `vim.g` settings in `options.lua` so your leader key is set early. Options and keymaps load **last** so your values override repo defaults.
+
+All three paths are listed in `.gitignore` — they stay on your machine only.
+
+#### Setup
+
+**With `install.sh`** (recommended on first install):
+
+1. Prompts for `<leader>` and writes `leader.local.lua` (skipped if the file already exists).
+2. Copies `options.local.lua.example` → `options.local.lua` and `keymaps.local.lua.example` → `keymaps.local.lua` only when those files are missing.
+
+**Manually** (clone without `install.sh`, or add overlays later):
+
+```bash
+cp lua/config/leader.local.lua.example lua/config/leader.local.lua   # optional; default leader is ,
+cp lua/config/options.local.lua.example lua/config/options.local.lua
+cp lua/config/keymaps.local.lua.example lua/config/keymaps.local.lua
+```
+
+Then edit the `.local.lua` files. Restart Neovim after changes (lazy.nvim does not fully hot-reload structural config).
+
+#### Examples
+
+`leader.local.lua`:
+
+```lua
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+```
+
+`options.local.lua`:
+
+```lua
+vim.opt.relativenumber = false
+vim.opt.colorcolumn = "100"
+vim.opt.wrap = true
+```
+
+`keymaps.local.lua`:
+
+```lua
+local map = require("utils.map").map
+map("n", "<leader>x", "<cmd>echo 'my map'<cr>", { noremap = true, silent = true })
+```
+
+#### Forcing a reset
+
+`install.sh` **never overwrites** existing local files. To regenerate from examples:
+
+| Goal | Command |
+| --- | --- |
+| Re-prompt for leader | `FORCE_LEADER=1 ./install.sh` |
+| Re-copy options/keymaps templates | `FORCE_LOCAL=1 ./install.sh` |
+| Both | `FORCE_LEADER=1 FORCE_LOCAL=1 ./install.sh` |
+
+`FORCE_LOCAL` only affects `options.local.lua` and `keymaps.local.lua`; leader still uses `FORCE_LEADER`.
+
+### Other customization
 
 - **Change default colorscheme behavior** — `lua/plugins/colorscheme-persist.lua`, `lua/config/colorscheme.lua`
 - **Add plugins** — new `lua/plugins/<name>.lua` returning a lazy spec table
