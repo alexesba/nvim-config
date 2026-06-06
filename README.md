@@ -192,7 +192,9 @@ rm -f ~/.local/state/nvim/last-colorscheme
 | Key / command | Action |
 | --- | --- |
 | `<leader>l` | Lazy plugin manager (`:Lazy`) |
-| `<leader>cf` | Copy full file path to clipboard |
+| `<leader>yp` | Copy full file path to clipboard |
+| `<leader>yr` | Copy file path relative to project root (cwd fallback) |
+| `<leader>cf` | Format (LazyVim / conform) |
 | `<leader>fc` | Find config file (Snacks picker) |
 
 Restart Neovim after structural config changes (lazy.nvim does not fully reload on `:source`). While editing Lua config, `:LazyDev` adds LSP and tooling for plugin development.
