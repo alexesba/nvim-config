@@ -107,6 +107,7 @@ After install: `:Lazy`, `:Lazy sync`, `:LazyExtras`.
 | `asyncrun.vim` | Run shell commands asynchronously |
 | `sainnhe/sonokai` | Sonokai colorscheme (lazy-loaded) |
 | `colorscheme-persist` | Remember last colorscheme across sessions |
+| `clipring.nvim` | Persistent clipboard/yank history ring |
 
 ### Disabled LazyVim plugins
 
@@ -159,6 +160,12 @@ rm -f ~/.local/state/nvim/last-colorscheme
 | --- | --- |
 | `-` | Open parent directory |
 | `:Explorer`, `:Explore`, `:Exp` | Open Oil in current directory |
+
+### Clipboard history (Clipring)
+
+| Key | Action |
+| --- | --- |
+| `<leader>yh` | Open yank/clipboard history picker |
 
 ### Markdown
 
