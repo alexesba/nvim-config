@@ -3,3 +3,4 @@ lazy-lock.json
 lua/config/leader.local.lua
 lua/config/options.local.lua
 lua/config/keymaps.local.lua
+lua/plugins/*.local.lua
