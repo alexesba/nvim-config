@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: tests (neovim ${{ matrix.neovim_version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        neovim_version: [stable, nightly]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Neovim
+        uses: MunifTanjim/setup-neovim-action@v1
+        with:
+          tag: ${{ matrix.neovim_version }}
+
+      - name: Verify Neovim
+        run: nvim --version
+
+      - name: Run tests
+        run: make test
