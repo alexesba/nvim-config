@@ -160,7 +160,7 @@ These are added under `lua/plugins/` and are **not** shipped with LazyVim by def
 | `snaks.lua` | Disables Snacks file explorer (Oil is used instead); custom Snacks picker keys (`<leader>fg`, `<leader>fk`) |
 | `noice.lua` | Rounded LSP hover borders only; cmdline/messages/popupmenu stay on Vim defaults |
 | `lsp.lua` | Disables diagnostic virtual text (float on `CursorHold` in `autocmds.lua`) |
-| `colorscheme-persist.lua` | Saves/restores last colorscheme to `~/.local/state/nvim/last-colorscheme` |
+| `autosave-colorscheme.lua` | Saves/restores last colorscheme via [autosave-colorscheme.nvim](https://github.com/alexesba/autosave-colorscheme.nvim) |
 | `disabled.lua` | Turns off `bufferline.nvim`, `neo-tree.nvim`, `mini.files` |
 | `nvin-web-devicons.lua` | Ensures devicons are lazy-loaded (dependency for Oil, luatab) |
 | `system-deps.lua` | Meta-spec that installs system `vorbis-tools` when needed (not a Neovim plugin) |
@@ -300,7 +300,6 @@ LazyVim’s own maps (LSP, windows, etc.) still apply — press `<leader>` and w
 │   │   ├── options.local.lua.example
 │   │   ├── keymaps.local.lua.example
 │   │   ├── autocmds.lua  # Autocmds + user commands
-│   │   └── colorscheme.lua  # Persist/load theme helpers
 │   ├── plugins/          # Plugin specs (one file per concern)
 │   └── utils/
 │       └── local.lua       # dofile loader for gitignored *.local.lua overlays
@@ -394,7 +393,7 @@ map("n", "<leader>x", "<cmd>echo 'my map'<cr>", { noremap = true, silent = true 
 
 ### Other customization
 
-- **Change default colorscheme behavior** — `lua/plugins/colorscheme-persist.lua`, `lua/config/colorscheme.lua`
+- **Change default colorscheme behavior** — `lua/plugins/autosave-colorscheme.lua` ([autosave-colorscheme.nvim](https://github.com/alexesba/autosave-colorscheme.nvim))
 - **Add plugins** — new `lua/plugins/<name>.lua` returning a lazy spec table
 - **Toggle LazyVim extras** — `:LazyExtras` or edit `lazyvim.json`
 - **Disable a plugin** — `enabled = false` in a spec, or `lua/plugins/disabled.lua`
