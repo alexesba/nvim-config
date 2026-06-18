@@ -109,7 +109,7 @@ These are added under `lua/plugins/` and are **not** shipped with LazyVim by def
 | [vim-dadbod](https://github.com/tpope/vim-dadbod) + [UI](https://github.com/kristijanhusak/vim-dadbod-ui) + completion | `dadbod.lua` | SQL database connections and query buffers |
 | [vim-abolish](https://github.com/tpope/vim-abolish) | `tpope.lua` | Case and variant word operations (`cr*` maps) |
 | [vim-bundler](https://github.com/tpope/vim-bundler) | `tpope.lua` | Jump to gems from `Gemfile` (`gf` in Ruby buffers) |
-| [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim) | `asyncrun.lua` | Background shell jobs (used by `:Reprobado` / `:Reprobada` audio) |
+| [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim) | `reprobado.lua` | Background jobs for `:Reprobado` / `:Reprobada` audio |
 | [vim-fetch](https://github.com/kopischke/vim-fetch) | `vim-fetch.lua` | Preserve file cursor position across reloads |
 | [sonokai](https://github.com/sainnhe/sonokai) | `sonokai.lua` | Extra colorscheme (lazy-loaded; pick via Snacks or `:colorscheme`) |
 | [clipring.nvim](https://github.com/alexesba/clipring.nvim) | `clipring.lua` | Persistent yank/clipboard history ring |
@@ -138,11 +138,12 @@ These are added under `lua/plugins/` and are **not** shipped with LazyVim by def
 - **vim-abolish** — case and abbreviation helpers on `crs`, `crm`, `crc`, `cru`, `cr-`, `cr.`.
 - **vim-bundler** — `gf` on a gem name in a Ruby buffer jumps to the bundled gem (may overlap with LazyVim git/maps; only active in `ruby` filetype).
 
-#### asyncrun.vim + audio commands
+#### reprobado (local audio commands)
 
-- `:AsyncRun` runs shell commands without blocking the editor.
-- Custom `:Reprobado` / `:Reprobada` commands play Ogg files from `lua/ogg/` via `ogg123`.
-- `system-deps.lua` tries to install `vorbis-tools` if `ogg123` is missing (Homebrew / apt / pacman / dnf / zypper).
+- `:Reprobado` / `:Reprobada` play Ogg files from `sounds/` via `ogg123` and [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim).
+- Logic lives in `lua/reprobado/init.lua`; lazy spec in `lua/plugins/reprobado.lua`.
+- Depends on [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim) and a local `vorbis-tools` meta-spec (same file) that installs `ogg123` when missing (Homebrew / apt / pacman / dnf / zypper).
+- Keymaps (`<leader>no` / `<leader>na`) stay in `lua/config/keymaps.lua`.
 
 #### clipring.nvim
 
@@ -163,7 +164,6 @@ These are added under `lua/plugins/` and are **not** shipped with LazyVim by def
 | `autosave-colorscheme.lua` | Saves/restores last colorscheme via [autosave-colorscheme.nvim](https://github.com/alexesba/autosave-colorscheme.nvim) |
 | `disabled.lua` | Turns off `bufferline.nvim`, `neo-tree.nvim`, `mini.files` |
 | `nvin-web-devicons.lua` | Ensures devicons are lazy-loaded (dependency for Oil, luatab) |
-| `system-deps.lua` | Meta-spec that installs system `vorbis-tools` when needed (not a Neovim plugin) |
 
 ### Disabled LazyVim plugins
 
@@ -270,7 +270,7 @@ Quotes / Ruby: `DoubleQuotes`, `SingleQuotes`, `DoubleQuotesC`, `SingleQuotesC`,
 
 Paths: `CopyFullPath`, `CopyRelativePath`
 
-Misc: `ShowHiName` (highlight group under cursor), `Reprobado` / `Reprobada` (audio; needs `ogg123`)
+Misc: `ShowHiName` (highlight group under cursor), `Reprobado` / `Reprobada` (audio; see `lua/reprobado/`)
 
 Use `:command` or Snacks `<leader>sk` to browse keymaps and discover more.
 
@@ -291,6 +291,7 @@ LazyVim’s own maps (LSP, windows, etc.) still apply — press `<leader>` and w
 ├── install.sh            # Automated install + plugin sync + launch nvim
 ├── init.lua              # Entry: loads config.lazy
 ├── lazyvim.json          # LazyVim extras and version metadata
+├── sounds/               # Reprobado / Reprobada .ogg files
 ├── lua/
 │   ├── config/
 │   │   ├── lazy.lua      # lazy.nvim + LazyVim bootstrap
@@ -301,6 +302,7 @@ LazyVim’s own maps (LSP, windows, etc.) still apply — press `<leader>` and w
 │   │   ├── keymaps.local.lua.example
 │   │   ├── autocmds.lua  # Autocmds + user commands
 │   ├── plugins/          # Plugin specs (one file per concern)
+│   ├── reprobado/        # Local :Reprobado / :Reprobada commands
 │   └── utils/
 │       └── local.lua       # dofile loader for gitignored *.local.lua overlays
 └── README.md

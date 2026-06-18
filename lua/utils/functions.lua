@@ -1,11 +1,5 @@
 local cmdPreserveCursorPosition = require("utils.cmdPreservePosition")
 
-function PlayAudio(file)
-  local audio_dir = vim.fn.stdpath("config") .. "/lua/ogg/"
-  local cmd = "AsyncRun ogg123 " .. audio_dir .. file
-  vim.cmd(cmd)
-end
-
 function FormatCss()
   cmdPreserveCursorPosition([[silent! :%s/[{;}]/&\r/g|norm! =gg]])
 end

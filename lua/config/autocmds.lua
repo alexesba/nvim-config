@@ -101,8 +101,6 @@ vim.api.nvim_create_user_command(
   [[:exe 'hi '.synIDattr(synstack(line('.'), col('.'))[-1], 'name')]],
   { desc = "show hi name" }
 )
-vim.api.nvim_create_user_command("Reprobado", [[silent!:lua PlayAudio('Reprobado.ogg')]], { desc = "Play Reprobado" })
-vim.api.nvim_create_user_command("Reprobada", [[silent!:lua PlayAudio('Reprobada.ogg')]], { desc = "Play Reprobada" })
 
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()

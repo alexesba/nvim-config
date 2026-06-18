@@ -1,5 +1,7 @@
 .netrwhist
 lazy-lock.json
+deps/
+.test-state/
 lua/config/leader.local.lua
 lua/config/options.local.lua
 lua/config/keymaps.local.lua
