@@ -102,15 +102,51 @@ vim.api.nvim_create_user_command(
   { desc = "show hi name" }
 )
 
+local in_cmdline = false
+local colorscheme_picker_opening = false
+
 local function open_colorscheme_picker()
-  -- Defer past cmdline teardown; keymaps don't need this, :commands do.
-  vim.schedule(function()
+  -- Double Enter (kitty protocol) can invoke the command twice and toggle-close.
+  if colorscheme_picker_opening then
+    return
+  end
+  colorscheme_picker_opening = true
+
+  vim.defer_fn(function()
+    colorscheme_picker_opening = false
+
+    local ok, picker_api = pcall(require, "snacks.picker")
+    if not ok then
+      return
+    end
+
+    if picker_api.get({ source = "colorschemes" })[1] then
+      return
+    end
+
     require("snacks").picker.colorschemes({ auto_close = false })
-  end)
+  end, 100)
 end
+
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+  callback = function()
+    in_cmdline = true
+    pcall(vim.diagnostic.hide)
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "CmdlineLeave", "CmdlineAbort" }, {
+  callback = function()
+    in_cmdline = false
+  end,
+})
 
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
+    if in_cmdline then
+      return
+    end
+
     -- Cmdline/wildmenu: avoid diagnostic float stealing focus (WSL tab completion jump).
     local mode = vim.api.nvim_get_mode().mode
     if mode:find("^c") or vim.fn.getcmdwintype() ~= "" then
