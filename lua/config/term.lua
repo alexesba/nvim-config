@@ -1,6 +1,6 @@
 local M = {}
 
---- Kitty/Alacritty on WSL often reports a generic $TERM; detect via env too.
+--- Kitty/Alacritty on WSL often report a generic $TERM; detect via env too.
 function M.needs_key_protocol_fix()
   if vim.env.NVIM_DISABLE_KEY_PROTOCOL == "1" then
     return true
@@ -23,17 +23,10 @@ function M.needs_key_protocol_fix()
 end
 
 --- Neovim 0.12+ enables kitty protocol with flags=3 (disambiguate + report key-up).
---- That makes Enter/Tab/Backspace fire on keydown and keyup in Kitty/Alacritty (#31806).
---- Push flags=1 (disambiguate only) after Neovim starts so each keypress fires once.
+--- Push flags=1 after startup so Enter/Tab/Backspace fire once (#31806).
 function M.fix_key_protocol()
   io.stdout:write("\027[>1u")
   io.stdout:flush()
-end
-
-local function schedule_fix()
-  for _, delay in ipairs({ 0, 50, 150, 500 }) do
-    vim.defer_fn(M.fix_key_protocol, delay)
-  end
 end
 
 function M.setup()
@@ -41,18 +34,14 @@ function M.setup()
     return
   end
 
-  schedule_fix()
+  M.fix_key_protocol()
 
   vim.api.nvim_create_autocmd("VimEnter", {
-    callback = schedule_fix,
+    callback = function()
+      vim.defer_fn(M.fix_key_protocol, 0)
+      vim.defer_fn(M.fix_key_protocol, 100)
+    end,
   })
-
-  if vim.fn.exists("##UIEnter") == 1 then
-    vim.api.nvim_create_autocmd("UIEnter", {
-      once = true,
-      callback = schedule_fix,
-    })
-  end
 
   vim.api.nvim_create_autocmd("VimLeavePre", {
     callback = function()
