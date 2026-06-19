@@ -10,7 +10,7 @@ Uses [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) (cloned into `deps
 
 Current coverage:
 
-- `lua/reprobado/init.lua` — setup, play edge cases, commands, `ensure_player`
+- `lua/reprobado/init.lua` — setup, play edge cases, commands, `ensure_player` (vorbis-tools install paths)
 - `lua/utils/local.lua` — missing overlay file is a no-op
 
 ```bash
