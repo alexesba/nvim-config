@@ -102,74 +102,12 @@ vim.api.nvim_create_user_command(
   { desc = "show hi name" }
 )
 
-local in_cmdline = false
-local colorscheme_picker_opening = false
-
-local function open_colorscheme_picker()
-  -- Double Enter (kitty protocol) can invoke the command twice and toggle-close.
-  if colorscheme_picker_opening then
-    return
-  end
-  colorscheme_picker_opening = true
-
-  vim.defer_fn(function()
-    colorscheme_picker_opening = false
-
-    local ok, picker_api = pcall(require, 'snacks.picker')
-    if not ok then
-      return
-    end
-
-    if picker_api.get({ source = "colorschemes" })[1] then
-      return
-    end
-
-    require("snacks").picker.colorschemes({ auto_close = false })
-  end, 100)
-end
-
-vim.api.nvim_create_autocmd("CmdlineEnter", {
-  callback = function()
-    in_cmdline = true
-    pcall(vim.diagnostic.hide)
-  end,
-})
-
-vim.api.nvim_create_autocmd("CmdlineLeave", {
-  callback = function()
-    in_cmdline = false
-  end,
-})
-
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
-    if in_cmdline then
-      return
-    end
-
-    -- Cmdline/wildmenu: avoid diagnostic float stealing focus (WSL tab completion jump).
-    local mode = vim.api.nvim_get_mode().mode
-    if mode:find("^c") or vim.fn.getcmdwintype() ~= "" then
-      return
-    end
-
-    -- Skip floats (picker, diagnostics) so WSL/GUI terminals don't fight for focus.
-    if vim.api.nvim_win_get_config(0).relative ~= "" then
-      return
-    end
-
-    local ok, picker = pcall(require, 'snacks.picker')
-    if ok and #picker.get() > 0 then
-      return
-    end
-
     vim.diagnostic.open_float(nil, { focus = false })
   end,
 })
 
-vim.api.nvim_create_user_command("PickColorscheme", open_colorscheme_picker, {
-  desc = "Pick colorscheme (Snacks picker with preview)",
-})
-vim.api.nvim_create_user_command("ColorScheme", open_colorscheme_picker, {
-  desc = "Alias for PickColorscheme",
-})
+vim.api.nvim_create_user_command("ColorScheme", function()
+  require("snacks").picker.colorschemes()
+end, { desc = "Pick colorscheme (Snacks picker with preview)" })

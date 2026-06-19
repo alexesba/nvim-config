@@ -5,14 +5,6 @@ return {
       explorer = {
         enabled = false,
       },
-      picker = {
-        sources = {
-          colorschemes = {
-            -- WSL + Kitty/Alacritty can fire spurious WinEnter events; keep picker open.
-            auto_close = false,
-          },
-        },
-      },
     },
     keys = {
       {
