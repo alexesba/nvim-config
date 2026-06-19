@@ -10,8 +10,26 @@ Uses [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) (cloned into `deps
 
 Current coverage:
 
-- `lua/reprobado/init.lua` — setup, play edge cases, commands, `ensure_player` (vorbis-tools install paths)
-- `lua/utils/local.lua` — missing overlay file is a no-op
+- `lua/reprobado/init.lua` — setup, play, commands, `ensure_player` (vorbis-tools install paths)
+- `lua/utils/cmdPreservePosition.lua` — cursor preserved after commands
+- `lua/utils/map.lua` — default `noremap` and merged caller options
+- `lua/utils/require_tool.lua` — missing-tool detection with OS-specific install hints
+- `lua/utils/functions.lua` — in-buffer transforms and external-tool command wiring
+
+Format helpers that shell out to OS tools are covered by contract tests (mocked `vim.cmd` / `cmdPreservePosition`), not by running the binaries in CI:
+
+| Command / function | External tool |
+|--------------------|---------------|
+| `FormatXML` | `python3` (`xml.dom.minidom`) |
+| `FormatSQL` | `sqlformat` |
+| `FormatSQLV2` | `sql-formatter-cli` |
+| `RemoveExtraEmptyLines` | `cat` |
+| `FormatJSON` / `FormatJSONV2` (autocmds) | `python3`, `underscore` |
+
+Install these locally when you use the commands. If a tool is missing, Neovim notifies you with the install command to run (e.g. `pip3 install sqlparse`, `npm install -g sql-formatter-cli`). CI verifies both the install hints and the expected filter wiring.
+
+- `lua/utils/local.lua` — overlay load, missing file, and error notification
+- `lua/config/autocmds.lua` — command registration, `CopyFullPath`, `CopyRelativePath`
 
 ```bash
 make clean   # remove deps/ and .test-state/

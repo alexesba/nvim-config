@@ -1,21 +1,33 @@
 local cmdPreserveCursorPosition = require("utils.cmdPreservePosition")
+local require_tool = require("utils.require_tool")
+
+local function with_tool(tool, fn)
+  if not require_tool.ensure(tool) then
+    return
+  end
+  fn()
+end
 
 function FormatCss()
   cmdPreserveCursorPosition([[silent! :%s/[{;}]/&\r/g|norm! =gg]])
 end
 
 function FormatXML()
-  local save_cursor = vim.fn.getpos(".")
-  vim.cmd([[
-    silent! %s/\\"/"/g |
-    silent! %s/\\n//g |
-    silent! %!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
-  ]])
-  vim.fn.setpos(".", save_cursor)
+  with_tool("python3", function()
+    local save_cursor = vim.fn.getpos(".")
+    vim.cmd([[
+      silent! %s/\\"/"/g |
+      silent! %s/\\n//g |
+      silent! %!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+    ]])
+    vim.fn.setpos(".", save_cursor)
+  end)
 end
 
 function RemoveExtraEmptyLines()
-  cmdPreserveCursorPosition([[%!cat -s]])
+  with_tool("cat", function()
+    cmdPreserveCursorPosition([[%!cat -s]])
+  end)
 end
 
 function ConvertTabToSpaces()
@@ -27,13 +39,17 @@ function RemoveEmptyLines()
 end
 
 function FormatSQL()
-  cmdPreserveCursorPosition([[
+  with_tool("sqlformat", function()
+    cmdPreserveCursorPosition([[
   '%!sqlformat --reindent --keywords upper --identifiers lower -'
   ]])
+  end)
 end
 
 function FormatSQLV2()
-  cmdPreserveCursorPosition([[%!sql-formatter-cli]])
+  with_tool("sql-formatter-cli", function()
+    cmdPreserveCursorPosition([[%!sql-formatter-cli]])
+  end)
 end
 
 function DoubleQuotes()

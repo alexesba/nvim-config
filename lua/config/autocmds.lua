@@ -8,17 +8,17 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 require("utils.functions")
-vim.api.nvim_create_user_command(
-  "FormatJSON",
-  "%!python3 -m json.tool",
-  { bang = true, desc = "Format json files with python" }
-)
+vim.api.nvim_create_user_command("FormatJSON", function()
+  if require("utils.require_tool").ensure("python3") then
+    vim.cmd("%!python3 -m json.tool")
+  end
+end, { bang = true, desc = "Format json files with python" })
 
-vim.api.nvim_create_user_command(
-  "FormatJSONV2",
-  "%!underscore print --outfmt json",
-  { bang = true, desc = "Format json files using underline-cli" }
-)
+vim.api.nvim_create_user_command("FormatJSONV2", function()
+  if require("utils.require_tool").ensure("underscore") then
+    vim.cmd("%!underscore print --outfmt json")
+  end
+end, { bang = true, desc = "Format json files using underline-cli" })
 
 vim.api.nvim_create_user_command("FormatCss", FormatCss, { desc = "Format css using regex" })
 

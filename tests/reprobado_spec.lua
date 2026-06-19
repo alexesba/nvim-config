@@ -59,18 +59,32 @@ describe("reprobado", function()
   end)
 
   describe("setup_commands", function()
-    local function command_desc(cmd)
-      -- Stable puts desc in `definition`; nightly uses a separate `desc` field.
-      return cmd.desc or cmd.definition
-    end
-
     it("registers Reprobado and Reprobada user commands", function()
       reprobado.setup_commands()
       local cmds = vim.api.nvim_get_commands({})
       assert.is_not_nil(cmds.Reprobado)
       assert.is_not_nil(cmds.Reprobada)
-      assert.equals("Play Reprobado sound", command_desc(cmds.Reprobado))
-      assert.equals("Play Reprobada sound", command_desc(cmds.Reprobada))
+      assert.equals("Play Reprobado sound", helpers.command_desc(cmds.Reprobado))
+      assert.equals("Play Reprobada sound", helpers.command_desc(cmds.Reprobada))
+    end)
+
+    it("invokes play with the expected sound file", function()
+      local dir = helpers.temp_dir()
+      local played
+
+      reprobado.setup({ sounds_dir = dir, player = "true" })
+      helpers.touch(dir .. "/Reprobada.ogg")
+      reprobado.setup_commands()
+
+      local original_play = reprobado.play
+      reprobado.play = function(filename)
+        played = filename
+      end
+
+      vim.api.nvim_get_commands({}).Reprobada.callback()
+      reprobado.play = original_play
+
+      assert.equals("Reprobada.ogg", played)
     end)
   end)
 
@@ -234,19 +248,6 @@ describe("reprobado", function()
       end)
 
       assert.matches("Failed to install vorbis%-tools %(exit code 1%)", messages[2])
-    end)
-  end)
-end)
-
-describe("utils.local", function()
-  before_each(function()
-    package.loaded["utils.local"] = nil
-  end)
-
-  it("skips missing local overlay files", function()
-    local local_util = require("utils.local")
-    assert.has_no.errors(function()
-      local_util.load("nonexistent-overlay-name-xyz")
     end)
   end)
 end)
