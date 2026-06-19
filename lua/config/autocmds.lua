@@ -115,7 +115,7 @@ local function open_colorscheme_picker()
   vim.defer_fn(function()
     colorscheme_picker_opening = false
 
-    local ok, picker_api = pcall(require, "snacks.picker")
+    local ok, picker_api = pcall(require, 'snacks.picker')
     if not ok then
       return
     end
@@ -158,7 +158,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
       return
     end
 
-    local ok, picker = pcall(require, "snacks.picker")
+    local ok, picker = pcall(require, 'snacks.picker')
     if ok and #picker.get() > 0 then
       return
     end
