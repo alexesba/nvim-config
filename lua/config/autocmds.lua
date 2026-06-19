@@ -135,7 +135,7 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "CmdlineLeave", "CmdlineAbort" }, {
+vim.api.nvim_create_autocmd("CmdlineLeave", {
   callback = function()
     in_cmdline = false
   end,
