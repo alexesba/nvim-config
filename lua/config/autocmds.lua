@@ -102,12 +102,38 @@ vim.api.nvim_create_user_command(
   { desc = "show hi name" }
 )
 
+local function open_colorscheme_picker()
+  -- Defer past cmdline teardown; keymaps don't need this, :commands do.
+  vim.schedule(function()
+    require("snacks").picker.colorschemes({ auto_close = false })
+  end)
+end
+
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
+    -- Cmdline/wildmenu: avoid diagnostic float stealing focus (WSL tab completion jump).
+    local mode = vim.api.nvim_get_mode().mode
+    if mode:find("^c") or vim.fn.getcmdwintype() ~= "" then
+      return
+    end
+
+    -- Skip floats (picker, diagnostics) so WSL/GUI terminals don't fight for focus.
+    if vim.api.nvim_win_get_config(0).relative ~= "" then
+      return
+    end
+
+    local ok, picker = pcall(require, "snacks.picker")
+    if ok and #picker.get() > 0 then
+      return
+    end
+
     vim.diagnostic.open_float(nil, { focus = false })
   end,
 })
 
-vim.api.nvim_create_user_command("ColorScheme", function()
-  require("snacks").picker.colorschemes()
-end, { desc = "Pick colorscheme (Snacks picker with preview)" })
+vim.api.nvim_create_user_command("PickColorscheme", open_colorscheme_picker, {
+  desc = "Pick colorscheme (Snacks picker with preview)",
+})
+vim.api.nvim_create_user_command("ColorScheme", open_colorscheme_picker, {
+  desc = "Alias for PickColorscheme",
+})
