@@ -19,4 +19,6 @@ make clean   # remove deps/ and .test-state/
 
 ## CI
 
-GitHub Actions runs `make test` on pull requests targeting `main` and on pushes to `main`. Workflow: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml).
+GitHub Actions runs `make test` on pull requests targeting `master` and on pushes to `master`. Workflow: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml).
+
+You can also run it manually: **Actions → CI → Run workflow**.
