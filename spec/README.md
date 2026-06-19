@@ -10,8 +10,13 @@ Uses [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) (cloned into `deps
 
 Current coverage:
 
-- `lua/reprobado/init.lua` — setup, play edge cases, commands, `ensure_player` (vorbis-tools install paths)
-- `lua/utils/local.lua` — missing overlay file is a no-op
+- `lua/reprobado/init.lua` — setup, play, commands, `ensure_player` (vorbis-tools install paths)
+- `lua/utils/cmdPreservePosition.lua` — cursor preserved after commands
+- `lua/utils/map.lua` — default `noremap` and option merging
+- `lua/utils/local.lua` — overlay load, missing file, and error notification
+- `lua/config/autocmds.lua` — command registration, `CopyFullPath`, `CopyRelativePath`
+
+Format commands that shell out to external tools (`FormatSQL`, `FormatJSON`, etc.) are intentionally not unit-tested here.
 
 ```bash
 make clean   # remove deps/ and .test-state/
