@@ -34,5 +34,8 @@ jobs:
       - name: Verify Neovim
         run: nvim --version
 
+      - name: Install system test deps
+        run: sudo apt-get update && sudo apt-get install -y vorbis-tools
+
       - name: Run tests
         run: make test
