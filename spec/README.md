@@ -12,7 +12,8 @@ Current coverage:
 
 - `lua/reprobado/init.lua` — setup, play, commands, `ensure_player` (vorbis-tools install paths)
 - `lua/utils/cmdPreservePosition.lua` — cursor preserved after commands
-- `lua/utils/map.lua` — default `noremap` and option merging
+- `lua/utils/map.lua` — default `noremap` and merged caller options
+- `lua/utils/functions.lua` — in-buffer transforms (tabs, quotes, hashes, whitespace)
 - `lua/utils/local.lua` — overlay load, missing file, and error notification
 - `lua/config/autocmds.lua` — command registration, `CopyFullPath`, `CopyRelativePath`
 
