@@ -36,8 +36,23 @@ describe("config.autocmds", function()
       assert.is_not_nil(cmds.FormatJSON)
       assert.is_not_nil(cmds.FormatJSONV2)
       assert.equals("Copy file full path", helpers.command_desc(cmds.CopyFullPath))
-      assert.matches("python3 %-m json%.tool", cmds.FormatJSON.definition)
-      assert.matches("underscore print", cmds.FormatJSONV2.definition)
+      assert.equals("Format json files with python", helpers.command_desc(cmds.FormatJSON))
+      assert.equals("Format json files using underline-cli", helpers.command_desc(cmds.FormatJSONV2))
+    end)
+
+    it("FormatJSON warns when python3 is missing", function()
+      local messages = helpers.capture_notify(function()
+        helpers.with_mocked_fn({
+          executable = function()
+            return 0
+          end,
+        }, function()
+          run_command("FormatJSON")
+        end)
+      end)
+
+      assert.matches("Python 3 not found", messages[1])
+      assert.matches("install with:", messages[1])
     end)
   end)
 

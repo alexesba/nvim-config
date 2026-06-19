@@ -117,39 +117,72 @@ describe("utils.functions", function()
   describe("external tool commands", function()
     local captured_cmds
 
-    local function load_with_preserve_stub()
+    local function with_tool_and_preserve(tool_bin, fn)
       captured_cmds = {}
       package.loaded["utils.cmdPreservePosition"] = function(cmd)
         captured_cmds[#captured_cmds + 1] = cmd
       end
+      helpers.reload_module("utils.require_tool")
       helpers.reload_module("utils.functions")
-      require("utils.functions")
+      helpers.with_mocked_fn({
+        executable = function(name)
+          return name == tool_bin and 1 or 0
+        end,
+      }, function()
+        require("utils.functions")
+        fn()
+      end)
     end
 
     after_each(function()
       package.loaded["utils.cmdPreservePosition"] = nil
     end)
 
+    it("FormatSQL warns and skips when sqlformat is missing", function()
+      helpers.reload_module("utils.functions")
+      local messages = helpers.capture_notify(function()
+        helpers.with_mocked_fn({
+          executable = function()
+            return 0
+          end,
+        }, function()
+          require("utils.functions")
+          FormatSQL()
+        end)
+      end)
+
+      assert.matches("sqlformat", messages[1])
+      assert.matches("install with:", messages[1])
+    end)
+
     it("FormatSQL pipes the buffer through sqlformat", function()
-      load_with_preserve_stub()
-      FormatSQL()
+      with_tool_and_preserve("sqlformat", function()
+        FormatSQL()
+      end)
       assert.matches("sqlformat", captured_cmds[1])
     end)
 
     it("FormatSQLV2 pipes the buffer through sql-formatter-cli", function()
-      load_with_preserve_stub()
-      FormatSQLV2()
+      with_tool_and_preserve("sql-formatter-cli", function()
+        FormatSQLV2()
+      end)
       assert.matches("sql%-formatter%-cli", captured_cmds[1])
     end)
 
     it("RemoveExtraEmptyLines pipes the buffer through cat -s", function()
-      load_with_preserve_stub()
-      RemoveExtraEmptyLines()
+      with_tool_and_preserve("cat", function()
+        RemoveExtraEmptyLines()
+      end)
       assert.matches("cat %-s", captured_cmds[1])
     end)
 
     it("FormatCss runs a brace-aware substitute command", function()
-      load_with_preserve_stub()
+      captured_cmds = {}
+      package.loaded["utils.cmdPreservePosition"] = function(cmd)
+        captured_cmds[#captured_cmds + 1] = cmd
+      end
+      helpers.reload_module("utils.functions")
+      require("utils.functions")
       FormatCss()
       assert.matches("%%s/%[{;}", captured_cmds[1])
     end)
@@ -162,9 +195,16 @@ describe("utils.functions", function()
         cmd_calls[#cmd_calls + 1] = command
       end
 
-      helpers.reload_module("utils.functions")
-      require("utils.functions")
-      FormatXML()
+      helpers.with_mocked_fn({
+        executable = function(name)
+          return name == "python3" and 1 or 0
+        end,
+      }, function()
+        helpers.reload_module("utils.functions")
+        require("utils.functions")
+        FormatXML()
+      end)
+
       vim.cmd = original_cmd
 
       local joined = table.concat(cmd_calls, "\n")
