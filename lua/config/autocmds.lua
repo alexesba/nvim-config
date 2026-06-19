@@ -104,10 +104,20 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
+    -- Skip floats (picker, diagnostics) so WSL/GUI terminals don't fight for focus.
+    if vim.api.nvim_win_get_config(0).relative ~= "" then
+      return
+    end
+
+    local ok, picker = pcall(require, "snacks.picker")
+    if ok and #picker.get() > 0 then
+      return
+    end
+
     vim.diagnostic.open_float(nil, { focus = false })
   end,
 })
 
 vim.api.nvim_create_user_command("ColorScheme", function()
-  require("snacks").picker.colorschemes()
+  require("snacks").picker.colorschemes({ auto_close = false })
 end, { desc = "Pick colorscheme (Snacks picker with preview)" })
