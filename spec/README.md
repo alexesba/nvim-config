@@ -13,11 +13,22 @@ Current coverage:
 - `lua/reprobado/init.lua` — setup, play, commands, `ensure_player` (vorbis-tools install paths)
 - `lua/utils/cmdPreservePosition.lua` — cursor preserved after commands
 - `lua/utils/map.lua` — default `noremap` and merged caller options
-- `lua/utils/functions.lua` — in-buffer transforms (tabs, quotes, hashes, whitespace)
+- `lua/utils/functions.lua` — in-buffer transforms (tabs, quotes, hashes, whitespace) and external-tool command wiring
+
+Format helpers that shell out to OS tools are covered by contract tests (mocked `vim.cmd` / `cmdPreservePosition`), not by running the binaries in CI:
+
+| Command / function | External tool |
+|--------------------|---------------|
+| `FormatXML` | `python3` (`xml.dom.minidom`) |
+| `FormatSQL` | `sqlformat` |
+| `FormatSQLV2` | `sql-formatter-cli` |
+| `RemoveExtraEmptyLines` | `cat` |
+| `FormatJSON` / `FormatJSONV2` (autocmds) | `python3`, `underscore` |
+
+Install these locally when you use the commands; CI only verifies the Neovim side dispatches the expected filter.
+
 - `lua/utils/local.lua` — overlay load, missing file, and error notification
 - `lua/config/autocmds.lua` — command registration, `CopyFullPath`, `CopyRelativePath`
-
-Format commands that shell out to external tools (`FormatSQL`, `FormatJSON`, etc.) are intentionally not unit-tested here.
 
 ```bash
 make clean   # remove deps/ and .test-state/

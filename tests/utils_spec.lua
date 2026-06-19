@@ -113,6 +113,65 @@ describe("utils.functions", function()
 
     assert.same({ 2, 0 }, vim.api.nvim_win_get_cursor(0))
   end)
+
+  describe("external tool commands", function()
+    local captured_cmds
+
+    local function load_with_preserve_stub()
+      captured_cmds = {}
+      package.loaded["utils.cmdPreservePosition"] = function(cmd)
+        captured_cmds[#captured_cmds + 1] = cmd
+      end
+      helpers.reload_module("utils.functions")
+      require("utils.functions")
+    end
+
+    after_each(function()
+      package.loaded["utils.cmdPreservePosition"] = nil
+    end)
+
+    it("FormatSQL pipes the buffer through sqlformat", function()
+      load_with_preserve_stub()
+      FormatSQL()
+      assert.matches("sqlformat", captured_cmds[1])
+    end)
+
+    it("FormatSQLV2 pipes the buffer through sql-formatter-cli", function()
+      load_with_preserve_stub()
+      FormatSQLV2()
+      assert.matches("sql%-formatter%-cli", captured_cmds[1])
+    end)
+
+    it("RemoveExtraEmptyLines pipes the buffer through cat -s", function()
+      load_with_preserve_stub()
+      RemoveExtraEmptyLines()
+      assert.matches("cat %-s", captured_cmds[1])
+    end)
+
+    it("FormatCss runs a brace-aware substitute command", function()
+      load_with_preserve_stub()
+      FormatCss()
+      assert.matches("%%s/%[{;}", captured_cmds[1])
+    end)
+
+    it("FormatXML runs python minidom via vim.cmd", function()
+      local cmd_calls = {}
+      local original_cmd = vim.cmd
+
+      vim.cmd = function(command)
+        cmd_calls[#cmd_calls + 1] = command
+      end
+
+      helpers.reload_module("utils.functions")
+      require("utils.functions")
+      FormatXML()
+      vim.cmd = original_cmd
+
+      local joined = table.concat(cmd_calls, "\n")
+      assert.matches("python3", joined)
+      assert.matches("xml%.dom%.minidom", joined)
+    end)
+  end)
 end)
 
 describe("utils.local", function()
