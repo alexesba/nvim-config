@@ -14,14 +14,13 @@ function FormatCss()
 end
 
 function FormatXML()
-  if not require_tool.ensure("python3") then
-    return
-  end
-  cmdPreserveCursorPosition([[
-    silent! %s/\\"/"/g |
-    silent! %s/\\n//g
-  ]])
-  format.run({ "xml_minidom" }, "Format XML")
+  with_tool("python3", function()
+    cmdPreserveCursorPosition([[
+      silent! %s/\\"/"/g |
+      silent! %s/\\n//g
+    ]])
+    format.run({ "xml_minidom" }, "Format XML")
+  end)
 end
 
 function RemoveExtraEmptyLines()
