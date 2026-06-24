@@ -86,6 +86,15 @@ function SingleQuotes()
   cmdPreserveCursorPosition([[%s/"\([^"]*\)"/'\1'/g]])
 end
 
+--- Normalize multi-line Ruby hashes in the current buffer.
+---
+--- Steps (order preserved; no sorting or column alignment):
+---   1. `:key =>` → `key: ` (old rocket syntax to new, with space after `:`)
+---   2. `}, {` → `},\n {` (split two inline hashes onto separate lines)
+---   3. `"…"` → `'…'` (double quotes to single quotes)
+---   4. `ggVG=` — re-indent the buffer (Ruby indent when `filetype=ruby`)
+---
+--- Commands: `:UpdateRubyHashesByLines`, `:FormatHashes` (alias).
 function FormatHashes()
   local save_cursor = vim.fn.getpos(".")
   vim.cmd([[

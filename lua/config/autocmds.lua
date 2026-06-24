@@ -80,7 +80,12 @@ vim.api.nvim_create_user_command(
   { desc = "Replace double quotes with single quotes with confirmation" }
 )
 
-vim.api.nvim_create_user_command("UpdateRubyHashesByLines", FormatHashes, { desc = "Update ruby hashes by lines" })
+vim.api.nvim_create_user_command("UpdateRubyHashesByLines", FormatHashes, {
+  desc = "Normalize Ruby hashes: rocket→new syntax, split }, {, single quotes, re-indent",
+})
+vim.api.nvim_create_user_command("FormatHashes", FormatHashes, {
+  desc = "Alias for UpdateRubyHashesByLines",
+})
 
 vim.api.nvim_create_user_command("HashNewSyntax", HashNewSyntax, { desc = "update hash old to new syntax" })
 vim.api.nvim_create_user_command("HashOldSyntax", HashOldSyntax, { desc = "update hash new to old syntax" })
