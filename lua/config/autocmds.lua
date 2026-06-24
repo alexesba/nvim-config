@@ -12,7 +12,9 @@ vim.api.nvim_create_user_command("FormatJSON", FormatJSON, { desc = "Format json
 
 vim.api.nvim_create_user_command("FormatCss", FormatCss, { desc = "Format CSS/SCSS with Prettier" })
 
-vim.api.nvim_create_user_command("RemoveExtraEmptyLines", RemoveExtraEmptyLines, { desc = "Remove extra empty lines" })
+vim.api.nvim_create_user_command("RemoveExtraEmptyLines", RemoveExtraEmptyLines, {
+  desc = "Collapse multiple blank lines to one between functions/blocks",
+})
 
 vim.api.nvim_create_user_command("AddLineNumbers", AddLineNumbers, { desc = "Add number for the entire file" })
 

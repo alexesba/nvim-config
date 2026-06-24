@@ -70,6 +70,11 @@ describe("utils.functions", function()
     assert.same({ "keep", "also" }, lines)
   end)
 
+  it("RemoveExtraEmptyLines keeps one blank line between blocks", function()
+    local lines = with_buffer({ "def foo", "", "", "end", "", "", "", "def bar" }, RemoveExtraEmptyLines)
+    assert.same({ "def foo", "", "end", "", "def bar" }, lines)
+  end)
+
   it("DoubleQuotes converts single-quoted strings to double quotes", function()
     local lines = with_buffer({ "x = 'value'" }, DoubleQuotes)
     assert.same({ 'x = "value"' }, lines)
@@ -154,13 +159,6 @@ describe("utils.functions", function()
 
       assert.matches("sqlformat", messages[1])
       assert.matches("install with:", messages[1])
-    end)
-
-    it("RemoveExtraEmptyLines pipes the buffer through cat -s", function()
-      with_tool_and_preserve("cat", function()
-        RemoveExtraEmptyLines()
-      end)
-      assert.matches("cat %-s", captured_cmds[1])
     end)
 
     it("FormatCss runs conform prettier formatter", function()

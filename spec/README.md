@@ -25,7 +25,7 @@ Format helpers that shell out to OS tools are covered by contract tests (mocked 
 | `FormatSQL` / `FormatSQLFormatter` | `sqlformat`, `sql-formatter-cli` (via conform) |
 | `FormatCss` | `prettier` (via conform) |
 | `FormatXML` | `python3` (via conform) |
-| `RemoveExtraEmptyLines` | `cat` |
+| `RemoveExtraEmptyLines` | (built-in Vim substitute) |
 
 Install these locally when you use the commands. If a tool is missing, Neovim notifies you with the install command to run (e.g. `pip3 install sqlparse`). CI verifies both the install hints and the expected filter wiring.
 

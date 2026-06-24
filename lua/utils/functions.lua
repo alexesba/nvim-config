@@ -23,10 +23,9 @@ function FormatXML()
   end)
 end
 
+--- Collapse consecutive blank lines to a single blank line between blocks.
 function RemoveExtraEmptyLines()
-  with_tool("cat", function()
-    cmdPreserveCursorPosition([[%!cat -s]])
-  end)
+  cmdPreserveCursorPosition([[silent! %s/\n\n\zs\n\+//ge]])
 end
 
 function ConvertTabToSpaces()
