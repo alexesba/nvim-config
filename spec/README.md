@@ -22,11 +22,10 @@ Format helpers that shell out to OS tools are covered by contract tests (mocked 
 |--------------------|---------------|
 | `FormatXML` | `python3` (`xml.dom.minidom`) |
 | `FormatSQL` | `sqlformat` |
-| `FormatSQLV2` | `sql-formatter-cli` |
 | `RemoveExtraEmptyLines` | `cat` |
-| `FormatJSON` / `FormatJSONV2` (autocmds) | `python3`, `underscore` |
+| `FormatJSON` (autocmds) | `python3` |
 
-Install these locally when you use the commands. If a tool is missing, Neovim notifies you with the install command to run (e.g. `pip3 install sqlparse`, `npm install -g sql-formatter-cli`). CI verifies both the install hints and the expected filter wiring.
+Install these locally when you use the commands. If a tool is missing, Neovim notifies you with the install command to run (e.g. `pip3 install sqlparse`). CI verifies both the install hints and the expected filter wiring.
 
 - `lua/utils/local.lua` — overlay load, missing file, and error notification
 - `lua/config/autocmds.lua` — command registration, `CopyFullPath`, `CopyRelativePath`

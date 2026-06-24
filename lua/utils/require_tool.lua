@@ -30,30 +30,6 @@ local tools = {
       fallback = "pip3 install sqlparse",
     },
   },
-  ["sql-formatter-cli"] = {
-    bin = "sql-formatter-cli",
-    label = "sql-formatter-cli",
-    install = {
-      Darwin = "npm install -g sql-formatter-cli",
-      Linux_apt = "npm install -g sql-formatter-cli",
-      Linux_pacman = "npm install -g sql-formatter-cli",
-      Linux_dnf = "npm install -g sql-formatter-cli",
-      Linux_zypper = "npm install -g sql-formatter-cli",
-      fallback = "npm install -g sql-formatter-cli",
-    },
-  },
-  underscore = {
-    bin = "underscore",
-    label = "underscore-cli",
-    install = {
-      Darwin = "npm install -g underscore-cli",
-      Linux_apt = "npm install -g underscore-cli",
-      Linux_pacman = "npm install -g underscore-cli",
-      Linux_dnf = "npm install -g underscore-cli",
-      Linux_zypper = "npm install -g underscore-cli",
-      fallback = "npm install -g underscore-cli",
-    },
-  },
   cat = {
     bin = "cat",
     label = "cat",

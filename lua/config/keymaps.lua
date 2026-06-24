@@ -16,15 +16,6 @@ map("n", "<leader>8", ":tabn 8<cr>", { noremap = true, silent = true })
 map("n", "<leader>9", ":tabn 9<cr>", { noremap = true, silent = true })
 map("n", "<leader>0", ":tabn 0<cr>", { noremap = true, silent = true })
 
-map("n", "<leader>no", [[<cmd>lua require("reprobado").play("Reprobado.ogg")<cr>]], {
-  silent = true,
-  desc = "Play Reprobado",
-})
-map("n", "<leader>na", [[<cmd>lua require("reprobado").play("Reprobada.ogg")<cr>]], {
-  silent = true,
-  desc = "Play Reprobada",
-})
-
 -- Remove newbie crutches in Normal Mode
 map("n", "<Down>", "<Nop>")
 map("n", "<Left>", "<Nop>")

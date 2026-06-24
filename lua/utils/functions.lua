@@ -46,12 +46,6 @@ function FormatSQL()
   end)
 end
 
-function FormatSQLV2()
-  with_tool("sql-formatter-cli", function()
-    cmdPreserveCursorPosition([[%!sql-formatter-cli]])
-  end)
-end
-
 function DoubleQuotes()
   cmdPreserveCursorPosition([[%s/'\([^']*\)'/"\1"/g]])
 end

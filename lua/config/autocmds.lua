@@ -14,12 +14,6 @@ vim.api.nvim_create_user_command("FormatJSON", function()
   end
 end, { bang = true, desc = "Format json files with python" })
 
-vim.api.nvim_create_user_command("FormatJSONV2", function()
-  if require("utils.require_tool").ensure("underscore") then
-    vim.cmd("%!underscore print --outfmt json")
-  end
-end, { bang = true, desc = "Format json files using underline-cli" })
-
 vim.api.nvim_create_user_command("FormatCss", FormatCss, { desc = "Format css using regex" })
 
 vim.api.nvim_create_user_command("RemoveExtraEmptyLines", RemoveExtraEmptyLines, { desc = "Remove extra empty lines" })
@@ -31,8 +25,6 @@ vim.api.nvim_create_user_command("ConvertTabToSpaces", ConvertTabToSpaces, { des
 vim.api.nvim_create_user_command("RemoveEmptyLines", RemoveEmptyLines, { desc = "Remove Empty Lines" })
 
 vim.api.nvim_create_user_command("FormatSQL", FormatSQL, { desc = "Format SQL files using sqlformat" })
-
-vim.api.nvim_create_user_command("FormatSQLV2", FormatSQLV2, { desc = "Format SQL using sql-formatter-cli" })
 
 local function copy_to_clipboard(path, title)
   if path == "" then
@@ -105,7 +97,3 @@ vim.api.nvim_create_autocmd("CursorHold", {
     vim.diagnostic.open_float(nil, { focus = false })
   end,
 })
-
-vim.api.nvim_create_user_command("ColorScheme", function()
-  require("snacks").picker.colorschemes()
-end, { desc = "Pick colorscheme (Snacks picker with preview)" })

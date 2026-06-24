@@ -1,12 +1,11 @@
 return {
   "stevearc/oil.nvim",
-  lazy = false,
+  lazy = true,
   opts = {
     default_file_explorer = true,
   },
-  -- Optional dependencies
   dependencies = { "nvim-web-devicons" },
-  cmd = { "Exp", "Explore", "Explorer" },
+  cmd = { "Exp", "Explore", "Explorer", "Oil" },
   keys = {
     {
       "-",
