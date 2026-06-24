@@ -171,7 +171,7 @@ These are added under `lua/plugins/` and are **not** shipped with LazyVim by def
 - Arrow keys disabled in Normal / Insert / Visual (use `hjkl`)
 - Search centering (`n` / `N` with `zz`), better `J` join, undo breakpoints in Insert
 - **Diagnostics** — virtual text off; float opens on `CursorHold` (see `lua/plugins/lsp.lua`, `lua/config/autocmds.lua`)
-- **Colorschemes** — default Tokyo Night (moon); last pick restored on startup (`<leader>uC` or `:colorscheme`); fallback Tokyo Night if saved theme fails
+- **Colorschemes** — default Tokyo Night (moon); last pick restored on startup (`:ColorScheme`, `<leader>uC`, or `:colorscheme`); fallback Tokyo Night if saved theme fails
 
 Saved theme path: `~/.local/state/nvim/last-colorscheme`
 
@@ -199,7 +199,7 @@ Press `<leader>` and wait for which-key for the full list.
 
 ### Colorschemes
 
-1. `<leader>uC` — pick a theme in Snacks (live preview, works on empty buffers).
+1. `<leader>uC` or `:ColorScheme` — pick a theme in Snacks (live preview, works on empty buffers).
 2. Or `:colorscheme <name>` (e.g. `tokyonight`).
 3. Restart Neovim — your last theme is restored automatically.
 

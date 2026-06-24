@@ -97,3 +97,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
     vim.diagnostic.open_float(nil, { focus = false })
   end,
 })
+
+vim.api.nvim_create_user_command("ColorScheme", function()
+  require("snacks").picker.colorschemes()
+end, { desc = "Pick colorscheme (Snacks picker with preview)" })
