@@ -23,9 +23,27 @@ function FormatXML()
   end)
 end
 
---- Collapse consecutive blank lines to a single blank line between blocks.
+--- Collapse consecutive blank lines (including whitespace-only) to one empty line.
 function RemoveExtraEmptyLines()
-  cmdPreserveCursorPosition([[silent! %s/\n\n\zs\n\+//ge]])
+  local save_cursor = vim.fn.getpos(".")
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local result = {}
+  local in_blank_run = false
+
+  for _, line in ipairs(lines) do
+    if line:match("^%s*$") then
+      if not in_blank_run then
+        result[#result + 1] = ""
+        in_blank_run = true
+      end
+    else
+      in_blank_run = false
+      result[#result + 1] = line
+    end
+  end
+
+  vim.api.nvim_buf_set_lines(0, 0, -1, true, result)
+  vim.fn.setpos(".", save_cursor)
 end
 
 function ConvertTabToSpaces()

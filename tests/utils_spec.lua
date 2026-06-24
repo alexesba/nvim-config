@@ -75,6 +75,11 @@ describe("utils.functions", function()
     assert.same({ "def foo", "", "end", "", "def bar" }, lines)
   end)
 
+  it("RemoveExtraEmptyLines treats whitespace-only lines as blank", function()
+    local lines = with_buffer({ "<book>", "   ", "  ", "  <title/>", " ", "  <author/>" }, RemoveExtraEmptyLines)
+    assert.same({ "<book>", "", "  <title/>", "", "  <author/>" }, lines)
+  end)
+
   it("DoubleQuotes converts single-quoted strings to double quotes", function()
     local lines = with_buffer({ "x = 'value'" }, DoubleQuotes)
     assert.same({ 'x = "value"' }, lines)
