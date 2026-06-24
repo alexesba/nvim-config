@@ -111,7 +111,6 @@ These are added under `lua/plugins/` and are **not** shipped with LazyVim by def
 | [vim-bundler](https://github.com/tpope/vim-bundler) | `tpope.lua` | Jump to gems from `Gemfile` (`gf` in Ruby buffers) |
 | [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim) | `reprobado.lua` | Background jobs for `:Reprobado` / `:Reprobada` audio |
 | [vim-fetch](https://github.com/kopischke/vim-fetch) | `vim-fetch.lua` | Preserve file cursor position across reloads |
-| [sonokai](https://github.com/sainnhe/sonokai) | `sonokai.lua` | Extra colorscheme (lazy-loaded; pick via Snacks or `:colorscheme`) |
 | [clipring.nvim](https://github.com/alexesba/clipring.nvim) | `clipring.lua` | Persistent yank/clipboard history ring |
 
 #### oil.nvim
@@ -150,10 +149,6 @@ These are added under `lua/plugins/` and are **not** shipped with LazyVim by def
 - `<leader>yh` opens the yank history picker.
 - Ring is persisted across sessions (`persist = true`, up to 100 entries).
 
-#### sonokai
-
-- Not loaded until selected; install list includes it in `lua/config/lazy.lua` for `:colorscheme sonokai` or the Snacks colorscheme picker.
-
 ### LazyVim overrides (tweaks, not new plugins)
 
 | File | What it changes |
@@ -163,7 +158,6 @@ These are added under `lua/plugins/` and are **not** shipped with LazyVim by def
 | `lsp.lua` | Disables diagnostic virtual text (float on `CursorHold` in `autocmds.lua`) |
 | `autosave-colorscheme.lua` | Saves/restores last colorscheme via [autosave-colorscheme.nvim](https://github.com/alexesba/autosave-colorscheme.nvim) |
 | `disabled.lua` | Turns off `bufferline.nvim`, `neo-tree.nvim`, `mini.files` |
-| `nvin-web-devicons.lua` | Ensures devicons are lazy-loaded (dependency for Oil, luatab) |
 
 ### Disabled LazyVim plugins
 
@@ -207,7 +201,7 @@ Press `<leader>` and wait for which-key for the full list.
 ### Colorschemes
 
 1. `<leader>uC` or `:ColorScheme` — pick a theme in Snacks (live preview, works on empty buffers).
-2. Or `:colorscheme <name>` (e.g. `sonokai`, `tokyonight`).
+2. Or `:colorscheme <name>` (e.g. `tokyonight`).
 3. Restart Neovim — your last theme is restored automatically.
 
 To reset persistence:

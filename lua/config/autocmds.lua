@@ -86,8 +86,6 @@ vim.api.nvim_create_user_command("UpdateRubyHashesByLines", FormatHashes, { desc
 vim.api.nvim_create_user_command("HashNewSyntax", HashNewSyntax, { desc = "update hash old to new syntax" })
 vim.api.nvim_create_user_command("HashOldSyntax", HashOldSyntax, { desc = "update hash new to old syntax" })
 
-vim.api.nvim_create_user_command("HashNewSyntax", HashOldSyntax, { desc = "update hash syntax" })
-
 vim.api.nvim_create_user_command("CleanWhiteSpaces", CleanWhiteSpaces, { desc = "Clean White spaces" })
 
 vim.api.nvim_create_user_command("UnscapeDoubleQuotes", UnscapeDoubleQuotes, { desc = "unscape double quotes" })
