@@ -8,9 +8,7 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 require("utils.functions")
-vim.api.nvim_create_user_command("FormatJSON", function()
-  require("utils.format").run({ "json_tool" }, "Format JSON")
-end, { bang = true, desc = "Format json files with python" })
+vim.api.nvim_create_user_command("FormatJSON", FormatJSON, { desc = "Format json files with python" })
 
 vim.api.nvim_create_user_command("FormatCss", FormatCss, { desc = "Format CSS/SCSS with Prettier" })
 

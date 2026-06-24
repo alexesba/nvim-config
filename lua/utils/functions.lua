@@ -44,6 +44,10 @@ function FormatSQL()
   format.run({ "sqlformat" }, "Format SQL")
 end
 
+function FormatJSON()
+  format.run({ "json_tool" }, "Format JSON")
+end
+
 function FormatSQLFormatter()
   format.run({ "sql_formatter_cli" }, "Format SQL")
 end
