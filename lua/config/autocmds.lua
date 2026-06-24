@@ -9,9 +9,7 @@
 
 require("utils.functions")
 vim.api.nvim_create_user_command("FormatJSON", function()
-  if require("utils.require_tool").ensure("python3") then
-    vim.cmd("%!python3 -m json.tool")
-  end
+  require("utils.format").run({ "json_tool" }, "Format JSON")
 end, { bang = true, desc = "Format json files with python" })
 
 vim.api.nvim_create_user_command("FormatCss", FormatCss, { desc = "Format css using regex" })

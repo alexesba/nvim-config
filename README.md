@@ -154,6 +154,7 @@ These are added under `lua/plugins/` and are **not** shipped with LazyVim by def
 | --- | --- |
 | `snaks.lua` | Disables Snacks file explorer (Oil is used instead); custom Snacks picker keys (`<leader>fg`, `<leader>fk`) |
 | `noice.lua` | Rounded LSP hover borders only; cmdline/messages/popupmenu stay on Vim defaults |
+| `conform.lua` | Custom SQL/JSON/XML formatters; `<leader>cf` uses sqlformat by default for SQL |
 | `lsp.lua` | Disables diagnostic virtual text (float on `CursorHold` in `autocmds.lua`) |
 | `autosave-colorscheme.lua` | Saves/restores last colorscheme via [autosave-colorscheme.nvim](https://github.com/alexesba/autosave-colorscheme.nvim) |
 | `disabled.lua` | Turns off `bufferline.nvim`, `neo-tree.nvim`, `mini.files` |
@@ -257,7 +258,7 @@ Restart Neovim after structural config changes (lazy.nvim does not fully reload 
 
 ### Custom commands (`:command`)
 
-Formatting and cleanup: `FormatJSON`, `FormatCss`, `FormatSQL`, `FormatSQLFormatter` (`FormatSQLV2` alias), `FormatXML`, `RemoveEmptyLines`, `RemoveExtraEmptyLines`, `CleanWhiteSpaces`, `ConvertTabToSpaces`, `AddLineNumbers`, `RemoveLineBreak`
+Formatting and cleanup: `FormatJSON`, `FormatCss`, `FormatSQL`, `FormatSQLFormatter` (`FormatSQLV2` alias), `FormatXML`, `RemoveEmptyLines`, `RemoveExtraEmptyLines`, `CleanWhiteSpaces`, `ConvertTabToSpaces`, `AddLineNumbers`, `RemoveLineBreak` — SQL/JSON/XML formatters use [conform.nvim](https://github.com/stevearc/conform.nvim) (same engines as `<leader>cf` for those filetypes)
 
 Quotes / Ruby: `DoubleQuotes`, `SingleQuotes`, `DoubleQuotesC`, `SingleQuotesC`, `HashNewSyntax`, `HashOldSyntax`, `UpdateRubyHashesByLines`, `UnscapeDoubleQuotes`
 

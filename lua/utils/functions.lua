@@ -1,5 +1,6 @@
 local cmdPreserveCursorPosition = require("utils.cmdPreservePosition")
 local require_tool = require("utils.require_tool")
+local format = require("utils.format")
 
 local function with_tool(tool, fn)
   if not require_tool.ensure(tool) then
@@ -13,15 +14,16 @@ function FormatCss()
 end
 
 function FormatXML()
-  with_tool("python3", function()
-    local save_cursor = vim.fn.getpos(".")
-    vim.cmd([[
-      silent! %s/\\"/"/g |
-      silent! %s/\\n//g |
-      silent! %!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
-    ]])
-    vim.fn.setpos(".", save_cursor)
-  end)
+  if not require_tool.ensure("python3") then
+    return
+  end
+  local save_cursor = vim.fn.getpos(".")
+  vim.cmd([[
+    silent! %s/\\"/"/g |
+    silent! %s/\\n//g
+  ]])
+  format.run({ "xml_minidom" }, "Format XML")
+  vim.fn.setpos(".", save_cursor)
 end
 
 function RemoveExtraEmptyLines()
@@ -39,18 +41,11 @@ function RemoveEmptyLines()
 end
 
 function FormatSQL()
-  with_tool("sqlformat", function()
-    cmdPreserveCursorPosition([[
-  '%!sqlformat --reindent --keywords upper --identifiers lower -'
-  ]])
-  end)
+  format.run({ "sqlformat" }, "Format SQL")
 end
 
---- sql-formatter-cli (npm); distinct from FormatSQL which uses sqlformat/sqlparse.
 function FormatSQLFormatter()
-  with_tool("sql-formatter-cli", function()
-    cmdPreserveCursorPosition([[%!sql-formatter-cli]])
-  end)
+  format.run({ "sql_formatter_cli" }, "Format SQL")
 end
 
 function DoubleQuotes()

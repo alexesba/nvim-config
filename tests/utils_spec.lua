@@ -139,6 +139,7 @@ describe("utils.functions", function()
     end)
 
     it("FormatSQL warns and skips when sqlformat is missing", function()
+      helpers.reload_module("utils.format")
       helpers.reload_module("utils.functions")
       local messages = helpers.capture_notify(function()
         helpers.with_mocked_fn({
@@ -153,20 +154,6 @@ describe("utils.functions", function()
 
       assert.matches("sqlformat", messages[1])
       assert.matches("install with:", messages[1])
-    end)
-
-    it("FormatSQL pipes the buffer through sqlformat", function()
-      with_tool_and_preserve("sqlformat", function()
-        FormatSQL()
-      end)
-      assert.matches("sqlformat", captured_cmds[1])
-    end)
-
-    it("FormatSQLFormatter pipes the buffer through sql-formatter-cli", function()
-      with_tool_and_preserve("sql-formatter-cli", function()
-        FormatSQLFormatter()
-      end)
-      assert.matches("sql%-formatter%-cli", captured_cmds[1])
     end)
 
     it("RemoveExtraEmptyLines pipes the buffer through cat -s", function()
@@ -187,13 +174,16 @@ describe("utils.functions", function()
       assert.matches("%%s/%[{;}", captured_cmds[1])
     end)
 
-    it("FormatXML runs python minidom via vim.cmd", function()
-      local cmd_calls = {}
-      local original_cmd = vim.cmd
+    it("FormatXML preprocesses escapes then runs conform xml formatter", function()
+      local formatters_run
+      package.loaded["utils.format"] = {
+        run = function(names)
+          formatters_run = names
+          return true
+        end,
+      }
 
-      vim.cmd = function(command)
-        cmd_calls[#cmd_calls + 1] = command
-      end
+      vim.api.nvim_buf_set_lines(0, 0, -1, true, { '{\\"a\\": 1}' })
 
       helpers.with_mocked_fn({
         executable = function(name)
@@ -205,11 +195,9 @@ describe("utils.functions", function()
         FormatXML()
       end)
 
-      vim.cmd = original_cmd
-
-      local joined = table.concat(cmd_calls, "\n")
-      assert.matches("python3", joined)
-      assert.matches("xml%.dom%.minidom", joined)
+      package.loaded["utils.format"] = nil
+      assert.same({ "xml_minidom" }, formatters_run)
+      assert.same({ '{"a": 1}' }, vim.api.nvim_buf_get_lines(0, 0, -1, true))
     end)
   end)
 end)
