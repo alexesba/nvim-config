@@ -10,7 +10,7 @@ local function with_tool(tool, fn)
 end
 
 function FormatCss()
-  cmdPreserveCursorPosition([[silent! :%s/[{;}]/&\r/g|norm! =gg]])
+  format.run({ "prettier" }, "Format CSS")
 end
 
 function FormatXML()

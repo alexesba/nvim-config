@@ -5,6 +5,7 @@ local TOOL_BY_FORMATTER = {
   sql_formatter_cli = "sql-formatter-cli",
   json_tool = "python3",
   xml_minidom = "python3",
+  prettier = "prettier",
 }
 
 --- Run conform formatters by name (used by :FormatSQL, :FormatJSON, etc.).

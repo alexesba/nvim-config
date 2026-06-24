@@ -6,6 +6,10 @@ return {
         sql = { "sqlformat", stop_after_first = true },
         json = { "json_tool" },
         xml = { "xml_minidom" },
+        css = { "prettier", stop_after_first = true },
+        scss = { "prettier", stop_after_first = true },
+        less = { "prettier" },
+        sass = { "prettier" },
       },
       formatters = {
         sqlformat = {

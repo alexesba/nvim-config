@@ -42,6 +42,18 @@ local tools = {
       fallback = "npm install -g sql-formatter-cli",
     },
   },
+  prettier = {
+    bin = { "prettier", "prettierd" },
+    label = "Prettier",
+    install = {
+      Darwin = "npm install -g prettier",
+      Linux_apt = "npm install -g prettier",
+      Linux_pacman = "npm install -g prettier",
+      Linux_dnf = "npm install -g prettier",
+      Linux_zypper = "npm install -g prettier",
+      fallback = "npm install -g prettier",
+    },
+  },
   cat = {
     bin = "cat",
     label = "cat",

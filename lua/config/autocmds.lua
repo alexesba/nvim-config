@@ -12,7 +12,7 @@ vim.api.nvim_create_user_command("FormatJSON", function()
   require("utils.format").run({ "json_tool" }, "Format JSON")
 end, { bang = true, desc = "Format json files with python" })
 
-vim.api.nvim_create_user_command("FormatCss", FormatCss, { desc = "Format css using regex" })
+vim.api.nvim_create_user_command("FormatCss", FormatCss, { desc = "Format CSS/SCSS with Prettier" })
 
 vim.api.nvim_create_user_command("RemoveExtraEmptyLines", RemoveExtraEmptyLines, { desc = "Remove extra empty lines" })
 

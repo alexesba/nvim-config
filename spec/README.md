@@ -23,6 +23,7 @@ Format helpers that shell out to OS tools are covered by contract tests (mocked 
 |--------------------|---------------|
 | `FormatXML` | `python3` (`xml.dom.minidom`) |
 | `FormatSQL` / `FormatSQLFormatter` | `sqlformat`, `sql-formatter-cli` (via conform) |
+| `FormatCss` | `prettier` (via conform) |
 | `FormatXML` | `python3` (via conform) |
 | `RemoveExtraEmptyLines` | `cat` |
 

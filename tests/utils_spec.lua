@@ -163,15 +163,28 @@ describe("utils.functions", function()
       assert.matches("cat %-s", captured_cmds[1])
     end)
 
-    it("FormatCss runs a brace-aware substitute command", function()
-      captured_cmds = {}
-      package.loaded["utils.cmdPreservePosition"] = function(cmd)
-        captured_cmds[#captured_cmds + 1] = cmd
-      end
-      helpers.reload_module("utils.functions")
-      require("utils.functions")
-      FormatCss()
-      assert.matches("%%s/%[{;}", captured_cmds[1])
+    it("FormatCss runs conform prettier formatter", function()
+      local formatters_run
+      package.loaded["utils.format"] = {
+        run = function(names, label)
+          formatters_run = names
+          assert.equals("Format CSS", label)
+          return true
+        end,
+      }
+
+      helpers.with_mocked_fn({
+        executable = function()
+          return 1
+        end,
+      }, function()
+        helpers.reload_module("utils.functions")
+        require("utils.functions")
+        FormatCss()
+      end)
+
+      package.loaded["utils.format"] = nil
+      assert.same({ "prettier" }, formatters_run)
     end)
 
     it("FormatXML preprocesses escapes then runs conform xml formatter", function()
