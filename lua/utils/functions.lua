@@ -50,8 +50,20 @@ function ConvertTabToSpaces()
   cmdPreserveCursorPosition([[%s/\t/  /g]])
 end
 
+--- Remove all blank lines (including whitespace-only).
 function RemoveEmptyLines()
-  cmdPreserveCursorPosition([[g/^$/d]])
+  local save_cursor = vim.fn.getpos(".")
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local result = {}
+
+  for _, line in ipairs(lines) do
+    if not line:match("^%s*$") then
+      result[#result + 1] = line
+    end
+  end
+
+  vim.api.nvim_buf_set_lines(0, 0, -1, true, result)
+  vim.fn.setpos(".", save_cursor)
 end
 
 function FormatSQL()

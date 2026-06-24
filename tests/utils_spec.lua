@@ -70,6 +70,11 @@ describe("utils.functions", function()
     assert.same({ "keep", "also" }, lines)
   end)
 
+  it("RemoveEmptyLines deletes whitespace-only lines", function()
+    local lines = with_buffer({ "keep", "   ", "also" }, RemoveEmptyLines)
+    assert.same({ "keep", "also" }, lines)
+  end)
+
   it("RemoveExtraEmptyLines keeps one blank line between blocks", function()
     local lines = with_buffer({ "def foo", "", "", "end", "", "", "", "def bar" }, RemoveExtraEmptyLines)
     assert.same({ "def foo", "", "end", "", "def bar" }, lines)

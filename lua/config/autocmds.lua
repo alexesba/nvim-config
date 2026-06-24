@@ -20,7 +20,9 @@ vim.api.nvim_create_user_command("AddLineNumbers", AddLineNumbers, { desc = "Add
 
 vim.api.nvim_create_user_command("ConvertTabToSpaces", ConvertTabToSpaces, { desc = "Convert Tab to spaces" })
 
-vim.api.nvim_create_user_command("RemoveEmptyLines", RemoveEmptyLines, { desc = "Remove Empty Lines" })
+vim.api.nvim_create_user_command("RemoveEmptyLines", RemoveEmptyLines, {
+  desc = "Remove all blank lines (including whitespace-only)",
+})
 
 vim.api.nvim_create_user_command("FormatSQL", FormatSQL, { desc = "Format SQL with sqlformat (sqlparse)" })
 
