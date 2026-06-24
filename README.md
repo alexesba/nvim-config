@@ -257,7 +257,7 @@ Restart Neovim after structural config changes (lazy.nvim does not fully reload 
 
 ### Custom commands (`:command`)
 
-Formatting and cleanup: `FormatJSON`, `FormatCss`, `FormatSQL`, `FormatXML`, `RemoveEmptyLines`, `RemoveExtraEmptyLines`, `CleanWhiteSpaces`, `ConvertTabToSpaces`, `AddLineNumbers`, `RemoveLineBreak`
+Formatting and cleanup: `FormatJSON`, `FormatCss`, `FormatSQL`, `FormatSQLFormatter` (`FormatSQLV2` alias), `FormatXML`, `RemoveEmptyLines`, `RemoveExtraEmptyLines`, `CleanWhiteSpaces`, `ConvertTabToSpaces`, `AddLineNumbers`, `RemoveLineBreak`
 
 Quotes / Ruby: `DoubleQuotes`, `SingleQuotes`, `DoubleQuotesC`, `SingleQuotesC`, `HashNewSyntax`, `HashOldSyntax`, `UpdateRubyHashesByLines`, `UnscapeDoubleQuotes`
 

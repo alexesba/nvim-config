@@ -21,7 +21,8 @@ Format helpers that shell out to OS tools are covered by contract tests (mocked 
 | Command / function | External tool |
 |--------------------|---------------|
 | `FormatXML` | `python3` (`xml.dom.minidom`) |
-| `FormatSQL` | `sqlformat` |
+| `FormatSQL` | `sqlformat` (sqlparse) |
+| `FormatSQLFormatter` / `FormatSQLV2` | `sql-formatter-cli` |
 | `RemoveExtraEmptyLines` | `cat` |
 | `FormatJSON` (autocmds) | `python3` |
 

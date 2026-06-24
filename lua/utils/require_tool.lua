@@ -30,6 +30,18 @@ local tools = {
       fallback = "pip3 install sqlparse",
     },
   },
+  ["sql-formatter-cli"] = {
+    bin = "sql-formatter-cli",
+    label = "sql-formatter-cli",
+    install = {
+      Darwin = "npm install -g sql-formatter-cli",
+      Linux_apt = "npm install -g sql-formatter-cli",
+      Linux_pacman = "npm install -g sql-formatter-cli",
+      Linux_dnf = "npm install -g sql-formatter-cli",
+      Linux_zypper = "npm install -g sql-formatter-cli",
+      fallback = "npm install -g sql-formatter-cli",
+    },
+  },
   cat = {
     bin = "cat",
     label = "cat",

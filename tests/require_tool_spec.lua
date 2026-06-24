@@ -54,6 +54,23 @@ describe("utils.require_tool", function()
     assert.matches("sudo apt%-get install %-y python3", messages[1])
   end)
 
+  it("falls back to npm install for sql-formatter-cli", function()
+    local messages = helpers.capture_notify(function()
+      helpers.with_mocked_fn({
+        executable = function()
+          return 0
+        end,
+        system = function()
+          return "Linux\n"
+        end,
+      }, function()
+        assert.is_false(require_tool.ensure("sql-formatter-cli"))
+      end)
+    end)
+
+    assert.matches("npm install %-g sql%-formatter%-cli", messages[1])
+  end)
+
   it("warns with cat fallback when cat is missing", function()
     local messages = helpers.capture_notify(function()
       helpers.with_mocked_fn({

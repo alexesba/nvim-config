@@ -162,6 +162,13 @@ describe("utils.functions", function()
       assert.matches("sqlformat", captured_cmds[1])
     end)
 
+    it("FormatSQLFormatter pipes the buffer through sql-formatter-cli", function()
+      with_tool_and_preserve("sql-formatter-cli", function()
+        FormatSQLFormatter()
+      end)
+      assert.matches("sql%-formatter%-cli", captured_cmds[1])
+    end)
+
     it("RemoveExtraEmptyLines pipes the buffer through cat -s", function()
       with_tool_and_preserve("cat", function()
         RemoveExtraEmptyLines()

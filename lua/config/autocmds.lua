@@ -24,7 +24,14 @@ vim.api.nvim_create_user_command("ConvertTabToSpaces", ConvertTabToSpaces, { des
 
 vim.api.nvim_create_user_command("RemoveEmptyLines", RemoveEmptyLines, { desc = "Remove Empty Lines" })
 
-vim.api.nvim_create_user_command("FormatSQL", FormatSQL, { desc = "Format SQL files using sqlformat" })
+vim.api.nvim_create_user_command("FormatSQL", FormatSQL, { desc = "Format SQL with sqlformat (sqlparse)" })
+
+vim.api.nvim_create_user_command("FormatSQLFormatter", FormatSQLFormatter, {
+  desc = "Format SQL with sql-formatter-cli (npm)",
+})
+vim.api.nvim_create_user_command("FormatSQLV2", FormatSQLFormatter, {
+  desc = "Alias for FormatSQLFormatter (sql-formatter-cli)",
+})
 
 local function copy_to_clipboard(path, title)
   if path == "" then
