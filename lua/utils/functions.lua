@@ -17,13 +17,11 @@ function FormatXML()
   if not require_tool.ensure("python3") then
     return
   end
-  local save_cursor = vim.fn.getpos(".")
-  vim.cmd([[
+  cmdPreserveCursorPosition([[
     silent! %s/\\"/"/g |
     silent! %s/\\n//g
   ]])
   format.run({ "xml_minidom" }, "Format XML")
-  vim.fn.setpos(".", save_cursor)
 end
 
 function RemoveExtraEmptyLines()
