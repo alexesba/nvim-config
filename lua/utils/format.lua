@@ -28,15 +28,18 @@ function M.run(formatters, label)
     return false
   end
 
-  local err = conform.format({
+  local format_err
+  conform.format({
     async = false,
     timeout_ms = 5000,
     lsp_format = "never",
     formatters = formatters,
-  })
+  }, function(err)
+    format_err = err
+  end)
 
-  if err then
-    vim.notify(("%s: %s"):format(label or "Format", err), vim.log.levels.ERROR)
+  if format_err then
+    vim.notify(("%s: %s"):format(label or "Format", format_err), vim.log.levels.ERROR)
     return false
   end
 

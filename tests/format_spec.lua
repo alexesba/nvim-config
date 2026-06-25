@@ -28,9 +28,12 @@ describe("utils.format", function()
   it("calls conform.format with the requested formatters", function()
     local called
     package.loaded["conform"] = {
-      format = function(opts)
+      format = function(opts, callback)
         called = opts
-        return nil
+        if callback then
+          callback(nil, true)
+        end
+        return true
       end,
     }
 
@@ -49,8 +52,11 @@ describe("utils.format", function()
 
   it("notifies when conform reports an error", function()
     package.loaded["conform"] = {
-      format = function()
-        return "formatter failed"
+      format = function(_, callback)
+        if callback then
+          callback("formatter failed", false)
+        end
+        return true
       end,
     }
 
