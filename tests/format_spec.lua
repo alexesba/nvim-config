@@ -8,6 +8,9 @@ describe("utils.format", function()
     helpers.reload_module("utils.require_tool")
     helpers.reload_module("utils.format")
     format = require("utils.format")
+    vim.bo.buftype = ""
+    vim.bo.modifiable = true
+    vim.bo.readonly = false
   end)
 
   it("warns when a required tool is missing", function()
@@ -71,5 +74,55 @@ describe("utils.format", function()
     end)
 
     assert.matches("Format JSON: formatter failed", messages[1])
+  end)
+
+  it("refuses to format special buftype buffers", function()
+    vim.bo.buftype = "nofile"
+
+    package.loaded["conform"] = {
+      format = function()
+        error("should not format")
+      end,
+    }
+
+    local messages = helpers.capture_notify(function()
+      helpers.with_mocked_fn({
+        executable = function()
+          return 1
+        end,
+      }, function()
+        assert.is_false(format.run({ "sql_formatter_cli" }, "Format SQL"))
+      end)
+    end)
+
+    vim.bo.buftype = ""
+    assert.matches("buftype=nofile", messages[1])
+  end)
+
+  it("temporarily enables modifiable when needed", function()
+    vim.bo.buftype = ""
+    vim.bo.modifiable = false
+
+    local saw_modifiable
+    package.loaded["conform"] = {
+      format = function(_, callback)
+        saw_modifiable = vim.bo.modifiable
+        if callback then
+          callback(nil, true)
+        end
+        return true
+      end,
+    }
+
+    helpers.with_mocked_fn({
+      executable = function()
+        return 1
+      end,
+    }, function()
+      assert.is_true(format.run({ "sql_formatter_cli" }, "Format SQL"))
+    end)
+
+    assert.is_true(saw_modifiable)
+    assert.is_false(vim.bo.modifiable)
   end)
 end)
