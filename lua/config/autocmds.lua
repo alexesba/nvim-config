@@ -8,31 +8,30 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 require("utils.functions")
-vim.api.nvim_create_user_command("FormatJSON", function()
-  if require("utils.require_tool").ensure("python3") then
-    vim.cmd("%!python3 -m json.tool")
-  end
-end, { bang = true, desc = "Format json files with python" })
+vim.api.nvim_create_user_command("FormatJSON", FormatJSON, { desc = "Format json files with python" })
 
-vim.api.nvim_create_user_command("FormatJSONV2", function()
-  if require("utils.require_tool").ensure("underscore") then
-    vim.cmd("%!underscore print --outfmt json")
-  end
-end, { bang = true, desc = "Format json files using underline-cli" })
+vim.api.nvim_create_user_command("FormatCss", FormatCss, { desc = "Format CSS/SCSS with Prettier" })
 
-vim.api.nvim_create_user_command("FormatCss", FormatCss, { desc = "Format css using regex" })
-
-vim.api.nvim_create_user_command("RemoveExtraEmptyLines", RemoveExtraEmptyLines, { desc = "Remove extra empty lines" })
+vim.api.nvim_create_user_command("RemoveExtraEmptyLines", RemoveExtraEmptyLines, {
+  desc = "Collapse multiple blank lines to one between functions/blocks",
+})
 
 vim.api.nvim_create_user_command("AddLineNumbers", AddLineNumbers, { desc = "Add number for the entire file" })
 
 vim.api.nvim_create_user_command("ConvertTabToSpaces", ConvertTabToSpaces, { desc = "Convert Tab to spaces" })
 
-vim.api.nvim_create_user_command("RemoveEmptyLines", RemoveEmptyLines, { desc = "Remove Empty Lines" })
+vim.api.nvim_create_user_command("RemoveEmptyLines", RemoveEmptyLines, {
+  desc = "Remove all blank lines (including whitespace-only)",
+})
 
-vim.api.nvim_create_user_command("FormatSQL", FormatSQL, { desc = "Format SQL files using sqlformat" })
+vim.api.nvim_create_user_command("FormatSQL", FormatSQL, { desc = "Format SQL with sqlformat (sqlparse)" })
 
-vim.api.nvim_create_user_command("FormatSQLV2", FormatSQLV2, { desc = "Format SQL using sql-formatter-cli" })
+vim.api.nvim_create_user_command("FormatSQLFormatter", FormatSQLFormatter, {
+  desc = "Format SQL with sql-formatter-cli (npm)",
+})
+vim.api.nvim_create_user_command("FormatSQLV2", FormatSQLFormatter, {
+  desc = "Alias for FormatSQLFormatter (sql-formatter-cli)",
+})
 
 local function copy_to_clipboard(path, title)
   if path == "" then
@@ -81,12 +80,15 @@ vim.api.nvim_create_user_command(
   { desc = "Replace double quotes with single quotes with confirmation" }
 )
 
-vim.api.nvim_create_user_command("UpdateRubyHashesByLines", FormatHashes, { desc = "Update ruby hashes by lines" })
+vim.api.nvim_create_user_command("UpdateRubyHashesByLines", FormatHashes, {
+  desc = "Normalize Ruby hashes: rocket→new syntax, split }, {, single quotes, re-indent",
+})
+vim.api.nvim_create_user_command("FormatHashes", FormatHashes, {
+  desc = "Alias for UpdateRubyHashesByLines",
+})
 
 vim.api.nvim_create_user_command("HashNewSyntax", HashNewSyntax, { desc = "update hash old to new syntax" })
 vim.api.nvim_create_user_command("HashOldSyntax", HashOldSyntax, { desc = "update hash new to old syntax" })
-
-vim.api.nvim_create_user_command("HashNewSyntax", HashOldSyntax, { desc = "update hash syntax" })
 
 vim.api.nvim_create_user_command("CleanWhiteSpaces", CleanWhiteSpaces, { desc = "Clean White spaces" })
 

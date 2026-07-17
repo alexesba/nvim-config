@@ -70,4 +70,21 @@ describe("utils.require_tool", function()
 
     assert.matches("npm install %-g sql%-formatter%-cli", messages[1])
   end)
+
+  it("warns with cat fallback when cat is missing", function()
+    local messages = helpers.capture_notify(function()
+      helpers.with_mocked_fn({
+        executable = function()
+          return 0
+        end,
+        system = function()
+          return "Linux\n"
+        end,
+      }, function()
+        assert.is_false(require_tool.ensure("cat"))
+      end)
+    end)
+
+    assert.matches("coreutils", messages[1])
+  end)
 end)

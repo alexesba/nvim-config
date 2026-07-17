@@ -1,5 +1,6 @@
-local cmdPreserveCursorPosition = require("utils.cmdPreservePosition")
+local preserve_cursor = require("utils.cmdPreservePosition")
 local require_tool = require("utils.require_tool")
+local format = require("utils.format")
 
 local function with_tool(tool, fn)
   if not require_tool.ensure(tool) then
@@ -9,88 +10,122 @@ local function with_tool(tool, fn)
 end
 
 function FormatCss()
-  cmdPreserveCursorPosition([[silent! :%s/[{;}]/&\r/g|norm! =gg]])
+  format.run({ "prettier" }, "Format CSS")
 end
 
 function FormatXML()
   with_tool("python3", function()
-    local save_cursor = vim.fn.getpos(".")
-    vim.cmd([[
+    preserve_cursor([[
       silent! %s/\\"/"/g |
-      silent! %s/\\n//g |
-      silent! %!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+      silent! %s/\\n//g
     ]])
-    vim.fn.setpos(".", save_cursor)
+    format.run({ "xml_minidom" }, "Format XML")
   end)
 end
 
+--- Collapse consecutive blank lines (including whitespace-only) to one empty line.
 function RemoveExtraEmptyLines()
-  with_tool("cat", function()
-    cmdPreserveCursorPosition([[%!cat -s]])
+  preserve_cursor(function()
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    local result = {}
+    local in_blank_run = false
+
+    for _, line in ipairs(lines) do
+      if line:match("^%s*$") then
+        if not in_blank_run then
+          result[#result + 1] = ""
+          in_blank_run = true
+        end
+      else
+        in_blank_run = false
+        result[#result + 1] = line
+      end
+    end
+
+    vim.api.nvim_buf_set_lines(0, 0, -1, true, result)
   end)
 end
 
 function ConvertTabToSpaces()
-  cmdPreserveCursorPosition([[%s/\t/  /g]])
+  preserve_cursor([[%s/\t/  /g]])
 end
 
+--- Remove all blank lines (including whitespace-only).
 function RemoveEmptyLines()
-  cmdPreserveCursorPosition([[g/^$/d]])
+  preserve_cursor(function()
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    local result = {}
+
+    for _, line in ipairs(lines) do
+      if not line:match("^%s*$") then
+        result[#result + 1] = line
+      end
+    end
+
+    vim.api.nvim_buf_set_lines(0, 0, -1, true, result)
+  end)
 end
 
 function FormatSQL()
-  with_tool("sqlformat", function()
-    cmdPreserveCursorPosition([[
-  '%!sqlformat --reindent --keywords upper --identifiers lower -'
-  ]])
-  end)
+  format.run({ "sqlformat" }, "Format SQL")
 end
 
-function FormatSQLV2()
-  with_tool("sql-formatter-cli", function()
-    cmdPreserveCursorPosition([[%!sql-formatter-cli]])
-  end)
+function FormatJSON()
+  format.run({ "json_tool" }, "Format JSON")
+end
+
+function FormatSQLFormatter()
+  format.run({ "sql_formatter_cli" }, "Format SQL")
 end
 
 function DoubleQuotes()
-  cmdPreserveCursorPosition([[%s/'\([^']*\)'/"\1"/g]])
+  preserve_cursor([[%s/'\([^']*\)'/"\1"/g]])
 end
 
 function SingleQuotes()
-  cmdPreserveCursorPosition([[%s/"\([^"]*\)"/'\1'/g]])
+  preserve_cursor([[%s/"\([^"]*\)"/'\1'/g]])
 end
 
+--- Normalize multi-line Ruby hashes in the current buffer.
+---
+--- Steps (order preserved; no sorting or column alignment):
+---   1. `:key =>` → `key: ` (old rocket syntax to new, with space after `:`)
+---   2. `}, {` → `},\n {` (split two inline hashes onto separate lines)
+---   3. `"…"` → `'…'` (double quotes to single quotes)
+---   4. `ggVG=` — re-indent the buffer (Ruby indent when `filetype=ruby`)
+---
+--- Commands: `:UpdateRubyHashesByLines`, `:FormatHashes` (alias).
 function FormatHashes()
-  local save_cursor = vim.fn.getpos(".")
-  vim.cmd([[
-    silent! %s/:\([^ ]*\)\(\s*\)=>/\1: /g |
-    silent! %s/}, {/},\r {/g |
-    silent! %s/"\([^"]*\)"/'\1'/g
-  ]])
-  vim.cmd.normal(vim.api.nvim_replace_termcodes("gg<S-v><S-g>=", true, true, true))
-  vim.fn.setpos(".", save_cursor)
+  preserve_cursor(function()
+    vim.cmd([[
+      silent! %s/:\([^ ]*\)\(\s*\)=>/\1: /g |
+      silent! %s/}, {/},\r {/g |
+      silent! %s/"\([^"]*\)"/'\1'/g
+    ]])
+    vim.cmd.normal(vim.api.nvim_replace_termcodes("gg<S-v><S-g>=", true, true, true))
+  end)
 end
 
 function HashNewSyntax()
-  cmdPreserveCursorPosition([[:%s/:\([^ ]*\)\(\s*\)=>/\1:/g]])
+  preserve_cursor([[:%s/:\([^ ]*\)\(\s*\)=>/\1:/g]])
 end
 
 function HashOldSyntax()
-  cmdPreserveCursorPosition([[:%s/\(\w*\): \([':]\)/:\1 => \2/g]])
+  preserve_cursor([[:%s/\(\w*\): \([':]\)/:\1 => \2/g]])
 end
 
 function UnscapeDoubleQuotes()
-  cmdPreserveCursorPosition([[%s/\\"//g]])
+  preserve_cursor([[%s/\\"//g]])
 end
 
 function RemoveLineBreak()
-  cmdPreserveCursorPosition([[%s/\\n//g]])
+  preserve_cursor([[%s/\\n//g]])
 end
 
 function CleanWhiteSpaces()
-  cmdPreserveCursorPosition([[%s/\s\+$//e]])
+  preserve_cursor([[%s/\s\+$//e]])
 end
 
 function AddLineNumbers()
-  cmdPreserveCursorPosition([[%s/^/\=printf('%-2d', line('.'))]])
+  preserve_cursor([[%s/^/\=printf('%-2d', line('.'))]])
 end

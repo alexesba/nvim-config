@@ -3,22 +3,9 @@
 -- Personal overrides: lua/config/options.local.lua (gitignored; see options.local.lua.example)
 local load_local = require("utils.local").load
 local set = vim.opt
+
 vim.o.winborder = "rounded"
-set.number = true
-set.relativenumber = true
-set.cp = false
-set.hidden = true
-set.expandtab = true
-set.backup = false
-set.wrap = false
-set.writebackup = false
-set.autoindent = true
-set.hlsearch = true
-set.incsearch = true
-set.showmatch = true
-set.backspace = { "indent", "eol", "start" }
-set.laststatus = 2
-set.ruler = true
+set.colorcolumn = "81"
 set.listchars = {
   eol = "$",
   extends = ">",
@@ -26,14 +13,11 @@ set.listchars = {
   tab = ">-",
   trail = "~",
 }
-set.swapfile = false
 set.synmaxcol = 150
-set.cursorline = true
-set.signcolumn = "yes"
-set.termguicolors = true
-set.colorcolumn = "81"
-set.updatetime = 100
 set.diffopt:append({ "vertical" })
+set.list = false
+set.updatetime = 500 -- ms before CursorHold fires (affects diagnostic float speed)
+
 vim.g.mapleader = ","
 vim.g.maplocalleader = "\\"
 
@@ -42,30 +26,5 @@ load_local("leader")
 vim.g.table_mode_corner = "+"
 vim.g.enable_italic_font = 1
 vim.inccommand = "nosplit"
-
-set.wildignore:append({
-  "blue.vim",
-  "darkblue.vim",
-  "default.vim",
-  "delek.vim",
-  "desert.vim",
-  "elflord.vim",
-  "evening.vim",
-  "industry.vim",
-  "koehler.vim",
-  "morning.vim",
-  "murphy.vim",
-  "pablo.vim",
-  "peachpuff.vim",
-  "ron.vim",
-  "shine.vim",
-  "slate.vim",
-  "torte.vim",
-  "zellner.vim",
-})
-
-set.list = false
-set.updatetime = 500 -- ms before CursorHold fires (affects diagnostic float speed)
--- set.cmdheight=0
 
 load_local("options")

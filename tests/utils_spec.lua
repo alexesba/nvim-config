@@ -10,6 +10,18 @@ describe("utils.cmdPreservePosition", function()
 
     assert.same({ 2, 0 }, vim.api.nvim_win_get_cursor(0))
   end)
+
+  it("restores the cursor after running a function", function()
+    vim.api.nvim_buf_set_lines(0, 0, -1, true, { "one", "two", "three" })
+    vim.api.nvim_win_set_cursor(0, { 2, 0 })
+
+    local preserve = require("utils.cmdPreservePosition")
+    preserve(function()
+      vim.api.nvim_buf_set_lines(0, 1, 2, true, { "TWO" })
+    end)
+
+    assert.same({ 2, 0 }, vim.api.nvim_win_get_cursor(0))
+  end)
 end)
 
 describe("utils.map", function()
@@ -70,6 +82,21 @@ describe("utils.functions", function()
     assert.same({ "keep", "also" }, lines)
   end)
 
+  it("RemoveEmptyLines deletes whitespace-only lines", function()
+    local lines = with_buffer({ "keep", "   ", "also" }, RemoveEmptyLines)
+    assert.same({ "keep", "also" }, lines)
+  end)
+
+  it("RemoveExtraEmptyLines keeps one blank line between blocks", function()
+    local lines = with_buffer({ "def foo", "", "", "end", "", "", "", "def bar" }, RemoveExtraEmptyLines)
+    assert.same({ "def foo", "", "end", "", "def bar" }, lines)
+  end)
+
+  it("RemoveExtraEmptyLines treats whitespace-only lines as blank", function()
+    local lines = with_buffer({ "<book>", "   ", "  ", "  <title/>", " ", "  <author/>" }, RemoveExtraEmptyLines)
+    assert.same({ "<book>", "", "  <title/>", "", "  <author/>" }, lines)
+  end)
+
   it("DoubleQuotes converts single-quoted strings to double quotes", function()
     local lines = with_buffer({ "x = 'value'" }, DoubleQuotes)
     assert.same({ 'x = "value"' }, lines)
@@ -105,6 +132,32 @@ describe("utils.functions", function()
     assert.same({ ":foo => 'bar'" }, lines)
   end)
 
+  it("AddLineNumbers prefixes each line with its line number", function()
+    local lines = with_buffer({ "first", "second" }, AddLineNumbers)
+    assert.same({ "1 first", "2 second" }, lines)
+  end)
+
+  it("FormatHashes converts rocket syntax and double quotes", function()
+    local lines = with_buffer({
+      "  :zebra => 1,",
+      '  :apple => "foo",',
+    }, FormatHashes)
+
+    local text = table.concat(lines, "\n")
+    assert.not_matches("=>", text)
+    assert.not_matches('"foo"', text)
+    assert.matches("zebra:%s+1,", text)
+    assert.matches("apple:%s+'foo',", text)
+  end)
+
+  it("FormatHashes splits }, { onto separate lines", function()
+    local lines = with_buffer({ "{ :b => 2 }, { :a => 1 }" }, FormatHashes)
+
+    assert.equals(2, #lines)
+    assert.matches("{ b:%s+2 },", lines[1])
+    assert.matches("{ a:%s+1 }", lines[2])
+  end)
+
   it("preserves the cursor when transforming buffer text", function()
     vim.api.nvim_buf_set_lines(0, 0, -1, true, { "  :foo => 1", "unchanged" })
     vim.api.nvim_win_set_cursor(0, { 2, 0 })
@@ -119,9 +172,20 @@ describe("utils.functions", function()
 
     local function with_tool_and_preserve(tool_bin, fn)
       captured_cmds = {}
-      package.loaded["utils.cmdPreservePosition"] = function(cmd)
-        captured_cmds[#captured_cmds + 1] = cmd
-      end
+      package.loaded["utils.cmdPreservePosition"] = setmetatable({
+        with_cursor = function(action, ...)
+          if type(action) == "string" then
+            captured_cmds[#captured_cmds + 1] = action
+          end
+          if type(action) == "function" then
+            action(...)
+          end
+        end,
+      }, {
+        __call = function(_, action, ...)
+          return package.loaded["utils.cmdPreservePosition"].with_cursor(action, ...)
+        end,
+      })
       helpers.reload_module("utils.require_tool")
       helpers.reload_module("utils.functions")
       helpers.with_mocked_fn({
@@ -139,6 +203,7 @@ describe("utils.functions", function()
     end)
 
     it("FormatSQL warns and skips when sqlformat is missing", function()
+      helpers.reload_module("utils.format")
       helpers.reload_module("utils.functions")
       local messages = helpers.capture_notify(function()
         helpers.with_mocked_fn({
@@ -155,45 +220,88 @@ describe("utils.functions", function()
       assert.matches("install with:", messages[1])
     end)
 
-    it("FormatSQL pipes the buffer through sqlformat", function()
-      with_tool_and_preserve("sqlformat", function()
-        FormatSQL()
+    it("FormatCss runs conform prettier formatter", function()
+      local formatters_run
+      package.loaded["utils.format"] = {
+        run = function(names, label)
+          formatters_run = names
+          assert.equals("Format CSS", label)
+          return true
+        end,
+      }
+
+      helpers.with_mocked_fn({
+        executable = function()
+          return 1
+        end,
+      }, function()
+        helpers.reload_module("utils.functions")
+        require("utils.functions")
+        FormatCss()
       end)
-      assert.matches("sqlformat", captured_cmds[1])
+
+      package.loaded["utils.format"] = nil
+      assert.same({ "prettier" }, formatters_run)
     end)
 
-    it("FormatSQLV2 pipes the buffer through sql-formatter-cli", function()
-      with_tool_and_preserve("sql-formatter-cli", function()
-        FormatSQLV2()
+    it("FormatSQLFormatter runs conform sql_formatter_cli formatter", function()
+      local formatters_run
+      package.loaded["utils.format"] = {
+        run = function(names, label)
+          formatters_run = names
+          assert.equals("Format SQL", label)
+          return true
+        end,
+      }
+
+      helpers.with_mocked_fn({
+        executable = function()
+          return 1
+        end,
+      }, function()
+        helpers.reload_module("utils.functions")
+        require("utils.functions")
+        FormatSQLFormatter()
       end)
-      assert.matches("sql%-formatter%-cli", captured_cmds[1])
+
+      package.loaded["utils.format"] = nil
+      assert.same({ "sql_formatter_cli" }, formatters_run)
     end)
 
-    it("RemoveExtraEmptyLines pipes the buffer through cat -s", function()
-      with_tool_and_preserve("cat", function()
-        RemoveExtraEmptyLines()
+    it("FormatJSON runs conform json_tool formatter", function()
+      local formatters_run
+      package.loaded["utils.format"] = {
+        run = function(names, label)
+          formatters_run = names
+          assert.equals("Format JSON", label)
+          return true
+        end,
+      }
+
+      helpers.with_mocked_fn({
+        executable = function()
+          return 1
+        end,
+      }, function()
+        helpers.reload_module("utils.functions")
+        require("utils.functions")
+        FormatJSON()
       end)
-      assert.matches("cat %-s", captured_cmds[1])
+
+      package.loaded["utils.format"] = nil
+      assert.same({ "json_tool" }, formatters_run)
     end)
 
-    it("FormatCss runs a brace-aware substitute command", function()
-      captured_cmds = {}
-      package.loaded["utils.cmdPreservePosition"] = function(cmd)
-        captured_cmds[#captured_cmds + 1] = cmd
-      end
-      helpers.reload_module("utils.functions")
-      require("utils.functions")
-      FormatCss()
-      assert.matches("%%s/%[{;}", captured_cmds[1])
-    end)
+    it("FormatXML preprocesses escapes then runs conform xml formatter", function()
+      local formatters_run
+      package.loaded["utils.format"] = {
+        run = function(names)
+          formatters_run = names
+          return true
+        end,
+      }
 
-    it("FormatXML runs python minidom via vim.cmd", function()
-      local cmd_calls = {}
-      local original_cmd = vim.cmd
-
-      vim.cmd = function(command)
-        cmd_calls[#cmd_calls + 1] = command
-      end
+      vim.api.nvim_buf_set_lines(0, 0, -1, true, { '{\\"a\\": 1}' })
 
       helpers.with_mocked_fn({
         executable = function(name)
@@ -205,11 +313,9 @@ describe("utils.functions", function()
         FormatXML()
       end)
 
-      vim.cmd = original_cmd
-
-      local joined = table.concat(cmd_calls, "\n")
-      assert.matches("python3", joined)
-      assert.matches("xml%.dom%.minidom", joined)
+      package.loaded["utils.format"] = nil
+      assert.same({ "xml_minidom" }, formatters_run)
+      assert.same({ '{"a": 1}' }, vim.api.nvim_buf_get_lines(0, 0, -1, true))
     end)
   end)
 end)
