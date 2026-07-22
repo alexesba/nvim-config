@@ -7,29 +7,29 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
-require("utils.functions")
-vim.api.nvim_create_user_command("FormatJSON", FormatJSON, { desc = "Format json files with python" })
+local commands = require("utils.commands")
+vim.api.nvim_create_user_command("FormatJSON", commands.FormatJSON, { desc = "Format json files with python" })
 
-vim.api.nvim_create_user_command("FormatCss", FormatCss, { desc = "Format CSS/SCSS with Prettier" })
+vim.api.nvim_create_user_command("FormatCss", commands.FormatCss, { desc = "Format CSS/SCSS with Prettier" })
 
-vim.api.nvim_create_user_command("RemoveExtraEmptyLines", RemoveExtraEmptyLines, {
+vim.api.nvim_create_user_command("RemoveExtraEmptyLines", commands.RemoveExtraEmptyLines, {
   desc = "Collapse multiple blank lines to one between functions/blocks",
 })
 
-vim.api.nvim_create_user_command("AddLineNumbers", AddLineNumbers, { desc = "Add number for the entire file" })
+vim.api.nvim_create_user_command("AddLineNumbers", commands.AddLineNumbers, { desc = "Add number for the entire file" })
 
-vim.api.nvim_create_user_command("ConvertTabToSpaces", ConvertTabToSpaces, { desc = "Convert Tab to spaces" })
+vim.api.nvim_create_user_command("ConvertTabToSpaces", commands.ConvertTabToSpaces, { desc = "Convert Tab to spaces" })
 
-vim.api.nvim_create_user_command("RemoveEmptyLines", RemoveEmptyLines, {
+vim.api.nvim_create_user_command("RemoveEmptyLines", commands.RemoveEmptyLines, {
   desc = "Remove all blank lines (including whitespace-only)",
 })
 
-vim.api.nvim_create_user_command("FormatSQL", FormatSQL, { desc = "Format SQL with sqlformat (sqlparse)" })
+vim.api.nvim_create_user_command("FormatSQL", commands.FormatSQL, { desc = "Format SQL with sqlformat (sqlparse)" })
 
-vim.api.nvim_create_user_command("FormatSQLFormatter", FormatSQLFormatter, {
+vim.api.nvim_create_user_command("FormatSQLFormatter", commands.FormatSQLFormatter, {
   desc = "Format SQL with sql-formatter-cli (npm)",
 })
-vim.api.nvim_create_user_command("FormatSQLV2", FormatSQLFormatter, {
+vim.api.nvim_create_user_command("FormatSQLV2", commands.FormatSQLFormatter, {
   desc = "Alias for FormatSQLFormatter (sql-formatter-cli)",
 })
 
@@ -64,9 +64,9 @@ vim.api.nvim_create_user_command("CopyRelativePath", function()
   copy_to_clipboard(rel, "Relative path copied")
 end, { desc = "Copy file path relative to project root" })
 
-vim.api.nvim_create_user_command("DoubleQuotes", DoubleQuotes, { desc = "Replace single quotes with double quotes" })
+vim.api.nvim_create_user_command("DoubleQuotes", commands.DoubleQuotes, { desc = "Replace single quotes with double quotes" })
 
-vim.api.nvim_create_user_command("SingleQuotes", SingleQuotes, { desc = "Replace double quotes with single quotes" })
+vim.api.nvim_create_user_command("SingleQuotes", commands.SingleQuotes, { desc = "Replace double quotes with single quotes" })
 
 vim.api.nvim_create_user_command(
   "DoubleQuotesC",
@@ -80,23 +80,23 @@ vim.api.nvim_create_user_command(
   { desc = "Replace double quotes with single quotes with confirmation" }
 )
 
-vim.api.nvim_create_user_command("UpdateRubyHashesByLines", FormatHashes, {
+vim.api.nvim_create_user_command("UpdateRubyHashesByLines", commands.FormatHashes, {
   desc = "Normalize Ruby hashes: rocket→new syntax, split }, {, single quotes, re-indent",
 })
-vim.api.nvim_create_user_command("FormatHashes", FormatHashes, {
+vim.api.nvim_create_user_command("FormatHashes", commands.FormatHashes, {
   desc = "Alias for UpdateRubyHashesByLines",
 })
 
-vim.api.nvim_create_user_command("HashNewSyntax", HashNewSyntax, { desc = "update hash old to new syntax" })
-vim.api.nvim_create_user_command("HashOldSyntax", HashOldSyntax, { desc = "update hash new to old syntax" })
+vim.api.nvim_create_user_command("HashNewSyntax", commands.HashNewSyntax, { desc = "update hash old to new syntax" })
+vim.api.nvim_create_user_command("HashOldSyntax", commands.HashOldSyntax, { desc = "update hash new to old syntax" })
 
-vim.api.nvim_create_user_command("CleanWhiteSpaces", CleanWhiteSpaces, { desc = "Clean White spaces" })
+vim.api.nvim_create_user_command("CleanWhiteSpaces", commands.CleanWhiteSpaces, { desc = "Clean White spaces" })
 
-vim.api.nvim_create_user_command("UnscapeDoubleQuotes", UnscapeDoubleQuotes, { desc = "unscape double quotes" })
+vim.api.nvim_create_user_command("UnscapeDoubleQuotes", commands.UnscapeDoubleQuotes, { desc = "unscape double quotes" })
 
-vim.api.nvim_create_user_command("RemoveLineBreak", RemoveLineBreak, { desc = "remove line break" })
+vim.api.nvim_create_user_command("RemoveLineBreak", commands.RemoveLineBreak, { desc = "remove line break" })
 
-vim.api.nvim_create_user_command("FormatXML", FormatXML, { desc = "format xml" })
+vim.api.nvim_create_user_command("FormatXML", commands.FormatXML, { desc = "format xml" })
 
 vim.api.nvim_create_user_command(
   "ShowHiName",

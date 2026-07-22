@@ -1,6 +1,10 @@
+-- Custom buffer-editing commands, exposed as ex-commands via config/autocmds.lua.
+-- Kept as a module (instead of globals) so callers must `require("utils.commands")`.
 local preserve_cursor = require("utils.cmdPreservePosition")
 local require_tool = require("utils.require_tool")
 local format = require("utils.format")
+
+local M = {}
 
 local function with_tool(tool, fn)
   if not require_tool.ensure(tool) then
@@ -9,11 +13,11 @@ local function with_tool(tool, fn)
   fn()
 end
 
-function FormatCss()
+function M.FormatCss()
   format.run({ "prettier" }, "Format CSS")
 end
 
-function FormatXML()
+function M.FormatXML()
   with_tool("python3", function()
     preserve_cursor([[
       silent! %s/\\"/"/g |
@@ -24,7 +28,7 @@ function FormatXML()
 end
 
 --- Collapse consecutive blank lines (including whitespace-only) to one empty line.
-function RemoveExtraEmptyLines()
+function M.RemoveExtraEmptyLines()
   preserve_cursor(function()
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     local result = {}
@@ -46,12 +50,12 @@ function RemoveExtraEmptyLines()
   end)
 end
 
-function ConvertTabToSpaces()
+function M.ConvertTabToSpaces()
   preserve_cursor([[%s/\t/  /g]])
 end
 
 --- Remove all blank lines (including whitespace-only).
-function RemoveEmptyLines()
+function M.RemoveEmptyLines()
   preserve_cursor(function()
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     local result = {}
@@ -66,23 +70,23 @@ function RemoveEmptyLines()
   end)
 end
 
-function FormatSQL()
+function M.FormatSQL()
   format.run({ "sqlformat" }, "Format SQL")
 end
 
-function FormatJSON()
+function M.FormatJSON()
   format.run({ "json_tool" }, "Format JSON")
 end
 
-function FormatSQLFormatter()
+function M.FormatSQLFormatter()
   format.run({ "sql_formatter_cli" }, "Format SQL")
 end
 
-function DoubleQuotes()
+function M.DoubleQuotes()
   preserve_cursor([[%s/'\([^']*\)'/"\1"/g]])
 end
 
-function SingleQuotes()
+function M.SingleQuotes()
   preserve_cursor([[%s/"\([^"]*\)"/'\1'/g]])
 end
 
@@ -95,7 +99,7 @@ end
 ---   4. `ggVG=` — re-indent the buffer (Ruby indent when `filetype=ruby`)
 ---
 --- Commands: `:UpdateRubyHashesByLines`, `:FormatHashes` (alias).
-function FormatHashes()
+function M.FormatHashes()
   preserve_cursor(function()
     vim.cmd([[
       silent! %s/:\([^ ]*\)\(\s*\)=>/\1: /g |
@@ -106,26 +110,32 @@ function FormatHashes()
   end)
 end
 
-function HashNewSyntax()
+function M.HashNewSyntax()
   preserve_cursor([[:%s/:\([^ ]*\)\(\s*\)=>/\1:/g]])
 end
 
-function HashOldSyntax()
-  preserve_cursor([[:%s/\(\w*\): \([':]\)/:\1 => \2/g]])
+--- Convert new hash syntax (`key: value`) back to the old rocket syntax
+--- (`:key => value`), regardless of the value's type (string, symbol,
+--- number, array, etc.). Only the `key: ` portion is matched/replaced;
+--- the value is left untouched.
+function M.HashOldSyntax()
+  preserve_cursor([[:%s/\(\w\+\): /:\1 => /g]])
 end
 
-function UnscapeDoubleQuotes()
+function M.UnscapeDoubleQuotes()
   preserve_cursor([[%s/\\"//g]])
 end
 
-function RemoveLineBreak()
+function M.RemoveLineBreak()
   preserve_cursor([[%s/\\n//g]])
 end
 
-function CleanWhiteSpaces()
+function M.CleanWhiteSpaces()
   preserve_cursor([[%s/\s\+$//e]])
 end
 
-function AddLineNumbers()
+function M.AddLineNumbers()
   preserve_cursor([[%s/^/\=printf('%-2d', line('.'))]])
 end
+
+return M
