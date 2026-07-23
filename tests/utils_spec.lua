@@ -60,7 +60,9 @@ describe("utils.map", function()
   end)
 end)
 
-describe("utils.functions", function()
+describe("utils.commands", function()
+  local commands
+
   local function with_buffer(lines, fn)
     vim.api.nvim_buf_set_lines(0, 0, -1, true, lines)
     fn()
@@ -68,72 +70,85 @@ describe("utils.functions", function()
   end
 
   before_each(function()
-    helpers.reload_module("utils.functions")
-    require("utils.functions")
+    helpers.reload_module("utils.commands")
+    commands = require("utils.commands")
   end)
 
   it("ConvertTabToSpaces replaces tabs with two spaces", function()
-    local lines = with_buffer({ "hello\tworld" }, ConvertTabToSpaces)
+    local lines = with_buffer({ "hello\tworld" }, commands.ConvertTabToSpaces)
     assert.same({ "hello  world" }, lines)
   end)
 
   it("RemoveEmptyLines deletes blank lines", function()
-    local lines = with_buffer({ "keep", "", "also" }, RemoveEmptyLines)
+    local lines = with_buffer({ "keep", "", "also" }, commands.RemoveEmptyLines)
     assert.same({ "keep", "also" }, lines)
   end)
 
   it("RemoveEmptyLines deletes whitespace-only lines", function()
-    local lines = with_buffer({ "keep", "   ", "also" }, RemoveEmptyLines)
+    local lines = with_buffer({ "keep", "   ", "also" }, commands.RemoveEmptyLines)
     assert.same({ "keep", "also" }, lines)
   end)
 
   it("RemoveExtraEmptyLines keeps one blank line between blocks", function()
-    local lines = with_buffer({ "def foo", "", "", "end", "", "", "", "def bar" }, RemoveExtraEmptyLines)
+    local lines = with_buffer({ "def foo", "", "", "end", "", "", "", "def bar" }, commands.RemoveExtraEmptyLines)
     assert.same({ "def foo", "", "end", "", "def bar" }, lines)
   end)
 
   it("RemoveExtraEmptyLines treats whitespace-only lines as blank", function()
-    local lines = with_buffer({ "<book>", "   ", "  ", "  <title/>", " ", "  <author/>" }, RemoveExtraEmptyLines)
+    local lines = with_buffer({ "<book>", "   ", "  ", "  <title/>", " ", "  <author/>" }, commands.RemoveExtraEmptyLines)
     assert.same({ "<book>", "", "  <title/>", "", "  <author/>" }, lines)
   end)
 
   it("DoubleQuotes converts single-quoted strings to double quotes", function()
-    local lines = with_buffer({ "x = 'value'" }, DoubleQuotes)
+    local lines = with_buffer({ "x = 'value'" }, commands.DoubleQuotes)
     assert.same({ 'x = "value"' }, lines)
   end)
 
   it("SingleQuotes converts double-quoted strings to single quotes", function()
-    local lines = with_buffer({ 'x = "value"' }, SingleQuotes)
+    local lines = with_buffer({ 'x = "value"' }, commands.SingleQuotes)
     assert.same({ "x = 'value'" }, lines)
   end)
 
   it("CleanWhiteSpaces strips trailing whitespace", function()
-    local lines = with_buffer({ "trim me   " }, CleanWhiteSpaces)
+    local lines = with_buffer({ "trim me   " }, commands.CleanWhiteSpaces)
     assert.same({ "trim me" }, lines)
   end)
 
   it("UnscapeDoubleQuotes removes escaped double quotes", function()
-    local lines = with_buffer({ [[say \"hi\"]] }, UnscapeDoubleQuotes)
+    local lines = with_buffer({ [[say \"hi\"]] }, commands.UnscapeDoubleQuotes)
     assert.same({ "say hi" }, lines)
   end)
 
   it("RemoveLineBreak removes literal backslash-n sequences", function()
-    local lines = with_buffer({ [[line1\nline2]] }, RemoveLineBreak)
+    local lines = with_buffer({ [[line1\nline2]] }, commands.RemoveLineBreak)
     assert.same({ "line1line2" }, lines)
   end)
 
   it("HashNewSyntax converts old hash rocket to new syntax", function()
-    local lines = with_buffer({ "  :foo => 1" }, HashNewSyntax)
+    local lines = with_buffer({ "  :foo => 1" }, commands.HashNewSyntax)
     assert.same({ "  foo: 1" }, lines)
   end)
 
   it("HashOldSyntax converts new hash syntax back to rocket form", function()
-    local lines = with_buffer({ "foo: 'bar'" }, HashOldSyntax)
+    local lines = with_buffer({ "foo: 'bar'" }, commands.HashOldSyntax)
     assert.same({ ":foo => 'bar'" }, lines)
   end)
 
+  it("HashOldSyntax converts values regardless of type (number, symbol, array)", function()
+    local lines = with_buffer({
+      "foo: 1",
+      "bar: :baz",
+      "qux: [1, 2]",
+    }, commands.HashOldSyntax)
+    assert.same({
+      ":foo => 1",
+      ":bar => :baz",
+      ":qux => [1, 2]",
+    }, lines)
+  end)
+
   it("AddLineNumbers prefixes each line with its line number", function()
-    local lines = with_buffer({ "first", "second" }, AddLineNumbers)
+    local lines = with_buffer({ "first", "second" }, commands.AddLineNumbers)
     assert.same({ "1 first", "2 second" }, lines)
   end)
 
@@ -141,7 +156,7 @@ describe("utils.functions", function()
     local lines = with_buffer({
       "  :zebra => 1,",
       '  :apple => "foo",',
-    }, FormatHashes)
+    }, commands.FormatHashes)
 
     local text = table.concat(lines, "\n")
     assert.not_matches("=>", text)
@@ -151,7 +166,7 @@ describe("utils.functions", function()
   end)
 
   it("FormatHashes splits }, { onto separate lines", function()
-    local lines = with_buffer({ "{ :b => 2 }, { :a => 1 }" }, FormatHashes)
+    local lines = with_buffer({ "{ :b => 2 }, { :a => 1 }" }, commands.FormatHashes)
 
     assert.equals(2, #lines)
     assert.matches("{ b:%s+2 },", lines[1])
@@ -162,7 +177,7 @@ describe("utils.functions", function()
     vim.api.nvim_buf_set_lines(0, 0, -1, true, { "  :foo => 1", "unchanged" })
     vim.api.nvim_win_set_cursor(0, { 2, 0 })
 
-    HashNewSyntax()
+    commands.HashNewSyntax()
 
     assert.same({ 2, 0 }, vim.api.nvim_win_get_cursor(0))
   end)
@@ -187,13 +202,13 @@ describe("utils.functions", function()
         end,
       })
       helpers.reload_module("utils.require_tool")
-      helpers.reload_module("utils.functions")
+      helpers.reload_module("utils.commands")
       helpers.with_mocked_fn({
         executable = function(name)
           return name == tool_bin and 1 or 0
         end,
       }, function()
-        require("utils.functions")
+        commands = require("utils.commands")
         fn()
       end)
     end
@@ -204,15 +219,15 @@ describe("utils.functions", function()
 
     it("FormatSQL warns and skips when sqlformat is missing", function()
       helpers.reload_module("utils.format")
-      helpers.reload_module("utils.functions")
+      helpers.reload_module("utils.commands")
       local messages = helpers.capture_notify(function()
         helpers.with_mocked_fn({
           executable = function()
             return 0
           end,
         }, function()
-          require("utils.functions")
-          FormatSQL()
+          commands = require("utils.commands")
+          commands.FormatSQL()
         end)
       end)
 
@@ -235,9 +250,9 @@ describe("utils.functions", function()
           return 1
         end,
       }, function()
-        helpers.reload_module("utils.functions")
-        require("utils.functions")
-        FormatCss()
+        helpers.reload_module("utils.commands")
+        commands = require("utils.commands")
+        commands.FormatCss()
       end)
 
       package.loaded["utils.format"] = nil
@@ -259,9 +274,9 @@ describe("utils.functions", function()
           return 1
         end,
       }, function()
-        helpers.reload_module("utils.functions")
-        require("utils.functions")
-        FormatSQLFormatter()
+        helpers.reload_module("utils.commands")
+        commands = require("utils.commands")
+        commands.FormatSQLFormatter()
       end)
 
       package.loaded["utils.format"] = nil
@@ -283,9 +298,9 @@ describe("utils.functions", function()
           return 1
         end,
       }, function()
-        helpers.reload_module("utils.functions")
-        require("utils.functions")
-        FormatJSON()
+        helpers.reload_module("utils.commands")
+        commands = require("utils.commands")
+        commands.FormatJSON()
       end)
 
       package.loaded["utils.format"] = nil
@@ -308,9 +323,9 @@ describe("utils.functions", function()
           return name == "python3" and 1 or 0
         end,
       }, function()
-        helpers.reload_module("utils.functions")
-        require("utils.functions")
-        FormatXML()
+        helpers.reload_module("utils.commands")
+        commands = require("utils.commands")
+        commands.FormatXML()
       end)
 
       package.loaded["utils.format"] = nil
