@@ -138,4 +138,51 @@ function M.AddLineNumbers()
   preserve_cursor([[%s/^/\=printf('%-2d', line('.'))]])
 end
 
+function M.DoubleQuotesC()
+  vim.cmd([[%s/'\([^']*\)'/"\1"/gc]])
+end
+
+function M.SingleQuotesC()
+  vim.cmd([[%s/"\([^"]*\)"/'\1'/gc]])
+end
+
+function M.ShowHiName()
+  vim.cmd([[exe 'hi '.synIDattr(synstack(line('.'), col('.'))[-1], 'name')]])
+end
+
+function M.ColorScheme()
+  require("snacks").picker.colorschemes()
+end
+
+local function copy_to_clipboard(path, title)
+  if path == "" then
+    vim.notify("Not a file buffer", vim.log.levels.WARN)
+    return
+  end
+  vim.fn.setreg("+", path)
+  vim.notify(path, vim.log.levels.INFO, { title = title })
+end
+
+function M.CopyFullPath()
+  copy_to_clipboard(vim.fs.normalize(vim.fn.expand("%:p")), "Full path copied")
+end
+
+function M.CopyRelativePath()
+  local full = vim.fs.normalize(vim.fn.expand("%:p"))
+  if full == "" then
+    vim.notify("Not a file buffer", vim.log.levels.WARN)
+    return
+  end
+
+  local root = LazyVim.root({ normalize = true })
+  local rel = root and vim.fs.relpath(root, full) or nil
+
+  -- File outside project root: fall back to path relative to cwd
+  if not rel or vim.startswith(rel, "..") then
+    rel = vim.fn.fnamemodify(full, ":~:.")
+  end
+
+  copy_to_clipboard(rel, "Relative path copied")
+end
+
 return M

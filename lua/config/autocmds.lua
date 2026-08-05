@@ -33,36 +33,13 @@ vim.api.nvim_create_user_command("FormatSQLV2", commands.FormatSQLFormatter, {
   desc = "Alias for FormatSQLFormatter (sql-formatter-cli)",
 })
 
-local function copy_to_clipboard(path, title)
-  if path == "" then
-    vim.notify("Not a file buffer", vim.log.levels.WARN)
-    return
-  end
-  vim.fn.setreg("+", path)
-  vim.notify(path, vim.log.levels.INFO, { title = title })
-end
+vim.api.nvim_create_user_command("CopyFullPath", commands.CopyFullPath, { desc = "Copy file full path" })
 
-vim.api.nvim_create_user_command("CopyFullPath", function()
-  copy_to_clipboard(vim.fs.normalize(vim.fn.expand("%:p")), "Full path copied")
-end, { desc = "Copy file full path" })
-
-vim.api.nvim_create_user_command("CopyRelativePath", function()
-  local full = vim.fs.normalize(vim.fn.expand("%:p"))
-  if full == "" then
-    vim.notify("Not a file buffer", vim.log.levels.WARN)
-    return
-  end
-
-  local root = LazyVim.root({ normalize = true })
-  local rel = root and vim.fs.relpath(root, full) or nil
-
-  -- File outside project root: fall back to path relative to cwd
-  if not rel or vim.startswith(rel, "..") then
-    rel = vim.fn.fnamemodify(full, ":~:.")
-  end
-
-  copy_to_clipboard(rel, "Relative path copied")
-end, { desc = "Copy file path relative to project root" })
+vim.api.nvim_create_user_command(
+  "CopyRelativePath",
+  commands.CopyRelativePath,
+  { desc = "Copy file path relative to project root" }
+)
 
 vim.api.nvim_create_user_command("DoubleQuotes", commands.DoubleQuotes, { desc = "Replace single quotes with double quotes" })
 
@@ -70,13 +47,13 @@ vim.api.nvim_create_user_command("SingleQuotes", commands.SingleQuotes, { desc =
 
 vim.api.nvim_create_user_command(
   "DoubleQuotesC",
-  [[%s/'\([^']*\)'/"\1"/gc]],
+  commands.DoubleQuotesC,
   { desc = "Replace single quotes with double quotes with confirmation" }
 )
 
 vim.api.nvim_create_user_command(
   "SingleQuotesC",
-  [[%s/"\([^"]*\)"/'\1'/gc]],
+  commands.SingleQuotesC,
   { desc = "Replace double quotes with single quotes with confirmation" }
 )
 
@@ -98,11 +75,7 @@ vim.api.nvim_create_user_command("RemoveLineBreak", commands.RemoveLineBreak, { 
 
 vim.api.nvim_create_user_command("FormatXML", commands.FormatXML, { desc = "format xml" })
 
-vim.api.nvim_create_user_command(
-  "ShowHiName",
-  [[:exe 'hi '.synIDattr(synstack(line('.'), col('.'))[-1], 'name')]],
-  { desc = "show hi name" }
-)
+vim.api.nvim_create_user_command("ShowHiName", commands.ShowHiName, { desc = "show hi name" })
 
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
@@ -110,6 +83,4 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 
-vim.api.nvim_create_user_command("ColorScheme", function()
-  require("snacks").picker.colorschemes()
-end, { desc = "Pick colorscheme (Snacks picker with preview)" })
+vim.api.nvim_create_user_command("ColorScheme", commands.ColorScheme, { desc = "Pick colorscheme (Snacks picker with preview)" })
