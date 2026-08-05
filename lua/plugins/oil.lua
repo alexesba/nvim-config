@@ -1,45 +1,56 @@
 return {
   "stevearc/oil.nvim",
-  lazy = true,
+  lazy = false,
+
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+
+  init = function()
+    -- Disable netrw so Oil becomes the default file explorer.
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+  end,
+
   opts = {
     default_file_explorer = true,
   },
-  dependencies = { "nvim-web-devicons" },
-  cmd = { "Exp", "Explore", "Explorer", "Oil" },
+
   keys = {
     {
       "-",
       function()
         require("oil").open()
       end,
-      desc = "Open Parent Directory",
-      noremap = true,
+      desc = "Open parent directory",
     },
   },
+
   config = function(_, opts)
-    require("oil").setup(opts)
+    local oil = require("oil")
 
-    vim.api.nvim_create_user_command("Explorer", function()
-      require("oil").open()
-    end, { desc = "Open Current Directory" })
+    oil.setup(opts)
 
-    vim.api.nvim_create_user_command("Explore", function()
-      require("oil").open()
-    end, { desc = "Open Current Directory" })
+    local function open_dir(opts)
+      oil.open(opts.args ~= "" and opts.args or nil)
+    end
 
-    vim.api.nvim_create_user_command("Exp", function()
-      require("oil").open()
-    end, { desc = "Open Current Directory" })
-  end,
-  -- Open directory when using nvim .
-  init = function()
-    vim.api.nvim_create_autocmd("VimEnter", {
-      callback = function()
-        local arg = vim.fn.argv(0)
-        if arg and vim.fn.isdirectory(arg) == 1 then
-          vim.cmd("Oil " .. arg)
-        end
-      end,
+    vim.api.nvim_create_user_command("Explore", open_dir, {
+      nargs = "?",
+      complete = "dir",
+      desc = "Open directory in Oil",
+    })
+
+    vim.api.nvim_create_user_command("Explorer", open_dir, {
+      nargs = "?",
+      complete = "dir",
+      desc = "Open directory in Oil",
+    })
+
+    vim.api.nvim_create_user_command("Exp", open_dir, {
+      nargs = "?",
+      complete = "dir",
+      desc = "Open directory in Oil",
     })
   end,
 }
