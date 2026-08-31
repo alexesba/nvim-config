@@ -13,6 +13,31 @@ local function with_tool(tool, fn)
   fn()
 end
 
+--- Run a `:substitute` command, preserving the cursor, and notify the user
+--- with the result instead of letting a "Pattern not found" (E486) error
+--- surface when the pattern has no matches.
+---@param cmd string A substitute command using the `e` flag, e.g. [[%s/\t/  /ge]]
+---@param label string Human-readable name of the operation, used in notifications
+local function substitute(cmd, label)
+  preserve_cursor(function()
+    local report = vim.o.report
+    vim.o.report = 0
+    local ok, msg = pcall(vim.fn.execute, cmd)
+    vim.o.report = report
+
+    if not ok then
+      vim.notify(("%s failed: %s"):format(label, msg), vim.log.levels.ERROR)
+      return
+    end
+
+    if msg == "" then
+      vim.notify(("%s: no matches found"):format(label), vim.log.levels.INFO)
+    else
+      vim.notify(("%s: %s"):format(label, vim.trim(msg)), vim.log.levels.INFO)
+    end
+  end)
+end
+
 function M.FormatCss()
   format.run({ "prettier" }, "Format CSS")
 end
@@ -51,7 +76,7 @@ function M.RemoveExtraEmptyLines()
 end
 
 function M.ConvertTabToSpaces()
-  preserve_cursor([[%s/\t/  /g]])
+  substitute([[%s/\t/  /ge]], "ConvertTabToSpaces")
 end
 
 --- Remove all blank lines (including whitespace-only).
@@ -83,11 +108,11 @@ function M.FormatSQLFormatter()
 end
 
 function M.DoubleQuotes()
-  preserve_cursor([[%s/'\([^']*\)'/"\1"/g]])
+  substitute([[%s/'\([^']*\)'/"\1"/ge]], "DoubleQuotes")
 end
 
 function M.SingleQuotes()
-  preserve_cursor([[%s/"\([^"]*\)"/'\1'/g]])
+  substitute([[%s/"\([^"]*\)"/'\1'/ge]], "SingleQuotes")
 end
 
 --- Normalize multi-line Ruby hashes in the current buffer.
@@ -111,7 +136,7 @@ function M.FormatHashes()
 end
 
 function M.HashNewSyntax()
-  preserve_cursor([[:%s/:\([^ ]*\)\(\s*\)=>/\1:/g]])
+  substitute([[%s/:\([^ ]*\)\(\s*\)=>/\1:/ge]], "HashNewSyntax")
 end
 
 --- Convert new hash syntax (`key: value`) back to the old rocket syntax
@@ -119,15 +144,15 @@ end
 --- number, array, etc.). Only the `key: ` portion is matched/replaced;
 --- the value is left untouched.
 function M.HashOldSyntax()
-  preserve_cursor([[:%s/\(\w\+\): /:\1 => /g]])
+  substitute([[%s/\(\w\+\): /:\1 => /ge]], "HashOldSyntax")
 end
 
 function M.UnscapeDoubleQuotes()
-  preserve_cursor([[%s/\\"//g]])
+  substitute([[%s/\\"//ge]], "UnscapeDoubleQuotes")
 end
 
 function M.RemoveLineBreak()
-  preserve_cursor([[%s/\\n//g]])
+  substitute([[%s/\\n//ge]], "RemoveLineBreak")
 end
 
 function M.CleanWhiteSpaces()
@@ -139,11 +164,11 @@ function M.AddLineNumbers()
 end
 
 function M.DoubleQuotesC()
-  vim.cmd([[%s/'\([^']*\)'/"\1"/gc]])
+  preserve_cursor([[%s/'\([^']*\)'/"\1"/gce]])
 end
 
 function M.SingleQuotesC()
-  vim.cmd([[%s/"\([^"]*\)"/'\1'/gc]])
+  preserve_cursor([[%s/"\([^"]*\)"/'\1'/gce]])
 end
 
 function M.ShowHiName()
